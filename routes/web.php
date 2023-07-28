@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/contact', [LandingPageController::class, 'contact'])->name('contact');
+Route::get('/about', [LandingPageController::class, 'about'])->name('about');
 Route::resource('/', LandingPageController::class);
 Route::resource('/post', PostController::class);
 Route::resource('/newsletter', NewsLetterController::class);

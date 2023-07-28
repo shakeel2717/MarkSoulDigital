@@ -16,6 +16,18 @@ class LandingPageController extends Controller
         return view('landing.index', compact('posts'));
     }
 
+
+    public function about()
+    {
+        $posts = Post::get();
+        return view('landing.about', compact('posts'));
+    }
+
+    public function contact()
+    {
+        return view('landing.contact');
+    }
+
     /**
      * Show the form for creating a new resource.
      */

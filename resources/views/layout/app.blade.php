@@ -46,8 +46,8 @@
                 <ul>
                     <li>
                         <a href="{{ route('index') }}">Home</a>
-                        <a href="{{ route('index') }}">About Us</a>
-                        <a href="{{ route('index') }}">Contact Us</a>
+                        <a href="{{ route('about') }}">About Us</a>
+                        <a href="{{ route('contact') }}">Contact Us</a>
                         <a href="{{ route('login') }}">Sign In</a>
                         <a href="{{ route('register') }}">Regsiter</a>
                     </li>
@@ -123,8 +123,8 @@
                                 <nav class="main-menu menu-style4 d-none d-lg-block">
                                     <ul>
                                         <li><a href="{{ route('index') }}">Home</a></li>
-                                        <li><a href="{{ route('index') }}">About Us</a></li>
-                                        <li><a href="{{ route('index') }}">Contact Us</a></li>
+                                        <li><a href="{{ route('about') }}">About Us</a></li>
+                                        <li><a href="{{ route('contact') }}">Contact Us</a></li>
                                         <li><a href="{{ route('index') }}">Create Account</a></li>
                                         <li><a href="{{ route('index') }}">Sign In</a></li>
                                     </ul>
