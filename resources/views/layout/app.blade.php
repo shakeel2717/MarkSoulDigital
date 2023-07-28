@@ -43,15 +43,7 @@
                 <h2>{{ env('APP_NAME') }}</h2>
             </div>
             <div class="vs-mobile-menu">
-                <ul>
-                    <li>
-                        <a href="{{ route('index') }}">Home</a>
-                        <a href="{{ route('about') }}">About Us</a>
-                        <a href="{{ route('contact') }}">Contact Us</a>
-                        <a href="{{ route('login') }}">Sign In</a>
-                        <a href="{{ route('register') }}">Regsiter</a>
-                    </li>
-                </ul>
+                @include('inc.nav')
             </div>
         </div>
     </div>
@@ -121,13 +113,7 @@
                         <div class="row justify-content-between align-items-center inner-wrap gx-0">
                             <div class="col-auto">
                                 <nav class="main-menu menu-style4 d-none d-lg-block">
-                                    <ul>
-                                        <li><a href="{{ route('index') }}">Home</a></li>
-                                        <li><a href="{{ route('about') }}">About Us</a></li>
-                                        <li><a href="{{ route('contact') }}">Contact Us</a></li>
-                                        <li><a href="{{ route('index') }}">Create Account</a></li>
-                                        <li><a href="{{ route('index') }}">Sign In</a></li>
-                                    </ul>
+                                    @include('inc.nav')
                                 </nav>
                             </div>
                         </div>
@@ -137,8 +123,8 @@
                             <div class="media-icon"><i class="fas fa-headset"></i></div>
                             <div class="media-body">
                                 <span class="media-label">NEED HELP NOW?</span>
-                                <p class="media-info"><a href="tel:{{ env('APP_PHONE') }}" class="text-inherit">{{
-                                        env('APP_PHONE') }}</a></p>
+                                <p class="media-info"><a href="tel:{{ env('APP_PHONE') }}"
+                                        class="text-inherit">{{ env('APP_PHONE') }}</a></p>
                             </div>
                         </div>
                     </div>
@@ -178,7 +164,8 @@
                             <div class="footer-about">
                                 <a href="tel:+56923162156" class="footer-number2">{{ env('APP_PHONE') }}</a>
                                 <p class="footer-address">{{ env('APP_ADDRESS') }}</p>
-                                <a href="mailto:{{ env('APP_EMAIL') }}" class="footer-mail">{{ env('APP_EMAIL') }}</a>
+                                <a href="mailto:{{ env('APP_EMAIL') }}"
+                                    class="footer-mail">{{ env('APP_EMAIL') }}</a>
                             </div>
                         </div>
                     </div>
@@ -188,22 +175,12 @@
                             <div class="row">
                                 <div class="col-auto">
                                     <div class="menu-all-pages-container">
-                                        <ul class="menu">
-                                            <li><a href="about.html">Home</a></li>
-                                            <li><a href="about-2.html">About Us</a></li>
-                                            <li><a href="contact.html">Contact Us</a></li>
-                                            <li><a href="blog.html">Privacy Policy</a></li>
-                                        </ul>
+                                        @include('inc.nav')
                                     </div>
                                 </div>
                                 <div class="col-auto">
                                     <div class="menu-all-pages-container">
-                                        <ul class="menu">
-                                            <li><a href="team.html">Terms & Conditions</a></li>
-                                            <li><a href="team.html">Disclaimer</a></li>
-                                            <li><a href="contact.html">Sign In</a></li>
-                                            <li><a href="price-plan.html">Create Account</a></li>
-                                        </ul>
+                                        @include('inc.footer-nav')
                                     </div>
                                 </div>
                             </div>
@@ -212,17 +189,18 @@
                     <div class="col-xl-4">
                         <div class="widget footer-widget">
                             <div class="sidebar-gallery">
-                                @for($i=1; $i < 10; $i++) <div class="gallery-thumb">
-                                    <a href="#"><img src="{{ asset('assets/img/gallery/'.$i.'.jpg') }}"
-                                            alt="Gallery Image" class="w-100">
-                                    </a>
+                                @for ($i = 1; $i < 10; $i++)
+                                    <div class="gallery-thumb">
+                                        <a href="#"><img src="{{ asset('assets/img/gallery/' . $i . '.jpg') }}"
+                                                alt="Gallery Image" class="w-100">
+                                        </a>
+                                    </div>
+                                @endfor
                             </div>
-                            @endfor
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
         </div>
         <div class="copyright-wrap">
             <div class="container">

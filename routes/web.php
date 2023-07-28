@@ -6,17 +6,12 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+Route::get('/privacy', [LandingPageController::class, 'privacy'])->name('privacy');
+Route::get('/terms', [LandingPageController::class, 'terms'])->name('terms');
+Route::get('/disclaimer', [LandingPageController::class, 'disclaimer'])->name('disclaimer');
 
+
+Route::post('/contact', [LandingPageController::class, 'contactStore'])->name('contact.store');
 Route::get('/contact', [LandingPageController::class, 'contact'])->name('contact');
 Route::get('/about', [LandingPageController::class, 'about'])->name('about');
 Route::resource('/', LandingPageController::class);

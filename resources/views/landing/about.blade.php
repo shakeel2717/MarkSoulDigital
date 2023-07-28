@@ -6,7 +6,7 @@
             <h1 class="breadcumb-title">About Us</h1>
             <div class="breadcumb-menu-wrap">
                 <ul class="breadcumb-menu">
-                    <li><a href="{{ route('index;) }}">Home</a></li>
+                    <li><a href="{{ route('index') }}">Home</a></li>
                     <li>About Us</li>
                 </ul>
             </div>

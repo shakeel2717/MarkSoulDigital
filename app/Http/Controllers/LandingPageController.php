@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ContactForm;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -25,6 +26,43 @@ class LandingPageController extends Controller
 
     public function contact()
     {
+        return view('landing.contact');
+    }
+
+
+    public function privacy()
+    {
+        return view('landing.privacy');
+    }
+
+
+    public function terms()
+    {
+        return view('landing.terms');
+    }
+
+    public function disclaimer()
+    {
+        return view('landing.disclaimer');
+    }
+
+    public function contactStore(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'message' => 'required',
+        ]);
+
+        $contact = new ContactForm();
+        $contact->name = $validatedData['name'];
+        $contact->email = $validatedData['email'];
+        $contact->phone = $validatedData['phone'];
+        $contact->message = $validatedData['message'];
+        $contact->save();
+
+        return back()->with('success', 'Your message Sent Successfully');
         return view('landing.contact');
     }
 
