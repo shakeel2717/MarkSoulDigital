@@ -10,19 +10,19 @@
     <meta name="keywords" content="{{ env('APP_DESC') }}" />
     <meta name="robots" content="INDEX,FOLLOW">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="shortcut icon" href="{{ asset('assets/img/favicon.ico') }}" type="image/x-icon">
-    <link rel="icon" href="{{ asset('assets/img/favicon.ico') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('landing/img/favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('landing/img/favicon.ico') }}" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/fontawesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/layerslider.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/magnific-popup.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/slick.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('landing/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('landing/css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('landing/css/fontawesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('landing/css/layerslider.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('landing/css/magnific-popup.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('landing/css/slick.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('landing/css/style.css') }}">
 </head>
 
 <body>
@@ -32,7 +32,7 @@
     <!-- <div class="preloader  ">
         <button class="vs-btn preloaderCls">Cancel Preloader </button>
         <div class="preloader-inner">
-            <img src="assets/img/logo-2.png" alt="Bizino">
+            <img src="/landing/img/logo-2.png" alt="Bizino">
             <span class="loader"></span>
         </div>
     </div> -->
@@ -135,7 +135,7 @@
     @yield('content')
 
     <footer class="footer-wrapper footer-layout2 ">
-        <div class="footer-top" data-bg-src="{{ asset('assets/img/bg/footer-bg-1-2.jpg') }}">
+        <div class="footer-top" data-bg-src="{{ asset('landing/img/bg/footer-bg-1-2.jpg') }}">
             <div class="container">
                 <div class="row justify-content-center text-center">
                     <div class="col-lg-10 col-xl-8">
@@ -191,7 +191,7 @@
                             <div class="sidebar-gallery">
                                 @for ($i = 1; $i < 10; $i++)
                                     <div class="gallery-thumb">
-                                        <a href="#"><img src="{{ asset('assets/img/gallery/' . $i . '.jpg') }}"
+                                        <a href="#"><img src="{{ asset('landing/img/gallery/' . $i . '.jpg') }}"
                                                 alt="Gallery Image" class="w-100">
                                         </a>
                                     </div>
@@ -222,17 +222,17 @@
     </footer>
     <a href="#" class="scrollToTop scroll-btn"><i class="far fa-arrow-up"></i></a>
 
-    <script src="{{ asset('assets/js/vendor/jquery-3.6.0.min.js') }}"></script>
-    <script src="{{ asset('assets/js/slick.min.js') }}"></script>
-    <script src="{{ asset('assets/js/layerslider.utils.js') }}"></script>
-    <script src="{{ asset('assets/js/layerslider.transitions.js') }}"></script>
-    <script src="{{ asset('assets/js/layerslider.kreaturamedia.jquery.js') }}"></script>
-    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('assets/js/jquery.magnific-popup.min.js') }}"></script>
-    <script src="{{ asset('assets/js/imagesloaded.pkgd.min.js') }}"></script>
-    <script src="{{ asset('assets/js/isotope.pkgd.min.js') }}"></script>
-    <script src="{{ asset('assets/js/wow.min.js') }}"></script>
-    <script src="{{ asset('assets/js/main.js') }}"></script>
+    <script src="{{ asset('landing/js/vendor/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ asset('landing/js/slick.min.js') }}"></script>
+    <script src="{{ asset('landing/js/layerslider.utils.js') }}"></script>
+    <script src="{{ asset('landing/js/layerslider.transitions.js') }}"></script>
+    <script src="{{ asset('landing/js/layerslider.kreaturamedia.jquery.js') }}"></script>
+    <script src="{{ asset('landing/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('landing/js/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ asset('landing/js/imagesloaded.pkgd.min.js') }}"></script>
+    <script src="{{ asset('landing/js/isotope.pkgd.min.js') }}"></script>
+    <script src="{{ asset('landing/js/wow.min.js') }}"></script>
+    <script src="{{ asset('landing/js/main.js') }}"></script>
 </body>
 
 </html>

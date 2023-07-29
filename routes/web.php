@@ -4,7 +4,13 @@ use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\NewsLetterController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\user\DashboardController;
 use Illuminate\Support\Facades\Route;
+
+
+Route::prefix('user/')->name('user.')->group(function () {
+    Route::resource('dashboard', DashboardController::class);
+});
 
 Route::get('/privacy', [LandingPageController::class, 'privacy'])->name('privacy');
 Route::get('/terms', [LandingPageController::class, 'terms'])->name('terms');

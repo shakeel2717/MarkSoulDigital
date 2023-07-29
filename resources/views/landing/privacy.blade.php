@@ -1,6 +1,6 @@
 @extends('layout.app')
 @section('content')
-<div class="breadcumb-wrapper " data-bg-src="assets/img/bg/header-bg-1-1.jpg">
+<div class="breadcumb-wrapper " data-bg-src="landing/img/bg/header-bg-1-1.jpg">
     <div class="container z-index-common">
         <div class="breadcumb-content">
             <h1 class="breadcumb-title">Privacy Policy</h1>

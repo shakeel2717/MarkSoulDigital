@@ -1,6 +1,6 @@
 @extends('layout.app')
 @section('content')
-<div class="breadcumb-wrapper " data-bg-src="assets/img/bg/header-bg-1-1.jpg">
+<div class="breadcumb-wrapper " data-bg-src="landing/img/bg/header-bg-1-1.jpg">
     <div class="container z-index-common">
         <div class="breadcumb-content">
             <h1 class="breadcumb-title">About Us</h1>
@@ -19,7 +19,7 @@
         <div class="row gx-60 align-items-center">
             <div class="col-xl-6 mb-30 mb-xl-0 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="img-box5">
-                    <div class="img-1"><img src="{{ asset('assets/img/about.jpg') }}" alt="about"></div>
+                    <div class="img-1"><img src="{{ asset('landing/img/about.jpg') }}" alt="about"></div>
                     <div class="shape-1"></div>
                 </div>
             </div>
@@ -49,7 +49,7 @@
 
 <div class=" space-bottom">
     <div class="container">
-        <div data-bg-src="assets/img/shape/counter-shape-1-1.jpg">
+        <div data-bg-src="landing/img/shape/counter-shape-1-1.jpg">
             <div class="row gx-0">
                 <div class="col-md-6 col-lg vs-counter  wow fadeInUp" data-wow-delay="0.3s">
                     <div class="vs-counter__number">
@@ -110,7 +110,7 @@
             </div>
             <div class="col-xl-6 mb-30 mb-xl-0 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="img-box5">
-                    <div class="img-1"><img src="{{ asset('assets/img/why.jpg') }}" alt="about"></div>
+                    <div class="img-1"><img src="{{ asset('landing/img/why.jpg') }}" alt="about"></div>
                     <div class="shape-1"></div>
                 </div>
             </div>
@@ -134,7 +134,7 @@
             <div class="col-md-6 col-xl-4">
                 <div class="vs-blog blog-style3">
                     <div class="blog-img">
-                        <a href="{{ route('post.show',['post' => $post->id]) }}"><img src="{{ asset('assets/img/gallery/'.$loop->iteration.'.jpg') }}" alt="Blog Image" class="w-100"></a>
+                        <a href="{{ route('post.show',['post' => $post->id]) }}"><img src="{{ asset('landing/img/gallery/'.$loop->iteration.'.jpg') }}" alt="Blog Image" class="w-100"></a>
                     </div>
                     <div class="blog-content">
                         <div class="blog-meta">

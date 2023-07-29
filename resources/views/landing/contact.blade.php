@@ -1,6 +1,6 @@
 @extends('layout.app')
 @section('content')
-    <div class="breadcumb-wrapper " data-bg-src="assets/img/bg/header-bg-1-1.jpg">
+    <div class="breadcumb-wrapper " data-bg-src="landing/img/bg/header-bg-1-1.jpg">
         <div class="container z-index-common">
             <div class="breadcumb-content">
                 <h1 class="breadcumb-title">Contact Us</h1>
@@ -23,17 +23,17 @@
         <div class="container">
             <div class="row gx-0">
                 <div class="col-md-4 contact-box wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="contact-box__icon"><img src="assets/img/icon/contact-1-1.png" alt="icon"></div>
+                    <div class="contact-box__icon"><img src="landing/img/icon/contact-1-1.png" alt="icon"></div>
                     <h3 class="contact-box__title h5">Office Address:</h3>
                     <p class="contact-box__text">{{ env('APP_ADDRESS') }}</p>
                 </div>
                 <div class="col-md-4 contact-box wow fadeInUp" data-wow-delay="0.4s">
-                    <div class="contact-box__icon"><img src="assets/img/icon/contact-1-2.png" alt="icon"></div>
+                    <div class="contact-box__icon"><img src="landing/img/icon/contact-1-2.png" alt="icon"></div>
                     <h3 class="contact-box__title h5">Call Us For Help:</h3>
                     <p class="contact-box__text"><a href="tel:{{ env('APP_PHONE') }}">{{ env('APP_PHONE') }}</a></p>
                 </div>
                 <div class="col-md-4 contact-box wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="contact-box__icon"><img src="assets/img/icon/contact-1-3.png" alt="icon"></div>
+                    <div class="contact-box__icon"><img src="landing/img/icon/contact-1-3.png" alt="icon"></div>
                     <h3 class="contact-box__title h5">Mail info:</h3>
                     <p class="contact-box__text"><a href="mailto:{{ env('APP_EMAIL') }}">{{ env('APP_EMAIL') }}</a></p>
                 </div>
@@ -47,7 +47,7 @@
         <div class="container">
             <div class="row gx-60 align-items-center">
                 <div class="col-lg-5 wow fadeInUp" data-wow-delay="0.3s">
-                    <img src="{{ asset('assets/img/contact-1.jpg') }}" alt="image">
+                    <img src="{{ asset('landing/img/contact-1.jpg') }}" alt="image">
                 </div>
                 <div class="col-lg-7 pt-5 pt-xl-0 wow fadeInUp" data-wow-delay="0.4s">
                     <form action="{{ route('contact.store') }}" method="POST">
