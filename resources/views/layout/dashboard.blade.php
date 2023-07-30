@@ -1,6 +1,6 @@
 <!doctype html>
-<html lang="en" data-layout="vertical" data-sidebar="dark" data-sidebar-size="lg" data-preloader="disable"
-    data-theme="default" data-topbar="light" data-bs-theme="light">
+<html lang="en" data-layout="vertical" data-sidebar="dark" data-sidebar-size="lg" data-preloader="disable" data-theme="default" data-topbar="light" data-bs-theme="light">
+
 <head>
     <meta charset="utf-8">
     <title>{{ env('APP_NAME') }}</title>
@@ -10,8 +10,7 @@
     <link rel="shortcut icon" href="/assets/images/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link id="fontsLink" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link id="fontsLink" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="/assets/js/layout.js"></script>
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="/assets/css/icons.min.css" rel="stylesheet" type="text/css">
@@ -39,8 +38,7 @@
                         <h3 class="text-white">{{ env('APP_NAME') }}</h3>
                     </span>
                 </a>
-                <button type="button" class="btn btn-sm p-0 fs-3xl header-item float-end btn-vertical-sm-hover"
-                    id="vertical-hover">
+                <button type="button" class="btn btn-sm p-0 fs-3xl header-item float-end btn-vertical-sm-hover" id="vertical-hover">
                     <i class="ri-record-circle-line"></i>
                 </button>
             </div>
@@ -89,9 +87,7 @@
                             </a>
                         </div>
 
-                        <button type="button"
-                            class="btn btn-sm px-3 fs-16 header-item vertical-menu-btn topnav-hamburger shadow-none"
-                            id="topnav-hamburger-icon">
+                        <button type="button" class="btn btn-sm px-3 fs-16 header-item vertical-menu-btn topnav-hamburger shadow-none" id="topnav-hamburger-icon">
                             <span class="hamburger-icon">
                                 <span></span>
                                 <span></span>
@@ -103,8 +99,7 @@
                     <div class="d-flex align-items-center">
 
                         <div class="dropdown topbar-head-dropdown ms-1 header-item">
-                            <button type="button" class="btn btn-icon btn-topbar btn-ghost-dark rounded-circle"
-                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button type="button" class="btn btn-icon btn-topbar btn-ghost-dark rounded-circle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class='bi bi-grid fs-2xl'></i>
                             </button>
                             <div class="dropdown-menu dropdown-menu-lg p-0 dropdown-menu-end">
@@ -130,46 +125,34 @@
                         </div>
 
                         <div class="ms-1 header-item d-none d-sm-flex">
-                            <button type="button" class="btn btn-icon btn-topbar btn-ghost-dark rounded-circle"
-                                data-toggle="fullscreen">
+                            <button type="button" class="btn btn-icon btn-topbar btn-ghost-dark rounded-circle" data-toggle="fullscreen">
                                 <i class='bi bi-arrows-fullscreen fs-lg'></i>
                             </button>
                         </div>
 
                         <div class="dropdown topbar-head-dropdown ms-1 header-item">
-                            <button type="button"
-                                class="btn btn-icon btn-topbar btn-ghost-dark rounded-circle mode-layout"
-                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button type="button" class="btn btn-icon btn-topbar btn-ghost-dark rounded-circle mode-layout" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="bi bi-sun align-middle fs-3xl"></i>
                             </button>
                             <div class="dropdown-menu p-2 dropdown-menu-end" id="light-dark-mode">
-                                <a href="#!" class="dropdown-item" data-mode="light"><i
-                                        class="bi bi-sun align-middle me-2"></i> Default (light mode)</a>
-                                <a href="#!" class="dropdown-item" data-mode="dark"><i
-                                        class="bi bi-moon align-middle me-2"></i> Dark</a>
-                                <a href="#!" class="dropdown-item" data-mode="auto"><i
-                                        class="bi bi-moon-stars align-middle me-2"></i> Auto (system default)</a>
+                                <a href="#!" class="dropdown-item" data-mode="light"><i class="bi bi-sun align-middle me-2"></i> Default (light mode)</a>
+                                <a href="#!" class="dropdown-item" data-mode="dark"><i class="bi bi-moon align-middle me-2"></i> Dark</a>
+                                <a href="#!" class="dropdown-item" data-mode="auto"><i class="bi bi-moon-stars align-middle me-2"></i> Auto (system default)</a>
                             </div>
                         </div>
 
                         <div class="dropdown topbar-head-dropdown ms-1 header-item" id="notificationDropdown">
-                            <button type="button" class="btn btn-icon btn-topbar btn-ghost-dark rounded-circle"
-                                id="page-header-notifications-dropdown" data-bs-toggle="dropdown"
-                                data-bs-auto-close="outside" aria-haspopup="true" aria-expanded="false">
+                            <button type="button" class="btn btn-icon btn-topbar btn-ghost-dark rounded-circle" id="page-header-notifications-dropdown" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-haspopup="true" aria-expanded="false">
                                 <i class='bi bi-bell fs-2xl'></i>
-                                <span
-                                    class="position-absolute topbar-badge fs-3xs translate-middle badge rounded-pill bg-danger"><span
-                                        class="notification-badge">0</span>
+                                <span class="position-absolute topbar-badge fs-3xs translate-middle badge rounded-pill bg-danger"><span class="notification-badge">0</span>
                                     <span class="visually-hidden">unread messages</span></span>
                             </button>
-                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
-                                aria-labelledby="page-header-notifications-dropdown">
+                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0" aria-labelledby="page-header-notifications-dropdown">
                                 <div class="dropdown-head rounded-top">
                                     <div class="p-3 border-bottom border-bottom-dashed">
                                         <div class="row align-items-center">
                                             <div class="col">
-                                                <h6 class="mb-0 fs-lg fw-semibold"> Notifications <span
-                                                        class="badge bg-danger-subtle text-danger fs-sm notification-badge">0</span>
+                                                <h6 class="mb-0 fs-lg fw-semibold"> Notifications <span class="badge bg-danger-subtle text-danger fs-sm notification-badge">0</span>
                                                 </h6>
                                             </div>
                                         </div>
@@ -179,12 +162,10 @@
 
                                 <div class="py-2 ps-2" id="notificationItemsTabContent">
                                     <div data-simplebar style="max-height: 300px;" class="pe-2">
-                                        <div
-                                            class="text-reset notification-item d-block dropdown-item position-relative">
+                                        <div class="text-reset notification-item d-block dropdown-item position-relative">
                                             <div class="d-flex">
                                                 <div class="avatar-xs me-3 flex-shrink-0">
-                                                    <span
-                                                        class="avatar-title bg-info-subtle text-info rounded-circle fs-lg">
+                                                    <span class="avatar-title bg-info-subtle text-info rounded-circle fs-lg">
                                                         <i class="bx bx-badge-check"></i>
                                                     </span>
                                                 </div>
@@ -203,10 +184,8 @@
                                                 </div>
                                                 <div class="px-2 fs-base">
                                                     <div class="form-check notification-check">
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            id="all-notification-check01">
-                                                        <label class="form-check-label"
-                                                            for="all-notification-check01"></label>
+                                                        <input class="form-check-input" type="checkbox" value="" id="all-notification-check01">
+                                                        <label class="form-check-label" for="all-notification-check01"></label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -217,35 +196,29 @@
                         </div>
 
                         <div class="dropdown ms-sm-3 header-item topbar-user">
-                            <button type="button" class="btn shadow-none" id="page-header-user-dropdown"
-                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button type="button" class="btn shadow-none" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="d-flex align-items-center">
-                                    <img class="rounded-circle header-profile-user"
-                                        src="/assets/images/users/32/avatar-1.jpg" alt="Header Avatar">
+                                    <img class="rounded-circle header-profile-user" src="/assets/images/users/user-dummy-img.jpg" alt="Header Avatar">
                                     <span class="text-start ms-xl-2">
                                         <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">{{
                                             auth()->user()->name }}</span>
-                                        <span
-                                            class="d-none d-xl-block ms-1 fs-sm user-name-sub-text">{{auth()->user()->status}}</span>
+                                        <span class="d-none d-xl-block ms-1 fs-sm user-name-sub-text text-uppercase">{{auth()->user()->status}}</span>
                                     </span>
                                 </span>
                             </button>
                             <div class="dropdown-menu dropdown-menu-end">
                                 <!-- item-->
                                 <h6 class="dropdown-header">Welcome {{ auth()->user()->name }}!</h6>
-                                <a class="dropdown-item" href="javascript:void(0)"><i
-                                        class="mdi mdi-account-circle text-muted fs-lg align-middle me-1"></i> <span
-                                        class="align-middle">Profile</span></a>
+                                <a class="dropdown-item" href="javascript:void(0)"><i class="mdi mdi-account-circle text-muted fs-lg align-middle me-1"></i> <span class="align-middle">Profile</span></a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="javascript:void(0)"><i
-                                        class="mdi mdi-wallet text-muted fs-lg align-middle me-1"></i> <span
-                                        class="align-middle">Balance : <b>$0.00</b></span></a>
+                                <a class="dropdown-item" href="javascript:void(0)"><i class="mdi mdi-wallet text-muted fs-lg align-middle me-1"></i> <span class="align-middle">Balance : <b>$0.00</b></span></a>
                                 <a class="dropdown-item" href="javascript:void(0)">
-                                    <i class="mdi mdi-cog-outline text-muted fs-lg align-middle me-1"></i> <span
-                                        class="align-middle">Settings</span></a>
-                                <a class="dropdown-item" href="javascript:void(0)"><i
-                                        class="mdi mdi-logout text-muted fs-lg align-middle me-1"></i>
-                                    <span class="align-middle" data-key="t-logout">Logout</span>
+                                    <i class="mdi mdi-cog-outline text-muted fs-lg align-middle me-1"></i> <span class="align-middle">Settings</span></a>
+                                <form action="{{route('logout')}}" id="logoutForm" method="POST">
+                                    @csrf
+                                </form>
+                                <a class="dropdown-item" href="javascript:void(0)"><i class="mdi mdi-logout text-muted fs-lg align-middle me-1"></i>
+                                    <span class="align-middle" onclick="document.getElementById('logoutForm').submit()" data-key="t-logout">Logout</span>
                                 </a>
                             </div>
                         </div>
@@ -276,7 +249,9 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-sm-6">
-                            <script>document.write(new Date().getFullYear())</script> © {{env('APP_NAME')}}. All Rights
+                            <script>
+                                document.write(new Date().getFullYear())
+                            </script> © {{env('APP_NAME')}}. All Rights
                             Reserved
                         </div>
                         <div class="col-sm-6">
