@@ -37,6 +37,7 @@ class DatabaseSeeder extends Seeder
         $user->name = "Shakeel Ahmad";
         $user->username = "shakeel2717";
         $user->email = "shakeel2717@gmail.com";
+        $user->email_verified_at = now();
         $user->password = bcrypt('asdfasdf');
         $user->save();
     }
