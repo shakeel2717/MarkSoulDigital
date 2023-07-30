@@ -270,7 +270,7 @@
     <script src="/assets/libs/list.js/list.min.js"></script>
     <script src="/assets/libs/list.pagination.js/list.pagination.min.js"></script>
     <script src="/assets/libs/apexcharts/apexcharts.min.js"></script>
-    <script src="/assets/js/pages/dashboard-crm.init.js"></script>
+    <script src="assets/js/pages/dashboard-learning.init.js"></script>
     <script src="/assets/js/app.js"></script>
 </body>
 

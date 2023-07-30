@@ -29,13 +29,13 @@
     <!--[if lte IE 9]>
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
   <![endif]-->
-    <!-- <div class="preloader  ">
+    <div class="preloader  ">
         <button class="vs-btn preloaderCls">Cancel Preloader </button>
         <div class="preloader-inner">
-            <img src="/landing/img/logo-2.png" alt="Bizino">
+            <h2>{{ env('APP_NAME') }}</h2>
             <span class="loader"></span>
         </div>
-    </div> -->
+    </div>
     <div class="vs-menu-wrapper">
         <div class="vs-menu-area text-center">
             <button class="vs-menu-toggle"><i class="fal fa-times"></i></button>
