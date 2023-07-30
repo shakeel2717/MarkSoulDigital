@@ -1,39 +1,45 @@
-<x-guest-layout>
-    <form method="POST" action="{{ route('password.store') }}">
-        @csrf
-
-        <!-- Password Reset Token -->
-        <input type="hidden" name="token" value="{{ $request->route('token') }}">
-
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $request->email)" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+@extends('layout.auth')
+@section('form')
+<div class="card">
+    <div class="card-body p-sm-5 m-lg-4">
+        <div class="text-center mt-5">
+            <h5 class="fs-3xl">Reset Password</h5>
         </div>
+        <div class="p-2 mt-2">
+            <form action="{{ route('password.store') }}" method="POST">
+                @csrf
+                <div class="mb-3">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email" placeholder="Enter Email" class="form-control"
+                            value="{{$request->email}}" readonly>
+                        <input type="hidden" name="token" id="tokeen" value="{{$request->token}}">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="form-group">
+                        <label for="password">New Password</label>
+                        <input type="password" name="password" id="password" placeholder="New Password"
+                            class="form-control">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="form-group">
+                        <label for="password_confirmation">Cofnrim New Password</label>
+                        <input type="password" name="password_confirmation" id="password_confirmation" placeholder="Confirm New Password"
+                            class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input class="form-check-input" type="checkbox" value="" id="auth-remember-check">
+                    <label class="form-check-label" for="auth-remember-check">Remember me</label>
+                </div>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-            <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                <div class="mt-4">
+                    <button class="btn btn-primary w-100" type="submit">Reset Password</button>
+                </div>
+            </form>
         </div>
-
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                                type="password"
-                                name="password_confirmation" required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
-                {{ __('Reset Password') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+    </div>
+</div>
+@endsection

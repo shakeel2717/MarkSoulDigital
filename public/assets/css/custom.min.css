@@ -1,2 +1,19 @@
+.auth-page {
+    margin: 0;
+    padding: 0;
+    background-image: url("/landing/img/gallery/back/9.jpg"); /* Replace with the actual path or URL */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh; /* Adjust the height if needed */
+    position: relative;
+}
 
-/*# sourceMappingURL=custom.min.css.map */
+.overlay {
+    background-color: rgba(0, 0, 0, 0.6); /* Adjust the alpha value (last parameter) to control the darkness */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
