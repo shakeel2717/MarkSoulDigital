@@ -14,4 +14,12 @@
             <span data-key="t-calendar">Deposit</span>
         </a>
     </li>
+
+    <li class="menu-title"><span data-key="t-menu">Pacakge Plans</span></li>
+    <li class="nav-item">
+        <a href="{{route('user.plan.index')}}" class="nav-link menu-link">
+            <i class=" ph-currency-dollar"></i>
+            <span data-key="t-calendar">Browse Plans</span>
+        </a>
+    </li>
 </ul>

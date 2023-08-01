@@ -9,9 +9,9 @@ function site_option($key)
     return $option->value;
 }
 
-function balnace($user_id)
+function balance($user_id)
 {
-    $in = Transaction::where('sum', true)->count('amount');
-    $out = Transaction::where('sum', false)->count('amount');
+    $in = Transaction::where('sum', true)->sum('amount');
+    $out = Transaction::where('sum', false)->sum('amount');
     return $in - $out;
 }

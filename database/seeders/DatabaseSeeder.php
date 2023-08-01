@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Option;
+use App\Models\Plan;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Wallet;
@@ -32,6 +33,32 @@ class DatabaseSeeder extends Seeder
             'sum' => true,
             'reference' => "Deposit From Admin",
         ]);
+
+
+        // adding default package plan
+        $plan = new Plan();
+        $plan->name = "Silver Package";
+        $plan->min_price = 25;
+        $plan->max_price = 499;
+        $plan->min_profit = 0.75;
+        $plan->max_profit = 1;
+        $plan->save();
+
+        $plan = new Plan();
+        $plan->name = "Gold Package";
+        $plan->min_price = 500;
+        $plan->max_price = 9999;
+        $plan->min_profit = 1;
+        $plan->max_profit = 1.25;
+        $plan->save();
+
+        $plan = new Plan();
+        $plan->name = "Diamond Package";
+        $plan->min_price = 10000;
+        $plan->max_price = 1000000;
+        $plan->min_profit = 1;
+        $plan->max_profit = 1.50;
+        $plan->save();
 
 
         $wallet = new Wallet();
@@ -62,6 +89,18 @@ class DatabaseSeeder extends Seeder
         $option = new Option();
         $option->key = 'min_deposit';
         $option->value = 10;
+        $option->save();
+
+
+        $option = new Option();
+        $option->key = 'deposit_fees';
+        $option->value = 1;
+        $option->save();
+
+
+        $option = new Option();
+        $option->key = 'withdraw_fees';
+        $option->value = 5;
         $option->save();
 
 
