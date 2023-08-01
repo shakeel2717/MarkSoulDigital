@@ -10,7 +10,7 @@ use PowerComponents\LivewirePowerGrid\Traits\{ActionButton, WithExport};
 use PowerComponents\LivewirePowerGrid\Filters\Filter;
 use PowerComponents\LivewirePowerGrid\{Button, Column, Exportable, Footer, Header, PowerGrid, PowerGridComponent, PowerGridColumns};
 
-final class Testuser extends PowerGridComponent
+final class TestUser extends PowerGridComponent
 {
     use ActionButton;
     use WithExport;
@@ -129,11 +129,11 @@ final class Testuser extends PowerGridComponent
 
             Column::make('Username', 'username')
                 ->sortable()
+                ->editOnClick()
                 ->searchable(),
 
             Column::make('Email', 'email')
                 ->sortable()
-                ->editOnClick()
                 ->searchable(),
 
             Column::make('Password', 'password')

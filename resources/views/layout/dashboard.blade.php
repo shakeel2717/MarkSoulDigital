@@ -16,6 +16,8 @@
     <link href="/assets/css/icons.min.css" rel="stylesheet" type="text/css">
     <link href="/assets/css/app.min.css" rel="stylesheet" type="text/css">
     <link href="/assets/css/custom.min.css" rel="stylesheet" type="text/css">
+    @vite(['resources/js/app.js'])
+    @livewireStyles()
 </head>
 
 <body>
@@ -268,6 +270,7 @@
     <script src="/assets/libs/apexcharts/apexcharts.min.js"></script>
     <script src="assets/js/pages/dashboard-learning.init.js"></script>
     <script src="/assets/js/app.js"></script>
+    @livewireScripts()
 </body>
 
 </html>
