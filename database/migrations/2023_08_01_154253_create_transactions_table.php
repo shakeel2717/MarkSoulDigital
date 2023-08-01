@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('type');
             $table->double('amount');
             $table->boolean('status')->default(false);
-            $table->boolean('reference')->nullable();
+            $table->text('reference')->nullable();
+            $table->boolean('sum');
             $table->timestamps();
         });
     }

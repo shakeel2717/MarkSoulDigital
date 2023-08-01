@@ -25,6 +25,14 @@ class DatabaseSeeder extends Seeder
         $user->password = bcrypt('asdfasdf');
         $user->save();
 
+        $user->transactions()->create([
+            'type' => 'Deposit',
+            'amount' => 100,
+            'status' => true,
+            'sum' => true,
+            'reference' => "Deposit From Admin",
+        ]);
+
 
         $wallet = new Wallet();
         $wallet->name = "Tether";
@@ -55,11 +63,6 @@ class DatabaseSeeder extends Seeder
         $option->key = 'min_deposit';
         $option->value = 10;
         $option->save();
-
-
-
-
-
 
 
 
