@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('refer')->default('default');
             $table->string('status')->default('pending');
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('role')->default('user');
             $table->rememberToken();
             $table->timestamps();
         });

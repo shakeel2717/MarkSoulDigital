@@ -47,15 +47,11 @@
                 <div class="container-fluid">
                     <div id="two-column-menu">
                     </div>
-                    <ul class="navbar-nav" id="navbar-nav">
-                        <li class="menu-title"><span data-key="t-menu">Overview</span></li>
-                        <li class="nav-item">
-                            <a href="{{route('user.dashboard.index')}}" class="nav-link menu-link">
-                                <i class="ph-calendar"></i>
-                                <span data-key="t-calendar">Dashboard</span>
-                            </a>
-                        </li>
-                    </ul>
+                    @if (auth()->user()->role == 'user')
+                    @include('inc.user.nav')
+                    @else
+                    @include('inc.admin.nav')
+                    @endif
                 </div>
             </div>
             <div class="sidebar-background"></div>

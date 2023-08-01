@@ -25,3 +25,4 @@ Route::resource('/post', PostController::class);
 Route::resource('/newsletter', NewsLetterController::class);
 
 require __DIR__ . '/auth.php';
+require __DIR__ . '/admin.php';

@@ -108,29 +108,4 @@
         </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-md-4">
-        <div class="card card-height-100">
-            <div class="card-header d-flex">
-                <h5 class="card-title mb-0 flex-grow-1">Daily Progress</h5>
-                <div class="flex-shrink-0">
-                    <div class="dropdown card-header-dropdown sortble-dropdown">
-                        <a class="text-reset dropdown-btn" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="text-muted dropdown-title">Today</span> <i class="mdi mdi-chevron-down ms-1"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end">
-                            <button class="dropdown-item">Today</button>
-                            <button class="dropdown-item">This Week</button>
-                            <button class="dropdown-item">This Month</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card-body text-center">
-                <div id="stroked_radialbar" data-colors='["--tb-primary"]' class="apex-charts" dir="ltr"></div>
-                <p class="text-muted mb-0">Very good, keep improving the quality of your learning</p>
-            </div>
-        </div>
-    </div><!--end col-->
-</div>
 @endsection
