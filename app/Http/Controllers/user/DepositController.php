@@ -32,7 +32,7 @@ class DepositController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'shippingMethod' => 'required|integer|exists:wallets,id',
+            'paymentMethod' => 'required|integer|exists:wallets,id',
             'amount' => 'required|integer|digits_between:1,1000000',
         ]);
 
@@ -43,7 +43,7 @@ class DepositController extends Controller
 
         $finalAmount = $validatedData['amount'];
         // getting this wallet fees
-        $wallet = Wallet::find($validatedData['shippingMethod']);
+        $wallet = Wallet::find($validatedData['paymentMethod']);
         if ($wallet->fees > 0) {
             $fees = $validatedData['amount'] * $wallet->fees /  100;
             $finalAmount = $validatedData['amount'] + $fees;

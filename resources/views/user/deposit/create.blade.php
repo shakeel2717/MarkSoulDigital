@@ -18,8 +18,8 @@
                         @foreach ($wallets as $wallet)
                         <div class="col-lg-4">
                             <div class="form-check card-radio">
-                                <input id="paymentMethod" name="shippingMethod" type="radio" value="{{ $wallet->id }}" class="form-check-input" {{ $loop->first ? 'checked' : '' }}>
-                                <label class="form-check-label" for="paymentMethod">
+                                <input id="paymentMethod{{$loop->iteration}}" name="paymentMethod" type="radio" value="{{ $wallet->id }}" class="form-check-input" {{ $loop->first ? 'checked' : '' }}>
+                                <label class="form-check-label" for="paymentMethod{{$loop->iteration}}">
                                     <div class="d-flex justify-content-between align-items-center">
                                         <span class="avatar">
                                             <img src="{{ asset('methods/') }}/{{ $wallet->icon }}" width="40" alt="{{ $wallet->name }}">
