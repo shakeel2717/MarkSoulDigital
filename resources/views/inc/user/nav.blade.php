@@ -2,8 +2,16 @@
     <li class="menu-title"><span data-key="t-menu">Overview</span></li>
     <li class="nav-item">
         <a href="{{route('user.dashboard.index')}}" class="nav-link menu-link">
-            <i class="ph-calendar"></i>
+            <i class="ph-gauge-light"></i>
             <span data-key="t-calendar">Dashboard</span>
+        </a>
+    </li>
+
+    <li class="menu-title"><span data-key="t-menu">Finance</span></li>
+    <li class="nav-item">
+        <a href="{{route('user.deposit.create')}}" class="nav-link menu-link">
+            <i class="ph-wallet-thin"></i>
+            <span data-key="t-calendar">Deposit</span>
         </a>
     </li>
 </ul>

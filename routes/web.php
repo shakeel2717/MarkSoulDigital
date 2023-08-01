@@ -5,11 +5,13 @@ use App\Http\Controllers\NewsLetterController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\user\DashboardController;
+use App\Http\Controllers\user\DepositController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::prefix('user/')->name('user.')->middleware('auth', 'user','verified')->group(function () {
+Route::prefix('user/')->name('user.')->middleware('auth', 'user', 'verified')->group(function () {
     Route::resource('dashboard', DashboardController::class);
+    Route::resource('deposit', DepositController::class);
 });
 
 Route::get('/privacy', [LandingPageController::class, 'privacy'])->name('privacy');

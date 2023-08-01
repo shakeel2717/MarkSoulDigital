@@ -4,8 +4,10 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Option;
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Wallet;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,6 +17,52 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $user = new User();
+        $user->name = "Shakeel Ahmad";
+        $user->username = "shakeel2717";
+        $user->email = "shakeel2717@gmail.com";
+        $user->email_verified_at = now();
+        $user->password = bcrypt('asdfasdf');
+        $user->save();
+
+
+        $wallet = new Wallet();
+        $wallet->name = "Tether";
+        $wallet->symbol = "USDT";
+        $wallet->icon = "usdt.png";
+        $wallet->fees = 1;
+        $wallet->address = "kwejrlwjer2l3kj4l2j34ljl";
+        $wallet->save();
+
+        // adding payment methods
+        $wallet = new Wallet();
+        $wallet->name = "Bitcoin";
+        $wallet->symbol = "BTC";
+        $wallet->icon = "bitcoin.png";
+        $wallet->fees = 1;
+        $wallet->address = "kwejrlwjer2l3kj4l2j34ljl";
+        $wallet->save();
+
+        $wallet = new Wallet();
+        $wallet->name = "TRON";
+        $wallet->symbol = "TRX";
+        $wallet->icon = "trx.png";
+        $wallet->fees = 1;
+        $wallet->address = "kwejrlwjer2l3kj4l2j34ljl";
+        $wallet->save();
+
+        $option = new Option();
+        $option->key = 'min_deposit';
+        $option->value = 10;
+        $option->save();
+
+
+
+
+
+
+
+
         $post = new Post();
         $post->title = 'The Basics of Forex Trading: A Beginner\'s Guide';
         $post->body = 'In this introductory blog post, we cover the fundamental concepts of forex trading, making it an ideal starting point for newcomers to the world of currency trading. From understanding forex markets and currency pairs to learning how to read forex quotes and execute trades, this guide will provide beginners with the essential knowledge and terminology to embark on their forex trading journey confidently.';
@@ -32,13 +80,5 @@ class DatabaseSeeder extends Seeder
         $post->body = 'Risk management is the backbone of profitable forex trading. This post emphasizes the significance of implementing a robust risk management strategy to protect your capital and maintain steady growth. We delve into position sizing, setting stop-loss orders, and understanding leverage, empowering traders to minimize potential losses and optimize risk-to-reward ratios. Learn how to stay disciplined, protect your investments, and preserve your trading account for sustained success in the dynamic forex market.';
         $post->img = null;
         $post->save();
-
-        $user = new User();
-        $user->name = "Shakeel Ahmad";
-        $user->username = "shakeel2717";
-        $user->email = "shakeel2717@gmail.com";
-        $user->email_verified_at = now();
-        $user->password = bcrypt('asdfasdf');
-        $user->save();
     }
 }

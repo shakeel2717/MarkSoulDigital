@@ -233,6 +233,7 @@
     <script src="{{ asset('landing/js/isotope.pkgd.min.js') }}"></script>
     <script src="{{ asset('landing/js/wow.min.js') }}"></script>
     <script src="{{ asset('landing/js/main.js') }}"></script>
+    <x-alert />
 </body>
 
 </html>
