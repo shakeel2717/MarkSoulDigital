@@ -207,7 +207,9 @@
                             <div class="dropdown-menu dropdown-menu-end">
                                 <!-- item-->
                                 <h6 class="dropdown-header">Welcome {{ auth()->user()->name }}!</h6>
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="mdi mdi-account-circle text-muted fs-lg align-middle me-1"></i> <span class="align-middle">Profile</span></a>
+                                @if (auth()->user()->role == 'admin')
+                                <a class="dropdown-item" href="{{ route('admin.dashboard.index') }}"><i class="mdi mdi-account-circle text-muted fs-lg align-middle me-1"></i> <span class="align-middle">Admin Panel</span></a>
+                                @endif
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="javascript:void(0)"><i class="mdi mdi-wallet text-muted fs-lg align-middle me-1"></i> <span class="align-middle">Balance : <b>$0.00</b></span></a>
                                 <a class="dropdown-item" href="javascript:void(0)">

@@ -59,6 +59,10 @@ class PlanController extends Controller
             'reference' => "Plan: " . $plan->name . " Activated",
         ]);
 
+        // activating this user
+        auth()->user()->satus = 'active';
+        auth()->user()->save();
+
         return redirect()->route('user.dashboard.index')->with('success', 'Plan: ' . $plan->name . ' Activated Successfully');
     }
 
