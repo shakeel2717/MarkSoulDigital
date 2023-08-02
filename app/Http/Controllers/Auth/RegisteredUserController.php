@@ -56,7 +56,7 @@ class RegisteredUserController extends Controller
         $user->username = $validated['username'];
         $user->email = $validated['email'];
         $user->password = Hash::make($request->password);
-        $user->refer = $sponsor;
+        $user->refer = $sponsor ?? "default";
         $user->save();
         info("User Created: " . $user->username);
 
@@ -104,10 +104,10 @@ class RegisteredUserController extends Controller
             }
         }
 
-        $user->save();
-        $sponsorQuery->save();
-
-
+        if ($validated['refer'] != 'default' && $validated['position'] != null) {
+            $user->save();
+            $sponsorQuery->save();
+        }
 
         event(new Registered($user));
 
