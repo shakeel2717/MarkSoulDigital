@@ -14,6 +14,12 @@
             <span data-key="t-calendar">Deposit</span>
         </a>
     </li>
+    <li class="nav-item">
+        <a href="{{route('user.withdraw.index')}}" class="nav-link menu-link">
+            <i class="ph-wallet-thin"></i>
+            <span data-key="t-calendar">Withdrawal</span>
+        </a>
+    </li>
 
     <li class="menu-title"><span data-key="t-menu">Pacakge Plans</span></li>
     <li class="nav-item">
@@ -25,7 +31,7 @@
     <li class="menu-title"><span data-key="t-menu">MY Tree</span></li>
     <li class="nav-item">
         <a href="{{route('user.tree.index')}}" class="nav-link menu-link">
-            <i class=" ph-currency-dollar"></i>
+            <i class="ph-users-three-thin"></i>
             <span data-key="t-calendar">Tree View</span>
         </a>
     </li>
