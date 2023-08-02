@@ -22,4 +22,11 @@
             <span data-key="t-calendar">Browse Plans</span>
         </a>
     </li>
+    <li class="menu-title"><span data-key="t-menu">MY Tree</span></li>
+    <li class="nav-item">
+        <a href="{{route('user.tree.index')}}" class="nav-link menu-link">
+            <i class=" ph-currency-dollar"></i>
+            <span data-key="t-calendar">Tree View</span>
+        </a>
+    </li>
 </ul>

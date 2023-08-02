@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('password');
             $table->string('refer')->default('default');
             $table->string('status')->default('pending');
+            $table->unsignedBigInteger('left_user_id')->nullable();
+            $table->unsignedBigInteger('right_user_id')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('role')->default('user');
             $table->rememberToken();

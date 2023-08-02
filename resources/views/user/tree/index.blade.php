@@ -1,0 +1,162 @@
+@extends('layout.dashboard')
+@section('styles')
+<style>
+    .tree ul {
+        padding-top: 20px;
+        position: relative;
+
+        transition: all 0.5s;
+        -webkit-transition: all 0.5s;
+        -moz-transition: all 0.5s;
+    }
+
+    .tree li {
+        float: left;
+        text-align: center;
+        list-style-type: none;
+        position: relative;
+        padding: 20px 5px 0 5px;
+
+        transition: all 0.5s;
+        -webkit-transition: all 0.5s;
+        -moz-transition: all 0.5s;
+    }
+
+    .tree li::before,
+    .tree li::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 50%;
+        border-top: 1px solid #ccc;
+        width: 50%;
+        height: 20px;
+    }
+
+    .tree li::after {
+        right: auto;
+        left: 50%;
+        border-left: 1px solid #ccc;
+    }
+
+    .tree li:only-child::after,
+    .tree li:only-child::before {
+        display: none;
+    }
+
+    .tree li:only-child {
+        padding-top: 0;
+    }
+
+    .tree li:first-child::before,
+    .tree li:last-child::after {
+        border: 0 none;
+    }
+
+    .tree li:last-child::before {
+        border-right: 1px solid #ccc;
+        border-radius: 0 5px 0 0;
+        -webkit-border-radius: 0 5px 0 0;
+        -moz-border-radius: 0 5px 0 0;
+    }
+
+    .tree li:first-child::after {
+        border-radius: 5px 0 0 0;
+        -webkit-border-radius: 5px 0 0 0;
+        -moz-border-radius: 5px 0 0 0;
+    }
+
+    .tree ul ul::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 50%;
+        border-left: 1px solid #ccc;
+        width: 0;
+        height: 20px;
+    }
+
+    .tree li a {
+        border: 1px solid #ccc;
+        width: 200px;
+        max-width: 200px;
+        padding: 5px 10px;
+        text-decoration: none;
+        color: #666;
+        font-family: arial, verdana, tahoma;
+        font-size: 11px;
+        display: inline-block;
+
+        border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+
+        transition: all 0.5s;
+        -webkit-transition: all 0.5s;
+        -moz-transition: all 0.5s;
+    }
+
+    .tree li a:hover,
+    .tree li a:hover+ul li a {
+        background: #c8e4f8;
+        color: #000;
+        border: 1px solid #94a0b4;
+    }
+
+    .tree li a:hover+ul li::after,
+    .tree li a:hover+ul li::before,
+    .tree li a:hover+ul::before,
+    .tree li a:hover+ul ul::before {
+        border-color: #94a0b4;
+    }
+</style>
+@endsection
+@section('title','Deposit')
+@section('content')
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-body overflow-scroll">
+            <div class="tree d-flex justify-content-center align-items-center">
+                <ul>
+                    <li>
+                        <a href="#">
+                            <img src="{{ asset('assets/images/users/user-dummy-img.jpg') }}" alt="Image" width="100">
+                            <h2 class="card-title">{{ auth()->user()->name }}</h2>
+                        </a>
+                        <ul>
+                            @if (auth()->user()->left_user)
+                            <li>
+                                @include('inc.binary_subtree', ['subuser' => auth()->user()->left_user])
+                            </li>
+                            @endif
+                            @if (auth()->user()->right_user)
+                            <li>
+                                @include('inc.binary_subtree', ['subuser' => auth()->user()->right_user])
+                            </li>
+                            @endif
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+            </div>
+            <!-- <div class="col-md-6">
+                    <h2>Left Downline</h2>
+                    <ul>
+                        @foreach (auth()->user()->getDownline('left') as $downlineUser)
+                        <li>{{ $downlineUser->name }}</li>
+                        @endforeach
+                    </ul>
+                    <h2>Right Downline</h2>
+                    <ul>
+                        @foreach (auth()->user()->getDownline('right') as $downlineUser)
+                        <li>{{ $downlineUser->name }}</li>
+                        @endforeach
+                    </ul>
+                </div> -->
+        </div>
+    </div>
+</div>
+@endsection

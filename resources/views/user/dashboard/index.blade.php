@@ -134,4 +134,47 @@
         </div>
     </div>
 </div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card overflow-hidden">
+            <div class="row g-0">
+                <div class="col-xl-3 col-md-4">
+                    <div class="card-body bg-danger-subtle text-center learning-widgets d-flex align-items-center justify-content-center h-100">
+                        <img src="{{ asset('mlm.png') }}" alt="" class="avatar-lg">
+                        <img src="{{ asset('mlm.png') }}" alt="" class="effect">
+                    </div>
+                </div><!--end col-->
+                <div class="col-xl-9 col-md-8">
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <span class="badge bg-info-subtle text-info">Your Refer Link</span>
+                        </div>
+                        <h5 class="text-truncate text-capitalize">
+                            Invite Your Friends and Family and Earn Commission
+                        </h5>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="left">Join on Left Side</label>
+                                    <input type="text" name="left" id="left" class="form-control" value="{{ route('register') }}">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="right">Join on Right Side</label>
+                                    <input type="text" name="right" id="right" class="form-control" value="{{ route('register') }}">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="progress bg-danger-subtle progress-sm rounded-0" data-bs-toggle="tooltip" data-bs-title="100% Completed">
+                        <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div><!--end col-->
+            </div><!--end row-->
+        </div><!--end card-->
+    </div><!--end col-->
+</div>
 @endsection

@@ -18,9 +18,9 @@ class RegisteredUserController extends Controller
     /**
      * Display the registration view.
      */
-    public function create(): View
+    public function create($refer = 'default', $position = 'left'): View
     {
-        return view('auth.register');
+        return view('auth.register', compact('refer', 'position'));
     }
 
     /**
@@ -28,26 +28,121 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
-            'username' => ['required', 'string', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
+            'username' => ['required', 'string', 'max:255', 'unique:' . User::class],
+            'refer' => ['required', 'string', 'max:255'],
+            'position' => ['required', 'string', 'max:255'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'username' => $request->username,
-            'password' => Hash::make($request->password),
-        ]);
+        $sponsor = null;
+        $position = null;
+
+        if ($validated['refer'] != 'default' && $validated['position'] != null) {
+            // Checking if this refer is valid
+            $sponsorQuery = User::where('username', $validated['refer'])->firstOrFail();
+            info("Current Sponser is: " . $sponsorQuery->name);
+            $sponsor = $sponsorQuery->username;
+            $position = $validated['position'];
+            info("Current Position is: " . $position);
+        }
+
+        $user = new User();
+        $user->name = $validated['name'];
+        $user->username = $validated['username'];
+        $user->email = $validated['email'];
+        $user->password = Hash::make($request->password);
+        $user->refer = $sponsor;
+        $user->save();
+        info("User Created: " . $user->username);
+
+        // Function to find an available slot in the downline's left or right side
+        function findAvailableSlot($downlineUser, $targetPosition)
+        {
+            info("Finding Available Slot");
+            if ($targetPosition === 'left' && $downlineUser->left_user_id === null) {
+                info("Slot Found Left : and User: " . $downlineUser->username);
+                return ['slot' => 'left_user_id', 'sponser' => $downlineUser->id];
+            } elseif ($targetPosition === 'right' && $downlineUser->right_user_id === null) {
+                info("Slot Found Right : and User: " . $downlineUser->username);
+                return ['slot' => 'right_user_id', 'sponser' => $downlineUser->id];
+            } else {
+                info("No Free Slot Found");
+                // If the target slot is already occupied, recursively search for the next level
+                $nextUser = $targetPosition === 'left' ? $downlineUser->left_user : $downlineUser->right_user;
+                info("Next User to Find: " . $nextUser->usernae);
+                if ($nextUser) {
+                    info("Enter in New Loop Once again");
+                    return findAvailableSlot($nextUser, $targetPosition);
+                } else {
+                    info("next user not Found");
+                }
+            }
+        }
+
+        // Checking if the sponsor has a downline and placing the user in the appropriate slot
+        if ($position != null) {
+            $availableSlot = findAvailableSlot($sponsorQuery, $position);
+            info("Available Slot After all kinds of Looop: " . $availableSlot['slot']);
+            if ($availableSlot) {
+                info($availableSlot['slot']);
+                info($availableSlot['sponser']);
+                info($user->id);
+                $sponsorQuery = User::find($availableSlot['sponser']);
+                $slot = $availableSlot['slot'];
+                $sponsorQuery->$slot = $user->id;
+                $sponsorQuery->save();
+            } else {
+                info("Deep in the Else");
+                // Handle the case when no available slot is found in the direct downline and its further downlines
+                // You can implement additional logic here, like notifying the user or any other actions.
+                // For now, we are not assigning any position, and the user will remain unassigned in the direct downline and its further downlines.
+            }
+        }
+
+        $user->save();
+        $sponsorQuery->save();
+
+
 
         event(new Registered($user));
 
         Auth::login($user);
 
         return redirect(RouteServiceProvider::HOME);
+    }
+
+
+    public function findAvailableLeftSlot($downlineUser)
+    {
+        if ($downlineUser->left_user_id === null) {
+            return 'left';
+        } else {
+            $leftUser = User::find($downlineUser->left_user_id);
+            if ($leftUser) {
+                return findAvailableLeftSlot($leftUser);
+            } else {
+                return null;
+            }
+        }
+    }
+
+    // Function to find an available slot in the downline's right side
+    public function findAvailableRightSlot($downlineUser)
+    {
+        if ($downlineUser->right_user_id === null) {
+            return 'right';
+        } else {
+            $rightUser = User::find($downlineUser->right_user_id);
+            if ($rightUser) {
+                return $this->findAvailableRightSlot($rightUser);
+            } else {
+                return null;
+            }
+        }
     }
 }

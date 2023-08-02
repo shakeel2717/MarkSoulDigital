@@ -7,6 +7,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\user\DashboardController;
 use App\Http\Controllers\user\DepositController;
+use App\Http\Controllers\user\TreeController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -15,6 +16,7 @@ Route::prefix('user/')->name('user.')->middleware('auth', 'user', 'verified')->g
     Route::post('/deposit/verify', [DepositController::class, 'verify'])->name('deposit.verify');
     Route::resource('deposit', DepositController::class);
     Route::resource('plan', PlanController::class);
+    Route::resource('tree', TreeController::class);
 });
 
 Route::get('/privacy', [LandingPageController::class, 'privacy'])->name('privacy');
