@@ -41,3 +41,24 @@ function todayRoi($user_id)
     $transaction = Transaction::where('user_id', $user_id)->where('type', 'Daily ROI')->whereDate('created_at', Carbon::today())->sum('amount');
     return $transaction;
 }
+
+
+function getAllWithdraw($user_id)
+{
+    $transaction = Transaction::where('user_id', $user_id)->where('type', 'Withdraw')->sum('amount');
+    return $transaction;
+}
+
+
+function getTodayWithdraw($user_id)
+{
+    $transaction = Transaction::where('user_id', $user_id)->where('type', 'Withdraw')->whereDate('created_at', Carbon::today())->sum('amount');
+    return $transaction;
+}
+
+
+function totalDirectCommission($user_id)
+{
+    $transaction = Transaction::where('user_id', $user_id)->where('type', 'Direct Commission')->sum('amount');
+    return $transaction;
+}

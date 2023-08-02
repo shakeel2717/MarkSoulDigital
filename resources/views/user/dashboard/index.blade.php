@@ -35,8 +35,8 @@
                         <i class="ph-wallet"></i>
                     </span>
                 </span>
-                <h4 class="mb-4">$<span class="counter-value" data-target="0">0</span></h4>
-                <p class="text-muted fw-medium text-uppercase mb-0">Total Withdrawal</p>
+                <h4 class="mb-4">$ {{ number_format(getAllWithdraw(auth()->user()->id),2) }}</h4>
+                <p class="text-muted fw-medium text-uppercase mb-0">Total Withdrawals</p>
             </div>
         </div>
     </div>
@@ -48,8 +48,8 @@
                         <i class="ph-wallet"></i>
                     </span>
                 </span>
-                <h4 class="mb-4">$<span class="counter-value" data-target="0">0</span></h4>
-                <p class="text-muted fw-medium text-uppercase mb-0">Marketing Income</p>
+                <h4 class="mb-4">$ {{ number_format(getTodayWithdraw(auth()->user()->id),2) }}</h4>
+                <p class="text-muted fw-medium text-uppercase mb-0">Today Withdrawals</p>
             </div>
         </div>
     </div>
@@ -89,8 +89,8 @@
                         <i class="ph-wallet"></i>
                     </span>
                 </span>
-                <h4 class="mb-4">$<span class="counter-value" data-target="0">0</span></h4>
-                <p class="text-muted fw-medium text-uppercase mb-0">Total ROI Withdrawal</p>
+                <h4 class="mb-4">$ {{ number_format(totalDirectCommission(auth()->user()->id),2) }}</h4>
+                <p class="text-muted fw-medium text-uppercase mb-0">Total Direct Commission</p>
             </div>
         </div>
     </div>
