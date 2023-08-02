@@ -42,6 +42,7 @@ class DepositController extends Controller
         }
 
         $finalAmount = $validatedData['amount'];
+        $fees = 0;
         // getting this wallet fees
         $wallet = Wallet::find($validatedData['paymentMethod']);
         if ($wallet->fees > 0) {
@@ -49,13 +50,46 @@ class DepositController extends Controller
             $finalAmount = $validatedData['amount'] + $fees;
         }
 
+        $amount = $validatedData['amount'];
+
+        return view('user.deposit.address', compact('wallet', 'fees', 'finalAmount', 'amount'));
+    }
+
+
+    public function verify(Request $request)
+    {
+        $validatedData = $request->validate([
+            'amount' => 'required|numeric|min:1',
+            'hash_id' => 'required|string|unique:tids,hash_id',
+            'wallet_id' => 'required|integer',
+            'finalAmount' => 'required|numeric|min:1',
+        ]);
+
+        $wallet = Wallet::findOrFail($validatedData['wallet_id']);
+
         // adding deposit request in the system
         auth()->user()->transactions()->create([
             'type' => 'Deposit',
-            'amount' => $validatedData['amount'],
+            'sum' => true,
+            'status' => false,
+            'reference' => 'Deposit Funds throw ' . $wallet->name . " " . $wallet->symbol,
+            'amount' => $validatedData['finalAmount'],
         ]);
 
-        return back()->with('success', 'Deposit Request Recieved');
+        auth()->user()->transactions()->create([
+            'type' => 'Deposit fees',
+            'sum' => false,
+            'status' => false,
+            'reference' => 'Deposit Funds throw ' . $wallet->name . " " . $wallet->symbol,
+            'amount' => $validatedData['finalAmount'] - $validatedData['amount'],
+        ]);
+
+        auth()->user()->tids()->create([
+            'hash_id' => $validatedData['hash_id'],
+            'amount' => $validatedData['finalAmount'],
+        ]);
+
+        return redirect()->route('user.dashboard.index')->with('success', 'Deposit Request Sent Successfully');
     }
 
     /**

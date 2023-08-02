@@ -11,7 +11,7 @@ function site_option($key)
 
 function balance($user_id)
 {
-    $in = Transaction::where('sum', true)->sum('amount');
-    $out = Transaction::where('sum', false)->sum('amount');
+    $in = Transaction::where('sum', true)->where('status', true)->sum('amount');
+    $out = Transaction::where('sum', false)->where('status', true)->sum('amount');
     return $in - $out;
 }
