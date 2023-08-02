@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\Option;
 use App\Models\Plan;
+use App\Models\PlanProfit;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Wallet;
@@ -38,7 +39,7 @@ class DatabaseSeeder extends Seeder
 
         $user->transactions()->create([
             'type' => 'Deposit',
-            'amount' => 100,
+            'amount' => 1000,
             'status' => true,
             'sum' => true,
             'reference' => "Deposit From Admin",
@@ -54,6 +55,11 @@ class DatabaseSeeder extends Seeder
         $plan->max_profit = 1;
         $plan->save();
 
+        $planProfit = new PlanProfit();
+        $planProfit->plan_id = $plan->id;
+        $planProfit->profit = $plan->min_profit;
+        $planProfit->save();
+
         $plan = new Plan();
         $plan->name = "Gold Package";
         $plan->min_price = 500;
@@ -62,6 +68,11 @@ class DatabaseSeeder extends Seeder
         $plan->max_profit = 1.25;
         $plan->save();
 
+        $planProfit = new PlanProfit();
+        $planProfit->plan_id = $plan->id;
+        $planProfit->profit = $plan->min_profit;
+        $planProfit->save();
+
         $plan = new Plan();
         $plan->name = "Diamond Package";
         $plan->min_price = 10000;
@@ -69,6 +80,11 @@ class DatabaseSeeder extends Seeder
         $plan->min_profit = 1;
         $plan->max_profit = 1.50;
         $plan->save();
+
+        $planProfit = new PlanProfit();
+        $planProfit->plan_id = $plan->id;
+        $planProfit->profit = $plan->min_profit;
+        $planProfit->save();
 
 
         $wallet = new Wallet();

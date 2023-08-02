@@ -17,4 +17,9 @@ class Plan extends Model
         'max_profit',
         'status',
     ];
+
+    public function plan_profit()
+    {
+        return $this->hasOne(PlanProfit::class);
+    }
 }

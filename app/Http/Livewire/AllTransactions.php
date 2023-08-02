@@ -30,8 +30,8 @@ final class AllTransactions extends PowerGridComponent
             //     ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
             // Header::make()->showSearchInput(),
             Footer::make(),
-                // ->showPerPage()
-                // ->showRecordCount(),
+            // ->showPerPage()
+            // ->showRecordCount(),
         ];
     }
 
@@ -44,10 +44,10 @@ final class AllTransactions extends PowerGridComponent
     */
 
     /**
-    * PowerGrid datasource.
-    *
-    * @return Builder<\App\Models\Transaction>
-    */
+     * PowerGrid datasource.
+     *
+     * @return Builder<\App\Models\Transaction>
+     */
     public function datasource(): Builder
     {
         return Transaction::query();
@@ -90,7 +90,7 @@ final class AllTransactions extends PowerGridComponent
             ->addColumn('amount')
             ->addColumn('type')
 
-           /** Example of custom column using a closure **/
+            /** Example of custom column using a closure **/
             ->addColumn('type_lower', function (Transaction $model) {
                 return strtolower(e($model->type));
             })
@@ -110,7 +110,7 @@ final class AllTransactions extends PowerGridComponent
     |
     */
 
-     /**
+    /**
      * PowerGrid Columns.
      *
      * @return array<int, Column>
@@ -136,8 +136,7 @@ final class AllTransactions extends PowerGridComponent
                 ->searchable()
                 ->sortable(),
 
-        ]
-;
+        ];
     }
 
     /*
@@ -148,7 +147,7 @@ final class AllTransactions extends PowerGridComponent
     |
     */
 
-     /**
+    /**
      * PowerGrid Transaction Action Buttons.
      *
      * @return array<int, Button>
@@ -178,7 +177,7 @@ final class AllTransactions extends PowerGridComponent
     |
     */
 
-     /**
+    /**
      * PowerGrid Transaction Action Rules.
      *
      * @return array<int, RuleActions>

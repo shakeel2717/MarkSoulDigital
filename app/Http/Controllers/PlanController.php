@@ -53,14 +53,14 @@ class PlanController extends Controller
         // removing balance from user transaction
         auth()->user()->transactions()->create([
             'type' => 'Plan Active',
-            'amount' => 100,
+            'amount' => $validatedData['amount'],
             'status' => true,
             'sum' => false,
             'reference' => "Plan: " . $plan->name . " Activated",
         ]);
 
         // activating this user
-        auth()->user()->satus = 'active';
+        auth()->user()->status = 'active';
         auth()->user()->save();
 
         return redirect()->route('user.dashboard.index')->with('success', 'Plan: ' . $plan->name . ' Activated Successfully');
