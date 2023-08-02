@@ -29,6 +29,11 @@ class Blockchain extends Command
      */
     public function handle()
     {
+        // checking if today is saturday or sunday
+        if (Carbon::today()->format('D') == "Sat" || Carbon::today()->format('D') == "Sun") {
+            info("Today is Holdiy");
+            goto endThisCommand;
+        }
         // checking if there's any active user Plans
         $userPlans = UserPlan::where('status', 'active')->get();
         foreach ($userPlans as $userPlan) {
@@ -59,5 +64,6 @@ class Blockchain extends Command
 
             ThisLoopEnd:
         }
+        endThisCommand:
     }
 }
