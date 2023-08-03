@@ -9,4 +9,9 @@ Route::redirect('/admin', 'admin/dashboard');
 Route::prefix('admin/')->name('admin.')->middleware('auth', 'admin', 'verified')->group(function () {
     Route::resource('dashboard', DashboardController::class);
     Route::resource('finance', FinanceController::class);
+    Route::name('history.')->prefix('history/')->group(function () {
+        Route::view('deposits', 'admin.history.deposits')->name('deposits');
+        Route::view('withdrawals', 'admin.history.withdrawals')->name('withdrawals');
+        Route::view('withdraw-fees', 'admin.history.withdraw_fees')->name('withdrawals.fees');
+    });
 });

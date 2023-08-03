@@ -14,4 +14,24 @@
             <span data-key="t-calendar">Add Balance</span>
         </a>
     </li>
+
+    <li class="menu-title"><span data-key="t-menu">All Statements</span></li>
+    <li class="nav-item">
+        <a href="{{route('admin.history.deposits')}}" class="nav-link menu-link">
+            <i class="ph-calendar"></i>
+            <span data-key="t-calendar">All Deposits</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a href="{{route('admin.history.withdrawals')}}" class="nav-link menu-link">
+            <i class="ph-calendar"></i>
+            <span data-key="t-calendar">All Withdarawls</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a href="{{route('admin.history.withdrawals.fees')}}" class="nav-link menu-link">
+            <i class="ph-calendar"></i>
+            <span data-key="t-calendar">All Withdarawls Fees</span>
+        </a>
+    </li>
 </ul>
