@@ -24,16 +24,16 @@ final class AllTransaction extends PowerGridComponent
     */
     public function setUp(): array
     {
-        $this->showCheckBox();
+        // $this->showCheckBox();
 
         return [
-            Exportable::make('export')
-                ->striped()
-                ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
-            Header::make()->showSearchInput(),
-            Footer::make()
-                ->showPerPage()
-                ->showRecordCount(),
+            // Exportable::make('export')
+            //     ->striped()
+            //     ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
+            // Header::make()->showSearchInput(),
+            // Footer::make()
+            //     ->showPerPage()
+            //     ->showRecordCount(),
         ];
     }
 
@@ -52,7 +52,7 @@ final class AllTransaction extends PowerGridComponent
      */
     public function datasource(): Builder
     {
-        return Transaction::query();
+        return Transaction::query()->where('user_id', auth()->user()->id);
     }
 
     /*
@@ -70,7 +70,11 @@ final class AllTransaction extends PowerGridComponent
      */
     public function relationSearch(): array
     {
-        return [];
+        return [
+            "User" => [
+                'name'
+            ]
+        ];
     }
 
     /*
@@ -88,11 +92,11 @@ final class AllTransaction extends PowerGridComponent
     {
         return PowerGrid::columns()
             ->addColumn('id')
-            ->addColumn('user_id')
+            ->addColumn('user', fn (Transaction $model) => strtolower(e($model->user->name)))
             ->addColumn('amount')
             ->addColumn('type')
 
-           /** Example of custom column using a closure **/
+            /** Example of custom column using a closure **/
             ->addColumn('type_lower', fn (Transaction $model) => strtolower(e($model->type)))
 
             ->addColumn('status')
@@ -110,16 +114,14 @@ final class AllTransaction extends PowerGridComponent
     |
     */
 
-     /**
-      * PowerGrid Columns.
-      *
-      * @return array<int, Column>
-      */
+    /**
+     * PowerGrid Columns.
+     *
+     * @return array<int, Column>
+     */
     public function columns(): array
     {
         return [
-            Column::make('Id', 'id'),
-            Column::make('User id', 'user_id'),
             Column::make('Amount', 'amount')
                 ->sortable()
                 ->searchable(),
@@ -127,12 +129,6 @@ final class AllTransaction extends PowerGridComponent
             Column::make('Type', 'type')
                 ->sortable()
                 ->searchable(),
-
-            Column::make('Status', 'status')
-                ->toggleable(),
-
-            Column::make('Sum', 'sum')
-                ->toggleable(),
 
             Column::make('Reference', 'reference')
                 ->sortable()
@@ -152,10 +148,11 @@ final class AllTransaction extends PowerGridComponent
     public function filters(): array
     {
         return [
-            Filter::inputText('type')->operators(['contains']),
-            Filter::boolean('status'),
-            Filter::boolean('sum'),
-            Filter::datetimepicker('created_at'),
+            // Filter::inputText('type')->operators(['contains']),
+            // Filter::inputText('user')->operators(['contains']),
+            // Filter::boolean('status'),
+            // Filter::boolean('sum'),
+            // Filter::datetimepicker('created_at'),
         ];
     }
 
