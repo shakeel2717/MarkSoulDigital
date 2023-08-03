@@ -18,6 +18,17 @@ function balance($user_id)
     return $in - $out;
 }
 
+
+function totalIncome($user_id)
+{
+    $in = Transaction::where('user_id', $user_id)
+        ->where('sum', true)
+        ->where('status', true)
+        ->where('type','!=', 'Deposit')
+        ->sum('amount');
+    return $in;
+}
+
 function getActivePlan($user_id)
 {
     $userPlan = UserPlan::where('user_id', $user_id)->where('status', 'active')->sum('amount');

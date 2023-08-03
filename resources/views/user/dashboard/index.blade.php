@@ -22,7 +22,7 @@
                         <i class="ph-wallet"></i>
                     </span>
                 </span>
-                <h4 class="mb-4">$ {{ number_format(balance(auth()->user()->id),2) }}</h4>
+                <h4 class="mb-4">$ {{ number_format(totalIncome(auth()->user()->id),2) }}</h4>
                 <p class="text-muted fw-medium text-uppercase mb-0">Total Income</p>
             </div>
         </div>
