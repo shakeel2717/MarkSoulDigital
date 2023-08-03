@@ -112,7 +112,7 @@
     <div class="col-md-8">
         <div class="card card-body">
             <h2 class="card-title">Recent Transactions</h2>
-            <livewire:all-transactions />
+            <livewire:user.all-transaction />
         </div>
     </div>
     <div class="col-md-4">
