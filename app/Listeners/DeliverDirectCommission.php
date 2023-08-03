@@ -40,6 +40,12 @@ class DeliverDirectCommission
                 die();
             }
 
+            // checking if sponser is active
+            if ($sponser->status != 'active') {
+                goto EndThisListener;
+                die();
+            }
+
 
             // getting direct commission
             $amount = $transaction->amount * $userPlan->plan->plan_profit->direct_commission / 100;
