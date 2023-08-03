@@ -19,7 +19,7 @@
             <div class="card-body">
                 <span class="avatar-sm text-success float-end">
                     <span class="avatar-title bg-primary-subtle text-danger rounded-circle fs-3">
-                        <i class="ph-wallet"></i>
+                        <i class="ph-currency-circle-dollar"></i>
                     </span>
                 </span>
                 <h4 class="mb-4">$ {{ number_format(totalIncome(auth()->user()->id),2) }}</h4>
@@ -32,7 +32,7 @@
             <div class="card-body">
                 <span class="avatar-sm text-success float-end">
                     <span class="avatar-title bg-primary-subtle text-danger rounded-circle fs-3">
-                        <i class="ph-wallet"></i>
+                        <i class="ph-credit-card"></i>
                     </span>
                 </span>
                 <h4 class="mb-4">$ {{ number_format(getAllWithdraw(auth()->user()->id),2) }}</h4>
@@ -45,7 +45,7 @@
             <div class="card-body">
                 <span class="avatar-sm text-success float-end">
                     <span class="avatar-title bg-primary-subtle text-danger rounded-circle fs-3">
-                        <i class="ph-wallet"></i>
+                        <i class="ph-credit-card"></i>
                     </span>
                 </span>
                 <h4 class="mb-4">$ {{ number_format(getTodayWithdraw(auth()->user()->id),2) }}</h4>
@@ -60,7 +60,7 @@
             <div class="card-body">
                 <span class="avatar-sm text-success float-end">
                     <span class="avatar-title bg-primary-subtle text-danger rounded-circle fs-3">
-                        <i class="ph-wallet"></i>
+                        <i class="ph-currency-dollar"></i>
                     </span>
                 </span>
                 <h4 class="mb-4">$ {{ number_format(totalRoi(auth()->user()->id),2) }}</h4>
@@ -73,7 +73,7 @@
             <div class="card-body">
                 <span class="avatar-sm text-success float-end">
                     <span class="avatar-title bg-primary-subtle text-danger rounded-circle fs-3">
-                        <i class="ph-wallet"></i>
+                        <i class="ph-currency-dollar"></i>
                     </span>
                 </span>
                 <h4 class="mb-4">$ {{ number_format(todayRoi(auth()->user()->id),2) }}</h4>
@@ -86,7 +86,7 @@
             <div class="card-body">
                 <span class="avatar-sm text-success float-end">
                     <span class="avatar-title bg-primary-subtle text-danger rounded-circle fs-3">
-                        <i class="ph-wallet"></i>
+                        <i class="ph-users-three"></i>
                     </span>
                 </span>
                 <h4 class="mb-4">$ {{ number_format(totalDirectCommission(auth()->user()->id),2) }}</h4>
@@ -99,7 +99,7 @@
             <div class="card-body">
                 <span class="avatar-sm text-success float-end">
                     <span class="avatar-title bg-primary-subtle text-danger rounded-circle fs-3">
-                        <i class="ph-wallet"></i>
+                        <i class="ph-x-circle-light"></i>
                     </span>
                 </span>
                 <h4 class="mb-4 text-danger">$ {{ number_format(auth()->user()->freeze_transactions->sum('amount'),2) }}</h4>
@@ -155,7 +155,7 @@
                             <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{{ networkCapInPercentage(auth()->user()->id) }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ networkCapInPercentage(auth()->user()->id) }}%"></div>
                         </div>
                         <div class="mt-4">
-                            <a href="apps-ecommerce-seller-overview.html" class="link-effect">View All Transactions <i class="bi bi-arrow-right align-baseline ms-1"></i></a>
+                            <a href="{{ route('user.history.all') }}" class="link-effect">View All Transactions <i class="bi bi-arrow-right align-baseline ms-1"></i></a>
                         </div>
                     </div>
                 </div>

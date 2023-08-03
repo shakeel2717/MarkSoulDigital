@@ -25,7 +25,7 @@
     <div id="layout-wrapper">
         <div class="app-menu navbar-menu">
             <div class="navbar-brand-box">
-                <a href="index.html" class="logo logo-dark mt-3">
+                <a href="{{route('user.dashboard.index')}}" class="logo logo-dark mt-3">
                     <span class="logo-sm">
                         <h3 class="text-white">{{ env('APP_NAME') }}</h3>
                     </span>
@@ -33,7 +33,7 @@
                         <h3 class="text-dark">{{ env('APP_NAME') }}</h3>
                     </span>
                 </a>
-                <a href="index.html" class="logo logo-light mt-3">
+                <a href="{{route('user.dashboard.index')}}" class="logo logo-light mt-3">
                     <span class="logo-sm">
                         <h3 class="text-white">{{ env('APP_NAME') }}</h3>
                     </span>
@@ -67,7 +67,7 @@
                     <div class="d-flex">
                         <!-- LOGO -->
                         <div class="navbar-brand-box horizontal-logo">
-                            <a href="index.html" class="logo logo-dark">
+                            <a href="{{route('user.dashboard.index')}}" class="logo logo-dark">
                                 <span class="logo-sm">
                                     <img src="/assets/images/logo-sm.png" alt="" height="22">
                                 </span>
@@ -76,7 +76,7 @@
                                 </span>
                             </a>
 
-                            <a href="index.html" class="logo logo-light">
+                            <a href="{{route('user.dashboard.index')}}" class="logo logo-light">
                                 <span class="logo-sm">
                                     <img src="/assets/images/logo-sm.png" alt="" height="22">
                                 </span>
@@ -116,6 +116,18 @@
                                             <a class="dropdown-icon-item" href="{{route('user.dashboard.index')}}">
                                                 <i class="ph-gauge" style="font-size: 35px;"></i>
                                                 <span>Dashboard</span>
+                                            </a>
+                                        </div>
+                                        <div class="col">
+                                            <a class="dropdown-icon-item" href="{{route('user.deposit.index')}}">
+                                                <i class="ph-wallet" style="font-size: 35px;"></i>
+                                                <span>Deposit</span>
+                                            </a>
+                                        </div>
+                                        <div class="col">
+                                            <a class="dropdown-icon-item" href="{{route('user.withdraw.index')}}">
+                                                <i class="ph-wallet" style="font-size: 35px;"></i>
+                                                <span>Withdraw</span>
                                             </a>
                                         </div>
                                     </div>
