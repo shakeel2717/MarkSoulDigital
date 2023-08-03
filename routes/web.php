@@ -26,6 +26,7 @@ Route::prefix('user/')->name('user.')->middleware('auth', 'user', 'verified')->g
         Route::view('withdrawals', 'user.history.withdrawals')->name('withdrawals');
         Route::view('direct', 'user.history.direct')->name('direct');
         Route::view('roi', 'user.history.roi')->name('roi');
+        Route::view('all', 'user.history.all')->name('all');
     });
 });
 

@@ -37,6 +37,12 @@
     </li>
     <li class="menu-title"><span data-key="t-menu">Statement</span></li>
     <li class="nav-item">
+        <a href="{{route('user.history.all')}}" class="nav-link menu-link">
+            <i class="ph-users-three-thin"></i>
+            <span data-key="t-calendar">All Recent Transactions</span>
+        </a>
+    </li>
+    <li class="nav-item">
         <a href="{{route('user.history.deposits')}}" class="nav-link menu-link">
             <i class="ph-users-three-thin"></i>
             <span data-key="t-calendar">All Deposits</span>
