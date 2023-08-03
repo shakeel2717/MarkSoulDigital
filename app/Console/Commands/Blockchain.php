@@ -43,7 +43,7 @@ class Blockchain extends Command
             // delivery profit to this user
 
             // checking if this user is netwoker
-            if($userPlan->user->networker){
+            if ($userPlan->user->networker) {
                 info("This user is Networker, Skipping.");
                 goto ThisLoopEnd;
             }
@@ -52,7 +52,7 @@ class Blockchain extends Command
 
             // adding deposit request in the system
             // checking if this transaction already inserted
-            $transactionQuery = Transaction::where('type', 'Daily ROI')->whereDate('created_at', Carbon::today())->count();
+            $transactionQuery = Transaction::where('user_id', $userPlan->user_id)->where('type', 'Daily ROI')->whereDate('created_at', Carbon::today())->count();
             if ($transactionQuery > 0) {
                 info("Already Delivered Skipping");
                 goto ThisLoopEnd;
