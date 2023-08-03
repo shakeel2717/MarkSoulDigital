@@ -208,17 +208,24 @@ final class Transactions extends PowerGridComponent
             parent::getListeners(),
             [
                 'delete'   => 'delete',
+                'confirmedDelete' => 'confirmedDelete'
             ]
         );
     }
 
 
+    public function confirmedDelete($id)
+    {
+        $user = Transaction::find($id);
+        $user->delete();
+
+        $this->dispatchBrowserEvent('deleted', ['status' => 'Transaction Deleted Successfully']);
+    }
+
+
     public function delete($id)
     {
-        $transaction = Transaction::find($id['id']);
-        $transaction->delete();
-
-        $this->dispatchBrowserEvent('deleted', ['status' => 'Transaction Deleted']);
+        $this->dispatchBrowserEvent('warning', ['id' => $id['id']]);
     }
 
 

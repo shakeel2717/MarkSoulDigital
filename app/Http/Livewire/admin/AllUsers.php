@@ -227,17 +227,24 @@ final class AllUsers extends PowerGridComponent
                 'unpin'   => 'unpin',
                 'suspend'   => 'suspend',
                 'activate'   => 'activate',
+                'confirmedDelete' => 'confirmedDelete'
             ]
         );
     }
 
 
-    public function delete($id)
+    public function confirmedDelete($id)
     {
-        $user = User::find($id['id']);
+        $user = User::find($id);
         $user->delete();
 
         $this->dispatchBrowserEvent('deleted', ['status' => 'User Deleted Successfully']);
+    }
+
+
+    public function delete($id)
+    {
+        $this->dispatchBrowserEvent('warning', ['id' => $id['id']]);
     }
 
     public function activate($id)

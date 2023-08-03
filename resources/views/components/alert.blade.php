@@ -22,6 +22,23 @@
     })
 </script>
 <script>
+    window.addEventListener('warning', event => {
+        swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    // trigger a livewire event
+                    Livewire.emit('confirmedDelete', event.detail.id);
+                }
+            });
+    })
+</script>
+<script>
     function copyInputValue(inputId) {
         const inputElement = document.getElementById(inputId);
         if (inputElement) {
