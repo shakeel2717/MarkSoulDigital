@@ -35,4 +35,29 @@
             <span data-key="t-calendar">Tree View</span>
         </a>
     </li>
+    <li class="menu-title"><span data-key="t-menu">Statement</span></li>
+    <li class="nav-item">
+        <a href="{{route('user.history.deposits')}}" class="nav-link menu-link">
+            <i class="ph-users-three-thin"></i>
+            <span data-key="t-calendar">All Deposits</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a href="{{route('user.history.roi')}}" class="nav-link menu-link">
+            <i class="ph-users-three-thin"></i>
+            <span data-key="t-calendar">Daily ROI Transactions</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a href="{{route('user.history.withdrawals')}}" class="nav-link menu-link">
+            <i class="ph-users-three-thin"></i>
+            <span data-key="t-calendar">All Withdrawals</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a href="{{route('user.history.direct')}}" class="nav-link menu-link">
+            <i class="ph-users-three-thin"></i>
+            <span data-key="t-calendar">All Direct Commissions</span>
+        </a>
+    </li>
 </ul>

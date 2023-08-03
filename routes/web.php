@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\NewsLetterController;
 use App\Http\Controllers\PlanController;
@@ -19,6 +20,13 @@ Route::prefix('user/')->name('user.')->middleware('auth', 'user', 'verified')->g
     Route::resource('plan', PlanController::class);
     Route::resource('tree', TreeController::class);
     Route::resource('withdraw', WithdrawController::class);
+
+    Route::controller(HistoryController::class)->name('history.')->prefix('history/')->group(function () {
+        Route::view('deposits', 'user.history.deposits')->name('deposits');
+        Route::view('withdrawals', 'user.history.withdrawals')->name('withdrawals');
+        Route::view('direct', 'user.history.direct')->name('direct');
+        Route::view('roi', 'user.history.roi')->name('roi');
+    });
 });
 
 Route::get('/privacy', [LandingPageController::class, 'privacy'])->name('privacy');
