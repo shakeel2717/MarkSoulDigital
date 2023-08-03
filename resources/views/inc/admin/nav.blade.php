@@ -15,6 +15,14 @@
         </a>
     </li>
 
+    <li class="menu-title"><span data-key="t-menu">Users Management</span></li>
+    <li class="nav-item">
+        <a href="{{route('admin.history.users')}}" class="nav-link menu-link">
+            <i class="ph-calendar"></i>
+            <span data-key="t-calendar">All Users</span>
+        </a>
+    </li>
+
     <li class="menu-title"><span data-key="t-menu">All Statements</span></li>
     <li class="nav-item">
         <a href="{{route('admin.history.deposits')}}" class="nav-link menu-link">

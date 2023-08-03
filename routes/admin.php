@@ -13,5 +13,6 @@ Route::prefix('admin/')->name('admin.')->middleware('auth', 'admin', 'verified')
         Route::view('deposits', 'admin.history.deposits')->name('deposits');
         Route::view('withdrawals', 'admin.history.withdrawals')->name('withdrawals');
         Route::view('withdraw-fees', 'admin.history.withdraw_fees')->name('withdrawals.fees');
+        Route::view('all-users', 'admin.history.users')->name('users');
     });
 });
