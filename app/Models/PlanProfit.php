@@ -12,6 +12,7 @@ class PlanProfit extends Model
     protected $fillable = [
         'plan_id',
         'profit',
+        'direct_commission',
     ];
 
     public function plan()

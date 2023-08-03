@@ -43,6 +43,7 @@ class FinanceController extends Controller
             'type' => $validatedData['type'],
             'sum' => $validatedData['add'],
             'amount' => $validatedData['amount'],
+            'status' => true,
             'reference' => 'Admin Action',
         ]);
 

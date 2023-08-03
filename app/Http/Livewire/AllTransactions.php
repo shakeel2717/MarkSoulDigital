@@ -50,7 +50,7 @@ final class AllTransactions extends PowerGridComponent
      */
     public function datasource(): Builder
     {
-        return Transaction::query();
+        return Transaction::query()->where('user_id', auth()->user()->id);
     }
 
     /*

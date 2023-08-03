@@ -35,11 +35,29 @@ class DatabaseSeeder extends Seeder
         $user->email = "shakeel2717@gmail.com";
         $user->email_verified_at = now();
         $user->password = bcrypt('asdfasdf');
+        $user->left_user_id = 3;
         $user->save();
 
         $user->transactions()->create([
             'type' => 'Deposit',
             'amount' => 1000,
+            'status' => true,
+            'sum' => true,
+            'reference' => "Deposit From Admin",
+        ]);
+
+        $user = new User();
+        $user->name = "Basharat Ali";
+        $user->username = "basharat604";
+        $user->email = "basharat604@gmail.com";
+        $user->email_verified_at = now();
+        $user->refer = 'shakeel2717';
+        $user->password = bcrypt('asdfasdf');
+        $user->save();
+
+        $user->transactions()->create([
+            'type' => 'Deposit',
+            'amount' => 2000,
             'status' => true,
             'sum' => true,
             'reference' => "Deposit From Admin",
@@ -58,6 +76,7 @@ class DatabaseSeeder extends Seeder
         $planProfit = new PlanProfit();
         $planProfit->plan_id = $plan->id;
         $planProfit->profit = $plan->min_profit;
+        $planProfit->direct_commission = 10;
         $planProfit->save();
 
         $plan = new Plan();
@@ -71,6 +90,7 @@ class DatabaseSeeder extends Seeder
         $planProfit = new PlanProfit();
         $planProfit->plan_id = $plan->id;
         $planProfit->profit = $plan->min_profit;
+        $planProfit->direct_commission = 12;
         $planProfit->save();
 
         $plan = new Plan();
@@ -84,6 +104,7 @@ class DatabaseSeeder extends Seeder
         $planProfit = new PlanProfit();
         $planProfit->plan_id = $plan->id;
         $planProfit->profit = $plan->min_profit;
+        $planProfit->direct_commission = 15;
         $planProfit->save();
 
 

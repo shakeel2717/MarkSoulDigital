@@ -171,19 +171,20 @@
                         <hr>
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="left">Join on Left Side</label>
-                                    <input type="text" name="left" id="left" class="form-control" value="{{ route('register') }}">
+                                <label for="leftRefer">Join on Left Side</label>
+                                <div class="input-group">
+                                    <input type="text" id="leftRefer" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2" value="{{ route('register',['refer' => auth()->user()->username,'position' => 'left']) }}">
+                                    <button onclick="copyInputValue('leftRefer')" class="btn btn-danger" type="button" id="button-addon2"><i class="fs-3 mb-0 ph-clipboard-text-light"></i></button>
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="right">Join on Right Side</label>
-                                    <input type="text" name="right" id="right" class="form-control" value="{{ route('register') }}">
+                                <label for="rightRefer">Join on Right Side</label>
+                                <div class="input-group">
+                                    <input type="text" id="rightRefer" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2" value="{{ route('register',['refer' => auth()->user()->username,'position' => 'right']) }}">
+                                    <button onclick="copyInputValue('rightRefer')" class="btn btn-danger" type="button" id="button-addon2"><i class="fs-3 mb-0 ph-clipboard-text-light"></i></button>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                     <div class="progress bg-danger-subtle progress-sm rounded-0" data-bs-toggle="tooltip" data-bs-title="100% Completed">
                         <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>

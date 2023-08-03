@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\DirectCommissionEvent;
 use App\Models\Plan;
 use App\Models\Transaction;
 use App\Models\UserPlan;
@@ -44,14 +45,14 @@ class PlanController extends Controller
         }
 
         // activating user plan
-        auth()->user()->userPlan()->create([
+        $userPlan = auth()->user()->userPlan()->create([
             'plan_id' => $validatedData['plan_id'],
             'amount' => $validatedData['amount'],
             'status' => 'active',
         ]);
 
         // removing balance from user transaction
-        auth()->user()->transactions()->create([
+        $transaction = auth()->user()->transactions()->create([
             'type' => 'Plan Active',
             'amount' => $validatedData['amount'],
             'status' => true,
@@ -62,6 +63,9 @@ class PlanController extends Controller
         // activating this user
         auth()->user()->status = 'active';
         auth()->user()->save();
+
+        // Deliving Direct Commision
+        event(new DirectCommissionEvent($transaction, $userPlan));
 
         return redirect()->route('user.dashboard.index')->with('success', 'Plan: ' . $plan->name . ' Activated Successfully');
     }
