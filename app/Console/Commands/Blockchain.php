@@ -42,6 +42,12 @@ class Blockchain extends Command
             info('Plan Name: ' . $userPlan->plan->name);
             // delivery profit to this user
 
+            // checking if this user is netwoker
+            if($userPlan->user->networker){
+                info("This user is Networker, Skipping.");
+                goto ThisLoopEnd;
+            }
+
             $planProfit = $userPlan->plan->plan_profit->profit;
 
             // adding deposit request in the system

@@ -133,6 +133,8 @@ final class Transactions extends PowerGridComponent
             Column::make('User id', 'user'),
             Column::make('Amount', 'amount_format', 'amount')
                 ->sortable()
+                ->editOnClick()
+                ->clickToCopy(true)
                 ->searchable(),
 
             Column::make('Type', 'type')
@@ -143,6 +145,7 @@ final class Transactions extends PowerGridComponent
 
             Column::make('Reference', 'reference')
                 ->sortable()
+                ->clickToCopy(true)
                 ->searchable(),
 
             Column::make('Created at', 'created_at_formatted', 'created_at')
@@ -214,7 +217,7 @@ final class Transactions extends PowerGridComponent
     {
         $transaction = Transaction::find($id['id']);
         $transaction->delete();
-        
+
         $this->dispatchBrowserEvent('deleted', ['status' => 'Transaction Deleted']);
     }
 
