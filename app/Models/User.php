@@ -53,9 +53,9 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
 
-    public function userPlan()
+    public function userPlans()
     {
-        return $this->hasOne(UserPlan::class);
+        return $this->hasMany(UserPlan::class);
     }
 
 

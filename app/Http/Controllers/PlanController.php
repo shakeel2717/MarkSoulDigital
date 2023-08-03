@@ -45,7 +45,7 @@ class PlanController extends Controller
         }
 
         // activating user plan
-        $userPlan = auth()->user()->userPlan()->create([
+        $userPlan = auth()->user()->userPlans()->create([
             'plan_id' => $validatedData['plan_id'],
             'amount' => $validatedData['amount'],
             'status' => 'active',

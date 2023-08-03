@@ -118,16 +118,29 @@
     <div class="col-md-4">
         <div class="row">
             <div class="col-md-12">
+                @forelse (auth()->user()->userPlans as $userPlan)
                 <div class="card card-body bg-danger">
-                    <div class="d-flex justify-content-between">
+                    <div class="d-flex justify-content-between align-items-center">
                         <div class="card-title mb-0 text-white">
-                            {{ getActivePlan(auth()->user()->id) ? getActivePlan(auth()->user()->id)->plan->name : 'No Active Plan' }}
+                            {{ $userPlan->plan->name }} <br> <small>({{ $userPlan->plan->status ? 'Active' : 'Freeez' }})</small>
                         </div>
                         <div class="card-title mb-0 text-white">
-                            {{ getActivePlan(auth()->user()->id) ? '$'.number_format(getActivePlan(auth()->user()->id)->amount,2) : '0.00' }}
+                            ${{number_format($userPlan->amount,2)}}
                         </div>
                     </div>
                 </div>
+                @empty
+                <div class="card card-body bg-danger">
+                    <div class="d-flex justify-content-between">
+                        <div class="card-title mb-0 text-white">
+                            {{"No Active Pacakge"}}
+                        </div>
+                        <div class="card-title mb-0 text-white">
+                            ${{number_format(0,2)}}
+                        </div>
+                    </div>
+                </div>
+                @endforelse
             </div>
             <div class="col-md-12">
                 <div class="card">
@@ -189,9 +202,9 @@
                     <div class="progress bg-danger-subtle progress-sm rounded-0" data-bs-toggle="tooltip" data-bs-title="100% Completed">
                         <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
-                </div><!--end col-->
-            </div><!--end row-->
-        </div><!--end card-->
-    </div><!--end col-->
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection
