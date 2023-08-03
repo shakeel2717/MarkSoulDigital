@@ -95,4 +95,9 @@ class User extends Authenticatable implements MustVerifyEmail
 
         return $downline;
     }
+    
+    public function freeze_transactions()
+    {
+        return $this->hasMany(FreezeTransaction::class);
+    }
 }

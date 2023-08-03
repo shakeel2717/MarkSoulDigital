@@ -151,6 +151,12 @@ class DatabaseSeeder extends Seeder
         $option->save();
 
 
+        $option = new Option();
+        $option->key = 'networkCap';
+        $option->value = 3;
+        $option->save();
+
+
 
         $post = new Post();
         $post->title = 'The Basics of Forex Trading: A Beginner\'s Guide';

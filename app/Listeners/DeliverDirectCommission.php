@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-use App\Events\DirectCommissionEvent;
+use App\Events\PlanActivatedEvent;
 use App\Models\User;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
@@ -20,7 +20,7 @@ class DeliverDirectCommission
     /**
      * Handle the event.
      */
-    public function handle(DirectCommissionEvent $event): void
+    public function handle(PlanActivatedEvent $event): void
     {
         $transaction = $event->transaction;
         $userPlan = $event->userPlan;

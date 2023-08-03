@@ -20,12 +20,8 @@ function balance($user_id)
 
 function getActivePlan($user_id)
 {
-    $userPlan = UserPlan::where('user_id', $user_id)->where('status', 'active')->latest()->first();
-    if ($userPlan != "") {
-        return $userPlan;
-    } else {
-        return false;
-    }
+    $userPlan = UserPlan::where('user_id', $user_id)->where('status', 'active')->sum('amount');
+    return $userPlan;
 }
 
 
@@ -61,4 +57,38 @@ function totalDirectCommission($user_id)
 {
     $transaction = Transaction::where('user_id', $user_id)->where('type', 'Direct Commission')->sum('amount');
     return $transaction;
+}
+
+
+function networkCap($user_id)
+{
+    // getting all income expect deposit
+    $in = Transaction::where('user_id', $user_id)
+        ->where('sum', true)
+        ->where('status', true)
+        ->where('type', '!=', 'Deposit')
+        ->sum('amount');
+
+    return $in;
+}
+
+
+function networkCapInPercentage($user_id)
+{
+    // getting all income expect deposit
+    $in = Transaction::where('user_id', $user_id)
+        ->where('sum', true)
+        ->where('status', true)
+        ->where('type', '!=', 'Deposit')
+        ->sum('amount');
+    if ($in < 1) {
+        return 0;
+    }
+
+    $percentage = ($in / (getActivePlan($user_id) * site_option('networkCap'))) * 100;
+    if ($percentage > 100) {
+        return 100;
+    } else {
+        return $percentage;
+    }
 }

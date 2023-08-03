@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\DirectCommissionEvent;
+use App\Events\PlanActivatedEvent;
 use App\Models\Plan;
 use App\Models\Transaction;
 use App\Models\UserPlan;
@@ -65,7 +66,7 @@ class PlanController extends Controller
         auth()->user()->save();
 
         // Deliving Direct Commision
-        event(new DirectCommissionEvent($transaction, $userPlan));
+        event(new PlanActivatedEvent($transaction, $userPlan));
 
         return redirect()->route('user.dashboard.index')->with('success', 'Plan: ' . $plan->name . ' Activated Successfully');
     }

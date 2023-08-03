@@ -10,7 +10,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class DirectCommissionEvent
+class PlanActivatedEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
     public $transaction;
@@ -19,7 +19,7 @@ class DirectCommissionEvent
     /**
      * Create a new event instance.
      */
-    public function __construct($transaction,$userPlan)
+    public function __construct($transaction, $userPlan)
     {
         $this->transaction = $transaction;
         $this->userPlan = $userPlan;

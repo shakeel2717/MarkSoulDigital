@@ -102,8 +102,8 @@
                         <i class="ph-wallet"></i>
                     </span>
                 </span>
-                <h4 class="mb-4">$<span class="counter-value" data-target="0">0</span></h4>
-                <p class="text-muted fw-medium text-uppercase mb-0">Today ROI Withdrawal</p>
+                <h4 class="mb-4 text-danger">$ {{ number_format(auth()->user()->freeze_transactions->sum('amount'),2) }}</h4>
+                <p class="text-danger fw-medium text-uppercase mb-0">Total Freeze Balance</p>
             </div>
         </div>
     </div>
@@ -148,11 +148,11 @@
                         <div class="mb-4 pb-1">
                             <div class="">
                                 <h2 class="card-title">Networking Cap</h6>
-                                    <p class="text-muted mb-0"> <b>$985.32k</b> Total unpaid invoices</p>
+                                    <p class="text-muted mb-0"> <b>${{networkCap(auth()->user()->id)}}</b> Total Earned</p>
                             </div>
                         </div>
                         <div class="progress" data-bs-toggle="tooltip" data-bs-title="$234.95 Paid Amount">
-                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%"></div>
+                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{{ networkCapInPercentage(auth()->user()->id) }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ networkCapInPercentage(auth()->user()->id) }}%"></div>
                         </div>
                         <div class="mt-4">
                             <a href="apps-ecommerce-seller-overview.html" class="link-effect">View All Transactions <i class="bi bi-arrow-right align-baseline ms-1"></i></a>
