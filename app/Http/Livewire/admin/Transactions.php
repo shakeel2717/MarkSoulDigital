@@ -31,7 +31,9 @@ final class Transactions extends PowerGridComponent
             Exportable::make('export')
                 ->striped()
                 ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
-            Header::make()->showSearchInput(),
+            Header::make()
+                ->showSearchInput()
+                ->showToggleColumns(),
             Footer::make()
                 ->showPerPage()
                 ->showRecordCount(),
@@ -179,25 +181,43 @@ final class Transactions extends PowerGridComponent
      * @return array<int, Button>
      */
 
-    /*
+
     public function actions(): array
     {
-       return [
-           Button::make('edit', 'Edit')
-               ->class('bg-indigo-500 cursor-pointer text-white px-3 py-2.5 m-1 rounded text-sm')
-               ->route('transaction.edit', function(\App\Models\Transaction $model) {
-                    return $model->id;
-               }),
+        return [
+            Button::make('delete', 'DELETE')
+                ->class('btn btn-danger btn-sm')
+                ->emit('delete', ['id' => 'id'])
 
-           Button::make('destroy', 'Delete')
-               ->class('bg-red-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
-               ->route('transaction.destroy', function(\App\Models\Transaction $model) {
-                    return $model->id;
-               })
-               ->method('delete')
+            //    Button::make('destroy', 'Delete')
+            //        ->class('bg-red-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
+            //        ->route('transaction.destroy', function(\App\Models\Transaction $model) {
+            //             return $model->id;
+            //        })
+            //        ->method('delete')
         ];
     }
-    */
+
+
+    protected function getListeners(): array
+    {
+        return array_merge(
+            parent::getListeners(),
+            [
+                'delete'   => 'delete',
+            ]
+        );
+    }
+
+
+    public function delete($id)
+    {
+        $transaction = Transaction::find($id['id']);
+        $transaction->delete();
+        
+        $this->dispatchBrowserEvent('deleted', ['status' => 'Transaction Deleted']);
+    }
+
 
     /*
     |--------------------------------------------------------------------------

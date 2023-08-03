@@ -17,6 +17,11 @@
 </script>
 @endif
 <script>
+    window.addEventListener('deleted', event => {
+        swal("Success!", event.detail.status, "success");
+    })
+</script>
+<script>
     function copyInputValue(inputId) {
         const inputElement = document.getElementById(inputId);
         if (inputElement) {
