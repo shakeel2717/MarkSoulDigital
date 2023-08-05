@@ -8,6 +8,7 @@ use App\Models\Option;
 use App\Models\Plan;
 use App\Models\PlanProfit;
 use App\Models\Post;
+use App\Models\Reward;
 use App\Models\User;
 use App\Models\Wallet;
 use Illuminate\Database\Seeder;
@@ -202,5 +203,60 @@ class DatabaseSeeder extends Seeder
         $post->body = 'Risk management is the backbone of profitable forex trading. This post emphasizes the significance of implementing a robust risk management strategy to protect your capital and maintain steady growth. We delve into position sizing, setting stop-loss orders, and understanding leverage, empowering traders to minimize potential losses and optimize risk-to-reward ratios. Learn how to stay disciplined, protect your investments, and preserve your trading account for sustained success in the dynamic forex market.';
         $post->img = null;
         $post->save();
+
+
+        $reward = new Reward();
+        $reward->name = "PROMINENCE";
+        $reward->business = 3000;
+        $reward->reward = 200;
+        $reward->save();
+
+        $reward = new Reward();
+        $reward->name = "EMPYREAN";
+        $reward->business = 10000;
+        $reward->reward = 500;
+        $reward->save();
+
+        $reward = new Reward();
+        $reward->name = "PINNACLE";
+        $reward->business = 25000;
+        $reward->reward = 1000;
+        $reward->save();
+
+        $reward = new Reward();
+        $reward->name = "ELITE";
+        $reward->business = 50000;
+        $reward->reward = 2000;
+        $reward->save();
+
+        $reward = new Reward();
+        $reward->name = "APEX";
+        $reward->business = 100000;
+        $reward->reward = 5000;
+        $reward->save();
+
+        $reward = new Reward();
+        $reward->name = "SOVEREIGN";
+        $reward->business = 250000;
+        $reward->reward = 10000;
+        $reward->save();
+
+        $reward = new Reward();
+        $reward->name = "LUMINARY";
+        $reward->business = 500000;
+        $reward->reward = 20000;
+        $reward->save();
+
+        $reward = new Reward();
+        $reward->name = "ECHELON";
+        $reward->business = 3000000;
+        $reward->reward = 50000;
+        $reward->save();
+
+        $reward = new Reward();
+        $reward->name = "SUPREME";
+        $reward->business = 10000000;
+        $reward->reward = 100000;
+        $reward->save();
     }
 }
