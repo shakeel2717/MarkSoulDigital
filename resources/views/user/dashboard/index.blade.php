@@ -148,7 +148,8 @@
                         <div class="mb-4 pb-1">
                             <div class="">
                                 <h2 class="card-title">Networking Cap</h6>
-                                    <p class="text-muted mb-0"> <b>${{networkCap(auth()->user()->id)}}</b> Total Earned</p>
+                                    <p class="text-muted mb-0"> <b>${{number_format(getActivePlan(auth()->user()->id) * 3,2)}}</b> Total CAP</p>
+                                    <p class="text-muted mb-0"> <b>${{number_format(networkCap(auth()->user()->id),2)}}</b> Total Earned</p>
                             </div>
                         </div>
                         <div class="progress" data-bs-toggle="tooltip" data-bs-title="$234.95 Paid Amount">
