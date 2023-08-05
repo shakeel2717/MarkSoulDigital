@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Option;
+use App\Models\Plan;
 use App\Models\Transaction;
 use App\Models\User;
 use App\Models\UserPlan;
@@ -134,4 +135,16 @@ function rightBusiessVolume($user_id)
         }
     }
     return $totalAmount;
+}
+
+
+function getPackageByAmount($amount)
+{
+    $plans = Plan::get();
+    foreach ($plans as $plan) {
+        if ($amount >= $plan->min_price && $amount <= $plan->max_price) {
+            return $plan->id;
+        }
+    }
+    abort(500);
 }

@@ -38,6 +38,7 @@ class DatabaseSeeder extends Seeder
         $user->mobile = "03037702717";
         $user->password = bcrypt('asdfasdf');
         $user->left_user_id = 3;
+        $user->right_user_id = 4;
         $user->save();
 
         $user->transactions()->create([
@@ -55,7 +56,6 @@ class DatabaseSeeder extends Seeder
         $user->email_verified_at = now();
         $user->mobile = "03006558604";
         $user->refer = 'shakeel2717';
-        $user->left_user_id = 4;
         $user->password = bcrypt('asdfasdf');
         $user->save();
 
@@ -176,6 +176,11 @@ class DatabaseSeeder extends Seeder
         $option = new Option();
         $option->key = 'networkCap';
         $option->value = 3;
+        $option->save();
+
+        $option = new Option();
+        $option->key = 'rewards_auto';
+        $option->value = true;
         $option->save();
 
 

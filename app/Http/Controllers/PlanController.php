@@ -45,12 +45,25 @@ class PlanController extends Controller
             return back()->withErrors(['Insufficient Balance']);
         }
 
-        // activating user plan
-        $userPlan = auth()->user()->userPlan()->create([
-            'plan_id' => $validatedData['plan_id'],
-            'amount' => $validatedData['amount'],
-            'status' => 'active',
-        ]);
+        // checking if this user already have active plan
+        if (auth()->user()->userPlan) {
+            $newAmount = auth()->user()->userPlan->amount + $validatedData['amount'];
+
+            // activating user plan
+            $userPlan = auth()->user()->userPlan;
+            $userPlan->plan_id = getPackageByAmount($newAmount);
+            $userPlan->amount = $newAmount;
+            $userPlan->status = 'active';
+            $userPlan->save();
+        } else {
+            // activating user plan
+            $userPlan = auth()->user()->userPlan()->create([
+                'plan_id' => $validatedData['plan_id'],
+                'amount' => $validatedData['amount'],
+                'status' => 'active',
+            ]);
+        }
+
 
         // removing balance from user transaction
         $transaction = auth()->user()->transactions()->create([
