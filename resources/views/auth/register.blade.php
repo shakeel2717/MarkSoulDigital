@@ -36,6 +36,13 @@
                 </div>
                 <div class="mb-3">
                     <div class="form-group">
+                        <label for="mobile">Mobile #</label>
+                        <input type="text" name="mobile" id="mobile" placeholder="Enter Mobile" class="form-control" minlength="11" maxlength="11">
+                        <small>Enter Number in this Format: 03001234567</small>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="form-group">
                         <label for="password">Password</label>
                         <input type="password" name="password" id="password" placeholder="Enter Password" class="form-control">
                     </div>

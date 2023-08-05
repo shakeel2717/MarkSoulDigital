@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
         $user->name = "Administrator";
         $user->username = "admin";
         $user->email = "admin@test.com";
+        $user->mobile = "03001212123";
         $user->email_verified_at = now();
         $user->password = bcrypt('asdfasdf');
         $user->role = 'admin';
@@ -34,6 +35,7 @@ class DatabaseSeeder extends Seeder
         $user->username = "shakeel2717";
         $user->email = "shakeel2717@gmail.com";
         $user->email_verified_at = now();
+        $user->mobile = "03037702717";
         $user->password = bcrypt('asdfasdf');
         $user->left_user_id = 3;
         $user->save();
@@ -51,6 +53,7 @@ class DatabaseSeeder extends Seeder
         $user->username = "basharat604";
         $user->email = "basharat604@gmail.com";
         $user->email_verified_at = now();
+        $user->mobile = "03006558604";
         $user->refer = 'shakeel2717';
         $user->password = bcrypt('asdfasdf');
         $user->save();
