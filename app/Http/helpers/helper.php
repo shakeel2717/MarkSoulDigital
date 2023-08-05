@@ -128,9 +128,9 @@ function rightBusiessVolume($user_id)
 {
     $user = User::find($user_id);
     $totalAmount =  0;
-    foreach ($user->getDownline('left') as $leftUser) {
-        if ($leftUser->userPlan) {
-            $totalAmount += $leftUser->userPlan->amount;
+    foreach ($user->getDownline('right') as $rightUser) {
+        if ($rightUser->userPlan) {
+            $totalAmount += $rightUser->userPlan->amount;
         }
     }
     return $totalAmount;

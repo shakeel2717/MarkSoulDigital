@@ -1,4 +1,16 @@
 <ul class="navbar-nav" id="navbar-nav">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="text-center mt-4">
+                <div class="position-relative m-2">
+                    <img class="avatar-md rounded-circle" src="{{ asset('assets/images/users/user-dummy-img.jpg') }}" alt="">
+                    <img class="avatar-sm position-absolute top-50 start-50" src="{{ asset('assets/images/medal.png') }}" alt="">
+                </div>
+                <div class="text-white text-uppercase mt-2">{{ auth()->user()->name }}</div>
+                <div class="text-white text-uppercase">{{ auth()->user()->status }}</div>
+            </div>
+        </div>
+    </div>
     <li class="menu-title"><span data-key="t-menu">Overview</span></li>
     <li class="nav-item">
         <a href="{{route('user.dashboard.index')}}" class="nav-link menu-link">
