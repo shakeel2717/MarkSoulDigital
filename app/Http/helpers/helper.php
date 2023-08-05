@@ -2,6 +2,7 @@
 
 use App\Models\Option;
 use App\Models\Transaction;
+use App\Models\User;
 use App\Models\UserPlan;
 use Carbon\Carbon;
 
@@ -24,7 +25,7 @@ function totalIncome($user_id)
     $in = Transaction::where('user_id', $user_id)
         ->where('sum', true)
         ->where('status', true)
-        ->where('type','!=', 'Deposit')
+        ->where('type', '!=', 'Deposit')
         ->sum('amount');
     return $in;
 }
@@ -102,4 +103,35 @@ function networkCapInPercentage($user_id)
     } else {
         return $percentage;
     }
+}
+
+function directReferrals($user_id)
+{
+    $user = User::find($user_id);
+    return $refers = User::where('refer', $user->username)->get();
+}
+
+
+function leftBusiessVolume($user_id)
+{
+    $user = User::find($user_id);
+    $totalAmount =  0;
+    foreach ($user->getDownline('left') as $leftUser) {
+        if ($leftUser->userPlan) {
+            $totalAmount += $leftUser->userPlan->amount;
+        }
+    }
+    return $totalAmount;
+}
+
+function rightBusiessVolume($user_id)
+{
+    $user = User::find($user_id);
+    $totalAmount =  0;
+    foreach ($user->getDownline('left') as $leftUser) {
+        if ($leftUser->userPlan) {
+            $totalAmount += $leftUser->userPlan->amount;
+        }
+    }
+    return $totalAmount;
 }

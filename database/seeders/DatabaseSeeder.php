@@ -55,6 +55,25 @@ class DatabaseSeeder extends Seeder
         $user->email_verified_at = now();
         $user->mobile = "03006558604";
         $user->refer = 'shakeel2717';
+        $user->left_user_id = 4;
+        $user->password = bcrypt('asdfasdf');
+        $user->save();
+
+        $user->transactions()->create([
+            'type' => 'Deposit',
+            'amount' => 2000,
+            'status' => true,
+            'sum' => true,
+            'reference' => "Deposit From Admin",
+        ]);
+
+        $user = new User();
+        $user->name = "Ali Raza";
+        $user->username = "ali604";
+        $user->email = "ali604@gmail.com";
+        $user->email_verified_at = now();
+        $user->mobile = "03106558604";
+        $user->refer = 'shakeel2717';
         $user->password = bcrypt('asdfasdf');
         $user->save();
 

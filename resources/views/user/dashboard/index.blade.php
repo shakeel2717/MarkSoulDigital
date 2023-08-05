@@ -109,63 +109,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-8">
-        <div class="card card-body">
-            <h2 class="card-title">Recent Transactions</h2>
-            <livewire:user.all-transaction />
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="row">
-            <div class="col-md-12">
-                @forelse (auth()->user()->userPlans as $userPlan)
-                <div class="card card-body bg-danger">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="card-title mb-0 text-white">
-                            {{ $userPlan->plan->name }} <br> <small>({{ $userPlan->plan->status ? 'Active' : 'Freeez' }})</small>
-                        </div>
-                        <div class="card-title mb-0 text-white">
-                            ${{number_format($userPlan->amount,2)}}
-                        </div>
-                    </div>
-                </div>
-                @empty
-                <div class="card card-body bg-danger">
-                    <div class="d-flex justify-content-between">
-                        <div class="card-title mb-0 text-white">
-                            {{"No Active Pacakge"}}
-                        </div>
-                        <div class="card-title mb-0 text-white">
-                            ${{number_format(0,2)}}
-                        </div>
-                    </div>
-                </div>
-                @endforelse
-            </div>
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="mb-4 pb-1">
-                            <div class="">
-                                <h2 class="card-title">Networking Cap</h6>
-                                    <p class="text-muted mb-0"> <b>${{number_format(getActivePlan(auth()->user()->id) * 3,2)}}</b> Total CAP</p>
-                                    <p class="text-muted mb-0"> <b>${{number_format(networkCap(auth()->user()->id),2)}}</b> Total Earned</p>
-                            </div>
-                        </div>
-                        <div class="progress" data-bs-toggle="tooltip" data-bs-title="$234.95 Paid Amount">
-                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{{ networkCapInPercentage(auth()->user()->id) }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ networkCapInPercentage(auth()->user()->id) }}%"></div>
-                        </div>
-                        <div class="mt-4">
-                            <a href="{{ route('user.history.all') }}" class="link-effect">View All Transactions <i class="bi bi-arrow-right align-baseline ms-1"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-lg-12">
+    <div class="col-lg-8">
         <div class="card overflow-hidden">
             <div class="row g-0">
                 <div class="col-xl-3 col-md-4">
@@ -205,6 +149,100 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <div class="mb-4 pb-1">
+                    <div class="">
+                        <h2 class="card-title">Networking Cap</h6>
+                            <p class="text-muted mb-0"> <b>${{number_format(getActivePlan(auth()->user()->id) * 3,2)}}</b> Total CAP</p>
+                            <p class="text-muted mb-0"> <b>${{number_format(networkCap(auth()->user()->id),2)}}</b> Total Earned</p>
+                    </div>
+                </div>
+                <div class="progress" data-bs-toggle="tooltip" data-bs-title="$234.95 Paid Amount">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{{ networkCapInPercentage(auth()->user()->id) }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ networkCapInPercentage(auth()->user()->id) }}%"></div>
+                </div>
+                <div class="mt-4">
+                    <a href="{{ route('user.history.all') }}" class="link-effect">View All Transactions <i class="bi bi-arrow-right align-baseline ms-1"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="card border-bottom border-3 card-animate border-danger">
+            <div class="card-body">
+                <span class="avatar-sm text-success float-end">
+                    <span class="avatar-title bg-primary-subtle text-danger rounded-circle fs-3">
+                        <i class="ph-currency-dollar"></i>
+                    </span>
+                </span>
+                <h4 class="mb-4"> {{ directReferrals(auth()->user()->id)->count() }}</h4>
+                <p class="text-muted fw-medium text-uppercase mb-0">My Referrals</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card border-bottom border-3 card-animate border-danger">
+            <div class="card-body">
+                <span class="avatar-sm text-success float-end">
+                    <span class="avatar-title bg-primary-subtle text-danger rounded-circle fs-3">
+                        <i class="ph-currency-dollar"></i>
+                    </span>
+                </span>
+                <h4 class="mb-4"> {{ auth()->user()->left_user()->count() }}</h4>
+                <p class="text-muted fw-medium text-uppercase mb-0">Total Left Team</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card border-bottom border-3 card-animate border-danger">
+            <div class="card-body">
+                <span class="avatar-sm text-success float-end">
+                    <span class="avatar-title bg-primary-subtle text-danger rounded-circle fs-3">
+                        <i class="ph-currency-dollar"></i>
+                    </span>
+                </span>
+                <h4 class="mb-4">{{ auth()->user()->right_user()->count() }}</h4>
+                <p class="text-muted fw-medium text-uppercase mb-0">Total Right Team</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card border-bottom border-3 card-animate border-danger">
+            <div class="card-body">
+                <span class="avatar-sm text-success float-end">
+                    <span class="avatar-title bg-primary-subtle text-danger rounded-circle fs-3">
+                        <i class="ph-currency-dollar"></i>
+                    </span>
+                </span>
+                <h4 class="mb-4">{{ leftBusiessVolume(auth()->user()->id) }}</h4>
+                <p class="text-muted fw-medium text-uppercase mb-0">Left Business Volume </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card border-bottom border-3 card-animate border-danger">
+            <div class="card-body">
+                <span class="avatar-sm text-success float-end">
+                    <span class="avatar-title bg-primary-subtle text-danger rounded-circle fs-3">
+                        <i class="ph-currency-dollar"></i>
+                    </span>
+                </span>
+                <h4 class="mb-4">{{ rightBusiessVolume(auth()->user()->id) }}</h4>
+                <p class="text-muted fw-medium text-uppercase mb-0">Right Business Volume </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-body">
+            <h2 class="card-title">Recent Transactions</h2>
+            <livewire:user.all-transaction />
         </div>
     </div>
 </div>
