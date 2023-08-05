@@ -11,8 +11,8 @@
                 @csrf
                 <div class="mb-3">
                     <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" name="email" id="email" placeholder="Enter Email" class="form-control">
+                        <label for="usernam">Username</label>
+                        <input type="text" name="username" id="username" placeholder="Enter Username" class="form-control">
                     </div>
                 </div>
                 <div class="mb-3">
@@ -22,8 +22,7 @@
                                 password?</a>
                         </div>
                         <label for="password">Password</label>
-                        <input type="password" name="password" id="password" placeholder="Enter Password"
-                            class="form-control">
+                        <input type="password" name="password" id="password" placeholder="Enter Password" class="form-control">
                     </div>
                 </div>
                 <div class="form-group">
