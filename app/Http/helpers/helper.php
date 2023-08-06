@@ -205,6 +205,16 @@ function rightBusiessVolume($user_id)
     return $totalAmount;
 }
 
+function totalMatchingBusiness($user_id)
+{
+    $leftBV = leftBusiessVolume($user_id);
+    $rightBV = rightBusiessVolume($user_id);
+    if ($leftBV > $rightBV) {
+        return $rightBV;
+    } else {
+        return $leftBV;
+    }
+}
 
 function getPackageByAmount($amount)
 {

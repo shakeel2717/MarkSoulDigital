@@ -211,7 +211,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-4">
         <div class="card border-bottom border-3 card-animate border-danger">
             <div class="card-body">
                 <span class="avatar-sm text-success float-end">
@@ -225,7 +225,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-4">
         <div class="card border-bottom border-3 card-animate border-danger">
             <div class="card-body">
                 <span class="avatar-sm text-success float-end">
@@ -236,6 +236,20 @@
                 <h4 class="mb-4">{{ myRightBusiessVolume(auth()->user()->id) }}</h4>
                 <!-- <h4 class="mb-4">{{ myRightBusiessVolume(auth()->user()->id) }} / {{ rightBusiessVolume(auth()->user()->id) }}</h4> -->
                 <p class="text-muted fw-medium text-uppercase mb-0">Right Business Volume </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card border-bottom border-3 card-animate border-danger">
+            <div class="card-body">
+                <span class="avatar-sm text-success float-end">
+                    <span class="avatar-title bg-primary-subtle text-danger rounded-circle fs-3">
+                        <i class="ph-currency-dollar"></i>
+                    </span>
+                </span>
+                <h4 class="mb-4">{{ totalMatchingBusiness(auth()->user()->id) }}</h4>
+                <!-- <h4 class="mb-4">{{ myRightBusiessVolume(auth()->user()->id) }} / {{ rightBusiessVolume(auth()->user()->id) }}</h4> -->
+                <p class="text-muted fw-medium text-uppercase mb-0">Total Matching Business </p>
             </div>
         </div>
     </div>
