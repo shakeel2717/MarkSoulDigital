@@ -43,6 +43,7 @@ class RegisteredUserController extends Controller
         $sponsor = null;
         $position = null;
 
+
         if ($validated['refer'] != 'default' && $validated['position'] != null) {
             // Checking if this refer is valid
             $sponsorQuery = User::where('username', $validated['refer'])->firstOrFail();
