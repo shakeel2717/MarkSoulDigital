@@ -109,7 +109,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-lg-8">
+    <div class="col-lg-6">
         <div class="card overflow-hidden">
             <div class="row g-0">
                 <div class="col-xl-3 col-md-4">
@@ -151,7 +151,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
         <div class="card">
             <div class="card-body">
                 <div class="mb-4 pb-1">
@@ -167,6 +167,29 @@
                 <div class="mt-4">
                     <a href="{{ route('user.history.all') }}" class="link-effect">View All Transactions <i class="bi bi-arrow-right align-baseline ms-1"></i></a>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                @if(auth()->user()->userPlan == "")
+                <h3 class="text-uppercase">No Active Package</h3>
+                <hr>
+                <div class="row">
+                    <a href="{{ route('user.plan.index') }}" class="btn btn-success mb-2 btn-block">Activate Plan</a>
+                </div>
+                <div class="row">
+                    <a href="{{ route('user.deposit.create') }}" class="btn btn-success mt-1 btn-block">Deposit Fund</a>
+                </div>
+                @else
+                <h3 class="text-uppercase text-danger">{{ auth()->user()->userPlan->plan->name }}</h3>
+                <h3 class="text-uppercase text-danger">${{ number_format(auth()->user()->userPlan->amount,2) }}</h3>
+                <h5 class="text-uppercase text-danger">Status: {{ auth()->user()->userPlan->status }}</h5>
+                <div class="row">
+                    <a href="{{ route('user.history.roi') }}" class="btn btn-success mt-2 btn-block">Profit Statement</a>
+                </div>
+                @endif
             </div>
         </div>
     </div>
