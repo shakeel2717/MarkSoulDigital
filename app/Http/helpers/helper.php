@@ -20,6 +20,16 @@ function balance($user_id)
     return $in - $out;
 }
 
+function checkUserStatus($user_id)
+{
+    $user = User::find($user_id);
+    if ($user->status == 'active') {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 
 function totalIncome($user_id)
 {
@@ -116,6 +126,15 @@ function directReferrals($user_id)
 function myLeftBusiessVolume($user_id)
 {
     $user = User::find($user_id);
+    // checking if this user have balid left and right downline
+    if ($user->my_left_user_id == null && $user->my_right_user_id == null) {
+        return 0;
+    }
+    // checking if both user is active
+    if (!checkUserStatus($user->my_left_user_id) || !checkUserStatus($user->my_right_user_id)) {
+        return 0;
+    }
+
     $totalAmount =  0;
     foreach ($user->getMyDownline('left') as $leftUser) {
         if ($leftUser->userPlan) {
@@ -128,6 +147,10 @@ function myLeftBusiessVolume($user_id)
 function myRightBusiessVolume($user_id)
 {
     $user = User::find($user_id);
+    // checking if this user have balid left and right downline
+    if ($user->my_left_user_id == null && $user->my_right_user_id == null) {
+        return 0;
+    }
     $totalAmount =  0;
     foreach ($user->getMyDownline('right') as $rightUser) {
         if ($rightUser->userPlan) {

@@ -61,6 +61,13 @@ class RegisteredUserController extends Controller
         $user->save();
         info("User Created: " . $user->username);
 
+        if ($validated['position'] == 'left') {
+            $sponsorQuery->my_left_user_id = $user->id;
+        } elseif ($validated['position'] == 'right') {
+            $sponsorQuery->my_right_user_id = $user->id;
+        }
+        $sponsorQuery->save();
+
         // Function to find an available slot in the downline's left or right side
         function findAvailableSlot($downlineUser, $targetPosition)
         {
