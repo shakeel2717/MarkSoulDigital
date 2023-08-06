@@ -219,7 +219,7 @@
                         <i class="ph-currency-dollar"></i>
                     </span>
                 </span>
-                <h4 class="mb-4">{{ leftBusiessVolume(auth()->user()->id) }}</h4>
+                <h4 class="mb-4">{{ myLeftBusiessVolume(auth()->user()->id) }} / {{ leftBusiessVolume(auth()->user()->id) }}</h4>
                 <p class="text-muted fw-medium text-uppercase mb-0">Left Business Volume </p>
             </div>
         </div>
@@ -232,7 +232,7 @@
                         <i class="ph-currency-dollar"></i>
                     </span>
                 </span>
-                <h4 class="mb-4">{{ rightBusiessVolume(auth()->user()->id) }}</h4>
+                <h4 class="mb-4">{{ myRightBusiessVolume(auth()->user()->id) }} / {{ rightBusiessVolume(auth()->user()->id) }}</h4>
                 <p class="text-muted fw-medium text-uppercase mb-0">Right Business Volume </p>
             </div>
         </div>

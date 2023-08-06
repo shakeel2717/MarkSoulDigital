@@ -38,6 +38,8 @@ class DatabaseSeeder extends Seeder
         $user->email_verified_at = now();
         $user->mobile = "03037702717";
         $user->password = bcrypt('asdfasdf');
+        $user->my_left_user_id = 3;
+        $user->my_right_user_id = 4;
         $user->left_user_id = 3;
         $user->right_user_id = 4;
         $user->save();
@@ -51,11 +53,11 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $user = new User();
-        $user->name = "Basharat Ali";
-        $user->username = "basharat604";
-        $user->email = "basharat604@gmail.com";
+        $user->name = "Test 1";
+        $user->username = "test1";
+        $user->email = "test1@gmail.com";
         $user->email_verified_at = now();
-        $user->mobile = "03006558604";
+        $user->mobile = rand(00000, 999999);
         $user->refer = 'shakeel2717';
         $user->password = bcrypt('asdfasdf');
         $user->save();
@@ -69,11 +71,11 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $user = new User();
-        $user->name = "Ali Raza";
-        $user->username = "ali604";
-        $user->email = "ali604@gmail.com";
+        $user->name = "Test 2";
+        $user->username = "test2";
+        $user->email = "test1@gmail.com";
         $user->email_verified_at = now();
-        $user->mobile = "03106558604";
+        $user->mobile = rand(00000, 999999);
         $user->refer = 'shakeel2717';
         $user->password = bcrypt('asdfasdf');
         $user->save();

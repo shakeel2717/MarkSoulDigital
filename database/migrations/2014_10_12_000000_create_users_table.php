@@ -16,12 +16,14 @@ return new class extends Migration
             $table->string('name');
             $table->string('username')->unique();
             $table->string('email');
-            $table->string('mobile')->unique();
+            $table->string('mobile')->nullable()->unique();
             $table->string('password');
             $table->string('refer')->default('default');
             $table->string('status')->default('pending');
-            $table->unsignedBigInteger('left_user_id')->nullable();
-            $table->unsignedBigInteger('right_user_id')->nullable();
+            $table->unsignedBigInteger('my_right_user_id')->nullable()->comment("My Direct Right Refers");
+            $table->unsignedBigInteger('my_left_user_id')->nullable()->comment("My Direct Left Refers");
+            $table->unsignedBigInteger('left_user_id')->nullable()->comment("Team Spillover Left Refers");
+            $table->unsignedBigInteger('right_user_id')->nullable()->comment("Team Spillover Right Refers");
             $table->timestamp('email_verified_at')->nullable();
             $table->string('role')->default('user');
             $table->boolean('networker')->default(false);

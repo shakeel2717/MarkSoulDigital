@@ -113,6 +113,30 @@ function directReferrals($user_id)
 }
 
 
+function myLeftBusiessVolume($user_id)
+{
+    $user = User::find($user_id);
+    $totalAmount =  0;
+    foreach ($user->getMyDownline('left') as $leftUser) {
+        if ($leftUser->userPlan) {
+            $totalAmount += $leftUser->userPlan->amount;
+        }
+    }
+    return $totalAmount;
+}
+
+function myRightBusiessVolume($user_id)
+{
+    $user = User::find($user_id);
+    $totalAmount =  0;
+    foreach ($user->getMyDownline('right') as $rightUser) {
+        if ($rightUser->userPlan) {
+            $totalAmount += $rightUser->userPlan->amount;
+        }
+    }
+    return $totalAmount;
+}
+
 function leftBusiessVolume($user_id)
 {
     $user = User::find($user_id);
