@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Events\PlanActivatedEvent;
+use App\Listeners\DeliverBinaryCommission;
 use App\Listeners\DeliverDirectCommission;
 use App\Listeners\DeliverFreezeBalance;
 use Illuminate\Auth\Events\Registered;
@@ -24,6 +25,7 @@ class EventServiceProvider extends ServiceProvider
         PlanActivatedEvent::class => [
             DeliverDirectCommission::class,
             DeliverFreezeBalance::class,
+            DeliverBinaryCommission::class,
         ]
     ];
 

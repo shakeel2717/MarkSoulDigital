@@ -229,3 +229,10 @@ function getPackageByAmount($amount)
     }
     abort(500);
 }
+
+
+function getBinaryCommission($user_id)
+{
+    $commission = Transaction::where('user_id', $user_id)->where('type', 'Binary Commission')->where('sum', true)->where('status', true)->sum('amount');
+    return $commission;
+}

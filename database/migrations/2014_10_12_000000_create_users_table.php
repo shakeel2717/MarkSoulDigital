@@ -27,6 +27,7 @@ return new class extends Migration
             $table->unsignedBigInteger('right_user_id')->nullable()->comment("Team Spillover Right Refers");
             $table->timestamp('email_verified_at')->nullable();
             $table->string('role')->default('user');
+            $table->double('binary_match')->default(0);
             $table->boolean('networker')->default(false);
             $table->rememberToken();
             $table->timestamps();

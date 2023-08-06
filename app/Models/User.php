@@ -31,6 +31,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         'left_user_in',
         'right_user_in',
+        'binary_match'
     ];
 
     /**

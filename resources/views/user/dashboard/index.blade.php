@@ -200,7 +200,7 @@
             <div class="card-body">
                 <span class="avatar-sm text-success float-end">
                     <span class="avatar-title bg-primary-subtle text-danger rounded-circle fs-3">
-                        <i class="ph-currency-dollar"></i>
+                        <i class="ph-users-three"></i>
                     </span>
                 </span>
                 <h4 class="mb-4"> {{ myReferrals(auth()->user()->id) }}</h4>
@@ -213,7 +213,7 @@
             <div class="card-body">
                 <span class="avatar-sm text-success float-end">
                     <span class="avatar-title bg-primary-subtle text-danger rounded-circle fs-3">
-                        <i class="ph-currency-dollar"></i>
+                        <i class="ph-users-three"></i>
                     </span>
                 </span>
                 <h4 class="mb-4"> {{ leftReferrals(auth()->user()->id) }}</h4>
@@ -226,7 +226,7 @@
             <div class="card-body">
                 <span class="avatar-sm text-success float-end">
                     <span class="avatar-title bg-primary-subtle text-danger rounded-circle fs-3">
-                        <i class="ph-currency-dollar"></i>
+                        <i class="ph-users-three"></i>
                     </span>
                 </span>
                 <h4 class="mb-4">{{ rightReferrals(auth()->user()->id) }}</h4>
@@ -234,7 +234,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
         <div class="card border-bottom border-3 card-animate border-danger">
             <div class="card-body">
                 <span class="avatar-sm text-success float-end">
@@ -242,13 +242,12 @@
                         <i class="ph-currency-dollar"></i>
                     </span>
                 </span>
-                <!-- <h4 class="mb-4">{{ myLeftBusiessVolume(auth()->user()->id) }} / {{ leftBusiessVolume(auth()->user()->id) }}</h4> -->
-                <h4 class="mb-4">{{ myLeftBusiessVolume(auth()->user()->id) }}</h4>
+                <h4 class="mb-4">${{ number_format(myLeftBusiessVolume(auth()->user()->id),2) }}</h4>
                 <p class="text-muted fw-medium text-uppercase mb-0">Left Business Volume </p>
             </div>
         </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
         <div class="card border-bottom border-3 card-animate border-danger">
             <div class="card-body">
                 <span class="avatar-sm text-success float-end">
@@ -256,13 +255,12 @@
                         <i class="ph-currency-dollar"></i>
                     </span>
                 </span>
-                <h4 class="mb-4">{{ myRightBusiessVolume(auth()->user()->id) }}</h4>
-                <!-- <h4 class="mb-4">{{ myRightBusiessVolume(auth()->user()->id) }} / {{ rightBusiessVolume(auth()->user()->id) }}</h4> -->
+                <h4 class="mb-4">${{ number_format(myRightBusiessVolume(auth()->user()->id),2) }}</h4>
                 <p class="text-muted fw-medium text-uppercase mb-0">Right Business Volume </p>
             </div>
         </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
         <div class="card border-bottom border-3 card-animate border-danger">
             <div class="card-body">
                 <span class="avatar-sm text-success float-end">
@@ -270,9 +268,21 @@
                         <i class="ph-currency-dollar"></i>
                     </span>
                 </span>
-                <h4 class="mb-4">{{ totalMatchingBusiness(auth()->user()->id) }}</h4>
-                <!-- <h4 class="mb-4">{{ myRightBusiessVolume(auth()->user()->id) }} / {{ rightBusiessVolume(auth()->user()->id) }}</h4> -->
+                <h4 class="mb-4">${{ number_format(totalMatchingBusiness(auth()->user()->id),2) }}</h4>
                 <p class="text-muted fw-medium text-uppercase mb-0">Total Matching Business </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card border-bottom border-3 card-animate border-danger">
+            <div class="card-body">
+                <span class="avatar-sm text-success float-end">
+                    <span class="avatar-title bg-primary-subtle text-danger rounded-circle fs-3">
+                        <i class="ph-currency-dollar"></i>
+                    </span>
+                </span>
+                <h4 class="mb-4">${{ number_format(getBinaryCommission(auth()->user()->id),2) }}</h4>
+                <p class="text-muted fw-medium text-uppercase mb-0">Total Binary Commission </p>
             </div>
         </div>
     </div>
