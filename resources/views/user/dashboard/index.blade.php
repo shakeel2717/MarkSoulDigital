@@ -180,7 +180,7 @@
                         <i class="ph-currency-dollar"></i>
                     </span>
                 </span>
-                <h4 class="mb-4"> {{ directReferrals(auth()->user()->id)->count() }}</h4>
+                <h4 class="mb-4"> {{ myReferrals(auth()->user()->id) }}</h4>
                 <p class="text-muted fw-medium text-uppercase mb-0">My Referrals</p>
             </div>
         </div>
@@ -193,7 +193,7 @@
                         <i class="ph-currency-dollar"></i>
                     </span>
                 </span>
-                <h4 class="mb-4"> {{ auth()->user()->left_user()->count() }}</h4>
+                <h4 class="mb-4"> {{ leftReferrals(auth()->user()->id) }}</h4>
                 <p class="text-muted fw-medium text-uppercase mb-0">Total Left Team</p>
             </div>
         </div>
@@ -206,7 +206,7 @@
                         <i class="ph-currency-dollar"></i>
                     </span>
                 </span>
-                <h4 class="mb-4">{{ auth()->user()->right_user()->count() }}</h4>
+                <h4 class="mb-4">{{ rightReferrals(auth()->user()->id) }}</h4>
                 <p class="text-muted fw-medium text-uppercase mb-0">Total Right Team</p>
             </div>
         </div>
@@ -219,7 +219,8 @@
                         <i class="ph-currency-dollar"></i>
                     </span>
                 </span>
-                <h4 class="mb-4">{{ myLeftBusiessVolume(auth()->user()->id) }} / {{ leftBusiessVolume(auth()->user()->id) }}</h4>
+                <!-- <h4 class="mb-4">{{ myLeftBusiessVolume(auth()->user()->id) }} / {{ leftBusiessVolume(auth()->user()->id) }}</h4> -->
+                <h4 class="mb-4">{{ myLeftBusiessVolume(auth()->user()->id) }}</h4>
                 <p class="text-muted fw-medium text-uppercase mb-0">Left Business Volume </p>
             </div>
         </div>
@@ -232,7 +233,8 @@
                         <i class="ph-currency-dollar"></i>
                     </span>
                 </span>
-                <h4 class="mb-4">{{ myRightBusiessVolume(auth()->user()->id) }} / {{ rightBusiessVolume(auth()->user()->id) }}</h4>
+                <h4 class="mb-4">{{ myRightBusiessVolume(auth()->user()->id) }}</h4>
+                <!-- <h4 class="mb-4">{{ myRightBusiessVolume(auth()->user()->id) }} / {{ rightBusiessVolume(auth()->user()->id) }}</h4> -->
                 <p class="text-muted fw-medium text-uppercase mb-0">Right Business Volume </p>
             </div>
         </div>

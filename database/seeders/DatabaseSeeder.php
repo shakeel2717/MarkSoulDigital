@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
         $user->role = 'admin';
         $user->save();
 
-
+        // user 2
         $user = new User();
         $user->name = "Shakeel Ahmad";
         $user->username = "shakeel2717";
@@ -52,6 +52,7 @@ class DatabaseSeeder extends Seeder
             'reference' => "Deposit From Admin",
         ]);
 
+        // user 3
         $user = new User();
         $user->name = "Test 1";
         $user->username = "test1";
@@ -59,21 +60,24 @@ class DatabaseSeeder extends Seeder
         $user->email_verified_at = now();
         $user->mobile = rand(00000, 999999);
         $user->refer = 'shakeel2717';
+        $user->my_left_user_id = 5;
+        $user->left_user_id = 5;
         $user->password = bcrypt('asdfasdf');
         $user->save();
 
         $user->transactions()->create([
             'type' => 'Deposit',
-            'amount' => 2000,
+            'amount' => 1000,
             'status' => true,
             'sum' => true,
             'reference' => "Deposit From Admin",
         ]);
 
+        // user 4
         $user = new User();
         $user->name = "Test 2";
         $user->username = "test2";
-        $user->email = "test1@gmail.com";
+        $user->email = "test2@gmail.com";
         $user->email_verified_at = now();
         $user->mobile = rand(00000, 999999);
         $user->refer = 'shakeel2717';
@@ -82,7 +86,27 @@ class DatabaseSeeder extends Seeder
 
         $user->transactions()->create([
             'type' => 'Deposit',
-            'amount' => 2000,
+            'amount' => 1000,
+            'status' => true,
+            'sum' => true,
+            'reference' => "Deposit From Admin",
+        ]);
+
+
+        // user 5
+        $user = new User();
+        $user->name = "Test 3";
+        $user->username = "test3";
+        $user->email = "test3@gmail.com";
+        $user->email_verified_at = now();
+        $user->mobile = rand(00000, 999999);
+        $user->refer = 'test1';
+        $user->password = bcrypt('asdfasdf');
+        $user->save();
+
+        $user->transactions()->create([
+            'type' => 'Deposit',
+            'amount' => 1000,
             'status' => true,
             'sum' => true,
             'reference' => "Deposit From Admin",

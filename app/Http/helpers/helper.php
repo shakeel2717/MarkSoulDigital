@@ -116,10 +116,31 @@ function networkCapInPercentage($user_id)
     }
 }
 
-function directReferrals($user_id)
+function myReferrals($user_id)
+{
+    return leftReferrals($user_id) + rightReferrals($user_id);
+}
+
+
+function leftReferrals($user_id)
 {
     $user = User::find($user_id);
-    return $refers = User::where('refer', $user->username)->get();
+    $leftUserCount = 0;
+    foreach ($user->getDownline('left') as $leftUser) {
+        $leftUserCount++;
+    }
+    return $leftUserCount;
+}
+
+
+function rightReferrals($user_id)
+{
+    $user = User::find($user_id);
+    $rightUserCount = 0;
+    foreach ($user->getDownline('right') as $rightUser) {
+        $rightUserCount++;
+    }
+    return $rightUserCount;
 }
 
 
@@ -127,11 +148,11 @@ function myLeftBusiessVolume($user_id)
 {
     $user = User::find($user_id);
     // checking if this user have balid left and right downline
-    if ($user->my_left_user_id == null && $user->my_right_user_id == null) {
+    if ($user->my_left_user_id == null) {
         return 0;
     }
     // checking if both user is active
-    if (!checkUserStatus($user->my_left_user_id) || !checkUserStatus($user->my_right_user_id)) {
+    if (!checkUserStatus($user->my_left_user_id)) {
         return 0;
     }
 
@@ -148,7 +169,7 @@ function myRightBusiessVolume($user_id)
 {
     $user = User::find($user_id);
     // checking if this user have balid left and right downline
-    if ($user->my_left_user_id == null && $user->my_right_user_id == null) {
+    if ($user->my_right_user_id == null) {
         return 0;
     }
     $totalAmount =  0;
