@@ -46,7 +46,7 @@ class DatabaseSeeder extends Seeder
 
         $user->transactions()->create([
             'type' => 'Deposit',
-            'amount' => 1000,
+            'amount' => 100,
             'status' => true,
             'sum' => true,
             'reference' => "Deposit From Admin",
@@ -67,7 +67,7 @@ class DatabaseSeeder extends Seeder
 
         $user->transactions()->create([
             'type' => 'Deposit',
-            'amount' => 1000,
+            'amount' => 500,
             'status' => true,
             'sum' => true,
             'reference' => "Deposit From Admin",
@@ -86,7 +86,7 @@ class DatabaseSeeder extends Seeder
 
         $user->transactions()->create([
             'type' => 'Deposit',
-            'amount' => 1000,
+            'amount' => 10000,
             'status' => true,
             'sum' => true,
             'reference' => "Deposit From Admin",
@@ -126,6 +126,7 @@ class DatabaseSeeder extends Seeder
         $planProfit->plan_id = $plan->id;
         $planProfit->profit = $plan->min_profit;
         $planProfit->direct_commission = 10;
+        $planProfit->binary_commission = 7;
         $planProfit->save();
 
         $plan = new Plan();
@@ -140,6 +141,7 @@ class DatabaseSeeder extends Seeder
         $planProfit->plan_id = $plan->id;
         $planProfit->profit = $plan->min_profit;
         $planProfit->direct_commission = 12;
+        $planProfit->binary_commission = 10;
         $planProfit->save();
 
         $plan = new Plan();
@@ -154,6 +156,7 @@ class DatabaseSeeder extends Seeder
         $planProfit->plan_id = $plan->id;
         $planProfit->profit = $plan->min_profit;
         $planProfit->direct_commission = 15;
+        $planProfit->binary_commission = 12;
         $planProfit->save();
 
 

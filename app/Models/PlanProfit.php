@@ -13,6 +13,7 @@ class PlanProfit extends Model
         'plan_id',
         'profit',
         'direct_commission',
+        'binary_commission',
     ];
 
     public function plan()

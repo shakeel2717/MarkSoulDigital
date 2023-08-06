@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('plan_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->double('profit');
             $table->double('direct_commission');
+            $table->double('binary_commission');
             $table->timestamps();
         });
     }

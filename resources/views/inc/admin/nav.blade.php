@@ -42,4 +42,13 @@
             <span data-key="t-calendar">All Withdarawls Fees</span>
         </a>
     </li>
+
+    <li class="menu-title"><span data-key="t-menu">Website Settings</span></li>
+
+    <li class="nav-item">
+        <a href="{{route('admin.history.plan.profit')}}" class="nav-link menu-link">
+            <i class="ph-calendar"></i>
+            <span data-key="t-calendar">Edit Plan Profit</span>
+        </a>
+    </li>
 </ul>
