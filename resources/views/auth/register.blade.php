@@ -35,10 +35,20 @@
                     </div>
                 </div>
                 <div class="mb-3">
-                    <div class="form-group">
-                        <label for="mobile">Mobile #</label>
-                        <input type="text" name="mobile" id="mobile" placeholder="Enter Mobile" class="form-control" minlength="11" maxlength="11">
-                        <small>Enter Number in this Format: 03001234567</small>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="mobile">Mobile #</label>
+                                <input type="text" name="mobile" id="mobile" placeholder="Enter Mobile" class="form-control" minlength="11" maxlength="11">
+                                <small>Mobile Format: 03001234567</small>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="country">Country</label>
+                                <input type="text" name="country" id="country" placeholder="United Kingdom" class="form-control">
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="mb-3">

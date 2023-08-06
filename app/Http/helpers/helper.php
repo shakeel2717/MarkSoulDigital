@@ -23,6 +23,9 @@ function balance($user_id)
 function checkUserStatus($user_id)
 {
     $user = User::find($user_id);
+    if (!$user) {
+        return false;
+    }
     if ($user->status == 'active') {
         return true;
     } else {

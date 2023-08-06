@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
         $user->username = "admin";
         $user->email = "admin@test.com";
         $user->mobile = "03001212123";
+        $user->country = "Pakistan";
         $user->email_verified_at = now();
         $user->password = bcrypt('asdfasdf');
         $user->role = 'admin';
@@ -37,6 +38,7 @@ class DatabaseSeeder extends Seeder
         $user->email = "shakeel2717@gmail.com";
         $user->email_verified_at = now();
         $user->mobile = "03037702717";
+        $user->country = "Pakistan";
         $user->password = bcrypt('asdfasdf');
         $user->my_left_user_id = 3;
         $user->my_right_user_id = 4;
@@ -57,6 +59,7 @@ class DatabaseSeeder extends Seeder
         $user->name = "Test 1";
         $user->username = "test1";
         $user->email = "test1@gmail.com";
+        $user->country = "Pakistan";
         $user->email_verified_at = now();
         $user->mobile = rand(00000, 999999);
         $user->refer = 'shakeel2717';
@@ -78,6 +81,7 @@ class DatabaseSeeder extends Seeder
         $user->name = "Test 2";
         $user->username = "test2";
         $user->email = "test2@gmail.com";
+        $user->country = "Pakistan";
         $user->email_verified_at = now();
         $user->mobile = rand(00000, 999999);
         $user->refer = 'shakeel2717';
@@ -94,23 +98,23 @@ class DatabaseSeeder extends Seeder
 
 
         // user 5
-        $user = new User();
-        $user->name = "Test 3";
-        $user->username = "test3";
-        $user->email = "test3@gmail.com";
-        $user->email_verified_at = now();
-        $user->mobile = rand(00000, 999999);
-        $user->refer = 'test1';
-        $user->password = bcrypt('asdfasdf');
-        $user->save();
+        // $user = new User();
+        // $user->name = "Test 3";
+        // $user->username = "test3";
+        // $user->email = "test3@gmail.com";
+        // $user->email_verified_at = now();
+        // $user->mobile = rand(00000, 999999);
+        // $user->refer = 'test1';
+        // $user->password = bcrypt('asdfasdf');
+        // $user->save();
 
-        $user->transactions()->create([
-            'type' => 'Deposit',
-            'amount' => 1000,
-            'status' => true,
-            'sum' => true,
-            'reference' => "Deposit From Admin",
-        ]);
+        // $user->transactions()->create([
+        //     'type' => 'Deposit',
+        //     'amount' => 1000,
+        //     'status' => true,
+        //     'sum' => true,
+        //     'reference' => "Deposit From Admin",
+        // ]);
 
 
         // adding default package plan

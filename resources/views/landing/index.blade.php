@@ -98,12 +98,12 @@
                             <div class="d-flex justify-content-center mb-3">
                                 <img src="{{ asset('landing/img/svg/rocket.svg') }}" alt="cta" width="80">
                             </div>
-                            <h3 class="cta-title"><a href="{{ route('register') }}" class="text-inherit">OUR
+                            <h3 class="cta-title"><a href="{{ route('register', ['refer' => 'admin', 'position' => 'left']) }}" class="text-inherit">OUR
                                     VISION</a>
                             </h3>
                             <p class="cta-text">Empowering financial independence through expert-guided forex trading.
                             </p>
-                            <a href="{{ route('register') }}" class="vs-btn style7">Get Started</a>
+                            <a href="{{ route('register', ['refer' => 'admin', 'position' => 'left']) }}" class="vs-btn style7">Get Started</a>
                         </div>
                     </div>
                     <div class="col-md-6 col-xl-4 wow fadeInUp" data-wow-delay="0.3s">
@@ -111,12 +111,12 @@
                             <div class="d-flex justify-content-center mb-3">
                                 <img src="{{ asset('landing/img/svg/trophy.svg') }}" alt="cta" width="80">
                             </div>
-                            <h3 class="cta-title"><a href="{{ route('register') }}" class="text-inherit">OUR
+                            <h3 class="cta-title"><a href="{{ route('register', ['refer' => 'admin', 'position' => 'left']) }}" class="text-inherit">OUR
                                     MISSION</a>
                             </h3>
                             <p class="cta-text">Becoming the leading forex platform, setting new industry standards.
                             </p>
-                            <a href="{{ route('register') }}" class="vs-btn style7">Get Started</a>
+                            <a href="{{ route('register', ['refer' => 'admin', 'position' => 'left']) }}" class="vs-btn style7">Get Started</a>
                         </div>
                     </div>
                     <div class="col-md-6 col-xl-4 wow fadeInUp" data-wow-delay="0.3s">
@@ -124,12 +124,12 @@
                             <div class="d-flex justify-content-center mb-3">
                                 <img src="{{ asset('landing/img/svg/idea.svg') }}" alt="cta" width="80">
                             </div>
-                            <h3 class="cta-title"><a href="{{ route('register') }}" class="text-inherit">OUR
+                            <h3 class="cta-title"><a href="{{ route('register', ['refer' => 'admin', 'position' => 'left']) }}" class="text-inherit">OUR
                                     VALUES</a>
                             </h3>
                             <p class="cta-text">Integrity, Innovation, and Customer-Centric in every aspect of our
                                 service. </p>
-                            <a href="{{ route('register') }}" class="vs-btn style7">Get Started</a>
+                            <a href="{{ route('register', ['refer' => 'admin', 'position' => 'left']) }}" class="vs-btn style7">Get Started</a>
                         </div>
                     </div>
                 </div>
@@ -227,7 +227,7 @@
                 </p>
                 <div class="row  align-items-center justify-content-end flex-row-reverse mt-4 mt-xxl-5 pt-3 pt-xl-1 ">
                     <div class="col-sm-auto">
-                        <a href="{{ route('register') }}" class="vs-btn style7">Create Account</a>
+                        <a href="{{ route('register', ['refer' => 'admin', 'position' => 'left']) }}" class="vs-btn style7">Create Account</a>
                     </div>
                 </div>
             </div>
@@ -255,7 +255,7 @@
                 </p>
                 <div class="row  align-items-center justify-content-end flex-row-reverse mt-4 mt-xxl-5 pt-3 pt-xl-1 ">
                     <div class="col-sm-auto">
-                        <a href="{{ route('register') }}" class="vs-btn style7">Create Account</a>
+                        <a href="{{ route('register', ['refer' => 'admin', 'position' => 'left']) }}" class="vs-btn style7">Create Account</a>
                     </div>
                 </div>
             </div>

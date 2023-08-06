@@ -32,9 +32,10 @@ class RegisteredUserController extends Controller
     {
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255'],
+            'email' => ['nullable', 'string', 'email', 'max:255'],
             'username' => ['required', 'string', 'alpha_num', 'max:255', 'unique:' . User::class],
             'mobile' => ['required', 'string', 'max:255', 'unique:' . User::class],
+            'country' => ['required', 'string', 'max:255'],
             'refer' => ['required', 'string', 'max:255'],
             'position' => ['required', 'string', 'max:255'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
@@ -59,6 +60,8 @@ class RegisteredUserController extends Controller
         $user->email = strtolower($validated['email']);
         $user->password = Hash::make($request->password);
         $user->refer = $sponsor ?? "default";
+        $user->mobile = $validated['mobile'];
+        $user->country = $validated['country'];
         $user->save();
         info("User Created: " . $user->username);
 

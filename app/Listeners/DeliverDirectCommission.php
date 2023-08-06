@@ -48,7 +48,7 @@ class DeliverDirectCommission
 
 
             // getting direct commission
-            $amount = $transaction->amount * $userPlan->plan->plan_profit->direct_commission / 100;
+            $amount = $transaction->amount * $sponser->userPlan->plan->plan_profit->direct_commission / 100;
 
             $sponser->transactions()->create([
                 'type' => "Direct Commission",

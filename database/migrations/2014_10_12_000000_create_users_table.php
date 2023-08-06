@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('username')->unique();
-            $table->string('email');
+            $table->string('email')->nullable();
             $table->string('mobile')->nullable()->unique();
+            $table->string('country');
             $table->string('password');
             $table->string('refer')->default('default');
             $table->string('status')->default('pending');
