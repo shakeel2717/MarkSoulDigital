@@ -13,7 +13,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         $schedule->command('blockchain:run')->daily();
-        $schedule->command('check:binary')->daily();
+        $schedule->command('check:reward')->hourly();
     }
 
     /**
