@@ -4,6 +4,7 @@ namespace App\Listeners;
 
 use App\Events\FreezeBalanceVerification;
 use App\Events\PlanActivatedEvent;
+use App\Models\User;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
@@ -23,10 +24,11 @@ class DeliverFreezeBalance
     public function handle(PlanActivatedEvent $event): void
     {
         info("Delivering Freeze Balance to this useer");
-        if (auth()->user()->freeze_transactions->sum('amount') > 0) {
-            info("User have Balance: " . auth()->user()->freeze_transactions->sum('amount'));
-            foreach (auth()->user()->freeze_transactions as $freezeTransaction) {
-                $transaction = auth()->user()->transactions()->create([
+        $user = User::find(auth()->user()->id);
+        if ($user->freeze_transactions->sum('amount') > 0) {
+            info("User have Balance: " . $user->freeze_transactions->sum('amount'));
+            foreach ($user->freeze_transactions as $freezeTransaction) {
+                $transaction = $user->transactions()->create([
                     'type' => 'Freeze Balance Recover',
                     'amount' => $freezeTransaction->amount,
                     'status' => true,

@@ -17,6 +17,7 @@ Route::prefix('user/')->name('user.')->middleware('auth', 'user')->group(functio
     Route::resource('dashboard', DashboardController::class);
     Route::post('/deposit/verify', [DepositController::class, 'verify'])->name('deposit.verify');
     Route::resource('deposit', DepositController::class);
+    Route::post('/plan/networkcap', [PlanController::class, 'networkcap'])->name('plan.networkcap');
     Route::resource('plan', PlanController::class);
     Route::resource('tree', TreeController::class);
     Route::resource('withdraw', WithdrawController::class);

@@ -28,6 +28,77 @@ class PlanController extends Controller
         return view('user.plan.create');
     }
 
+
+    public function networkcap(Request $request)
+    {
+        // checking if this useer networking cap is full
+        if (networkCapInPercentage(auth()->user()->id) == 100 || networkCapInPercentage(auth()->user()->id) > 100) {
+            info("user Cap Already Full");
+            // checking if this user already have active plan
+            if (getActivePlan(auth()->user()->id) > 0) {
+                info("User Already have Active Plan");
+                info("Checking if this user trying to actiavet lower plan");
+                $balance = auth()->user()->freeze_transactions->sum('amount') + balance(auth()->user()->id);
+                if (getActivePlan(auth()->user()->id) > $balance) {
+                    info("User trying to Activate Lower Plan");
+                    return back()->withErrors(['Insufficient investment. Please allocate more than $' . getActivePlan(auth()->user()->id) . ' to activate the plan']);
+                } else {
+                    // getting all the freeze Balance
+                    info("Delivering Freeze Balance to this useer");
+                    if (auth()->user()->freeze_transactions->sum('amount') > 0) {
+                        info("User have Balance: " . auth()->user()->freeze_transactions->sum('amount'));
+                        foreach (auth()->user()->freeze_transactions as $freezeTransaction) {
+                            $transaction = auth()->user()->transactions()->create([
+                                'type' => 'Freeze Balance Recover',
+                                'amount' => $freezeTransaction->amount,
+                                'status' => true,
+                                'sum' => true,
+                                'reference' => "Balance Recover From Freeze Transactions",
+                            ]);
+
+                            if ($transaction) {
+                                $freezeTransaction->delete();
+                            }
+
+                            // activating this user plan
+                        }
+
+                        // checking if this user already have active plan
+                        $newAmount = auth()->user()->userPlan->amount + $balance;
+
+                        $plan = Plan::find(getPackageByAmount($newAmount));
+
+                        // activating user plan
+                        $userPlan = auth()->user()->userPlan;
+                        $userPlan->plan_id = getPackageByAmount($newAmount);
+                        $userPlan->amount = $newAmount;
+                        $userPlan->status = 'active';
+                        $userPlan->save();
+
+
+                        // removing balance from user transaction
+                        $transaction = auth()->user()->transactions()->create([
+                            'type' => 'Plan Active',
+                            'amount' => $balance,
+                            'status' => true,
+                            'sum' => false,
+                            'reference' => "Plan: " . $plan->name . " Activated",
+                        ]);
+
+                        // activating this user
+                        auth()->user()->status = 'active';
+                        auth()->user()->save();
+
+                        // Deliving Direct Commision
+                        event(new PlanActivatedEvent($transaction, $userPlan));
+                    } else {
+                        info("User not have any Balance in Freez");
+                    }
+                }
+            }
+        }
+    }
+
     /**
      * Store a newly created resource in storage.
      */
