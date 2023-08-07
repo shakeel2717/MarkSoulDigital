@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Events\FreezeBalanceVerification;
 use App\Events\PlanActivatedEvent;
 use App\Models\User;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -50,17 +51,17 @@ class DeliverDirectCommission
             // getting direct commission
             $amount = $transaction->amount * $sponser->userPlan->plan->plan_profit->direct_commission / 100;
 
-            $sponser->transactions()->create([
+            $thisSponser = $sponser->transactions()->create([
                 'type' => "Direct Commission",
                 'sum' => true,
                 'amount' => $amount,
                 'status' => true,
                 'reference' => 'Direct Commision from: ' . auth()->user()->username,
             ]);
+            $user_id = $thisSponser->user_id;
+            event(new FreezeBalanceVerification($user_id));
         }
-        // 
-
-
+        
         EndThisListener:
     }
 }

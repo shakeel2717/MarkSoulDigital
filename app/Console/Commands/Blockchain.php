@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Events\FreezeBalanceVerification;
 use App\Models\PlanProfit;
 use App\Models\Transaction;
 use App\Models\UserPlan;
@@ -66,13 +67,14 @@ class Blockchain extends Command
                 ]);
                 info("ROI Freeezd for the user " . $userPlan->user->username . "Successfully");
             } else {
-                $userPlan->user->transactions()->create([
+                $dailyRoiTransaction = $userPlan->user->transactions()->create([
                     'type' => 'Daily ROI',
                     'sum' => true,
                     'status' => true,
                     'reference' => $userPlan->plan->name . ' Plan & Amount :' . number_format($userPlan->amount, 2),
                     'amount' => $userPlan->amount * $planProfit / 100,
                 ]);
+                event(new FreezeBalanceVerification($userPlan->user->id));
             }
 
 

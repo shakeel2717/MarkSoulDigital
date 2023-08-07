@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Events\FreezeBalanceVerification;
 use App\Events\PlanActivatedEvent;
+use App\Listeners\CheckNetworkingCap;
 use App\Listeners\DeliverBinaryCommission;
 use App\Listeners\DeliverDirectCommission;
 use App\Listeners\DeliverFreezeBalance;
@@ -24,8 +26,11 @@ class EventServiceProvider extends ServiceProvider
         ],
         PlanActivatedEvent::class => [
             DeliverDirectCommission::class,
-            DeliverFreezeBalance::class,
             DeliverBinaryCommission::class,
+            DeliverFreezeBalance::class,
+        ],
+        FreezeBalanceVerification::class => [
+            CheckNetworkingCap::class,
         ]
     ];
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\user;
 
+use App\Events\FreezeBalanceVerification;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -12,6 +13,8 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        event(new FreezeBalanceVerification(auth()->user()->id));
+
         return view('user.dashboard.index');
     }
 

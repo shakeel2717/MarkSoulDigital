@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Events\FreezeBalanceVerification;
 use App\Events\PlanActivatedEvent;
 use App\Models\User;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -58,13 +59,15 @@ class DeliverBinaryCommission
         $profitRatio = $totalMatchingBusiness * $upliner->userPlan->plan->plan_profit->binary_commission / 100;
         if ($profitRatio > 0) {
             // adding deposit request in the system
-            $upliner->transactions()->create([
+            $upliner_id = $upliner->transactions()->create([
                 'type' => 'Binary Commission',
                 'sum' => true,
                 'status' => true,
                 'reference' => 'Binary Matching Commission',
                 'amount' => $profitRatio,
             ]);
+            $user_id = $upliner_id->user_id;
+            event(new FreezeBalanceVerification($user_id));
             $upliner->binary_match = $totalMatchingBusiness;
             $upliner->save();
 

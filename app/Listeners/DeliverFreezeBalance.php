@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Events\FreezeBalanceVerification;
 use App\Events\PlanActivatedEvent;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
@@ -26,12 +27,14 @@ class DeliverFreezeBalance
             info("User have Balance: " . auth()->user()->freeze_transactions->sum('amount'));
             foreach (auth()->user()->freeze_transactions as $freezeTransaction) {
                 $transaction = auth()->user()->transactions()->create([
-                    'type' => $freezeTransaction->type,
+                    'type' => 'Freeze Balance Recover',
                     'amount' => $freezeTransaction->amount,
                     'status' => true,
                     'sum' => true,
                     'reference' => "Balance Recover From Freeze Transactions",
                 ]);
+
+                event(new FreezeBalanceVerification($transaction->user_id));
                 if ($transaction) {
                     $freezeTransaction->delete();
                 } else {

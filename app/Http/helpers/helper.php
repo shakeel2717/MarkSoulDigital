@@ -95,8 +95,16 @@ function networkCap($user_id)
         ->where('type', '!=', 'Deposit')
         ->sum('amount');
 
-    return $in;
+    return $in - freezeTransactionRecovered($user_id);
 }
+
+// gett all freze transaction recover
+function freezeTransactionRecovered($user_id)
+{
+    $transaction = Transaction::where('user_id', $user_id)->where('type', 'Freeze Balance')->sum('amount');
+    return $transaction;
+}
+
 
 
 function networkCapInPercentage($user_id)
