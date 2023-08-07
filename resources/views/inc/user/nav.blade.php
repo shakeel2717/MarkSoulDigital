@@ -78,4 +78,11 @@
             <span data-key="t-calendar">All Direct Commissions</span>
         </a>
     </li>
+    <li class="menu-title"><span data-key="t-menu">Ranks & Rewards</span></li>
+    <li class="nav-item">
+        <a href="{{route('user.ranks.index')}}" class="nav-link menu-link">
+            <i class="ph-file-text"></i>
+            <span data-key="t-calendar">Ranks & Rewards</span>
+        </a>
+    </li>
 </ul>
