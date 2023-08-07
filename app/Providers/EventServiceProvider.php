@@ -8,6 +8,7 @@ use App\Listeners\CheckNetworkingCap;
 use App\Listeners\DeliverBinaryCommission;
 use App\Listeners\DeliverDirectCommission;
 use App\Listeners\DeliverFreezeBalance;
+use App\Listeners\NewUserRegistered;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -23,6 +24,7 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
+            NewUserRegistered::class,
         ],
         PlanActivatedEvent::class => [
             DeliverDirectCommission::class,
