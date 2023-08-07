@@ -195,7 +195,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-3">
         <div class="card border-bottom border-3 card-animate border-danger">
             <div class="card-body">
                 <span class="avatar-sm text-success float-end">
@@ -208,7 +208,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
         <div class="card border-bottom border-3 card-animate border-danger">
             <div class="card-body">
                 <span class="avatar-sm text-success float-end">
@@ -221,7 +221,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
         <div class="card border-bottom border-3 card-animate border-danger">
             <div class="card-body">
                 <span class="avatar-sm text-success float-end">
@@ -242,12 +242,25 @@
                         <i class="ph-currency-dollar"></i>
                     </span>
                 </span>
+                <h4 class="mb-4">${{ number_format(getBinaryCommission(auth()->user()->id),2) }}</h4>
+                <p class="text-muted fw-medium text-uppercase mb-0">Total Binary Commission </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card border-bottom border-3 card-animate border-danger">
+            <div class="card-body">
+                <span class="avatar-sm text-success float-end">
+                    <span class="avatar-title bg-primary-subtle text-danger rounded-circle fs-3">
+                        <i class="ph-currency-dollar"></i>
+                    </span>
+                </span>
                 <h4 class="mb-4">${{ number_format(myLeftBusiessVolume(auth()->user()->id),2) }}</h4>
                 <p class="text-muted fw-medium text-uppercase mb-0">Left Business Volume </p>
             </div>
         </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-4">
         <div class="card border-bottom border-3 card-animate border-danger">
             <div class="card-body">
                 <span class="avatar-sm text-success float-end">
@@ -260,7 +273,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-4">
         <div class="card border-bottom border-3 card-animate border-danger">
             <div class="card-body">
                 <span class="avatar-sm text-success float-end">
@@ -270,19 +283,6 @@
                 </span>
                 <h4 class="mb-4">${{ number_format(totalMatchingBusiness(auth()->user()->id),2) }}</h4>
                 <p class="text-muted fw-medium text-uppercase mb-0">Total Matching Business </p>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div class="card border-bottom border-3 card-animate border-danger">
-            <div class="card-body">
-                <span class="avatar-sm text-success float-end">
-                    <span class="avatar-title bg-primary-subtle text-danger rounded-circle fs-3">
-                        <i class="ph-currency-dollar"></i>
-                    </span>
-                </span>
-                <h4 class="mb-4">${{ number_format(getBinaryCommission(auth()->user()->id),2) }}</h4>
-                <p class="text-muted fw-medium text-uppercase mb-0">Total Binary Commission </p>
             </div>
         </div>
     </div>

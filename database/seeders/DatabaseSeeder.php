@@ -48,7 +48,7 @@ class DatabaseSeeder extends Seeder
 
         $user->transactions()->create([
             'type' => 'Deposit',
-            'amount' => 13000,
+            'amount' => 1000,
             'status' => true,
             'sum' => true,
             'reference' => "Deposit From Admin",
@@ -64,13 +64,15 @@ class DatabaseSeeder extends Seeder
         $user->mobile = rand(00000, 999999);
         $user->refer = 'shakeel2717';
         $user->my_left_user_id = 5;
+        $user->my_right_user_id = 6;
         $user->left_user_id = 5;
+        $user->right_user_id = 6;
         $user->password = bcrypt('asdfasdf');
         $user->save();
 
         $user->transactions()->create([
             'type' => 'Deposit',
-            'amount' => 13000,
+            'amount' => 1000,
             'status' => true,
             'sum' => true,
             'reference' => "Deposit From Admin",
@@ -90,7 +92,7 @@ class DatabaseSeeder extends Seeder
 
         $user->transactions()->create([
             'type' => 'Deposit',
-            'amount' => 13000,
+            'amount' => 1000,
             'status' => true,
             'sum' => true,
             'reference' => "Deposit From Admin",
@@ -102,6 +104,26 @@ class DatabaseSeeder extends Seeder
         $user->name = "Test 3";
         $user->username = "test3";
         $user->email = "test3@gmail.com";
+        $user->email_verified_at = now();
+        $user->mobile = rand(00000, 999999);
+        $user->country = "Pakistan";
+        $user->refer = 'test1';
+        $user->password = bcrypt('asdfasdf');
+        $user->save();
+
+        $user->transactions()->create([
+            'type' => 'Deposit',
+            'amount' => 1000,
+            'status' => true,
+            'sum' => true,
+            'reference' => "Deposit From Admin",
+        ]);
+
+        // user 6
+        $user = new User();
+        $user->name = "Test 4";
+        $user->username = "test4";
+        $user->email = "test4@gmail.com";
         $user->email_verified_at = now();
         $user->mobile = rand(00000, 999999);
         $user->country = "Pakistan";

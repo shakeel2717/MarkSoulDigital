@@ -18,20 +18,24 @@
                             <td class="text-end">${{ number_format(getActivePlan($user),2) }}</td>
                         </tr>
                         <tr>
-                            <td>Total Business Volume</td>
-                            <td class="text-end">${{ number_format(myLeftBusiessVolume($user),2) }}</td>
+                            <td>Sponser Username</td>
+                            <td class="text-end">XYZ</td>
                         </tr>
                         <tr>
-                            <td>Total Referrals</td>
-                            <td class="text-end">{{ myReferrals($user) }}</td>
-                        </tr>
-                        <tr>
-                            <td>Total Left Team</td>
+                            <td>Total Left Paid Team</td>
                             <td class="text-end">{{ leftReferrals($user) }}</td>
                         </tr>
                         <tr>
-                            <td>Total Right Team</td>
+                            <td>Total Right Paid Team</td>
                             <td class="text-end">{{ rightReferrals($user) }}</td>
+                        </tr>
+                        <tr>
+                            <td>Total Left Sale</td>
+                            <td class="text-end">0</td>
+                        </tr>
+                        <tr>
+                            <td>Total Right Sale</td>
+                            <td class="text-end">0</td>
                         </tr>
                     </tbody>
                 </table>
