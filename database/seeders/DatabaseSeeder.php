@@ -98,23 +98,24 @@ class DatabaseSeeder extends Seeder
 
 
         // user 5
-        // $user = new User();
-        // $user->name = "Test 3";
-        // $user->username = "test3";
-        // $user->email = "test3@gmail.com";
-        // $user->email_verified_at = now();
-        // $user->mobile = rand(00000, 999999);
-        // $user->refer = 'test1';
-        // $user->password = bcrypt('asdfasdf');
-        // $user->save();
+        $user = new User();
+        $user->name = "Test 3";
+        $user->username = "test3";
+        $user->email = "test3@gmail.com";
+        $user->email_verified_at = now();
+        $user->mobile = rand(00000, 999999);
+        $user->country = "Pakistan";
+        $user->refer = 'test1';
+        $user->password = bcrypt('asdfasdf');
+        $user->save();
 
-        // $user->transactions()->create([
-        //     'type' => 'Deposit',
-        //     'amount' => 1000,
-        //     'status' => true,
-        //     'sum' => true,
-        //     'reference' => "Deposit From Admin",
-        // ]);
+        $user->transactions()->create([
+            'type' => 'Deposit',
+            'amount' => 1000,
+            'status' => true,
+            'sum' => true,
+            'reference' => "Deposit From Admin",
+        ]);
 
 
         // adding default package plan

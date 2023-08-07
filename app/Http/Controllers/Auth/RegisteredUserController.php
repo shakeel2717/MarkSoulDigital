@@ -121,7 +121,9 @@ class RegisteredUserController extends Controller
             $sponsorQuery->save();
         }
 
+
         session(['password' => $validated['password']]);
+
         event(new Registered($user));
 
         Auth::login($user);
