@@ -48,7 +48,7 @@ class DatabaseSeeder extends Seeder
 
         $user->transactions()->create([
             'type' => 'Deposit',
-            'amount' => 100,
+            'amount' => 3000,
             'status' => true,
             'sum' => true,
             'reference' => "Deposit From Admin",
@@ -70,7 +70,7 @@ class DatabaseSeeder extends Seeder
 
         $user->transactions()->create([
             'type' => 'Deposit',
-            'amount' => 500,
+            'amount' => 3000,
             'status' => true,
             'sum' => true,
             'reference' => "Deposit From Admin",
@@ -90,7 +90,7 @@ class DatabaseSeeder extends Seeder
 
         $user->transactions()->create([
             'type' => 'Deposit',
-            'amount' => 10000,
+            'amount' => 3000,
             'status' => true,
             'sum' => true,
             'reference' => "Deposit From Admin",
