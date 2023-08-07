@@ -5,10 +5,10 @@ use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\NewsLetterController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RanksController;
 use App\Http\Controllers\user\DashboardController;
 use App\Http\Controllers\user\DepositController;
+use App\Http\Controllers\user\ProfileController as UserProfileController;
 use App\Http\Controllers\user\TreeController;
 use App\Http\Controllers\WithdrawController;
 use Illuminate\Support\Facades\Route;
@@ -23,6 +23,7 @@ Route::prefix('user/')->name('user.')->middleware('auth', 'user')->group(functio
     Route::resource('tree', TreeController::class);
     Route::resource('withdraw', WithdrawController::class);
     Route::resource('ranks', RanksController::class);
+    Route::resource('profile', UserProfileController::class);
 
     Route::controller(HistoryController::class)->name('history.')->prefix('history/')->group(function () {
         Route::view('deposits', 'user.history.deposits')->name('deposits');

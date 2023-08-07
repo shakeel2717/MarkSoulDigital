@@ -85,4 +85,12 @@
             <span data-key="t-calendar">Ranks & Rewards</span>
         </a>
     </li>
+
+    <li class="menu-title"><span data-key="t-menu">Account Settings</span></li>
+    <li class="nav-item">
+        <a href="{{route('user.profile.index')}}" class="nav-link menu-link">
+            <i class="ph-file-text"></i>
+            <span data-key="t-calendar">Profile Setting</span>
+        </a>
+    </li>
 </ul>
