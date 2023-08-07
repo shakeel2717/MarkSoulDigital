@@ -2,6 +2,7 @@
 
 use App\Models\Option;
 use App\Models\Plan;
+use App\Models\Reward;
 use App\Models\Transaction;
 use App\Models\User;
 use App\Models\UserPlan;
@@ -243,4 +244,16 @@ function getBinaryCommission($user_id)
 {
     $commission = Transaction::where('user_id', $user_id)->where('type', 'Binary Commission')->where('sum', true)->where('status', true)->sum('amount');
     return $commission;
+}
+
+
+function checkRewardStatus($reward_id, $user_id)
+{
+    $reward = Reward::find($reward_id);
+    $transactions = Transaction::where('user_id', $user_id)->where('reference', $reward->name . ' Reward Achived')->count();
+    if ($transactions > 0) {
+        return 1;
+    } else {
+        return 0;
+    }
 }
