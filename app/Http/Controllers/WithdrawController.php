@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Wallet;
+use App\Models\Withdraw;
 use Illuminate\Http\Request;
 
 class WithdrawController extends Controller
@@ -32,6 +33,7 @@ class WithdrawController extends Controller
         $validatedData = $request->validate([
             'paymentMethod' => 'required|integer|exists:wallets,id',
             'amount' => 'required|integer|digits_between:1,1000000',
+            'wallet' => 'required|string',
         ]);
 
         // checking if deposit amount is enough
@@ -39,16 +41,24 @@ class WithdrawController extends Controller
             return back()->withErrors(['Minimum Withdrawal Limit is: ' . site_option('min_deposit')]);
         }
 
-        $wallet = Wallet::find($validatedData['paymentMethod']);
+        $wallet = Wallet::findOrFail($validatedData['paymentMethod']);
 
         $fees = $validatedData['amount'] * site_option('withdraw_fees') / 100;
         $amount = $validatedData['amount'] - $fees;
+
+        $withdraw = new Withdraw();
+        $withdraw->user_id = auth()->user()->id;
+        $withdraw->amount = $amount;
+        $withdraw->wallet = $validatedData['wallet'];
+        $withdraw->method = $wallet->name;
+        $withdraw->save();
 
         auth()->user()->transactions()->create([
             'type' => 'Withdraw',
             'sum' => false,
             'status' => false,
             'reference' => 'Withdraw Funds throw ' . $wallet->name . " " . $wallet->symbol,
+            'withdraw_id' => $withdraw->id,
             'amount' => $amount,
         ]);
 
@@ -57,6 +67,7 @@ class WithdrawController extends Controller
             'sum' => false,
             'status' => false,
             'reference' => 'Withdraw Funds throw ' . $wallet->name . " " . $wallet->symbol,
+            'withdraw_id' => $withdraw->id,
             'amount' => $fees,
         ]);
 
