@@ -22,6 +22,13 @@
             <span data-key="t-calendar">All Users</span>
         </a>
     </li>
+    <li class="menu-title"><span data-key="t-menu">Withdrawals</span></li>
+    <li class="nav-item">
+        <a href="{{route('admin.withdraw.index')}}" class="nav-link menu-link">
+            <i class="ph-calendar"></i>
+            <span data-key="t-calendar">Pending Withdrawals</span>
+        </a>
+    </li>
 
     <li class="menu-title"><span data-key="t-menu">All Statements</span></li>
     <li class="nav-item">
