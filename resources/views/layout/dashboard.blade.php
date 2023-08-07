@@ -225,7 +225,7 @@
                                 @endif
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="javascript:void(0)"><i class="mdi mdi-wallet text-muted fs-lg align-middle me-1"></i> <span class="align-middle">Balance : <b>${{ number_format(balance(auth()->user()->id),2) }}</b></span></a>
-                                <a class="dropdown-item" href="javascript:void(0)">
+                                <a class="dropdown-item" href="{{ route('user.profile.index') }}">
                                     <i class="mdi mdi-cog-outline text-muted fs-lg align-middle me-1"></i> <span class="align-middle">Settings</span></a>
                                 <form action="{{route('logout')}}" id="logoutForm" method="POST">
                                     @csrf
