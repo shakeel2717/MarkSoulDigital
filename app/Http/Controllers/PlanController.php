@@ -111,6 +111,20 @@ class PlanController extends Controller
 
         $plan = Plan::findOrFail($validatedData['plan_id']);
 
+        // checking if this useer networking cap is full
+        if (networkCapInPercentage(auth()->user()->id) >= 100) {
+            info("user Cap Already Full");
+            // checking if this user already have active plan
+            if (getActivePlan(auth()->user()->id) > 0) {
+                info("User Already have Active Plan");
+                info("Checking if this user trying to actiavet lower plan");
+                if (getActivePlan(auth()->user()->id) > $validatedData['amount']) {
+                    info("User trying to Activate Lower Plan");
+                    return back()->withErrors(['Insufficient investment. Please allocate more than $' . getActivePlan(auth()->user()->id) . ' to activate the plan']);
+                }
+            }
+        }
+
         // checking if this user have enough balnace
         if (balance(auth()->user()->id) < $validatedData['amount']) {
             return back()->withErrors(['Insufficient Balance']);
