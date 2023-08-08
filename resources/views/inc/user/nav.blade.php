@@ -79,7 +79,7 @@
         </a>
     </li>
     <li class="menu-title"><span data-key="t-menu">Ranks & Rewards</span></li>
-    <li class="nav-item">
+    <li class="nav-item border border-danger bg-white m-2 rounded">
         <a href="{{route('user.ranks.index')}}" class="nav-link menu-link">
             <i class="ph-file-text"></i>
             <span data-key="t-calendar">Ranks & Rewards</span>
