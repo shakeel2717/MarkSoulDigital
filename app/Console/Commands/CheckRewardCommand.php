@@ -43,9 +43,10 @@ class CheckRewardCommand extends Command
 
             info("Eligble For Reward" . $user->name);
             $rewards = Reward::get();
-
+            $currentRewardRequried = 0;
             foreach ($rewards as $reward) {
-                if (totalMatchingBusiness($user->id) < $reward->business) {
+                $currentRewardRequried += $reward->business;
+                if (totalMatchingBusiness($user->id) < $currentRewardRequried) {
                     info("Reward not Acheveid" . totalMatchingBusiness($user->id) . " " . $reward->business);
                     goto ThisUserEndLoop;
                 }
