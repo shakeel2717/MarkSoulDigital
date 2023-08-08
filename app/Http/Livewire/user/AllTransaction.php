@@ -52,7 +52,7 @@ final class AllTransaction extends PowerGridComponent
      */
     public function datasource(): Builder
     {
-        return Transaction::query()->where('user_id', auth()->user()->id);
+        return Transaction::query()->where('user_id', auth()->user()->id)->latest();
     }
 
     /*
@@ -97,6 +97,7 @@ final class AllTransaction extends PowerGridComponent
             ->addColumn('type')
 
             /** Example of custom column using a closure **/
+            ->addColumn('amount_format', fn (Transaction $model) => "$" . number_format(e($model->amount,2)))
             ->addColumn('type_lower', fn (Transaction $model) => strtolower(e($model->type)))
 
             ->addColumn('status')
@@ -122,7 +123,7 @@ final class AllTransaction extends PowerGridComponent
     public function columns(): array
     {
         return [
-            Column::make('Amount', 'amount')
+            Column::make('Amount', 'amount_format','amount')
                 ->sortable()
                 ->searchable(),
 

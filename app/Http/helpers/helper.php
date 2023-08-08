@@ -197,21 +197,77 @@ function leftBusiessVolume($user_id)
 {
     $user = User::find($user_id);
     $totalAmount =  0;
-    foreach ($user->getDownline('left') as $leftUser) {
-        if ($leftUser->userPlan) {
-            $totalAmount += $leftUser->userPlan->amount;
+    if ($user->left_user == "") {
+        return $totalAmount;
+    }
+    // checking if this user left and left is active
+    if ($user->left_user->status != 'active') {
+        return $totalAmount;
+    }
+
+    // getting this user business
+    $totalAmount += $user->left_user->userPlan->amount;
+    foreach ($user->getDownline('left') as $iteration => $leftUser) {
+        if ($leftUser->userPlan != null && $user->userPlan != null) {
+            if (getLeftUserPlanTime($user) < strtotime($leftUser->userPlan->created_at) && $leftUser->userPlan->user_id != $user->left_user->id) {
+                $totalAmount += $leftUser->userPlan->amount;
+                info("This User Plan Created" . strtotime($leftUser->userPlan->created_at));
+                info("Left Real Plan Created" . getLeftUserPlanTime($user));
+                info("User:" . $leftUser->name);
+                info("Amount Added" . $totalAmount);
+            } else {
+                info("Plan NOt Greater");
+            }
         }
     }
     return $totalAmount;
+}
+
+
+function getLeftUserPlanTime($user)
+{
+    foreach ($user->getDownline('left')  as $leftUser) {
+        if ($leftUser->UserPlan != null) {
+            return strtotime($leftUser->UserPlan->created_at);
+        }
+    }
+}
+
+
+function getRightUserPlanTime($user)
+{
+    foreach ($user->getDownline('right')  as $rightUser) {
+        if ($rightUser->UserPlan != null) {
+            return strtotime($rightUser->UserPlan->created_at);
+        }
+    }
 }
 
 function rightBusiessVolume($user_id)
 {
     $user = User::find($user_id);
     $totalAmount =  0;
-    foreach ($user->getDownline('right') as $rightUser) {
-        if ($rightUser->userPlan) {
-            $totalAmount += $rightUser->userPlan->amount;
+    if ($user->right_user == "") {
+        return $totalAmount;
+    }
+    // checking if this user right and right is active
+    if ($user->right_user->status != 'active') {
+        return $totalAmount;
+    }
+
+    // getting this user business
+    $totalAmount += $user->right_user->userPlan->amount;
+    foreach ($user->getDownline('right') as $iteration => $rightUser) {
+        if ($rightUser->userPlan != null && $user->userPlan != null) {
+            if (getRightUserPlanTime($user) < strtotime($rightUser->userPlan->created_at) && $rightUser->userPlan->user_id != $user->right_user->id) {
+                $totalAmount += $rightUser->userPlan->amount;
+                info("This User Plan Created" . strtotime($rightUser->userPlan->created_at));
+                info("right Real Plan Created" . getRightUserPlanTime($user));
+                info("User:" . $rightUser->name);
+                info("Amount Added" . $totalAmount);
+            } else {
+                info("Plan NOt Greater");
+            }
         }
     }
     return $totalAmount;

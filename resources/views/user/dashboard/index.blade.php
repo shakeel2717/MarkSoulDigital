@@ -255,7 +255,7 @@
                         <i class="ph-currency-dollar"></i>
                     </span>
                 </span>
-                <h4 class="mb-4">${{ number_format(myLeftBusiessVolume(auth()->user()->id),2) }}</h4>
+                <h4 class="mb-4">${{ number_format(leftBusiessVolume(auth()->user()->id),2) }}</h4>
                 <p class="text-muted fw-medium text-uppercase mb-0">Left Business Volume </p>
             </div>
         </div>
@@ -268,7 +268,7 @@
                         <i class="ph-currency-dollar"></i>
                     </span>
                 </span>
-                <h4 class="mb-4">${{ number_format(myRightBusiessVolume(auth()->user()->id),2) }}</h4>
+                <h4 class="mb-4">${{ number_format(rightBusiessVolume(auth()->user()->id),2) }}</h4>
                 <p class="text-muted fw-medium text-uppercase mb-0">Right Business Volume </p>
             </div>
         </div>
