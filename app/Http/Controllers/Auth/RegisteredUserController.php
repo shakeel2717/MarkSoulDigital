@@ -18,7 +18,7 @@ class RegisteredUserController extends Controller
     /**
      * Display the registration view.
      */
-    public function create($refer = 'default', $position = 'left'): View
+    public function create($refer = null, $position = null): View
     {
         return view('auth.register', compact('refer', 'position'));
     }
@@ -36,8 +36,8 @@ class RegisteredUserController extends Controller
             'username' => ['required', 'string', 'alpha_num', 'max:255', 'unique:' . User::class],
             'mobile' => ['required', 'string', 'max:255', 'unique:' . User::class],
             'country' => ['required', 'string', 'max:255'],
-            'refer' => ['required', 'string', 'max:255'],
             'position' => ['required', 'string', 'max:255'],
+            'refer' => ['required', 'string', 'max:255'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 

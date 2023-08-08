@@ -5,8 +5,10 @@
         <div class="text-center mt-2">
             <h5 class="fs-3xl">Create Free Account</h5>
             <p class="text-muted">Sign Up to {{ env('APP_NAME') }}.</p>
-            @if($refer != 'default')
+            @if($refer != null)
             <p class="text-muted">Sponser: <strong>{{ $refer }}</strong> at <strong>{{ $position }}</strong> Side</p>
+            @else
+            <p class="text-danger">You need a Refer Link to Join This Platform</p>
             @endif
         </div>
         <div class="p-2 mt-2">
