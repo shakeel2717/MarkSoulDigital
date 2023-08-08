@@ -47,6 +47,14 @@ class DeliverDirectCommission
                 die();
             }
 
+            if (checkFreezeDaysCount($sponser->id)) {
+                goto EndThisListener;
+                die();
+            }
+
+
+
+
 
             // getting direct commission
             $amount = $transaction->amount * $sponser->userPlan->plan->plan_profit->direct_commission / 100;
@@ -61,7 +69,7 @@ class DeliverDirectCommission
             $user_id = $thisSponser->user_id;
             event(new FreezeBalanceVerification($user_id));
         }
-        
+
         EndThisListener:
     }
 }

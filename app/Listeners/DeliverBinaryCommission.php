@@ -56,6 +56,11 @@ class DeliverBinaryCommission
             $totalMatchingBusiness = $totalMatchingBusiness - $upliner->binary_match;
         }
 
+        if (checkFreezeDaysCount($upliner->id)) {
+            goto endThisEvent;
+            die();
+        }
+
         $profitRatio = $totalMatchingBusiness * $upliner->userPlan->plan->plan_profit->binary_commission / 100;
         if ($profitRatio > 0) {
             // adding deposit request in the system

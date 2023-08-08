@@ -53,6 +53,11 @@ class CheckRewardCommand extends Command
 
                 info("Reward Achived" . $reward->name);
 
+                if (checkFreezeDaysCount($user->id)) {
+                    goto ThisUserEndLoop;
+                    die();
+                }
+
                 // delivering Profit to this User
                 $transaction = $user->transactions()->firstOrCreate([
                     'type' => 'Reward Achieved',
