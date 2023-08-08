@@ -41,6 +41,7 @@ function totalIncome($user_id)
         ->where('sum', true)
         ->where('status', true)
         ->where('type', '!=', 'Deposit')
+        ->where('type', '!=', 'Freeze Balance Recover')
         ->sum('amount');
     return $in;
 }
@@ -48,6 +49,13 @@ function totalIncome($user_id)
 function getActivePlan($user_id)
 {
     $userPlan = UserPlan::where('user_id', $user_id)->where('status', 'active')->sum('amount');
+    return $userPlan;
+}
+
+
+function getAllPlansAmount($user_id)
+{
+    $userPlan = UserPlan::where('user_id', $user_id)->sum('amount');
     return $userPlan;
 }
 
@@ -89,11 +97,16 @@ function totalDirectCommission($user_id)
 
 function networkCap($user_id)
 {
+    $userPlan = UserPlan::where('user_id', $user_id)->where('status', 'active')->first();
+    if ($userPlan == "") {
+        return 0;
+    }
     // getting all income expect deposit
     $in = Transaction::where('user_id', $user_id)
         ->where('sum', true)
         ->where('status', true)
         ->where('type', '!=', 'Deposit')
+        ->where('created_at', '>=', $userPlan->created_at)
         ->sum('amount');
 
     return $in - freezeTransactionRecovered($user_id);
@@ -110,17 +123,23 @@ function freezeTransactionRecovered($user_id)
 
 function networkCapInPercentage($user_id)
 {
+    $userPlan = UserPlan::where('user_id', $user_id)->where('status', 'active')->first();
+    if ($userPlan == "") {
+        return 0;
+    }
+
     // getting all income expect deposit
     $in = Transaction::where('user_id', $user_id)
         ->where('sum', true)
         ->where('status', true)
         ->where('type', '!=', 'Deposit')
+        ->where('created_at', '>=', $userPlan->created_at)
+        // ->get();
         ->sum('amount');
     if ($in < 1) {
         return 0;
     }
-
-    $percentage = ($in / (getActivePlan($user_id) * site_option('networkCap'))) * 100;
+    $percentage = (($in - freezeTransactionRecovered($user_id)) / (getActivePlan($user_id) * site_option('networkCap'))) * 100;
     if ($percentage > 100) {
         return 100;
     } else {

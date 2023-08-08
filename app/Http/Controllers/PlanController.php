@@ -46,7 +46,7 @@ class PlanController extends Controller
                     // getting all the freeze Balance
                     info("Delivering Freeze Balance to this useer");
                     if (auth()->user()->freeze_transactions->sum('amount') > 0) {
-                        info("User have Balance: " . auth()->user()->freeze_transactions->sum('amount'));
+                        info("User have Freeze Balance: " . auth()->user()->freeze_transactions->sum('amount'));
                         foreach (auth()->user()->freeze_transactions as $freezeTransaction) {
                             $transaction = auth()->user()->transactions()->create([
                                 'type' => 'Freeze Balance Recover',
@@ -70,11 +70,15 @@ class PlanController extends Controller
 
                         // activating user plan
                         $userPlan = auth()->user()->userPlan;
-                        $userPlan->plan_id = getPackageByAmount($newAmount);
-                        $userPlan->amount = $newAmount;
-                        $userPlan->status = 'active';
+                        $userPlan->status = 'expired';
                         $userPlan->save();
 
+                        $userPlan = new UserPlan();
+                        $userPlan->user_id = auth()->user()->id;
+                        $userPlan->plan_id = getPackageByAmount($newAmount);
+                        $userPlan->amount = $balance;
+                        $userPlan->status = 'active';
+                        $userPlan->save();
 
                         // removing balance from user transaction
                         $transaction = auth()->user()->transactions()->create([
@@ -91,6 +95,8 @@ class PlanController extends Controller
 
                         // Deliving Direct Commision
                         event(new PlanActivatedEvent($transaction, $userPlan));
+
+                        return redirect()->route('user.dashboard.index')->with('success','Plan Activated');
                     } else {
                         info("User not have any Balance in Freez");
                     }
