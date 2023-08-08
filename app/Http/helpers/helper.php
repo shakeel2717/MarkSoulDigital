@@ -313,3 +313,18 @@ function checkRewardStatus($reward_id, $user_id)
         return 0;
     }
 }
+
+function checkFreezeDaysCount($user_id)
+{
+    $user = User::find($user_id);
+    // checking if this freez transaction almost 2 weeks
+    if ($user->freeze_transactions->sum('amount') > 0) {
+        $firstFreezeTransaction = $user->freeze_transactions->first();
+        if (strtotime($firstFreezeTransaction->created_at) < strtotime(now()->addDays(site_option('freeze_transaction_duration')))) {
+            info("Transaction Freeze 15 days Found");
+            return true;
+        }
+    }
+
+    return false;
+}

@@ -241,6 +241,12 @@ class DatabaseSeeder extends Seeder
         $option->save();
 
 
+        $option = new Option();
+        $option->key = 'freeze_transaction_duration';
+        $option->value = -15;
+        $option->save();
+
+
 
         $post = new Post();
         $post->title = 'The Basics of Forex Trading: A Beginner\'s Guide';

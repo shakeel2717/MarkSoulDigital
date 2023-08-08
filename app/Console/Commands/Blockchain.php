@@ -59,25 +59,18 @@ class Blockchain extends Command
                 goto ThisLoopEnd;
             }
 
-            // checking if this user networkcap is full
-            if (networkCapInPercentage($userPlan->user->id) > 99) {
-                $userPlan->user->freeze_transactions()->create([
-                    'type' => 'Daily ROI',
-                    'amount' => $userPlan->amount * $planProfit / 100,
-                ]);
-                info("ROI Freeezd for the user " . $userPlan->user->username . "Successfully");
-            } else {
-                $dailyRoiTransaction = $userPlan->user->transactions()->create([
-                    'type' => 'Daily ROI',
-                    'sum' => true,
-                    'status' => true,
-                    'reference' => $userPlan->plan->name . ' Plan & Amount :' . number_format($userPlan->amount, 2),
-                    'amount' => $userPlan->amount * $planProfit / 100,
-                ]);
-                event(new FreezeBalanceVerification($userPlan->user->id));
+
+            if (checkFreezeDaysCount($userPlan->user_id)) {
+                goto ThisLoopEnd;
             }
-
-
+            $dailyRoiTransaction = $userPlan->user->transactions()->create([
+                'type' => 'Daily ROI',
+                'sum' => true,
+                'status' => true,
+                'reference' => $userPlan->plan->name . ' Plan & Amount :' . number_format($userPlan->amount, 2),
+                'amount' => $userPlan->amount * $planProfit / 100,
+            ]);
+            event(new FreezeBalanceVerification($userPlan->user->id));
             info("ROI Delivered to " . $userPlan->user->username . "Successfully");
 
             ThisLoopEnd:
