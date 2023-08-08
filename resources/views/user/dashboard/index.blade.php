@@ -1,5 +1,21 @@
 @extends('layout.dashboard')
 @section('content')
+@if (networkCapInPercentage(auth()->user()->id) >= 100)
+<div class="row">
+    <div class="col-md-12">
+        <div class="alert alert-success">
+            <h5 class="mb-0 text-success">Total Freeze Balance: ${{ number_format(auth()->user()->freeze_transactions->sum('amount'),2) }}</h5>
+            <h5 class="text-success">Available Balance: ${{ number_format(balance(auth()->user()->id),2) }}</h5>
+            <h5 class="text-success">Total ${{ number_format(balance(auth()->user()->id) + auth()->user()->freeze_transactions->sum('amount'),2) }}</h5>
+            <p class="mb-0">We Offer you to Use your Freeze Balance to ReInvest or Upgrade Plan</p>
+            <form action="{{route('user.plan.networkcap')}}" method="POST">
+                @csrf
+                <button class="btn btn-success mt-3">Activate Plan</button>
+            </form>
+        </div>
+    </div>
+</div>
+@endif
 <div class="row">
     <div class="col-md-3">
         <div class="card border-bottom border-3 card-animate border-danger">
