@@ -232,7 +232,7 @@
                         <i class="ph-users-three"></i>
                     </span>
                 </span>
-                <h4 class="mb-4"> {{ leftReferrals(auth()->user()->id) }}</h4>
+                <h4 class="mb-4"> {{ myLeftReferrals(auth()->user()->id) }}</h4>
                 <p class="text-muted fw-medium text-uppercase mb-0">Total Left Team</p>
             </div>
         </div>
@@ -245,7 +245,7 @@
                         <i class="ph-users-three"></i>
                     </span>
                 </span>
-                <h4 class="mb-4">{{ rightReferrals(auth()->user()->id) }}</h4>
+                <h4 class="mb-4">{{ myRightReferrals(auth()->user()->id) }}</h4>
                 <p class="text-muted fw-medium text-uppercase mb-0">Total Right Team</p>
             </div>
         </div>

@@ -147,7 +147,7 @@ function networkCapInPercentage($user_id)
 
 function myReferrals($user_id)
 {
-    return leftReferrals($user_id) + rightReferrals($user_id);
+    return myRightReferrals($user_id) + myLeftReferrals($user_id);
 }
 
 
@@ -167,6 +167,27 @@ function rightReferrals($user_id)
     $user = User::find($user_id);
     $rightUserCount = 0;
     foreach ($user->getDownline('right') as $rightUser) {
+        $rightUserCount++;
+    }
+    return $rightUserCount;
+}
+
+function myRightReferrals($user_id)
+{
+    $user = User::find($user_id);
+    $rightUserCount = 0;
+    foreach ($user->getMyDownline('right') as $rightUser) {
+        $rightUserCount++;
+    }
+    return $rightUserCount;
+}
+
+
+function myLeftReferrals($user_id)
+{
+    $user = User::find($user_id);
+    $rightUserCount = 0;
+    foreach ($user->getMyDownline('left') as $rightUser) {
         $rightUserCount++;
     }
     return $rightUserCount;

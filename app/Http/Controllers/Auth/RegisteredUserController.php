@@ -86,7 +86,7 @@ class RegisteredUserController extends Controller
                 info("No Free Slot Found");
                 // If the target slot is already occupied, recursively search for the next level
                 $nextUser = $targetPosition === 'left' ? $downlineUser->left_user : $downlineUser->right_user;
-                info("Next User to Find: " . $nextUser->usernae);
+                info("Next User to Find: " . $nextUser->username);
                 if ($nextUser) {
                     info("Enter in New Loop Once again");
                     return findAvailableSlot($nextUser, $targetPosition);
@@ -139,7 +139,7 @@ class RegisteredUserController extends Controller
         } else {
             $leftUser = User::find($downlineUser->left_user_id);
             if ($leftUser) {
-                return findAvailableLeftSlot($leftUser);
+                return $this->findAvailableLeftSlot($leftUser);
             } else {
                 return null;
             }

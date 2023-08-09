@@ -125,16 +125,16 @@ class User extends Authenticatable implements MustVerifyEmail
         $downline = [];
 
         if ($side === 'left') {
-            if ($this->left_user) {
+            if ($this->my_left_user) {
                 $downline[] = $this->my_left_user;
-                $downline = array_merge($downline, $this->my_left_user->getDownline('left'));
-                $downline = array_merge($downline, $this->my_left_user->getDownline('right'));
+                $downline = array_merge($downline, $this->my_left_user->getMyDownline('left'));
+                $downline = array_merge($downline, $this->my_left_user->getMyDownline('right'));
             }
         } elseif ($side === 'right') {
-            if ($this->right_user) {
+            if ($this->my_right_user) {
                 $downline[] = $this->my_right_user;
-                $downline = array_merge($downline, $this->my_right_user->getDownline('left'));
-                $downline = array_merge($downline, $this->my_right_user->getDownline('right'));
+                $downline = array_merge($downline, $this->my_right_user->getMyDownline('left'));
+                $downline = array_merge($downline, $this->my_right_user->getMyDownline('right'));
             }
         }
 
