@@ -230,8 +230,8 @@
                                 <form action="{{route('logout')}}" id="logoutForm" method="POST">
                                     @csrf
                                 </form>
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="mdi mdi-logout text-muted fs-lg align-middle me-1"></i>
-                                    <span class="align-middle" onclick="document.getElementById('logoutForm').submit()" data-key="t-logout">Logout</span>
+                                <a class="dropdown-item" href="javascript:void(0)" onclick="document.getElementById('logoutForm').submit()"><i class="mdi mdi-logout text-muted fs-lg align-middle me-1"></i>
+                                    <span class="align-middle" data-key="t-logout">Logout</span>
                                 </a>
                             </div>
                         </div>

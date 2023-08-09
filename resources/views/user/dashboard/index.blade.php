@@ -181,7 +181,7 @@
                     <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{{ networkCapInPercentage(auth()->user()->id) }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ networkCapInPercentage(auth()->user()->id) }}%"></div>
                 </div>
                 <div class="mt-4">
-                    <a href="{{ route('user.history.all') }}" class="link-effect">View All Transactions <i class="bi bi-arrow-right align-baseline ms-1"></i></a>
+                    <a href="{{ route('user.history.all') }}" class="text-danger">View All Transactions <i class="bi bi-arrow-right align-baseline ms-1"></i></a>
                 </div>
             </div>
         </div>
@@ -193,10 +193,10 @@
                 <h3 class="text-uppercase">No Active Package</h3>
                 <hr>
                 <div class="row">
-                    <a href="{{ route('user.plan.index') }}" class="btn btn-success mb-2 btn-block">Activate Plan</a>
+                    <a href="{{ route('user.plan.index') }}" class="btn btn-outline-danger mb-2 btn-block">Activate Plan</a>
                 </div>
                 <div class="row">
-                    <a href="{{ route('user.deposit.create') }}" class="btn btn-success mt-1 btn-block">Deposit Fund</a>
+                    <a href="{{ route('user.deposit.create') }}" class="btn btn-outline-danger mt-1 btn-block">Deposit Fund</a>
                 </div>
                 @else
                 <h3 class="text-uppercase text-danger">{{ auth()->user()->userPlan->plan->name }}</h3>
