@@ -190,13 +190,14 @@ function leftBusiessVolume($user_id)
         }
     }
 
-
+    
+    
     if (checkLeftRightActiveStatus($user_id)) {
         info("both left and Right Active, Digging Depper");
         foreach ($user->getMyDownline('left') as $iteration => $leftUser) {
             if ($leftUser->userPlan != null && $user->userPlan != null) {
                 info("pacakge found");
-                if (!$firstLeftAccount) {
+                if ($firstLeftAccount != null) {
                     $firstLeftUser = User::find($firstLeftAccount);
                     if (getLeftUserPlanTime($firstLeftUser) < strtotime($leftUser->userPlan->created_at)) {
                         info("Loop");
