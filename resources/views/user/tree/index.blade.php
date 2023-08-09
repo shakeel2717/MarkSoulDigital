@@ -115,7 +115,7 @@
 @section('content')
 <div class="row">
     <div class="col-md-12">
-        <div class="card card-body overflow-scroll">
+        <div class="card card-body">
             <div class="tree d-flex justify-content-center align-items-center">
                 <ul>
                     <li>

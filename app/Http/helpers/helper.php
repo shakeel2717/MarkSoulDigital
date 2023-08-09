@@ -176,31 +176,39 @@ function leftBusiessVolume($user_id)
 {
     $user = User::find($user_id);
     $totalAmount =  0;
+    $firstLeftAccount = null;
     // getting my direct user if active
     $directRefers = User::where('refer', $user->username)->where('position', 'left')->where('status', 'active')->get();
     foreach ($directRefers as $iteration => $directRefer) {
         if ($directRefer != "") {
+            if ($iteration == 0) {
+                $firstLeftAccount = $directRefer->id;
+            }
             $skipUserId[] = $directRefer->id;
             $totalAmount += $directRefer->userPlan->amount;
             info("Direct Left User Business Added");
         }
     }
 
+
     if (checkLeftRightActiveStatus($user_id)) {
         info("both left and Right Active, Digging Depper");
         foreach ($user->getMyDownline('left') as $iteration => $leftUser) {
             if ($leftUser->userPlan != null && $user->userPlan != null) {
                 info("pacakge found");
-                if (getLeftUserPlanTime($user) < strtotime($leftUser->userPlan->created_at) && $iteration != 0) {
-                    info("Loop");
-                    if (!in_array($leftUser->id, $skipUserId)) {
-                        $totalAmount += $leftUser->userPlan->amount;
-                        info("This User Alrady Count");
+                if (!$firstLeftAccount) {
+                    $firstLeftUser = User::find($firstLeftAccount);
+                    if (getLeftUserPlanTime($firstLeftUser) < strtotime($leftUser->userPlan->created_at)) {
+                        info("Loop");
+                        if (!in_array($leftUser->id, $skipUserId)) {
+                            $totalAmount += $leftUser->userPlan->amount;
+                            info("This User Alrady Count");
+                        } else {
+                            info("This User Alrady Count");
+                        }
                     } else {
-                        info("This User Alrady Count");
+                        info("Else Loop");
                     }
-                } else {
-                    info("Else Loop");
                 }
             }
         }
@@ -258,10 +266,12 @@ function checkLeftRightActiveStatus($user_id)
     if ($directRefers->count() > 0) {
         $point++;
     }
+
     $directRefers = User::where('refer', $user->username)->where('position', 'right')->where('status', 'active')->get();
-    if ($directRefers) {
+    if ($directRefers->count() > 0) {
         $point++;
     }
+
     if ($point == 2) {
         return true;
     } else {
