@@ -224,31 +224,40 @@ function rightBusiessVolume($user_id)
 {
     $user = User::find($user_id);
     $totalAmount =  0;
+    $firstRightAccount = null;
     // getting my direct user if active
     $directRefers = User::where('refer', $user->username)->where('position', 'right')->where('status', 'active')->get();
     foreach ($directRefers as $iteration => $directRefer) {
         if ($directRefer != "") {
+            if ($iteration == 0) {
+                $firstRightAccount = $directRefer->id;
+            }
             $skipUserId[] = $directRefer->id;
             $totalAmount += $directRefer->userPlan->amount;
-            info("Direct right User Business Added");
+            info("Direct Right User Business Added");
         }
     }
 
+    
+    
     if (checkLeftRightActiveStatus($user_id)) {
-        info("both right and Right Active, Digging Depper");
+        info("both Right and Right Active, Digging Depper");
         foreach ($user->getMyDownline('right') as $iteration => $rightUser) {
             if ($rightUser->userPlan != null && $user->userPlan != null) {
                 info("pacakge found");
-                if (getrightUserPlanTime($user) < strtotime($rightUser->userPlan->created_at) && $iteration != 0) {
-                    info("Loop");
-                    if (!in_array($rightUser->id, $skipUserId)) {
-                        $totalAmount += $rightUser->userPlan->amount;
-                        info("This User Alrady Count");
+                if ($firstRightAccount != null) {
+                    $firstRightUser = User::find($firstRightAccount);
+                    if (getRightUserPlanTime($firstRightUser) < strtotime($rightUser->userPlan->created_at)) {
+                        info("Loop");
+                        if (!in_array($rightUser->id, $skipUserId)) {
+                            $totalAmount += $rightUser->userPlan->amount;
+                            info("This User Alrady Count");
+                        } else {
+                            info("This User Alrady Count");
+                        }
                     } else {
-                        info("This User Alrady Count");
+                        info("Else Loop");
                     }
-                } else {
-                    info("Else Loop");
                 }
             }
         }
