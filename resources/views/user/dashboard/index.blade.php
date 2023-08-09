@@ -307,7 +307,29 @@
     <div class="col-md-12">
         <div class="card card-body">
             <h2 class="card-title">Recent Transactions</h2>
-            <livewire:user.all-transaction />
+            @forelse (auth()->user()->transactions->take(10) as $transaction)
+            <div class="card shadow-lg">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex flex-column">
+                            <h4 class="{{ $transaction->sum ? 'text-success' : 'text-danger' }}">${{ number_format($transaction->amount,2) }}</h4>
+                            <h6 class="text-uppercase mb-0">{{ $transaction->type }}</h6>
+                        </div>
+                        <div class="text-end">
+                            <h6 class="text-uppercase mb-0">{{ $transaction->created_at }}</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @empty
+            <div class="card shadow-lg">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h4 class="text-success">NO Transaction Found</h4>
+                    </div>
+                </div>
+            </div>
+            @endforelse
         </div>
     </div>
 </div>
