@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('country');
             $table->string('password');
             $table->string('refer')->default('default');
+            $table->string('position')->default('left');
             $table->string('status')->default('pending');
             $table->unsignedBigInteger('my_right_user_id')->nullable()->comment("My Direct Right Refers");
             $table->unsignedBigInteger('my_left_user_id')->nullable()->comment("My Direct Left Refers");

@@ -62,6 +62,7 @@ class RegisteredUserController extends Controller
         $user->refer = $sponsor ?? "default";
         $user->mobile = $validated['mobile'];
         $user->country = $validated['country'];
+        $user->position = $validated['position'];
         $user->save();
         info("User Created: " . $user->username);
 

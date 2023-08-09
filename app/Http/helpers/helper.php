@@ -147,16 +147,21 @@ function networkCapInPercentage($user_id)
 
 function myReferrals($user_id)
 {
-    return myRightReferrals($user_id) + myLeftReferrals($user_id);
+    return leftReferrals($user_id) + rightReferrals($user_id);
 }
 
 
 function leftReferrals($user_id)
 {
     $user = User::find($user_id);
+    $refers = User::where('refer', $user->username)->get();
     $leftUserCount = 0;
-    foreach ($user->getDownline('left') as $leftUser) {
-        $leftUserCount++;
+    foreach ($refers as $refer) {
+        info("Inside Left User");
+        if ($refer->position == 'left') {
+            info("User Id Match");
+            $leftUserCount++;
+        }
     }
     return $leftUserCount;
 }
@@ -165,9 +170,13 @@ function leftReferrals($user_id)
 function rightReferrals($user_id)
 {
     $user = User::find($user_id);
+    $refers = User::where('refer', $user->username)->get();
     $rightUserCount = 0;
-    foreach ($user->getDownline('right') as $rightUser) {
-        $rightUserCount++;
+    foreach ($refers as $refer) {
+        if ($refer->position == 'right') {
+            info("User Id Match");
+            $rightUserCount++;
+        }
     }
     return $rightUserCount;
 }
@@ -235,11 +244,11 @@ function leftBusiessVolume($user_id)
 {
     $user = User::find($user_id);
     $totalAmount =  0;
-    if ($user->left_user == "") {
+    if ($user->my_left_user == "") {
         return $totalAmount;
     }
     // checking if this user left and left is active
-    if ($user->left_user->status != 'active') {
+    if ($user->my_left_user->status != 'active') {
         return $totalAmount;
     }
 
@@ -285,11 +294,11 @@ function rightBusiessVolume($user_id)
 {
     $user = User::find($user_id);
     $totalAmount =  0;
-    if ($user->right_user == "") {
+    if ($user->my_right_user == "") {
         return $totalAmount;
     }
     // checking if this user right and right is active
-    if ($user->right_user->status != 'active') {
+    if ($user->my_right_user->status != 'active') {
         return $totalAmount;
     }
 
