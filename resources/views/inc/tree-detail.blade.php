@@ -19,7 +19,7 @@
                         </tr>
                         <tr>
                             <td>Sponser Username</td>
-                            <td class="text-end">XYZ</td>
+                            <td class="text-end">{{ DB::table('users')->find($user)->refer }}</td>
                         </tr>
                         <tr>
                             <td>Total Left Paid Team</td>

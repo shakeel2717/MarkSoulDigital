@@ -59,3 +59,4 @@
         </a>
     </li>
 </ul>
+@include('inc.user.nav')

@@ -147,18 +147,12 @@ function networkCapInPercentage($user_id)
 
 function myReferrals($user_id)
 {
-    return leftReferrals($user_id) + rightReferrals($user_id);
-}
-
-
-function leftReferrals($user_id)
-{
     $user = User::find($user_id);
     $refers = User::where('refer', $user->username)->get();
     $leftUserCount = 0;
     foreach ($refers as $refer) {
         info("Inside Left User");
-        if ($refer->position == 'left') {
+        if ($refer->position == 'left' || $refer->position == 'right') {
             info("User Id Match");
             $leftUserCount++;
         }
@@ -166,95 +160,35 @@ function leftReferrals($user_id)
     return $leftUserCount;
 }
 
+function leftReferrals($user_id)
+{
+    $user = User::find($user_id);
+    return count($user->getMyDownline('left'));
+}
+
 
 function rightReferrals($user_id)
 {
     $user = User::find($user_id);
-    $refers = User::where('refer', $user->username)->get();
-    $rightUserCount = 0;
-    foreach ($refers as $refer) {
-        if ($refer->position == 'right') {
-            info("User Id Match");
-            $rightUserCount++;
-        }
-    }
-    return $rightUserCount;
+    return count($user->getMyDownline('right'));
 }
 
-function myRightReferrals($user_id)
-{
-    $user = User::find($user_id);
-    $rightUserCount = 0;
-    foreach ($user->getMyDownline('right') as $rightUser) {
-        $rightUserCount++;
-    }
-    return $rightUserCount;
-}
-
-
-function myLeftReferrals($user_id)
-{
-    $user = User::find($user_id);
-    $rightUserCount = 0;
-    foreach ($user->getMyDownline('left') as $rightUser) {
-        $rightUserCount++;
-    }
-    return $rightUserCount;
-}
-
-
-function myLeftBusiessVolume($user_id)
-{
-    $user = User::find($user_id);
-    // checking if this user have balid left and right downline
-    if ($user->my_left_user_id == null) {
-        return 0;
-    }
-    // checking if both user is active
-    if (!checkUserStatus($user->my_left_user_id)) {
-        return 0;
-    }
-
-    $totalAmount =  0;
-    foreach ($user->getMyDownline('left') as $leftUser) {
-        if ($leftUser->userPlan) {
-            $totalAmount += $leftUser->userPlan->amount;
-        }
-    }
-    return $totalAmount;
-}
-
-function myRightBusiessVolume($user_id)
-{
-    $user = User::find($user_id);
-    // checking if this user have balid left and right downline
-    if ($user->my_right_user_id == null) {
-        return 0;
-    }
-    $totalAmount =  0;
-    foreach ($user->getMyDownline('right') as $rightUser) {
-        if ($rightUser->userPlan) {
-            $totalAmount += $rightUser->userPlan->amount;
-        }
-    }
-    return $totalAmount;
-}
 
 function leftBusiessVolume($user_id)
 {
     $user = User::find($user_id);
     $totalAmount =  0;
-    if ($user->my_left_user == "") {
+    if ($user->left_user == "") {
         return $totalAmount;
     }
     // checking if this user left and left is active
-    if ($user->my_left_user->status != 'active') {
+    if ($user->left_user->status != 'active') {
         return $totalAmount;
     }
 
     // getting this user business
     $totalAmount += $user->left_user->userPlan->amount;
-    foreach ($user->getDownline('left') as $iteration => $leftUser) {
+    foreach ($user->getMyDownline('left') as $iteration => $leftUser) {
         if ($leftUser->userPlan != null && $user->userPlan != null) {
             if (getLeftUserPlanTime($user) < strtotime($leftUser->userPlan->created_at) && $leftUser->userPlan->user_id != $user->left_user->id) {
                 $totalAmount += $leftUser->userPlan->amount;
@@ -273,7 +207,7 @@ function leftBusiessVolume($user_id)
 
 function getLeftUserPlanTime($user)
 {
-    foreach ($user->getDownline('left')  as $leftUser) {
+    foreach ($user->getMyDownline('left')  as $leftUser) {
         if ($leftUser->UserPlan != null) {
             return strtotime($leftUser->UserPlan->created_at);
         }
@@ -283,7 +217,7 @@ function getLeftUserPlanTime($user)
 
 function getRightUserPlanTime($user)
 {
-    foreach ($user->getDownline('right')  as $rightUser) {
+    foreach ($user->getMyDownline('right')  as $rightUser) {
         if ($rightUser->UserPlan != null) {
             return strtotime($rightUser->UserPlan->created_at);
         }
@@ -294,17 +228,17 @@ function rightBusiessVolume($user_id)
 {
     $user = User::find($user_id);
     $totalAmount =  0;
-    if ($user->my_right_user == "") {
+    if ($user->right_user == "") {
         return $totalAmount;
     }
     // checking if this user right and right is active
-    if ($user->my_right_user->status != 'active') {
+    if ($user->right_user->status != 'active') {
         return $totalAmount;
     }
 
     // getting this user business
     $totalAmount += $user->right_user->userPlan->amount;
-    foreach ($user->getDownline('right') as $iteration => $rightUser) {
+    foreach ($user->getMyDownline('right') as $iteration => $rightUser) {
         if ($rightUser->userPlan != null && $user->userPlan != null) {
             if (getRightUserPlanTime($user) < strtotime($rightUser->userPlan->created_at) && $rightUser->userPlan->user_id != $user->right_user->id) {
                 $totalAmount += $rightUser->userPlan->amount;

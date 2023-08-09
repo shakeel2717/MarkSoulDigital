@@ -66,13 +66,6 @@ class RegisteredUserController extends Controller
         $user->save();
         info("User Created: " . $user->username);
 
-        if ($validated['position'] == 'left') {
-            $sponsorQuery->my_left_user_id = $user->id;
-        } elseif ($validated['position'] == 'right') {
-            $sponsorQuery->my_right_user_id = $user->id;
-        }
-        $sponsorQuery->save();
-
         // Function to find an available slot in the downline's left or right side
         function findAvailableSlot($downlineUser, $targetPosition)
         {
@@ -102,9 +95,9 @@ class RegisteredUserController extends Controller
             $availableSlot = findAvailableSlot($sponsorQuery, $position);
             info("Available Slot After all kinds of Looop: " . $availableSlot['slot']);
             if ($availableSlot) {
-                info($availableSlot['slot']);
-                info($availableSlot['sponser']);
-                info($user->id);
+                info("Free Slot Found: " . $availableSlot['slot']);
+                info("Sponser: " . $availableSlot['sponser']);
+                info("New User ID: " . $user->id);
                 $sponsorQuery = User::find($availableSlot['sponser']);
                 $slot = $availableSlot['slot'];
                 $sponsorQuery->$slot = $user->id;

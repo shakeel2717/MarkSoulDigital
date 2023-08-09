@@ -139,24 +139,6 @@
                 </ul>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-6">
-            </div>
-            <!-- <div class="col-md-6">
-                    <h2>Left Downline</h2>
-                    <ul>
-                        @foreach (auth()->user()->getDownline('left') as $downlineUser)
-                        <li>{{ $downlineUser->name }}</li>
-                        @endforeach
-                    </ul>
-                    <h2>Right Downline</h2>
-                    <ul>
-                        @foreach (auth()->user()->getDownline('right') as $downlineUser)
-                        <li>{{ $downlineUser->name }}</li>
-                        @endforeach
-                    </ul>
-                </div> -->
-        </div>
     </div>
 </div>
 @endsection

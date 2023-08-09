@@ -22,8 +22,6 @@ return new class extends Migration
             $table->string('refer')->default('default');
             $table->string('position')->default('left');
             $table->string('status')->default('pending');
-            $table->unsignedBigInteger('my_right_user_id')->nullable()->comment("My Direct Right Refers");
-            $table->unsignedBigInteger('my_left_user_id')->nullable()->comment("My Direct Left Refers");
             $table->unsignedBigInteger('left_user_id')->nullable()->comment("Team Spillover Left Refers");
             $table->unsignedBigInteger('right_user_id')->nullable()->comment("Team Spillover Right Refers");
             $table->timestamp('email_verified_at')->nullable();
