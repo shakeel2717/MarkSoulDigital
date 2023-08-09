@@ -190,8 +190,8 @@ function leftBusiessVolume($user_id)
         }
     }
 
-    
-    
+
+
     if (checkLeftRightActiveStatus($user_id)) {
         info("both left and Right Active, Digging Depper");
         foreach ($user->getMyDownline('left') as $iteration => $leftUser) {
@@ -199,16 +199,18 @@ function leftBusiessVolume($user_id)
                 info("pacakge found");
                 if ($firstLeftAccount != null) {
                     $firstLeftUser = User::find($firstLeftAccount);
-                    if (getLeftUserPlanTime($firstLeftUser) < strtotime($leftUser->userPlan->created_at)) {
-                        info("Loop");
-                        if (!in_array($leftUser->id, $skipUserId)) {
-                            $totalAmount += $leftUser->userPlan->amount;
-                            info("This User Alrady Count");
+                    if (getLeftUserPlanTime($firstLeftUser)) {
+                        if (getLeftUserPlanTime($firstLeftUser) < strtotime($leftUser->userPlan->created_at)) {
+                            info("Loop");
+                            if (!in_array($leftUser->id, $skipUserId)) {
+                                $totalAmount += $leftUser->userPlan->amount;
+                                info("This User Alrady Count");
+                            } else {
+                                info("This User Alrady Count");
+                            }
                         } else {
-                            info("This User Alrady Count");
+                            info("Else Loop");
                         }
-                    } else {
-                        info("Else Loop");
                     }
                 }
             }
@@ -238,8 +240,9 @@ function rightBusiessVolume($user_id)
         }
     }
 
-    
-    
+
+
+
     if (checkLeftRightActiveStatus($user_id)) {
         info("both Right and Right Active, Digging Depper");
         foreach ($user->getMyDownline('right') as $iteration => $rightUser) {
@@ -247,16 +250,18 @@ function rightBusiessVolume($user_id)
                 info("pacakge found");
                 if ($firstRightAccount != null) {
                     $firstRightUser = User::find($firstRightAccount);
-                    if (getRightUserPlanTime($firstRightUser) < strtotime($rightUser->userPlan->created_at)) {
-                        info("Loop");
-                        if (!in_array($rightUser->id, $skipUserId)) {
-                            $totalAmount += $rightUser->userPlan->amount;
-                            info("This User Alrady Count");
+                    if (getRightUserPlanTime($firstRightUser)) {
+                        if (getRightUserPlanTime($firstRightUser) < strtotime($rightUser->userPlan->created_at)) {
+                            info("Loop");
+                            if (!in_array($rightUser->id, $skipUserId)) {
+                                $totalAmount += $rightUser->userPlan->amount;
+                                info("This User Alrady Count");
+                            } else {
+                                info("This User Alrady Count");
+                            }
                         } else {
-                            info("This User Alrady Count");
+                            info("Else Loop");
                         }
-                    } else {
-                        info("Else Loop");
                     }
                 }
             }
@@ -307,6 +312,7 @@ function getRightUserPlanTime($user)
             return strtotime($rightUser->UserPlan->created_at);
         }
     }
+    return false;
 }
 
 function totalMatchingBusiness($user_id)

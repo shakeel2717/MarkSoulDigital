@@ -285,11 +285,12 @@ CREATE TABLE `transactions` (
   CONSTRAINT `transactions_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `transactions_user_plan_id_foreign` FOREIGN KEY (`user_plan_id`) REFERENCES `user_plans` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `transactions_withdraw_id_foreign` FOREIGN KEY (`withdraw_id`) REFERENCES `withdraws` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `transactions` WRITE;
 /*!40000 ALTER TABLE `transactions` DISABLE KEYS */;
+INSERT INTO `transactions` VALUES (1,1,'Deposit',1000,1,'Admin Action',1,NULL,NULL,'2023-08-09 15:51:58','2023-08-09 15:51:58'),(2,2,'Deposit',1000,1,'Admin Action',1,NULL,NULL,'2023-08-09 15:52:05','2023-08-09 15:52:05'),(3,3,'Deposit',1000,1,'Admin Action',1,NULL,NULL,'2023-08-09 15:52:11','2023-08-09 15:52:11'),(4,4,'Deposit',1000,1,'Admin Action',1,NULL,NULL,'2023-08-09 15:52:18','2023-08-09 15:52:18'),(5,5,'Deposit',1000,1,'Admin Action',1,NULL,NULL,'2023-08-09 15:52:29','2023-08-09 15:52:29'),(6,1,'Plan Active',1000,1,'Plan: Gold Package Activated',0,NULL,NULL,'2023-08-09 15:52:55','2023-08-09 15:52:55'),(7,2,'Plan Active',1000,1,'Plan: Gold Package Activated',0,NULL,NULL,'2023-08-09 15:52:59','2023-08-09 15:52:59'),(8,1,'Direct Commission',120,1,'Direct Commision from: test1',1,NULL,1,'2023-08-09 15:52:59','2023-08-09 15:52:59'),(9,3,'Plan Active',1000,1,'Plan: Gold Package Activated',0,NULL,NULL,'2023-08-09 15:53:03','2023-08-09 15:53:03'),(10,1,'Direct Commission',120,1,'Direct Commision from: test2',1,NULL,1,'2023-08-09 15:53:03','2023-08-09 15:53:03'),(11,1,'Binary Commission',100,1,'Binary Matching Commission From: test2, Phone: 21235465645, Sponser: admin',1,NULL,1,'2023-08-09 15:53:03','2023-08-09 15:53:03'),(12,4,'Plan Active',1000,1,'Plan: Gold Package Activated',0,NULL,NULL,'2023-08-09 15:53:08','2023-08-09 15:53:08'),(13,1,'Direct Commission',120,1,'Direct Commision from: test3',1,NULL,1,'2023-08-09 15:53:08','2023-08-09 15:53:08'),(14,5,'Plan Active',1000,1,'Plan: Gold Package Activated',0,NULL,NULL,'2023-08-09 15:54:09','2023-08-09 15:54:09'),(15,2,'Direct Commission',120,1,'Direct Commision from: test4',1,NULL,2,'2023-08-09 15:54:09','2023-08-09 15:54:09'),(16,6,'Deposit',1000,1,'Admin Action',1,NULL,NULL,'2023-08-09 15:54:51','2023-08-09 15:54:51'),(17,6,'Plan Active',1000,1,'Plan: Gold Package Activated',0,NULL,NULL,'2023-08-09 15:54:59','2023-08-09 15:54:59'),(18,1,'Direct Commission',120,1,'Direct Commision from: test5',1,NULL,1,'2023-08-09 15:54:59','2023-08-09 15:54:59'),(19,7,'Deposit',1000,1,'Admin Action',1,NULL,NULL,'2023-08-09 15:56:00','2023-08-09 15:56:00'),(20,7,'Plan Active',1000,1,'Plan: Gold Package Activated',0,NULL,NULL,'2023-08-09 15:56:08','2023-08-09 15:56:08'),(21,1,'Direct Commission',120,1,'Direct Commision from: test6',1,NULL,1,'2023-08-09 15:56:08','2023-08-09 15:56:08'),(22,1,'Binary Commission',100,1,'Binary Matching Commission From: test6, Phone: 45345444444, Sponser: admin',1,NULL,1,'2023-08-09 15:56:08','2023-08-09 15:56:08');
 /*!40000 ALTER TABLE `transactions` ENABLE KEYS */;
 UNLOCK TABLES;
 DROP TABLE IF EXISTS `user_plans`;
@@ -308,11 +309,12 @@ CREATE TABLE `user_plans` (
   KEY `user_plans_plan_id_foreign` (`plan_id`),
   CONSTRAINT `user_plans_plan_id_foreign` FOREIGN KEY (`plan_id`) REFERENCES `plans` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `user_plans_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `user_plans` WRITE;
 /*!40000 ALTER TABLE `user_plans` DISABLE KEYS */;
+INSERT INTO `user_plans` VALUES (1,1,2,1000,'active','2023-08-09 15:52:55','2023-08-09 15:52:55'),(2,2,2,1000,'active','2023-08-09 15:52:59','2023-08-09 15:52:59'),(3,3,2,1000,'active','2023-08-09 15:53:03','2023-08-09 15:53:03'),(4,4,2,1000,'active','2023-08-09 15:53:08','2023-08-09 15:53:08'),(5,5,2,1000,'active','2023-08-09 15:54:09','2023-08-09 15:54:09'),(6,6,2,1000,'active','2023-08-09 15:54:59','2023-08-09 15:54:59'),(7,7,2,1000,'active','2023-08-09 15:56:08','2023-08-09 15:56:08');
 /*!40000 ALTER TABLE `user_plans` ENABLE KEYS */;
 UNLOCK TABLES;
 DROP TABLE IF EXISTS `users`;
@@ -341,12 +343,12 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_username_unique` (`username`),
   UNIQUE KEY `users_mobile_unique` (`mobile`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Administrator','admin','admin@test.com','03001212123','Pakistan','$2y$10$5yxHfYD2FgVC7U.NIWgzteGi32kWe2F1At2ArejkEvO8dcFDQDgty','default','left','pending',2,3,'2023-08-09 14:03:58','admin',0,0,NULL,'2023-08-09 14:03:58','2023-08-09 14:04:30'),(2,'test1','test1','test1@gmail.com','13132131321','asdf','$2y$10$MP7bxiIKuH4CWYBAjt0DE.LFkh/6mIZKDx67MpY8yfCjuGHVCR.2a','admin','left','pending',4,NULL,NULL,'user',0,0,NULL,'2023-08-09 14:04:19','2023-08-09 14:04:45'),(3,'test2','test2','test2@gmail.com','21235465645','sadf','$2y$10$ItU59T23Ig0db6MWAyLDeO2IQ1yz1wiUrrbcc2H/9VeVWugKKudlW','admin','right','pending',NULL,NULL,NULL,'user',0,0,NULL,'2023-08-09 14:04:30','2023-08-09 14:04:30'),(4,'test3','test3','test3@gmail.com','12316498797','sadf','$2y$10$3UKrykCEcpvrvgMe0tFHV.GRcRscrHVxw/FraMtHrN0QcdkVmTwL.','admin','left','pending',5,NULL,NULL,'user',0,0,NULL,'2023-08-09 14:04:45','2023-08-09 14:05:09'),(5,'test4','test4','test4@gmail.com','12316547987','asf','$2y$10$I2bMld3yFH61.cxLq50QL.AJhrA4cHFozM3ZpuOi6Oftc0aunvI9a','test1','left','pending',NULL,NULL,NULL,'user',0,0,NULL,'2023-08-09 14:05:09','2023-08-09 14:05:09');
+INSERT INTO `users` VALUES (1,'Administrator','admin','admin@test.com','03001212123','Pakistan','$2y$10$5yxHfYD2FgVC7U.NIWgzteGi32kWe2F1At2ArejkEvO8dcFDQDgty','default','left','active',2,3,'2023-08-09 14:03:58','admin',2000,0,NULL,'2023-08-09 14:03:58','2023-08-09 15:56:08'),(2,'test1','test1','test1@gmail.com','13132131321','asdf','$2y$10$MP7bxiIKuH4CWYBAjt0DE.LFkh/6mIZKDx67MpY8yfCjuGHVCR.2a','admin','left','active',4,NULL,NULL,'user',0,0,NULL,'2023-08-09 14:04:19','2023-08-09 15:52:59'),(3,'test2','test2','test2@gmail.com','21235465645','sadf','$2y$10$ItU59T23Ig0db6MWAyLDeO2IQ1yz1wiUrrbcc2H/9VeVWugKKudlW','admin','right','active',NULL,7,NULL,'user',0,0,NULL,'2023-08-09 14:04:30','2023-08-09 15:55:49'),(4,'test3','test3','test3@gmail.com','12316498797','sadf','$2y$10$3UKrykCEcpvrvgMe0tFHV.GRcRscrHVxw/FraMtHrN0QcdkVmTwL.','admin','left','active',5,NULL,NULL,'user',0,0,NULL,'2023-08-09 14:04:45','2023-08-09 15:53:08'),(5,'test4','test4','test4@gmail.com','12316547987','asf','$2y$10$I2bMld3yFH61.cxLq50QL.AJhrA4cHFozM3ZpuOi6Oftc0aunvI9a','test1','left','active',6,NULL,NULL,'user',0,0,NULL,'2023-08-09 14:05:09','2023-08-09 15:54:40'),(6,'test5','test5','test5@gmail.com','45363523452','LKJLS','$2y$10$bEOxuocJSm6QKxqbfVhkUOgUpFguYipN8gSYt5mTMJsXe0ftBSAs2','admin','left','active',NULL,NULL,NULL,'user',0,0,NULL,'2023-08-09 15:54:40','2023-08-09 15:54:59'),(7,'test6','test6','test6@gmail.com','45345444444','sdf','$2y$10$HPkDtAhxt2zxpkw34ydUt.f.23u4KiosIQ3bJQ5h4waQHxVLyPSw.','admin','right','active',NULL,NULL,NULL,'user',0,0,NULL,'2023-08-09 15:55:48','2023-08-09 15:56:08');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 DROP TABLE IF EXISTS `wallets`;
