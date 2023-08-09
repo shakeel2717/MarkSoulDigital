@@ -128,10 +128,18 @@
                             <li>
                                 @include('inc.binary_subtree', ['subuser' => auth()->user()->left_user])
                             </li>
+                            @else
+                            <li>
+                                @include('inc.binary_subtree_empty')
+                            </li>
                             @endif
                             @if (auth()->user()->right_user)
                             <li>
                                 @include('inc.binary_subtree', ['subuser' => auth()->user()->right_user])
+                            </li>
+                            @else
+                            <li>
+                                @include('inc.binary_subtree_empty')
                             </li>
                             @endif
                         </ul>

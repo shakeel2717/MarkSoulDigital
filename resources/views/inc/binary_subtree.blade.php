@@ -8,10 +8,18 @@
     <li>
         @include('inc.binary_subtree', ['subuser' => $subuser->left_user])
     </li>
+    @else
+    <li>
+        @include('inc.binary_subtree_empty')
+    </li>
     @endif
     @if ($subuser->right_user)
     <li>
         @include('inc.binary_subtree', ['subuser' => $subuser->right_user])
+    </li>
+    @else
+    <li>
+        @include('inc.binary_subtree_empty')
     </li>
     @endif
 </ul>
