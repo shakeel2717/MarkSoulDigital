@@ -74,7 +74,7 @@ class DeliverBinaryCommission
             ]);
             $user_id = $upliner_id->user_id;
             event(new FreezeBalanceVerification($user_id));
-            $upliner->binary_match = $totalMatchingBusiness;
+            $upliner->binary_match += $totalMatchingBusiness;
             $upliner->save();
 
             info("Binary Commission added for " . $upliner->username . "and Commission is: " . $profitRatio);

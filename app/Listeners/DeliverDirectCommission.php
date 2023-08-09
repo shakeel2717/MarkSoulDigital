@@ -29,11 +29,6 @@ class DeliverDirectCommission
         if (auth()->user()->refer != 'default') {
             info("User have valid refer");
 
-            if ($userPlan->user->networker) {
-                info("This user is Networker, Skipping Direct Commission.");
-                goto EndThisListener;
-            }
-
             // finding the refer
             $sponser = User::where('username', auth()->user()->refer)->first();
             if (!$sponser) {
@@ -51,9 +46,6 @@ class DeliverDirectCommission
                 goto EndThisListener;
                 die();
             }
-
-
-
 
 
             // getting direct commission
