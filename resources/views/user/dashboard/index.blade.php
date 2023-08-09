@@ -177,7 +177,7 @@
                             <p class="text-muted mb-0"> <b>${{number_format(networkCap(auth()->user()->id),2)}}</b> Total Earned</p>
                     </div>
                 </div>
-                <div class="progress" data-bs-toggle="tooltip" data-bs-title="$234.95 Paid Amount">
+                <div class="progress" data-bs-toggle="tooltip" data-bs-title="{{ number_format(networkCapInPercentage(auth()->user()->id)) }}% Reached">
                     <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{{ networkCapInPercentage(auth()->user()->id) }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ networkCapInPercentage(auth()->user()->id) }}%"></div>
                 </div>
                 <div class="mt-4">
