@@ -1,25 +1,15 @@
-<a href="javascript:void(0);" class="{{ $subuser->status == 'active' ? 'border-primary' : 'border-dark' }}" data-bs-toggle="modal" data-bs-target="#TreeDetail{{$subuser->id}}">
-    <img src="{{ asset('assets/images/users/user-dummy-img.jpg') }}" alt="Image" width="100">
-    <h2 class="card-title">{{ $subuser->name }}</h2>
-</a>
-@include('inc.tree-detail', ['user' => $subuser->id])
-<ul>
-    @if ($subuser->left_user)
-    <li>
+<li>
+    <a href="#">{{ $subuser->name }}</a>
+    <ul>
+        @if ($subuser->left_user)
         @include('inc.binary_subtree', ['subuser' => $subuser->left_user])
-    </li>
-    @else
-    <li>
+        @else
         @include('inc.binary_subtree_empty')
-    </li>
-    @endif
-    @if ($subuser->right_user)
-    <li>
+        @endif
+        @if ($subuser->right_user)
         @include('inc.binary_subtree', ['subuser' => $subuser->right_user])
-    </li>
-    @else
-    <li>
+        @else
         @include('inc.binary_subtree_empty')
-    </li>
-    @endif
-</ul>
+        @endif
+    </ul>
+</li>

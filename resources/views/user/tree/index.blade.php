@@ -1,14 +1,28 @@
 @extends('layout.dashboard')
 @section('styles')
 <style>
+    /*Now the CSS*/
+    div,
+    ul,
+    li {
+        margin: 0;
+        padding: 0;
+    }
+
     .tree ul {
         padding-top: 20px;
         position: relative;
-
         transition: all 0.5s;
-        -webkit-transition: all 0.5s;
-        -moz-transition: all 0.5s;
     }
+
+    .tree-container {
+        width: 1200px;
+        overflow-x: auto;
+        white-space: nowrap;
+        /* Prevent content from wrapping */
+    }
+
+
 
     .tree li {
         float: left;
@@ -16,7 +30,6 @@
         list-style-type: none;
         position: relative;
         padding: 20px 5px 0 5px;
-
         transition: all 0.5s;
         -webkit-transition: all 0.5s;
         -moz-transition: all 0.5s;
@@ -66,6 +79,7 @@
         -moz-border-radius: 5px 0 0 0;
     }
 
+    /*Time to add downward connectors from parents*/
     .tree ul ul::before {
         content: '';
         position: absolute;
@@ -78,24 +92,20 @@
 
     .tree li a {
         border: 1px solid #ccc;
-        width: 200px;
-        max-width: 200px;
         padding: 5px 10px;
         text-decoration: none;
         color: #666;
-        font-family: arial, verdana, tahoma;
-        font-size: 11px;
+        font-family: verdana, tahoma;
+        font-size: 10px;
         display: inline-block;
-
         border-radius: 5px;
-        -webkit-border-radius: 5px;
-        -moz-border-radius: 5px;
-
         transition: all 0.5s;
         -webkit-transition: all 0.5s;
         -moz-transition: all 0.5s;
     }
 
+    /*Time for some hover effects*/
+    /*We will apply the hover effect the the lineage of the element also*/
     .tree li a:hover,
     .tree li a:hover+ul li a {
         background: #c8e4f8;
@@ -103,11 +113,17 @@
         border: 1px solid #94a0b4;
     }
 
+    /*Connector styles on hover*/
     .tree li a:hover+ul li::after,
     .tree li a:hover+ul li::before,
     .tree li a:hover+ul::before,
     .tree li a:hover+ul ul::before {
         border-color: #94a0b4;
+    }
+
+    path {
+        fill: rgb(44, 163, 40);
+        box-shadow: 5px 2px 10px;
     }
 </style>
 @endsection
@@ -115,36 +131,23 @@
 @section('content')
 <div class="row">
     <div class="col-md-12">
-        <div class="card card-body">
-            <div class="tree d-flex justify-content-center align-items-center">
-                <ul>
-                    <li>
-                        <a href="#" class="{{ auth()->user()->status == 'active' ? 'border-primary' : 'border-dark' }}">
-                            <img src="{{ asset('assets/images/users/user-dummy-img.jpg') }}" alt="Image" width="100">
-                            <h2 class="card-title">{{ auth()->user()->name }}</h2>
-                        </a>
-                        <ul>
-                            @if (auth()->user()->left_user)
-                            <li>
+        <div class="card card-body" style="overflow: scroll;">
+            <div class="tree-container d-flex justify-content-center">
+                <div class="tree">
+                    <ul>
+                        <li>
+                            <a href="#">{{ auth()->user()->name }}</a>
+                            <ul>
+                                @if (auth()->user()->left_user)
                                 @include('inc.binary_subtree', ['subuser' => auth()->user()->left_user])
-                            </li>
-                            @else
-                            <li>
-                                @include('inc.binary_subtree_empty')
-                            </li>
-                            @endif
-                            @if (auth()->user()->right_user)
-                            <li>
+                                @endif
+                                @if (auth()->user()->right_user)
                                 @include('inc.binary_subtree', ['subuser' => auth()->user()->right_user])
-                            </li>
-                            @else
-                            <li>
-                                @include('inc.binary_subtree_empty')
-                            </li>
-                            @endif
-                        </ul>
-                    </li>
-                </ul>
+                                @endif
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
