@@ -58,6 +58,7 @@ class WithdrawController extends Controller
             'sum' => false,
             'status' => false,
             'reference' => 'Withdraw Funds throw ' . $wallet->name . " " . $wallet->symbol,
+            'user_plan_id' => auth()->user()->userPlan->id ?? null,
             'withdraw_id' => $withdraw->id,
             'amount' => $amount,
         ]);
@@ -66,6 +67,7 @@ class WithdrawController extends Controller
             'type' => 'Withdraw Fees',
             'sum' => false,
             'status' => false,
+            'user_plan_id' => auth()->user()->userPlan->id ?? null,
             'reference' => 'Withdraw Funds throw ' . $wallet->name . " " . $wallet->symbol,
             'withdraw_id' => $withdraw->id,
             'amount' => $fees,

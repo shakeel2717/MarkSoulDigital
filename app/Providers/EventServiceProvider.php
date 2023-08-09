@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Events\ExpireUserPlanOnRoiCapReached;
 use App\Events\FreezeBalanceVerification;
 use App\Events\PlanActivatedEvent;
 use App\Listeners\CheckNetworkingCap;
@@ -9,6 +10,7 @@ use App\Listeners\DeliverBinaryCommission;
 use App\Listeners\DeliverDirectCommission;
 use App\Listeners\DeliverFreezeBalance;
 use App\Listeners\NewUserRegistered;
+use App\Listeners\PlanExpiredOnRoiCapReached;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -33,7 +35,11 @@ class EventServiceProvider extends ServiceProvider
         ],
         FreezeBalanceVerification::class => [
             CheckNetworkingCap::class,
+        ],
+        ExpireUserPlanOnRoiCapReached::class => [
+            PlanExpiredOnRoiCapReached::class,
         ]
+
     ];
 
     /**

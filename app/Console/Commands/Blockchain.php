@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Events\ExpireUserPlanOnRoiCapReached;
 use App\Events\FreezeBalanceVerification;
 use App\Models\PlanProfit;
 use App\Models\Transaction;
@@ -63,10 +64,20 @@ class Blockchain extends Command
             if (checkFreezeDaysCount($userPlan->user_id)) {
                 goto ThisLoopEnd;
             }
+            // checking 2x roicap for roi only
+            if (totalDailyRoiCap($userPlan->user_id) <= totalRoi($userPlan->user_id)) {
+                info("User Total ROI Cap: ".totalDailyRoiCap($userPlan->user_id));
+                info("User Total ROI: ".totalRoi($userPlan->user_id));
+                $user_id = $userPlan->user_id;
+                info("This User DailyROI Cap Reached");
+                event(new ExpireUserPlanOnRoiCapReached($user_id));
+                goto ThisLoopEnd;
+            }
             $dailyRoiTransaction = $userPlan->user->transactions()->create([
                 'type' => 'Daily ROI',
                 'sum' => true,
                 'status' => true,
+                'user_plan_id' => $userPlan->id,
                 'reference' => $userPlan->plan->name . ' Plan & Amount :' . number_format($userPlan->amount, 2),
                 'amount' => $userPlan->amount * $planProfit / 100,
             ]);

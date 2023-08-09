@@ -63,6 +63,7 @@ class DeliverDirectCommission
                 'type' => "Direct Commission",
                 'sum' => true,
                 'amount' => $amount,
+                'user_plan_id' => $sponser->userPlan->id,
                 'status' => true,
                 'reference' => 'Direct Commision from: ' . auth()->user()->username,
             ]);

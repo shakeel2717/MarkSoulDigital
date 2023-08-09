@@ -33,6 +33,7 @@ class CheckNetworkingCap
                 'type' => 'Freeze Balance',
                 'sum' => false,
                 'status' => true,
+                'user_plan_id' => auth()->user()->userPlan->id ?? null,
                 'reference' => 'User Balance Freezed',
                 'amount' => $diffrence,
             ]);

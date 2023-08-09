@@ -86,6 +86,7 @@ class PlanController extends Controller
                             'amount' => $balance,
                             'status' => true,
                             'sum' => false,
+                            'user_plan_id' => $userPlan->id,
                             'reference' => "Plan: " . $plan->name . " Activated",
                         ]);
 
@@ -96,7 +97,7 @@ class PlanController extends Controller
                         // Deliving Direct Commision
                         event(new PlanActivatedEvent($transaction, $userPlan));
 
-                        return redirect()->route('user.dashboard.index')->with('success','Plan Activated');
+                        return redirect()->route('user.dashboard.index')->with('success', 'Plan Activated');
                     } else {
                         info("User not have any Balance in Freez");
                     }

@@ -31,72 +31,72 @@ class DatabaseSeeder extends Seeder
         $user->role = 'admin';
         $user->save();
 
-        // // user 2
-        // $user = new User();
-        // $user->name = "Shakeel Ahmad";
-        // $user->username = "shakeel2717";
-        // $user->email = "shakeel2717@gmail.com";
-        // $user->email_verified_at = now();
-        // $user->mobile = "03037702717";
-        // $user->country = "Pakistan";
-        // $user->password = bcrypt('asdfasdf');
-        // $user->my_left_user_id = 3;
-        // $user->my_right_user_id = 4;
-        // $user->left_user_id = 3;
-        // $user->right_user_id = 4;
-        // $user->save();
+        // user 2
+        $user = new User();
+        $user->name = "Shakeel Ahmad";
+        $user->username = "shakeel2717";
+        $user->email = "shakeel2717@gmail.com";
+        $user->email_verified_at = now();
+        $user->mobile = "03037702717";
+        $user->country = "Pakistan";
+        $user->password = bcrypt('asdfasdf');
+        $user->my_left_user_id = 3;
+        $user->my_right_user_id = 4;
+        $user->left_user_id = 3;
+        $user->right_user_id = 4;
+        $user->save();
 
-        // $user->transactions()->create([
-        //     'type' => 'Deposit',
-        //     'amount' => 1000,
-        //     'status' => true,
-        //     'sum' => true,
-        //     'reference' => "Deposit From Admin",
-        // ]);
+        $user->transactions()->create([
+            'type' => 'Deposit',
+            'amount' => 1000,
+            'status' => true,
+            'sum' => true,
+            'reference' => "Deposit From Admin",
+        ]);
 
-        // // user 3
-        // $user = new User();
-        // $user->name = "Test 1";
-        // $user->username = "test1";
-        // $user->email = "test1@gmail.com";
-        // $user->country = "Pakistan";
-        // $user->email_verified_at = now();
-        // $user->mobile = rand(00000, 999999);
-        // $user->refer = 'shakeel2717';
-        // $user->my_left_user_id = 5;
-        // // $user->my_right_user_id = 6;
-        // $user->left_user_id = 5;
-        // // $user->right_user_id = 6;
-        // $user->password = bcrypt('asdfasdf');
-        // $user->save();
+        // user 3
+        $user = new User();
+        $user->name = "Test 1";
+        $user->username = "test1";
+        $user->email = "test1@gmail.com";
+        $user->country = "Pakistan";
+        $user->email_verified_at = now();
+        $user->mobile = rand(00000, 999999);
+        $user->refer = 'shakeel2717';
+        $user->my_left_user_id = 5;
+        // $user->my_right_user_id = 6;
+        $user->left_user_id = 5;
+        // $user->right_user_id = 6;
+        $user->password = bcrypt('asdfasdf');
+        $user->save();
 
-        // $user->transactions()->create([
-        //     'type' => 'Deposit',
-        //     'amount' => 10000,
-        //     'status' => true,
-        //     'sum' => true,
-        //     'reference' => "Deposit From Admin",
-        // ]);
+        $user->transactions()->create([
+            'type' => 'Deposit',
+            'amount' => 10000,
+            'status' => true,
+            'sum' => true,
+            'reference' => "Deposit From Admin",
+        ]);
 
-        // // user 4
-        // $user = new User();
-        // $user->name = "Test 2";
-        // $user->username = "test2";
-        // $user->email = "test2@gmail.com";
-        // $user->country = "Pakistan";
-        // $user->email_verified_at = now();
-        // $user->mobile = rand(00000, 999999);
-        // $user->refer = 'shakeel2717';
-        // $user->password = bcrypt('asdfasdf');
-        // $user->save();
+        // user 4
+        $user = new User();
+        $user->name = "Test 2";
+        $user->username = "test2";
+        $user->email = "test2@gmail.com";
+        $user->country = "Pakistan";
+        $user->email_verified_at = now();
+        $user->mobile = rand(00000, 999999);
+        $user->refer = 'shakeel2717';
+        $user->password = bcrypt('asdfasdf');
+        $user->save();
 
-        // $user->transactions()->create([
-        //     'type' => 'Deposit',
-        //     'amount' => 10000,
-        //     'status' => true,
-        //     'sum' => true,
-        //     'reference' => "Deposit From Admin",
-        // ]);
+        $user->transactions()->create([
+            'type' => 'Deposit',
+            'amount' => 10000,
+            'status' => true,
+            'sum' => true,
+            'reference' => "Deposit From Admin",
+        ]);
 
 
         // // user 5
@@ -244,6 +244,11 @@ class DatabaseSeeder extends Seeder
         $option = new Option();
         $option->key = 'freeze_transaction_duration';
         $option->value = -15;
+        $option->save();
+
+        $option = new Option();
+        $option->key = 'daily_roi_network_x';
+        $option->value = 2;
         $option->save();
 
 

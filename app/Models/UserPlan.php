@@ -25,4 +25,9 @@ class UserPlan extends Model
     {
         return $this->belongsTo(Plan::class);
     }
+
+    public function network_cap_transactions()
+    {
+        return $this->hasMany(Transaction::class)->where('sum', true);
+    }
 }

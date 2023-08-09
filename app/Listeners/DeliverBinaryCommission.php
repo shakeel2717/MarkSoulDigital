@@ -68,6 +68,7 @@ class DeliverBinaryCommission
                 'type' => 'Binary Commission',
                 'sum' => true,
                 'status' => true,
+                'user_plan_id' => $upliner->userPlan->id,
                 'reference' => 'Binary Matching Commission From: ' . $event->transaction->user->username . ', Phone: ' . $event->transaction->user->mobile . ', Sponser: ' . $event->transaction->user->refer,
                 'amount' => $profitRatio,
             ]);

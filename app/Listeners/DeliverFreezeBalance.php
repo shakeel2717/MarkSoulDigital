@@ -32,6 +32,7 @@ class DeliverFreezeBalance
                     'type' => 'Freeze Balance Recover',
                     'amount' => $freezeTransaction->amount,
                     'status' => true,
+                    'user_plan_id' => $user->userPlan->id,
                     'sum' => true,
                     'reference' => "Balance Recover From Freeze Transactions",
                 ]);

@@ -16,6 +16,7 @@ class Transaction extends Model
         'status',
         'sum',
         'reference',
+        'user_plan_id',
         'withdraw_id',
     ];
 

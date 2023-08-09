@@ -97,25 +97,19 @@ function totalDirectCommission($user_id)
 
 function networkCap($user_id)
 {
-    $userPlan = UserPlan::where('user_id', $user_id)->where('status', 'active')->first();
+    $user = User::find($user_id);
+    $userPlan = $user->userPlan;
     if ($userPlan == "") {
         return 0;
     }
-    // getting all income expect deposit
-    $in = Transaction::where('user_id', $user_id)
-        ->where('sum', true)
-        ->where('status', true)
-        ->where('type', '!=', 'Deposit')
-        ->where('created_at', '>=', $userPlan->created_at)
-        ->sum('amount');
 
-    return $in - freezeTransactionRecovered($user_id);
+    return $userPlan->network_cap_transactions->sum('amount') - freezeTransactionRecovered($user_id, $userPlan->id);
 }
 
 // gett all freze transaction recover
-function freezeTransactionRecovered($user_id)
+function freezeTransactionRecovered($user_id, $userPlan_id)
 {
-    $transaction = Transaction::where('user_id', $user_id)->where('type', 'Freeze Balance')->sum('amount');
+    $transaction = Transaction::where('user_id', $user_id)->where('type', 'Freeze Balance')->where('user_plan_id', $userPlan_id)->sum('amount');
     return $transaction;
 }
 
@@ -139,7 +133,7 @@ function networkCapInPercentage($user_id)
     if ($in < 1) {
         return 0;
     }
-    $percentage = (($in - freezeTransactionRecovered($user_id)) / (getActivePlan($user_id) * site_option('networkCap'))) * 100;
+    $percentage = (($in - freezeTransactionRecovered($user_id,$userPlan->id)) / (getActivePlan($user_id) * site_option('networkCap'))) * 100;
     if ($percentage > 100) {
         return 100;
     } else {
@@ -346,4 +340,10 @@ function checkFreezeDaysCount($user_id)
     }
 
     return false;
+}
+
+
+function totalDailyRoiCap($user_id)
+{
+    return getActivePlan($user_id) * site_option('daily_roi_network_x');
 }

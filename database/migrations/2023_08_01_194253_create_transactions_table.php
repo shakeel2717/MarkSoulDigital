@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('reference')->nullable();
             $table->boolean('sum');
             $table->foreignId('withdraw_id')->nullable()->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('user_plan_id')->nullable()->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

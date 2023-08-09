@@ -13,7 +13,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        event(new FreezeBalanceVerification(auth()->user()->id));
+        // event(new FreezeBalanceVerification(auth()->user()->id));
 
         return view('user.dashboard.index');
     }
