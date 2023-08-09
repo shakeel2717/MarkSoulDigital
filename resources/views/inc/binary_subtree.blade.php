@@ -1,4 +1,4 @@
-<a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#TreeDetail{{$subuser->id}}">
+<a href="javascript:void(0);" class="{{ $subuser->status == 'active' ? 'border-primary' : 'border-dark' }}" data-bs-toggle="modal" data-bs-target="#TreeDetail{{$subuser->id}}">
     <img src="{{ asset('assets/images/users/user-dummy-img.jpg') }}" alt="Image" width="100">
     <h2 class="card-title">{{ $subuser->name }}</h2>
 </a>

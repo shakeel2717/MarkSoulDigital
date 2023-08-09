@@ -119,7 +119,7 @@
             <div class="tree d-flex justify-content-center align-items-center">
                 <ul>
                     <li>
-                        <a href="#">
+                        <a href="#" class="{{ auth()->user()->status == 'active' ? 'border-primary' : 'border-dark' }}">
                             <img src="{{ asset('assets/images/users/user-dummy-img.jpg') }}" alt="Image" width="100">
                             <h2 class="card-title">{{ auth()->user()->name }}</h2>
                         </a>
