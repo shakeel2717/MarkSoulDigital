@@ -62,7 +62,11 @@ function getAllPlansAmount($user_id)
 
 function totalRoi($user_id)
 {
-    $transaction = Transaction::where('user_id', $user_id)->where('type', 'Daily ROI')->sum('amount');
+    $user = User::find($user_id);
+    if (!$user->userPlan) {
+        return 0;
+    }
+    $transaction = Transaction::where('user_id', $user_id)->where('type', 'Daily ROI')->where('user_plan_id', $user->userPlan->id)->sum('amount');
     return $transaction;
 }
 
@@ -133,7 +137,7 @@ function networkCapInPercentage($user_id)
     if ($in < 1) {
         return 0;
     }
-    $percentage = (($in - freezeTransactionRecovered($user_id,$userPlan->id)) / (getActivePlan($user_id) * site_option('networkCap'))) * 100;
+    $percentage = (($in - freezeTransactionRecovered($user_id, $userPlan->id)) / (getActivePlan($user_id) * site_option('networkCap'))) * 100;
     if ($percentage > 100) {
         return 100;
     } else {
