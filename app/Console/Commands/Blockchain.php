@@ -60,19 +60,27 @@ class Blockchain extends Command
                 goto ThisLoopEnd;
             }
 
+            // checking if this user is eligible for more then 2x
+            if (!checkLeftRightActiveStatus($userPlan->user_id)) {
+                info("This user Not Elible For More then 2x Daily ROI");
+                goto ThisLoopEnd;
+            }
+
 
             if (checkFreezeDaysCount($userPlan->user_id)) {
                 goto ThisLoopEnd;
             }
+
             // checking 2x roicap for roi only
-            if (totalDailyRoiCap($userPlan->user_id) <= totalRoi($userPlan->user_id)) {
-                info("User Total ROI Cap: ".totalDailyRoiCap($userPlan->user_id));
-                info("User Total ROI: ".totalRoi($userPlan->user_id));
-                $user_id = $userPlan->user_id;
-                info("This User DailyROI Cap Reached");
-                event(new ExpireUserPlanOnRoiCapReached($user_id));
-                goto ThisLoopEnd;
-            }
+            // if (totalDailyRoiCap($userPlan->user_id) <= totalRoi($userPlan->user_id)) {
+            //     info("User Total ROI Cap: ".totalDailyRoiCap($userPlan->user_id));
+            //     info("User Total ROI: ".totalRoi($userPlan->user_id));
+            //     $user_id = $userPlan->user_id;
+            //     info("This User DailyROI Cap Reached");
+            //     event(new ExpireUserPlanOnRoiCapReached($user_id));
+            //     goto ThisLoopEnd;
+            // }
+
             $dailyRoiTransaction = $userPlan->user->transactions()->create([
                 'type' => 'Daily ROI',
                 'sum' => true,
