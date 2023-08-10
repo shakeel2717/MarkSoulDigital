@@ -12,8 +12,8 @@
 
 	.tree li {
 		white-space: nowrap;
-	display: inline-block;
-  vertical-align: top;
+		display: inline-block;
+		vertical-align: top;
 		text-align: center;
 		list-style-type: none;
 		position: relative;
@@ -129,9 +129,13 @@
 							<ul>
 								@if (auth()->user()->left_user)
 								@include('inc.binary_subtree', ['subuser' => auth()->user()->left_user,'level' => 1])
+								@else
+								@include('inc.binary_subtree_empty')
 								@endif
 								@if (auth()->user()->right_user)
 								@include('inc.binary_subtree', ['subuser' => auth()->user()->right_user,'level' => 1])
+								@else
+								@include('inc.binary_subtree_empty')
 								@endif
 							</ul>
 						</li>
