@@ -42,7 +42,7 @@
     </li>
     <li class="menu-title"><span data-key="t-menu">MY Tree</span></li>
     <li class="nav-item">
-        <a href="{{route('user.tree.index')}}" class="nav-link menu-link">
+        <a href="{{route('user.tree.show',['tree' => auth()->user()->id])}}" class="nav-link menu-link">
             <i class="ph-users-three"></i>
             <span data-key="t-calendar">Tree View</span>
         </a>

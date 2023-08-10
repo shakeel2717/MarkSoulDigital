@@ -78,7 +78,7 @@
             height: 20px;
         }
 
-        .tree li a {
+        .tree span {
             border: 1px solid #ccc;
             width: 200px;
             max-width: 200px;
@@ -98,17 +98,17 @@
             -moz-transition: all 0.5s;
         }
 
-        .tree li a:hover,
-        .tree li a:hover+ul li a {
+        .tree span:hover,
+        .tree span:hover+ul span {
             background: #c8e4f8;
             color: #000;
             border: 1px solid #94a0b4;
         }
 
-        .tree li a:hover+ul li::after,
-        .tree li a:hover+ul li::before,
-        .tree li a:hover+ul::before,
-        .tree li a:hover+ul ul::before {
+        .tree span:hover+ul li::after,
+        .tree span:hover+ul li::before,
+        .tree span:hover+ul::before,
+        .tree span:hover+ul ul::before {
             border-color: #94a0b4;
         }
     </style>
@@ -122,31 +122,31 @@
                     <div class="tree">
                         <ul>
                             <li>
-                                <a href="#">
+                                <span href="#">
                                     <img src="{{ asset('assets/images/users/user-dummy-img.jpg') }}" alt="Tree user"
                                         width="80">
-                                    <h6 class="mb-0 text-uppercase mt-3">{{ auth()->user()->name }}</h6>
-                                </a>
+                                    <h6 class="mb-0 text-uppercase mt-3">{{ $user->name }}</h6>
+                                </span>
                                 <ul>
-                                    @if (auth()->user()->left_user)
+                                    @if ($user->left_user)
                                         @include('inc.binary_subtree', [
-                                            'subuser' => auth()->user()->left_user,
+                                            'subuser' => $user->left_user,
                                             'level' => 1,
                                         ])
                                     @else
                                         @include('inc.binary_single_empty', [
-                                            'subuser' => auth()->user()->right_user,
+                                            'subuser' => $user->right_user,
                                             'level' => 1,
                                         ])
                                     @endif
-                                    @if (auth()->user()->right_user)
+                                    @if ($user->right_user)
                                         @include('inc.binary_subtree', [
-                                            'subuser' => auth()->user()->right_user,
+                                            'subuser' => $user->right_user,
                                             'level' => 1,
                                         ])
                                     @else
                                         @include('inc.binary_single_empty', [
-                                            'subuser' => auth()->user()->right_user,
+                                            'subuser' => $user->right_user,
                                             'level' => 1,
                                         ])
                                     @endif
