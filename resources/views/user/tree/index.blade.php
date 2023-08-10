@@ -124,7 +124,7 @@
 						<li>
 							<a href="#">
 								<img src="{{ asset('assets/images/users/user-dummy-img.jpg') }}" alt="Tree user" width="80">
-								<h5 class="mb-0">{{ auth()->user()->name }}</h5>
+								<h6 class="mb-0 text-uppercase mt-3">{{ auth()->user()->name }}</h6>
 							</a>
 							<ul>
 								@if (auth()->user()->left_user)

@@ -1,7 +1,7 @@
 @if ($level < 4) <li>
     <a href="#" class="{{ $subuser->status == 'active' ? 'border-primary' : 'border-dark' }}" data-bs-toggle="modal" data-bs-target="#TreeDetail{{$subuser->id}}">
-        <img src="{{ asset('assets/images/users/user-dummy-img.jpg') }}" alt="Tree user" width="80">
-        <h5 class="mb-0">{{ $subuser->name }}</h5>
+        <img src="{{ asset('assets/images/users/user-dummy-img.jpg') }}" alt="Tree user" width="50">
+        <h6 class="mb-0 mt-3 text-uppercase">{{ $subuser->name }}</h6>
     </a>
     @include('inc.tree-detail', ['user' => $subuser->id])
     <ul>
