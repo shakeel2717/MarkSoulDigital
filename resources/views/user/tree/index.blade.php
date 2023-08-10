@@ -11,7 +11,9 @@
 	}
 
 	.tree li {
-		float: left;
+		white-space: nowrap;
+	display: inline-block;
+  vertical-align: top;
 		text-align: center;
 		list-style-type: none;
 		position: relative;
@@ -116,11 +118,14 @@
 <div class="row">
 	<div class="col-md-12">
 		<div class="card card-body" style="overflow: scroll;">
-			<div class="tree-container d-flex justify-content-center">
+			<div class="tree-container">
 				<div class="tree">
 					<ul>
 						<li>
-							<a href="#">{{ auth()->user()->name }}</a>
+							<a href="#">
+								<img src="{{ asset('assets/images/users/user-dummy-img.jpg') }}" alt="Tree user" width="80">
+								<h5 class="mb-0">{{ auth()->user()->name }}</h5>
+							</a>
 							<ul>
 								@if (auth()->user()->left_user)
 								@include('inc.binary_subtree', ['subuser' => auth()->user()->left_user,'level' => 1])
