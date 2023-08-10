@@ -79,8 +79,8 @@
         }
 
         .tree span {
-            border: 1px solid #ccc;
-            width: 200px;
+            /* border: 1px solid #ccc; */
+            /* width: 200px; */
             max-width: 200px;
             padding: 5px 10px;
             text-decoration: none;
@@ -100,16 +100,16 @@
 
         .tree span:hover,
         .tree span:hover+ul span {
-            background: #c8e4f8;
+            background: #eee;
             color: #000;
-            border: 1px solid #94a0b4;
+            /* border: 1px solid #94a0b4; */
         }
 
         .tree span:hover+ul li::after,
         .tree span:hover+ul li::before,
         .tree span:hover+ul::before,
         .tree span:hover+ul ul::before {
-            border-color: #94a0b4;
+            border-color: #eee;
         }
     </style>
 @endsection
