@@ -2,10 +2,10 @@
     <li>
         <span href="#" class="{{ $subuser->status == 'active' ? 'border-primary' : 'border-dark' }}">
             <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#TreeDetail{{ $subuser->id }}">
-                <img src="{{ asset('assets/images/users/user-dummy-img.jpg') }}" alt="Tree user" width="80">
+                <img class="tree_picture" src="{{ asset('assets/images/users/user-dummy-img.jpg') }}" alt="Tree user" width="80">
             </a>
             <a href="{{ route('user.tree.show', ['tree' => $subuser->id]) }}">
-                <h6 class="mb-0 mt-3 text-uppercase">{{ $subuser->name }}</h6>
+                <h6 class="mb-0 mt-1 text-uppercase tree_title">{{ $subuser->name }}</h6>
             </a>
         </span>
         @include('inc.tree-detail', ['user' => $subuser->id])

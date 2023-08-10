@@ -1,4 +1,5 @@
-<div class="modal fade" id="TreeDetail{{$user}}" tabindex="-1" aria-labelledby="TreeDetail{{$user}}Label" aria-hidden="true">
+<div class="modal fade" id="TreeDetail{{ $user }}" tabindex="-1"
+    aria-labelledby="TreeDetail{{ $user }}Label" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -6,16 +7,14 @@
             </div>
             <div class="modal-body">
                 <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Type</th>
-                            <th>Value</th>
-                        </tr>
-                    </thead>
                     <tbody class="text-start">
                         <tr>
+                            <td>Username: </td>
+                            <td class="text-end">{{ DB::table('users')->find($user)->username }}</td>
+                        </tr>
+                        <tr>
                             <td>Active Investment</td>
-                            <td class="text-end">${{ number_format(getActivePlan($user),2) }}</td>
+                            <td class="text-end">${{ number_format(getActivePlan($user), 2) }}</td>
                         </tr>
                         <tr>
                             <td>Sponser Username</td>

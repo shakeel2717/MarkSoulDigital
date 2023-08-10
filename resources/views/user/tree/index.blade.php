@@ -4,7 +4,6 @@
         .tree ul {
             padding-top: 20px;
             position: relative;
-
             transition: all 0.5s;
             -webkit-transition: all 0.5s;
             -moz-transition: all 0.5s;
@@ -31,7 +30,7 @@
             top: 0;
             right: 50%;
             border-top: 1px solid #ccc;
-            width: 50%;
+            width: 60%;
             height: 20px;
         }
 
@@ -111,6 +110,24 @@
         .tree span:hover+ul ul::before {
             border-color: #eee;
         }
+
+
+        @media (max-width: 768px) {
+
+            .tree_picture {
+                width: 20px;
+            }
+
+            .tree_title {
+                font-size: 10px;
+                display: none;
+            }
+
+            .tree li {
+                padding: 20px 5px 0 5px;
+                margin-left: -30px
+            }
+        }
     </style>
 @endsection
 @section('title', 'Deposit')
@@ -123,9 +140,9 @@
                         <ul>
                             <li>
                                 <span href="#">
-                                    <img src="{{ asset('assets/images/users/user-dummy-img.jpg') }}" alt="Tree user"
-                                        width="80">
-                                    <h6 class="mb-0 text-uppercase mt-3">{{ $user->name }}</h6>
+                                    <img class="tree_picture" src="{{ asset('assets/images/users/user-dummy-img.jpg') }}"
+                                        alt="Tree user" width="80">
+                                    <h6 class="mb-0 text-uppercase mt-1 tree_title">{{ $user->name }}</h6>
                                 </span>
                                 <ul>
                                     @if ($user->left_user)

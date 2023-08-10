@@ -2,8 +2,8 @@
 
     <li>
         <span href="#">
-            <img src="{{ asset('assets/images/users/user-dummy-img.jpg') }}" alt="Tree user" width="80">
-            <h6 class="mb-0 mt-3 text-uppercase">No Account</h6>
+            <img class="tree_picture" src="{{ asset('assets/images/users/user-dummy-img.jpg') }}" alt="Tree user" width="80">
+            <h6 class="mb-0 mt-1 text-uppercase tree_title">No Account</h6>
         </span>
         <ul>
             @if ($level < 3)
