@@ -1,9 +1,8 @@
 @if ($level < 4)
-
     <li>
-        <span href="#">
-            <img class="tree_picture" src="{{ asset('assets/images/users/user-dummy-img.jpg') }}" alt="Tree user" width="80">
-            <h6 class="mb-0 mt-1 text-uppercase {{ $level > 2 ? 'tree_title' : '' }}">VACANT</h6>
+        <span class="tf-nc">
+            <img class="user-img" src="{{ asset('assets/images/users/user-dummy-img.jpg') }}" alt="Image">
+            <p class="user-title level-{{ $level }}-title">VACANT</p>
         </span>
         <ul>
             @if ($level < 3)

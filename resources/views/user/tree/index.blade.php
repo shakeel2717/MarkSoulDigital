@@ -1,132 +1,40 @@
 @extends('layout.dashboard')
 @section('styles')
+    <link rel="stylesheet" href="https://unpkg.com/treeflex@2.0.1/dist/css/treeflex.css">
     <style>
-        .tree ul {
-            padding-top: 20px;
-            position: relative;
-            transition: all 0.5s;
-            -webkit-transition: all 0.5s;
-            -moz-transition: all 0.5s;
+        .user-img {
+            width: 30px;
         }
-
-        .tree li {
-            white-space: nowrap;
-            display: inline-block;
-            vertical-align: top;
+        .tf-nc {
             text-align: center;
-            list-style-type: none;
-            position: relative;
-            padding: 20px 5px 0 5px;
-
-            transition: all 0.5s;
-            -webkit-transition: all 0.5s;
-            -moz-transition: all 0.5s;
         }
-
-        .tree li::before,
-        .tree li::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 50%;
-            border-top: 1px solid #ccc;
-            width: 60%;
-            height: 20px;
-        }
-
-        .tree li::after {
-            right: auto;
-            left: 50%;
-            border-left: 1px solid #ccc;
-        }
-
-        .tree li:only-child::after,
-        .tree li:only-child::before {
-            display: none;
-        }
-
-        .tree li:only-child {
-            padding-top: 0;
-        }
-
-        .tree li:first-child::before,
-        .tree li:last-child::after {
-            border: 0 none;
-        }
-
-        .tree li:last-child::before {
-            border-right: 1px solid #ccc;
-            border-radius: 0 5px 0 0;
-            -webkit-border-radius: 0 5px 0 0;
-            -moz-border-radius: 0 5px 0 0;
-        }
-
-        .tree li:first-child::after {
-            border-radius: 5px 0 0 0;
-            -webkit-border-radius: 5px 0 0 0;
-            -moz-border-radius: 5px 0 0 0;
-        }
-
-        .tree ul ul::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            border-left: 1px solid #ccc;
-            width: 0;
-            height: 20px;
-        }
-
-        .tree span {
-            /* border: 1px solid #ccc; */
-            /* width: 200px; */
-            max-width: 200px;
-            padding: 5px 10px;
-            text-decoration: none;
-            color: #666;
-            font-family: arial, verdana, tahoma;
-            font-size: 11px;
-            display: inline-block;
-
-            border-radius: 5px;
-            -webkit-border-radius: 5px;
-            -moz-border-radius: 5px;
-
-            transition: all 0.5s;
-            -webkit-transition: all 0.5s;
-            -moz-transition: all 0.5s;
-        }
-
-        .tree span:hover,
-        .tree span:hover+ul span {
-            background: #eee;
-            color: #000;
-            /* border: 1px solid #94a0b4; */
-        }
-
-        .tree span:hover+ul li::after,
-        .tree span:hover+ul li::before,
-        .tree span:hover+ul::before,
-        .tree span:hover+ul ul::before {
-            border-color: #eee;
-        }
-
 
         @media (max-width: 768px) {
 
-            .tree_picture {
-                width: 20px;
+            .tf-tree li {
+                padding: 0px 1px;
             }
 
+            .tf-tree .tf-nc,
+            .tf-tree .tf-node-content {
+                padding: 0;
+            }
 
-            .tree_title {
+            .user-img {
+                width: 30px;
+            }
+
+            .user-title {
                 font-size: 10px;
-                display: none;
             }
 
-            .tree li {
-                padding: 20px 5px 0 5px;
-                margin-left: -25px
+            .tf-nc {
+                text-align: center;
+                min-width: 30px;
+            }
+
+            .level-3-title {
+                display: none;
             }
         }
     </style>
@@ -135,46 +43,44 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <div class="card" style="overflow: scroll;">
-                <div class="tree-container">
-                    <div class="tree">
-                        <ul>
-                            <li>
-                                @php
-                                    $level = 1;
-                                @endphp
-                                <span href="#">
-                                    <img class="tree_picture" src="{{ asset('assets/images/users/user-dummy-img.jpg') }}"
-                                        alt="Tree user" width="80">
-                                    <h6 class="mb-0 text-uppercase mt-1 {{ $level > 2 ? 'tree_title' : '' }}">{{ $user->name }}</h6>
-                                </span>
-                                <ul>
-                                    @if ($user->left_user)
-                                        @include('inc.binary_subtree', [
-                                            'subuser' => $user->left_user,
-                                            'level' => 1,
-                                        ])
-                                    @else
-                                        @include('inc.binary_single_empty', [
-                                            'subuser' => $user->right_user,
-                                            'level' => 1,
-                                        ])
-                                    @endif
-                                    @if ($user->right_user)
-                                        @include('inc.binary_subtree', [
-                                            'subuser' => $user->right_user,
-                                            'level' => 1,
-                                        ])
-                                    @else
-                                        @include('inc.binary_single_empty', [
-                                            'subuser' => $user->right_user,
-                                            'level' => 1,
-                                        ])
-                                    @endif
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
+            <div class="card card-body">
+                <div class="tf-tree d-flex justify-content-sm-start justify-content-md-center">
+                    <ul>
+                        <li>
+                            @php
+                                $level = 1;
+                            @endphp
+                            <span class="tf-nc">
+                                <img class="user-img" src="{{ asset('assets/images/users/user-dummy-img.jpg') }}"
+                                    alt="Image">
+                                <p class="user-title level-{{ $level }}-title">{{ $user->name }}</p>
+                            </span>
+                            <ul>
+                                @if (auth()->user()->left_user)
+                                    @include('inc.binary_subtree', [
+                                        'subuser' => $user->left_user,
+                                        'level' => 1,
+                                    ])
+                                @else
+                                    @include('inc.binary_single_empty', [
+                                        'subuser' => $user->right_user,
+                                        'level' => 1,
+                                    ])
+                                @endif
+                                @if (auth()->user()->right_user)
+                                    @include('inc.binary_subtree', [
+                                        'subuser' => $user->left_user,
+                                        'level' => 1,
+                                    ])
+                                @else
+                                    @include('inc.binary_single_empty', [
+                                        'subuser' => $user->right_user,
+                                        'level' => 1,
+                                    ])
+                                @endif
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>

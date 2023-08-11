@@ -1,12 +1,14 @@
 @if ($level < 4)
     <li>
-        <span href="#" class="{{ $subuser->status == 'active' ? 'border-primary' : 'border-dark' }}">
+        <span class="tf-nc {{ $subuser->status == 'active' ? 'border-primary' : 'border-primary' }}">
             <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#TreeDetail{{ $subuser->id }}">
-                <img class="tree_picture" src="{{ asset('assets/images/users/user-dummy-img.jpg') }}" alt="Tree user" width="80">
+                <img class="user-img" src="{{ asset('assets/images/users/user-dummy-img.jpg') }}" alt="Image">
             </a>
-            <a href="{{ route('user.tree.show', ['tree' => $subuser->id]) }}">
-                <h6 class="mb-0 mt-1 text-uppercase {{ $level > 2 ? 'tree_title' : '' }}">{{ str($subuser->name)->limit(10) }}</h6>
+            <a class="user-link text-dark" href="{{ route('user.tree.show', ['tree' => $subuser->id]) }}">
+                <p class="user-title level-{{ $level }}-title text-uppercase">
+                    {{ str($subuser->username)->limit(8) }}
             </a>
+            </p>
         </span>
         @include('inc.tree-detail', ['user' => $subuser->id])
         <ul>
@@ -14,7 +16,7 @@
                 @include('inc.binary_subtree', ['subuser' => $subuser->left_user, 'level' => $level + 1])
             @else
                 @include('inc.binary_single_empty', [
-                    'subuser' => auth()->user()->right_user,
+                    'subuser' => $subuser->right_user,
                     'level' => $level + 1,
                 ])
             @endif
@@ -22,7 +24,7 @@
                 @include('inc.binary_subtree', ['subuser' => $subuser->right_user, 'level' => $level + 1])
             @else
                 @include('inc.binary_single_empty', [
-                    'subuser' => auth()->user()->right_user,
+                    'subuser' => $subuser->right_user,
                     'level' => $level + 1,
                 ])
             @endif
