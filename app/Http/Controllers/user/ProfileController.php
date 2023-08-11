@@ -30,7 +30,9 @@ class ProfileController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => 'required|string',
+            'fname' => 'required|string',
+            'mname' => 'required|string',
+            'lname' => 'required|string',
             'email' => 'required|email',
             'mobile' => 'required|string',
             'country' => 'required|string',
@@ -38,7 +40,9 @@ class ProfileController extends Controller
 
         // updaing Profile Record
         $profile = User::find(auth()->user()->id);
-        $profile->name = $validatedData['name'];
+        $profile->fname = $validatedData['fname'];
+        $profile->mname = $validatedData['mname'];
+        $profile->lname = $validatedData['lname'];
         $profile->email = $validatedData['email'];
         $profile->mobile = $validatedData['mobile'];
         $profile->country = $validatedData['country'];

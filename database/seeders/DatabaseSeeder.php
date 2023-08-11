@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $user = new User();
-        $user->name = "Administrator";
+        $user->fname = "Administrator";
         $user->username = "admin";
         $user->email = "admin@test.com";
         $user->mobile = "03001212123";

@@ -6,7 +6,7 @@
                     <img class="avatar-md rounded-circle" src="{{ asset('assets/images/users/user-dummy-img.jpg') }}" alt="">
                     <img class="avatar-sm position-absolute top-50 start-50" src="{{ asset('assets/images/medal.png') }}" alt="">
                 </div>
-                <div class="text-white text-uppercase mt-2">{{ auth()->user()->name }}</div>
+                <div class="text-white text-uppercase mt-2">{{ auth()->user()->fname . ' ' . auth()->user()->lname }}</div>
                 <div class="text-white text-uppercase">{{ auth()->user()->status }}</div>
             </div>
         </div>

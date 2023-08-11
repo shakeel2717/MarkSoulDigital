@@ -22,28 +22,28 @@
                                 <div class="form-group">
                                     <label for="fname">First Name</label>
                                     <input type="text" name="fname" id="fname" placeholder="First Name"
-                                        class="form-control">
+                                        class="form-control" value="{{ old('fname') }}">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="mname">Middle Name</label>
                                     <input type="text" name="mname" id="mname" placeholder="Middle Name"
-                                        class="form-control">
+                                        class="form-control" value="{{ old('fname') }}">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="lname">Last Name</label>
                                     <input type="text" name="lname" id="lname" placeholder="Last Name"
-                                        class="form-control">
+                                        class="form-control" value="{{ old('fname') }}">
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="username">Username</label>
                                     <input type="text" name="username" id="username" placeholder="Username"
-                                        class="form-control">
+                                        class="form-control" value="{{ old('fname') }}">
                                 </div>
                             </div>
                         </div>
@@ -52,7 +52,7 @@
                         <div class="form-group">
                             <label for="email">Email</label>
                             <input type="email" name="email" id="email" placeholder="Enter Email"
-                                class="form-control">
+                                class="form-control" value="{{ old('fname') }}">
                         </div>
                     </div>
                     <div class="mb-3">
@@ -594,7 +594,7 @@
                                         <div class="form-group">
                                             <label for="mobile">Mobile #</label>
                                             <input type="text" name="mobile" id="mobile"
-                                                placeholder="Enter Mobile" class="form-control">
+                                                placeholder="Enter Mobile" class="form-control" value="{{ old('fname') }}">
                                         </div>
                                     </div>
                                 </div>

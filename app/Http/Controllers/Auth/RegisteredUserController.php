@@ -31,7 +31,9 @@ class RegisteredUserController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+            'fname' => ['required', 'string', 'max:255'],
+            'mname' => ['required', 'string', 'max:255'],
+            'lname' => ['required', 'string', 'max:255'],
             'email' => ['nullable', 'string', 'email', 'max:255'],
             'username' => ['required', 'string', 'alpha_num', 'max:255', 'unique:' . User::class],
             'mobile' => ['required', 'numeric'],
@@ -56,12 +58,14 @@ class RegisteredUserController extends Controller
         }
 
         $user = new User();
-        $user->name = $validated['name'];
+        $user->fname = $validated['fname'];
+        $user->mname = $validated['mname'];
+        $user->lname = $validated['lname'];
         $user->username = strtolower($validated['username']);
         $user->email = strtolower($validated['email']);
         $user->password = Hash::make($request->password);
         $user->refer = $sponsor ?? "default";
-        $user->mobile = $validated['mobile'];
+        $user->mobile = $validated['code'] . $validated['mobile'];
         $user->country = $validated['country'];
         $user->position = $validated['position'];
         $user->save();
