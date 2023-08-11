@@ -39,6 +39,7 @@
     <script src="{{ asset('assets/libs/swiper/swiper-bundle.min.js') }}"></script>
     <script src="{{ asset('assets/js/pages/swiper.init.js') }}"></script>
     <x-alert />
+    @yield('footer')
 </body>
 
 </html>

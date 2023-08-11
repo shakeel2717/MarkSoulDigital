@@ -26,7 +26,7 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
-            NewUserRegistered::class,
+            // NewUserRegistered::class,
         ],
         PlanActivatedEvent::class => [
             DeliverDirectCommission::class,
