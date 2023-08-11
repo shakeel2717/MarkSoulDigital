@@ -246,7 +246,7 @@
                                 <img class="user-img"
                                     src="{{ asset('assets/images/' . $user->status == 'active' ? 'binary-img-success.png' : 'binary-img-primary.png') }}"
                                     alt="Image">
-                                <p class="user-title level-{{ $level }}-title">{{ $user->name }}</p>
+                                <p class="user-title level-{{ $level }}-title">{{ $user->username }}</p>
                             </span>
                             <ul>
                                 @if ($user->left_user)
