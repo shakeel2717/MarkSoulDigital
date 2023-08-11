@@ -18,28 +18,14 @@
                     @csrf
                     <div class="mb-3">
                         <div class="row">
-                            <div class="col-md-4 mb-3">
+                            <div class="col-md-6 mb-3">
                                 <div class="form-group">
                                     <label for="fname">First Name</label>
                                     <input type="text" name="fname" id="fname" placeholder="First Name"
                                         class="form-control" value="{{ old('fname') }}">
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="mname">Middle Name</label>
-                                    <input type="text" name="mname" id="mname" placeholder="Middle Name"
-                                        class="form-control" value="{{ old('fname') }}">
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="lname">Last Name</label>
-                                    <input type="text" name="lname" id="lname" placeholder="Last Name"
-                                        class="form-control" value="{{ old('fname') }}">
-                                </div>
-                            </div>
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="username">Username</label>
                                     <input type="text" name="username" id="username" placeholder="Username"
@@ -57,7 +43,7 @@
                     </div>
                     <div class="mb-3">
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="country">Country</label>
                                     <select class="form-select" id="country" name="country">
@@ -330,9 +316,9 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    {{-- <div class="col-md-6">
                                         <label for="code">Code</label>
                                         <select class="form-select" id="code" name="code">
                                             <option value="">Select Code</option>
@@ -589,8 +575,8 @@
                                             <option value="260">Zambia +260</option>
                                             <option value="263">Zimbabwe +263</option>
                                         </select>
-                                    </div>
-                                    <div class="col-md-6">
+                                    </div> --}}
+                                    <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="mobile">Mobile #</label>
                                             <input type="text" name="mobile" id="mobile"

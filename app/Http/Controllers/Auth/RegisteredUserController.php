@@ -32,12 +32,12 @@ class RegisteredUserController extends Controller
     {
         $validated = $request->validate([
             'fname' => ['required', 'string', 'max:255'],
-            'mname' => ['required', 'string', 'max:255'],
-            'lname' => ['required', 'string', 'max:255'],
+            'mname' => ['nullable', 'string', 'max:255'],
+            'lname' => ['nullable', 'string', 'max:255'],
             'email' => ['nullable', 'string', 'email', 'max:255'],
             'username' => ['required', 'string', 'alpha_num', 'max:255', 'unique:' . User::class],
             'mobile' => ['required', 'numeric'],
-            'code' => ['required', 'numeric'],
+            'code' => ['nullable', 'numeric'],
             'country' => ['required', 'string', 'max:255'],
             'position' => ['required', 'string', 'max:255'],
             'refer' => ['required', 'string', 'max:255'],
