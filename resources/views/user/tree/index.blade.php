@@ -56,7 +56,7 @@
                                 <p class="user-title level-{{ $level }}-title">{{ $user->name }}</p>
                             </span>
                             <ul>
-                                @if (auth()->user()->left_user)
+                                @if ($user->left_user)
                                     @include('inc.binary_subtree', [
                                         'subuser' => $user->left_user,
                                         'level' => 1,
@@ -67,9 +67,9 @@
                                         'level' => 1,
                                     ])
                                 @endif
-                                @if (auth()->user()->right_user)
+                                @if ($user->right_user)
                                     @include('inc.binary_subtree', [
-                                        'subuser' => $user->left_user,
+                                        'subuser' => $user->right_user,
                                         'level' => 1,
                                     ])
                                 @else
