@@ -118,6 +118,7 @@
                 width: 20px;
             }
 
+
             .tree_title {
                 font-size: 10px;
                 display: none;
@@ -125,7 +126,7 @@
 
             .tree li {
                 padding: 20px 5px 0 5px;
-                margin-left: -30px
+                margin-left: -25px
             }
         }
     </style>
@@ -134,15 +135,18 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <div class="card card-body" style="overflow: scroll;">
+            <div class="card" style="overflow: scroll;">
                 <div class="tree-container">
                     <div class="tree">
                         <ul>
                             <li>
+                                @php
+                                    $level = 1;
+                                @endphp
                                 <span href="#">
                                     <img class="tree_picture" src="{{ asset('assets/images/users/user-dummy-img.jpg') }}"
                                         alt="Tree user" width="80">
-                                    <h6 class="mb-0 text-uppercase mt-1 tree_title">{{ $user->name }}</h6>
+                                    <h6 class="mb-0 text-uppercase mt-1 {{ $level > 2 ? 'tree_title' : '' }}">{{ $user->name }}</h6>
                                 </span>
                                 <ul>
                                     @if ($user->left_user)
