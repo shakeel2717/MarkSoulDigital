@@ -54,9 +54,9 @@ final class Transactions extends PowerGridComponent
     public function datasource(): Builder
     {
         return Transaction::query()
+            ->where('user_id', auth()->user()->id)
             ->latest()
-            ->whereIn('type', $this->type)
-            ->limit(2);
+            ->whereIn('type', $this->type);
     }
 
     /*
