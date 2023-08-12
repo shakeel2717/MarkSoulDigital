@@ -14,7 +14,7 @@ class DepositController extends Controller
      */
     public function index()
     {
-        return view('user.deposit.index');
+        return view('user.history.deposits');
     }
 
     /**
