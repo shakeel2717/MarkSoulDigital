@@ -1,7 +1,7 @@
 <li>
     <span class="tf-nc">
         <img class="user-img" src="{{ asset('assets/images/users/user-dummy-img.jpg') }}" alt="Image">
-        <p class="user-title level-{{ $level }}-title">VACANT</p>
+        <p class="user-title level-{{ $level }}-title">New SignUP</p>
     </span>
     <ul>
         @if ($level < 3)
@@ -15,7 +15,7 @@
 <li>
     <span class="tf-nc">
         <img class="user-img" src="{{ asset('assets/images/users/user-dummy-img.jpg') }}" alt="Image">
-        <p class="user-title level-{{ $level }}-title">VACANT</p>
+        <p class="user-title level-{{ $level }}-title">New SignUP</p>
     </span>
     <ul>
         @if ($level < 3)
