@@ -16,6 +16,9 @@ final class allDeposits extends PowerGridComponent
     use ActionButton;
     use WithExport;
 
+    public $fees;
+    public $amount;
+
     /*
     |--------------------------------------------------------------------------
     |  Features Setup
@@ -126,10 +129,12 @@ final class allDeposits extends PowerGridComponent
             Column::make('User id', 'user'),
             Column::make('Amount', 'amount')
                 ->sortable()
+                ->editOnClick()
                 ->searchable(),
 
             Column::make('FEES', 'fees')
                 ->sortable()
+                ->editOnClick()
                 ->searchable(),
 
             Column::make('Hash id', 'hash_id')
@@ -220,6 +225,14 @@ final class allDeposits extends PowerGridComponent
         $transationFees->save();
 
         $this->dispatchBrowserEvent('deleted', ['status' => 'Deposit Approved Successfully']);
+    }
+
+
+    public function onUpdatedEditable(string $id, string $field, string $value): void
+    {
+        Tid::query()->find($id)->update([
+            $field => $value,
+        ]);
     }
 
     /*
