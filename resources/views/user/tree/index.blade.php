@@ -182,7 +182,6 @@
         .tf-tree li.tf-dashed-children>.tf-node-content:before {
             border-left-style: solid
         }
-        
     </style>
     <style>
         .user-img {
@@ -243,10 +242,14 @@
                                 $level = 1;
                             @endphp
                             <span class="tf-nc">
-                                <img class="user-img"
-                                    src="{{ asset('assets/images/' . $user->status == 'active' ? 'binary-img-success.png' : 'binary-img-primary.png') }}"
-                                    alt="Image">
+                                <a href="javascript:void(0)" data-bs-toggle="modal"
+                                    data-bs-target="#TreeDetail{{ $user->id }}">
+                                    <img class="user-img"
+                                        src="{{ asset($user->status == 'active' ? 'binary-img-success.png' : 'binary-img-primary.png') }}"
+                                        alt="Image">
+                                </a>
                                 <p class="user-title level-{{ $level }}-title">{{ $user->username }}</p>
+                                @include('inc.tree-detail', ['user' => $user->id])
                             </span>
                             <ul>
                                 @if ($user->left_user)

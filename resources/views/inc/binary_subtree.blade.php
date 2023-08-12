@@ -3,7 +3,7 @@
         <span class="tf-nc ">
             <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#TreeDetail{{ $subuser->id }}">
                 <img class="user-img"
-                    src="{{ asset(($subuser->status == 'active') ? 'binary-img-success.png' : 'binary-img-primary.png') }}"
+                    src="{{ asset($subuser->status == 'active' ? 'binary-img-success.png' : 'binary-img-primary.png') }}"
                     alt="Image">
             </a>
             <a class="user-link text-dark" href="{{ route('user.tree.show', ['tree' => $subuser->id]) }}">
