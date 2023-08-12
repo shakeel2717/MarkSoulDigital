@@ -63,6 +63,11 @@ class User extends Authenticatable
         return $this->hasMany(Transaction::class);
     }
 
+    public function pending_tids()
+    {
+        return $this->hasMany(Tid::class)->where('status', false);
+    }
+
 
     public function userPlan()
     {

@@ -67,18 +67,10 @@ class DepositController extends Controller
 
         $wallet = Wallet::findOrFail($validatedData['wallet_id']);
 
-        // adding deposit request in the system
-        auth()->user()->transactions()->create([
-            'type' => 'Deposit',
-            'sum' => true,
-            'status' => false,
-            'reference' => 'Deposit Funds throw ' . $wallet->name . " " . $wallet->symbol,
-            'amount' => $validatedData['finalAmount'],
-        ]);
-
         auth()->user()->tids()->create([
             'hash_id' => $validatedData['hash_id'],
             'amount' => $validatedData['finalAmount'],
+            'fees' => $validatedData['finalAmount'] - $validatedData['amount'],
         ]);
 
         return redirect()->route('user.dashboard.index')->with('success', 'Deposit Request Sent Successfully');

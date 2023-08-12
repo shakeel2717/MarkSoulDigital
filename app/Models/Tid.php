@@ -12,7 +12,13 @@ class Tid extends Model
     protected $fillable = [
         'user_id',
         'amount',
+        'fees',
         'hash_id',
         'status',
     ];
+
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

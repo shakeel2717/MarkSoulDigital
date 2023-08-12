@@ -35,8 +35,8 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="amount">Amount</label>
-                                <input type="text" name="amount" id="amount" class="form-control" placeholder="Enter Amount">
+                                <label for="amount">Amount in USD</label>
+                                <input type="text" name="amount" id="amount" class="form-control" placeholder="Enter Amount in USD">
                             </div>
                         </div>
                     </div>

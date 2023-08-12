@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\admin\DepositController;
 use App\Http\Controllers\admin\FinanceController;
 use App\Http\Controllers\admin\WithdrawController;
 use Illuminate\Support\Facades\Route;
@@ -11,6 +12,7 @@ Route::prefix('admin/')->name('admin.')->middleware('auth', 'admin', 'verified')
     Route::resource('dashboard', DashboardController::class);
     Route::resource('finance', FinanceController::class);
     Route::resource('withdraw', WithdrawController::class);
+    Route::resource('deposit', DepositController::class);
     Route::name('history.')->prefix('history/')->group(function () {
         Route::view('deposits', 'admin.history.deposits')->name('deposits');
         Route::view('withdrawals', 'admin.history.withdrawals')->name('withdrawals');

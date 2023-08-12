@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->string('hash_id')->unique();
             $table->double('amount');
+            $table->double('fees');
             $table->boolean('status')->default(false);
             $table->timestamps();
         });
