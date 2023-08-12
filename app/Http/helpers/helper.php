@@ -163,107 +163,73 @@ function rightReferrals($user_id)
     return count($user->getMyDownline('right'));
 }
 
-
-function leftBusiessVolume($user_id)
+function BusinessVolume($user_id, $position)
 {
     $user = User::find($user_id);
     $totalAmount =  0;
-    $firstLeftAccount = null;
-    // getting my direct user if active
-    $directRefers = User::where('refer', $user->username)->where('position', 'left')->where('status', 'active')->get();
-    foreach ($directRefers as $iteration => $directRefer) {
-        if ($directRefer != "") {
-            if ($iteration == 0) {
-                $firstLeftAccount = $directRefer->id;
-            }
-            $skipUserId[] = $directRefer->id;
-            $totalAmount += $directRefer->userPlan->amount;
-            info("Direct Left User Business Added");
+
+
+    // getting all direct left users business
+
+    $allDirectRefers = User::where('refer', $user->username)->where('position', $position)->where('status', 'active')->get();
+    if ($allDirectRefers->count() < 0) {
+        return 0;
+    }
+
+    foreach ($allDirectRefers as $count => $directRefer) {
+        $totalAmount += $directRefer->userPlan->amount;
+        info($directRefer->username . " Direct Balance Added: " . $directRefer->userPlan->amount);
+        $directBusinessAlreadyCount[] = $directRefer->id;
+        if ($count == 0) {
+            $firstLevelActiveUser = $directRefer->userPlan->created_at;
         }
     }
 
-
-
-    if (checkLeftRightActiveStatus($user_id)) {
-        info("both left and Right Active, Digging Depper");
-        foreach ($user->getMyDownline('left') as $iteration => $leftUser) {
-            if ($leftUser->userPlan != null && $user->userPlan != null) {
-                info("pacakge found");
-                if ($firstLeftAccount != null) {
-                    $firstLeftUser = User::find($firstLeftAccount);
-                    if (getLeftUserPlanTime($firstLeftUser)) {
-                        if (getLeftUserPlanTime($firstLeftUser) < strtotime($leftUser->userPlan->created_at)) {
-                            info("Loop");
-                            if (!in_array($leftUser->id, $skipUserId)) {
-                                $totalAmount += $leftUser->userPlan->amount;
-                                info("This User Alrady Count");
-                            } else {
-                                info("This User Alrady Count");
-                            }
-                        } else {
-                            info("Else Loop");
-                        }
-                    }
-                }
-            }
-        }
+    if (!checkLeftRightActiveStatus($user_id)) {
+        info("User not have both side active, skipping");
+        goto endThisFunction;
     }
 
-    // checking if thsi user left and right both are active
+    foreach ($user->getMyDownline($position) as $leftUser) {
+        info($leftUser->username . " User Investigating");
+        // checking if this user have active plan
+        if ($leftUser->userPlan == null) {
+            info($leftUser->username . " Not have active plan");
+            goto endThisDirectLeftBusinessLoop;
+        }
+
+
+        if (in_array($leftUser->id, $directBusinessAlreadyCount)) {
+            info($leftUser->username . " This User Business Already Count");
+            goto endThisDirectLeftBusinessLoop;
+        }
+
+        // checking if this user plan is activated before the direct user plan
+        $directUserPlanDate = Carbon::parse($firstLevelActiveUser);
+        $thisUserPlanDate = Carbon::parse($leftUser->userPlan->created_at);
+
+        if ($directUserPlanDate->isBefore($thisUserPlanDate)) {
+            $totalAmount += $leftUser->userPlan->amount;
+            info($leftUser->username . " downline team Balance Added: " . $leftUser->userPlan->amount);
+        } else {
+            info($firstLevelActiveUser . " Date of First Level Direct User");
+            info($leftUser->userPlan->created_at . " Date of " . $leftUser->username . " Direct User");
+            info($leftUser->username . " This User Plan Activate Before the Direct Refer");
+        }
+
+
+
+        endThisDirectLeftBusinessLoop:
+    }
+
+    endThisFunction:
+
+    // dd($totalAmount);
+
 
     return $totalAmount;
 }
 
-function rightBusiessVolume($user_id)
-{
-    $user = User::find($user_id);
-    $totalAmount =  0;
-    $firstRightAccount = null;
-    // getting my direct user if active
-    $directRefers = User::where('refer', $user->username)->where('position', 'right')->where('status', 'active')->get();
-    foreach ($directRefers as $iteration => $directRefer) {
-        if ($directRefer != "") {
-            if ($iteration == 0) {
-                $firstRightAccount = $directRefer->id;
-            }
-            $skipUserId[] = $directRefer->id;
-            $totalAmount += $directRefer->userPlan->amount;
-            info("Direct Right User Business Added");
-        }
-    }
-
-
-
-
-    if (checkLeftRightActiveStatus($user_id)) {
-        info("both Right and Right Active, Digging Depper");
-        foreach ($user->getMyDownline('right') as $iteration => $rightUser) {
-            if ($rightUser->userPlan != null && $user->userPlan != null) {
-                info("pacakge found");
-                if ($firstRightAccount != null) {
-                    $firstRightUser = User::find($firstRightAccount);
-                    if (getRightUserPlanTime($firstRightUser)) {
-                        if (getRightUserPlanTime($firstRightUser) < strtotime($rightUser->userPlan->created_at)) {
-                            info("Loop");
-                            if (!in_array($rightUser->id, $skipUserId)) {
-                                $totalAmount += $rightUser->userPlan->amount;
-                                info("This User Alrady Count");
-                            } else {
-                                info("This User Alrady Count");
-                            }
-                        } else {
-                            info("Else Loop");
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    // checking if thsi user left and right both are active
-
-    return $totalAmount;
-}
 
 function checkLeftRightActiveStatus($user_id)
 {
@@ -294,6 +260,7 @@ function getLeftUserPlanTime($user)
             return strtotime($leftUser->UserPlan->created_at);
         }
     }
+    return false;
 }
 
 
@@ -309,8 +276,8 @@ function getRightUserPlanTime($user)
 
 function totalMatchingBusiness($user_id)
 {
-    $leftBV = leftBusiessVolume($user_id);
-    $rightBV = rightBusiessVolume($user_id);
+    $leftBV = BusinessVolume($user_id, 'left');
+    $rightBV = BusinessVolume($user_id, 'right');
     if ($leftBV > $rightBV) {
         return $rightBV;
     } else {

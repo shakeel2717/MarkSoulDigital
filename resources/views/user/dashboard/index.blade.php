@@ -297,7 +297,7 @@
                             <i class="ph-currency-dollar"></i>
                         </span>
                     </span>
-                    <h4 class="mb-4">${{ number_format(leftBusiessVolume(auth()->user()->id), 2) }}</h4>
+                    <h4 class="mb-4">${{ number_format(BusinessVolume(auth()->user()->id, 'left'), 2) }}</h4>
                     <p class="text-muted fw-medium text-uppercase mb-0">Left Business Volume </p>
                 </div>
             </div>
@@ -310,7 +310,7 @@
                             <i class="ph-currency-dollar"></i>
                         </span>
                     </span>
-                    <h4 class="mb-4">${{ number_format(rightBusiessVolume(auth()->user()->id), 2) }}</h4>
+                    <h4 class="mb-4">${{ number_format(BusinessVolume(auth()->user()->id,'right'), 2) }}</h4>
                     <p class="text-muted fw-medium text-uppercase mb-0">Right Business Volume </p>
                 </div>
             </div>
@@ -345,7 +345,8 @@
                                 </div>
                                 <div class="text-end">
                                     <h6 class="text-uppercase mb-0">{{ $transaction->created_at }}</h6>
-                                    <h6 class="text-uppercase mb-0">{{ $transaction->status ? "Approved" : "Pending" }}</h6>
+                                    <h6 class="text-uppercase mb-0">{{ $transaction->status ? 'Approved' : 'Pending' }}
+                                    </h6>
                                 </div>
                             </div>
                         </div>
@@ -373,11 +374,12 @@
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="d-flex flex-column">
                                     <h4 class="">
-                                        ${{ number_format($tid->amount, 2) }} <br> <small class="fs-6">Fees: ${{ number_format($tid->fees, 2) }}</small></h4>
+                                        ${{ number_format($tid->amount, 2) }} <br> <small class="fs-6">Fees:
+                                            ${{ number_format($tid->fees, 2) }}</small></h4>
                                     <h6 class="text-uppercase mb-0">{{ $tid->type }}</h6>
                                 </div>
                                 <div class="text-end">
-                                    <h6 class="text-uppercase mb-0">{{ $tid->status ? "Approved" : "Pending" }}</h6>
+                                    <h6 class="text-uppercase mb-0">{{ $tid->status ? 'Approved' : 'Pending' }}</h6>
                                     <h6 class="text-uppercase mb-0">{{ $tid->created_at }}</h6>
                                 </div>
                             </div>

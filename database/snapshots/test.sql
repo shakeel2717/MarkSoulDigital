@@ -286,11 +286,12 @@ CREATE TABLE `transactions` (
   CONSTRAINT `transactions_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `transactions_user_plan_id_foreign` FOREIGN KEY (`user_plan_id`) REFERENCES `user_plans` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `transactions_withdraw_id_foreign` FOREIGN KEY (`withdraw_id`) REFERENCES `withdraws` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `transactions` WRITE;
 /*!40000 ALTER TABLE `transactions` DISABLE KEYS */;
+INSERT INTO `transactions` VALUES (1,1,'Deposit',1000,1,'Admin Action',1,NULL,NULL,'2023-08-12 13:00:43','2023-08-12 13:00:43'),(2,2,'Deposit',1000,1,'Admin Action',1,NULL,NULL,'2023-08-12 13:00:51','2023-08-12 13:00:51'),(3,3,'Deposit',1000,1,'Admin Action',1,NULL,NULL,'2023-08-12 13:00:56','2023-08-12 13:00:56'),(4,4,'Deposit',1000,1,'Admin Action',1,NULL,NULL,'2023-08-12 13:01:02','2023-08-12 13:01:02'),(5,5,'Deposit',1000,1,'Admin Action',1,NULL,NULL,'2023-08-12 13:30:00','2023-08-12 13:30:00');
 /*!40000 ALTER TABLE `transactions` ENABLE KEYS */;
 UNLOCK TABLES;
 DROP TABLE IF EXISTS `user_plans`;
@@ -344,12 +345,12 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_username_unique` (`username`),
   UNIQUE KEY `users_mobile_unique` (`mobile`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Administrator',NULL,NULL,'admin','admin@test.com','03001212123','Pakistan','$2y$10$QoURVmlugzMm1cNiI.eh7.Sx9tIdWwskFX0Wee0EIoff.Vciyb8qy','default','left','pending',2,3,'2023-08-12 10:10:17','admin',0,0,NULL,'2023-08-12 10:10:17','2023-08-12 10:11:16'),(2,'test1',NULL,NULL,'test1','test1@gmail.com','34534345345','Pakistan','$2y$10$NGMD1pAH3j1p3pfifYVuleqVhnwhJCbjxI5a3AQuPWerEjZYn3Gzm','admin','left','pending',NULL,NULL,NULL,'user',0,0,NULL,'2023-08-12 10:11:02','2023-08-12 10:11:02'),(3,'test2',NULL,NULL,'test2','test2@gmail.com','345346456353','Pakistan','$2y$10$ikp8gH8IYMAHRfw0dG2izulWbbtkyQMzgI8cU.yEcSow0dvqQQeAm','admin','right','pending',NULL,NULL,NULL,'user',0,0,NULL,'2023-08-12 10:11:16','2023-08-12 10:11:16');
+INSERT INTO `users` VALUES (1,'Administrator',NULL,NULL,'admin','admin@test.com','03001212123','Pakistan','$2y$10$QoURVmlugzMm1cNiI.eh7.Sx9tIdWwskFX0Wee0EIoff.Vciyb8qy','default','left','pending',2,3,'2023-08-12 10:10:17','admin',0,0,NULL,'2023-08-12 10:10:17','2023-08-12 10:11:16'),(2,'test1',NULL,NULL,'test1','test1@gmail.com','34534345345','Pakistan','$2y$10$NGMD1pAH3j1p3pfifYVuleqVhnwhJCbjxI5a3AQuPWerEjZYn3Gzm','admin','left','pending',4,NULL,NULL,'user',0,0,NULL,'2023-08-12 10:11:02','2023-08-12 12:26:19'),(3,'test2',NULL,NULL,'test2','test2@gmail.com','345346456353','Pakistan','$2y$10$ikp8gH8IYMAHRfw0dG2izulWbbtkyQMzgI8cU.yEcSow0dvqQQeAm','admin','right','pending',NULL,NULL,NULL,'user',0,0,NULL,'2023-08-12 10:11:16','2023-08-12 10:11:16'),(4,'test3',NULL,NULL,'test3','test3@gmail.com','34536345234','Pakistan','$2y$10$9Mc64tuoxNBtJ8qpN65zye7lMwAxLcEY/A8xyUX/6GqFRPVk2qhkK','test1','left','pending',5,NULL,NULL,'user',0,0,NULL,'2023-08-12 12:26:19','2023-08-12 13:29:54'),(5,'test4',NULL,NULL,'test4','test4@gmail.com','3453453534','Macao','$2y$10$QXs6.n//LERb6k.phqghq.ryxwQLsuxXV2Vup.BHUXhxwe3EmAI5G','admin','left','pending',NULL,NULL,NULL,'user',0,0,NULL,'2023-08-12 13:29:54','2023-08-12 13:29:54');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 DROP TABLE IF EXISTS `wallets`;
