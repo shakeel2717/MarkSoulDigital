@@ -61,12 +61,11 @@ CREATE TABLE `freeze_transactions` (
   PRIMARY KEY (`id`),
   KEY `freeze_transactions_user_id_foreign` (`user_id`),
   CONSTRAINT `freeze_transactions_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `freeze_transactions` WRITE;
 /*!40000 ALTER TABLE `freeze_transactions` DISABLE KEYS */;
-INSERT INTO `freeze_transactions` VALUES (1,1,'Freeze Balance',120,'2023-08-09 13:32:25','2023-08-09 13:32:25'),(2,1,'Freeze Balance',1300,'2023-08-09 13:32:25','2023-08-09 13:32:25');
 /*!40000 ALTER TABLE `freeze_transactions` ENABLE KEYS */;
 UNLOCK TABLES;
 DROP TABLE IF EXISTS `migrations`;
@@ -118,7 +117,7 @@ CREATE TABLE `options` (
 
 LOCK TABLES `options` WRITE;
 /*!40000 ALTER TABLE `options` DISABLE KEYS */;
-INSERT INTO `options` VALUES (1,'min_deposit','10','2023-08-09 11:52:40','2023-08-09 11:52:40'),(2,'deposit_fees','1','2023-08-09 11:52:40','2023-08-09 11:52:40'),(3,'withdraw_fees','5','2023-08-09 11:52:40','2023-08-09 11:52:40'),(4,'networkCap','3','2023-08-09 11:52:40','2023-08-09 11:52:40'),(5,'rewards_auto','1','2023-08-09 11:52:40','2023-08-09 11:52:40'),(6,'freeze_transaction_duration','-15','2023-08-09 11:52:40','2023-08-09 11:52:40'),(7,'daily_roi_network_x','2','2023-08-09 11:52:40','2023-08-09 11:52:40');
+INSERT INTO `options` VALUES (1,'min_deposit','10','2023-08-12 10:10:17','2023-08-12 10:10:17'),(2,'deposit_fees','1','2023-08-12 10:10:17','2023-08-12 10:10:17'),(3,'withdraw_fees','5','2023-08-12 10:10:17','2023-08-12 10:10:17'),(4,'networkCap','3','2023-08-12 10:10:17','2023-08-12 10:10:17'),(5,'rewards_auto','1','2023-08-12 10:10:17','2023-08-12 10:10:17'),(6,'freeze_transaction_duration','-15','2023-08-12 10:10:17','2023-08-12 10:10:17'),(7,'daily_roi_network_x','2','2023-08-12 10:10:17','2023-08-12 10:10:17');
 /*!40000 ALTER TABLE `options` ENABLE KEYS */;
 UNLOCK TABLES;
 DROP TABLE IF EXISTS `password_reset_tokens`;
@@ -179,7 +178,7 @@ CREATE TABLE `plan_profits` (
 
 LOCK TABLES `plan_profits` WRITE;
 /*!40000 ALTER TABLE `plan_profits` DISABLE KEYS */;
-INSERT INTO `plan_profits` VALUES (1,1,0.75,10,7,'2023-08-09 11:52:39','2023-08-09 11:52:39'),(2,2,1,12,10,'2023-08-09 11:52:39','2023-08-09 11:52:39'),(3,3,1,15,12,'2023-08-09 11:52:40','2023-08-09 11:52:40');
+INSERT INTO `plan_profits` VALUES (1,1,0.75,10,7,'2023-08-12 10:10:17','2023-08-12 10:10:17'),(2,2,1,12,10,'2023-08-12 10:10:17','2023-08-12 10:10:17'),(3,3,1,15,12,'2023-08-12 10:10:17','2023-08-12 10:10:17');
 /*!40000 ALTER TABLE `plan_profits` ENABLE KEYS */;
 UNLOCK TABLES;
 DROP TABLE IF EXISTS `plans`;
@@ -201,7 +200,7 @@ CREATE TABLE `plans` (
 
 LOCK TABLES `plans` WRITE;
 /*!40000 ALTER TABLE `plans` DISABLE KEYS */;
-INSERT INTO `plans` VALUES (1,'Silver Package',25,499,0.75,1,1,'2023-08-09 11:52:39','2023-08-09 11:52:39'),(2,'Gold Package',500,9999,1,1.25,1,'2023-08-09 11:52:39','2023-08-09 11:52:39'),(3,'Diamond Package',10000,1000000,1,1.5,1,'2023-08-09 11:52:40','2023-08-09 11:52:40');
+INSERT INTO `plans` VALUES (1,'Silver Package',25,499,0.75,1,1,'2023-08-12 10:10:17','2023-08-12 10:10:17'),(2,'Gold Package',500,9999,1,1.25,1,'2023-08-12 10:10:17','2023-08-12 10:10:17'),(3,'Diamond Package',10000,1000000,1,1.5,1,'2023-08-12 10:10:17','2023-08-12 10:10:17');
 /*!40000 ALTER TABLE `plans` ENABLE KEYS */;
 UNLOCK TABLES;
 DROP TABLE IF EXISTS `posts`;
@@ -220,7 +219,7 @@ CREATE TABLE `posts` (
 
 LOCK TABLES `posts` WRITE;
 /*!40000 ALTER TABLE `posts` DISABLE KEYS */;
-INSERT INTO `posts` VALUES (1,'The Basics of Forex Trading: A Beginner\'s Guide','In this introductory blog post, we cover the fundamental concepts of forex trading, making it an ideal starting point for newcomers to the world of currency trading. From understanding forex markets and currency pairs to learning how to read forex quotes and execute trades, this guide will provide beginners with the essential knowledge and terminology to embark on their forex trading journey confidently.',NULL,'2023-08-09 11:52:40','2023-08-09 11:52:40'),(2,'Mastering Technical Analysis for Forex Trading','Technical analysis is a powerful tool in the arsenal of successful forex traders. This blog post delves into the world of technical analysis, exploring popular indicators, chart patterns, and price action techniques that help identify trends, entry and exit points, and potential market reversals. Whether you\'re a seasoned trader or a beginner, this comprehensive guide will equip you with the skills to interpret charts and make well-informed trading decisions based on technical insights.',NULL,'2023-08-09 11:52:40','2023-08-09 11:52:40'),(3,'Risk Management: Safeguarding Your Forex Investments','Risk management is the backbone of profitable forex trading. This post emphasizes the significance of implementing a robust risk management strategy to protect your capital and maintain steady growth. We delve into position sizing, setting stop-loss orders, and understanding leverage, empowering traders to minimize potential losses and optimize risk-to-reward ratios. Learn how to stay disciplined, protect your investments, and preserve your trading account for sustained success in the dynamic forex market.',NULL,'2023-08-09 11:52:40','2023-08-09 11:52:40');
+INSERT INTO `posts` VALUES (1,'The Basics of Forex Trading: A Beginner\'s Guide','In this introductory blog post, we cover the fundamental concepts of forex trading, making it an ideal starting point for newcomers to the world of currency trading. From understanding forex markets and currency pairs to learning how to read forex quotes and execute trades, this guide will provide beginners with the essential knowledge and terminology to embark on their forex trading journey confidently.',NULL,'2023-08-12 10:10:17','2023-08-12 10:10:17'),(2,'Mastering Technical Analysis for Forex Trading','Technical analysis is a powerful tool in the arsenal of successful forex traders. This blog post delves into the world of technical analysis, exploring popular indicators, chart patterns, and price action techniques that help identify trends, entry and exit points, and potential market reversals. Whether you\'re a seasoned trader or a beginner, this comprehensive guide will equip you with the skills to interpret charts and make well-informed trading decisions based on technical insights.',NULL,'2023-08-12 10:10:17','2023-08-12 10:10:17'),(3,'Risk Management: Safeguarding Your Forex Investments','Risk management is the backbone of profitable forex trading. This post emphasizes the significance of implementing a robust risk management strategy to protect your capital and maintain steady growth. We delve into position sizing, setting stop-loss orders, and understanding leverage, empowering traders to minimize potential losses and optimize risk-to-reward ratios. Learn how to stay disciplined, protect your investments, and preserve your trading account for sustained success in the dynamic forex market.',NULL,'2023-08-12 10:10:17','2023-08-12 10:10:17');
 /*!40000 ALTER TABLE `posts` ENABLE KEYS */;
 UNLOCK TABLES;
 DROP TABLE IF EXISTS `rewards`;
@@ -239,7 +238,7 @@ CREATE TABLE `rewards` (
 
 LOCK TABLES `rewards` WRITE;
 /*!40000 ALTER TABLE `rewards` DISABLE KEYS */;
-INSERT INTO `rewards` VALUES (1,'PROMINENCE',3000,200,'2023-08-09 11:52:40','2023-08-09 11:52:40'),(2,'EMPYREAN',10000,500,'2023-08-09 11:52:40','2023-08-09 11:52:40'),(3,'PINNACLE',25000,1000,'2023-08-09 11:52:40','2023-08-09 11:52:40'),(4,'ELITE',50000,2000,'2023-08-09 11:52:40','2023-08-09 11:52:40'),(5,'APEX',100000,5000,'2023-08-09 11:52:40','2023-08-09 11:52:40'),(6,'SOVEREIGN',250000,10000,'2023-08-09 11:52:40','2023-08-09 11:52:40'),(7,'LUMINARY',500000,20000,'2023-08-09 11:52:40','2023-08-09 11:52:40'),(8,'ECHELON',3000000,50000,'2023-08-09 11:52:40','2023-08-09 11:52:40'),(9,'SUPREME',10000000,100000,'2023-08-09 11:52:40','2023-08-09 11:52:40');
+INSERT INTO `rewards` VALUES (1,'PROMINENCE',3000,200,'2023-08-12 10:10:17','2023-08-12 10:10:17'),(2,'EMPYREAN',10000,500,'2023-08-12 10:10:17','2023-08-12 10:10:17'),(3,'PINNACLE',25000,1000,'2023-08-12 10:10:17','2023-08-12 10:10:17'),(4,'ELITE',50000,2000,'2023-08-12 10:10:17','2023-08-12 10:10:17'),(5,'APEX',100000,5000,'2023-08-12 10:10:17','2023-08-12 10:10:17'),(6,'SOVEREIGN',250000,10000,'2023-08-12 10:10:17','2023-08-12 10:10:17'),(7,'LUMINARY',500000,20000,'2023-08-12 10:10:17','2023-08-12 10:10:17'),(8,'ECHELON',3000000,50000,'2023-08-12 10:10:17','2023-08-12 10:10:17'),(9,'SUPREME',10000000,100000,'2023-08-12 10:10:17','2023-08-12 10:10:17');
 /*!40000 ALTER TABLE `rewards` ENABLE KEYS */;
 UNLOCK TABLES;
 DROP TABLE IF EXISTS `tids`;
@@ -250,6 +249,7 @@ CREATE TABLE `tids` (
   `user_id` bigint(20) unsigned NOT NULL,
   `hash_id` varchar(255) NOT NULL,
   `amount` double NOT NULL,
+  `fees` double NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -286,12 +286,11 @@ CREATE TABLE `transactions` (
   CONSTRAINT `transactions_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `transactions_user_plan_id_foreign` FOREIGN KEY (`user_plan_id`) REFERENCES `user_plans` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `transactions_withdraw_id_foreign` FOREIGN KEY (`withdraw_id`) REFERENCES `withdraws` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `transactions` WRITE;
 /*!40000 ALTER TABLE `transactions` DISABLE KEYS */;
-INSERT INTO `transactions` VALUES (1,2,'Deposit',1000,1,'Admin Action',1,NULL,NULL,'2023-08-09 11:53:07','2023-08-09 11:53:07'),(2,1,'Deposit',1000,1,'Admin Action',1,NULL,NULL,'2023-08-09 11:57:40','2023-08-09 11:57:40'),(3,1,'Plan Active',1000,1,'Plan: Gold Package Activated',0,NULL,NULL,'2023-08-09 11:57:49','2023-08-09 11:57:49'),(4,2,'Deposit',12000,1,'Admin Action',1,NULL,NULL,'2023-08-09 13:17:48','2023-08-09 13:17:48'),(5,2,'Plan Active',13000,1,'Plan: Diamond Package Activated',0,NULL,NULL,'2023-08-09 13:17:57','2023-08-09 13:17:57'),(6,1,'Direct Commission',1560,1,'Direct Commision from: test1',1,NULL,1,'2023-08-09 13:17:57','2023-08-09 13:17:57'),(7,3,'Deposit',13000,1,'Admin Action',1,NULL,NULL,'2023-08-09 13:18:29','2023-08-09 13:18:29'),(8,3,'Plan Active',13000,1,'Plan: Diamond Package Activated',0,NULL,NULL,'2023-08-09 13:32:25','2023-08-09 13:32:25'),(9,1,'Direct Commission',1560,1,'Direct Commision from: test2',1,NULL,1,'2023-08-09 13:32:25','2023-08-09 13:32:25'),(10,1,'Freeze Balance',120,1,'User Balance Freezed',0,NULL,1,'2023-08-09 13:32:25','2023-08-09 13:32:25'),(11,1,'Binary Commission',1300,1,'Binary Matching Commission From: test2, Phone: 22314561454, Sponser: admin',1,NULL,1,'2023-08-09 13:32:25','2023-08-09 13:32:25'),(12,1,'Freeze Balance',1300,1,'User Balance Freezed',0,NULL,1,'2023-08-09 13:32:25','2023-08-09 13:32:25');
 /*!40000 ALTER TABLE `transactions` ENABLE KEYS */;
 UNLOCK TABLES;
 DROP TABLE IF EXISTS `user_plans`;
@@ -310,12 +309,11 @@ CREATE TABLE `user_plans` (
   KEY `user_plans_plan_id_foreign` (`plan_id`),
   CONSTRAINT `user_plans_plan_id_foreign` FOREIGN KEY (`plan_id`) REFERENCES `plans` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `user_plans_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `user_plans` WRITE;
 /*!40000 ALTER TABLE `user_plans` DISABLE KEYS */;
-INSERT INTO `user_plans` VALUES (1,1,2,1000,'active','2023-08-09 11:57:49','2023-08-09 11:57:49'),(2,2,3,13000,'active','2023-08-09 13:17:57','2023-08-09 13:17:57'),(3,3,3,13000,'active','2023-08-09 13:32:25','2023-08-09 13:32:25');
 /*!40000 ALTER TABLE `user_plans` ENABLE KEYS */;
 UNLOCK TABLES;
 DROP TABLE IF EXISTS `users`;
@@ -323,7 +321,9 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
+  `fname` varchar(255) DEFAULT NULL,
+  `mname` varchar(255) DEFAULT NULL,
+  `lname` varchar(255) DEFAULT NULL,
   `username` varchar(255) NOT NULL,
   `email` varchar(255) DEFAULT NULL,
   `mobile` varchar(255) DEFAULT NULL,
@@ -349,7 +349,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Administrator','admin','admin@test.com','03001212123','Pakistan','$2y$10$JMXPNcKh9C5jdxa6nN6SPO0XpIk1ZARwEpOyc5nMmenR4l7rXvjk.','default','left','active',2,3,'2023-08-09 11:52:39','admin',13000,0,NULL,'2023-08-09 11:52:39','2023-08-09 13:32:25'),(2,'test1','test1','test1@gmail.com','32323232323','asdf','$2y$10$pFVuy2oSlF9bHdqUwC9tcuKuao3De4dSQBlRKDT1nvqadjL02IkdG','admin','left','active',NULL,NULL,NULL,'user',0,0,NULL,'2023-08-09 11:52:55','2023-08-09 13:17:57'),(3,'test2','test2','test2@gmail.com','22314561454','asdf','$2y$10$J9ogC/fvC6wGsNeVxAoAvuaXbzjh3SfdBngAeQZMwlFcRGL4ArPZG','admin','right','active',NULL,NULL,NULL,'user',0,0,NULL,'2023-08-09 13:18:17','2023-08-09 13:32:25');
+INSERT INTO `users` VALUES (1,'Administrator',NULL,NULL,'admin','admin@test.com','03001212123','Pakistan','$2y$10$QoURVmlugzMm1cNiI.eh7.Sx9tIdWwskFX0Wee0EIoff.Vciyb8qy','default','left','pending',2,3,'2023-08-12 10:10:17','admin',0,0,NULL,'2023-08-12 10:10:17','2023-08-12 10:11:16'),(2,'test1',NULL,NULL,'test1','test1@gmail.com','34534345345','Pakistan','$2y$10$NGMD1pAH3j1p3pfifYVuleqVhnwhJCbjxI5a3AQuPWerEjZYn3Gzm','admin','left','pending',NULL,NULL,NULL,'user',0,0,NULL,'2023-08-12 10:11:02','2023-08-12 10:11:02'),(3,'test2',NULL,NULL,'test2','test2@gmail.com','345346456353','Pakistan','$2y$10$ikp8gH8IYMAHRfw0dG2izulWbbtkyQMzgI8cU.yEcSow0dvqQQeAm','admin','right','pending',NULL,NULL,NULL,'user',0,0,NULL,'2023-08-12 10:11:16','2023-08-12 10:11:16');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 DROP TABLE IF EXISTS `wallets`;
@@ -371,7 +371,7 @@ CREATE TABLE `wallets` (
 
 LOCK TABLES `wallets` WRITE;
 /*!40000 ALTER TABLE `wallets` DISABLE KEYS */;
-INSERT INTO `wallets` VALUES (1,'USDT','Tether','kwejrlwjer2l3kj4l2j34ljl','usdt.png','1',1,'2023-08-09 11:52:40','2023-08-09 11:52:40'),(2,'BTC','Bitcoin','kwejrlwjer2l3kj4l2j34ljl','bitcoin.png','1',1,'2023-08-09 11:52:40','2023-08-09 11:52:40'),(3,'TRX','TRON','kwejrlwjer2l3kj4l2j34ljl','trx.png','1',1,'2023-08-09 11:52:40','2023-08-09 11:52:40');
+INSERT INTO `wallets` VALUES (1,'USDT','Tether','kwejrlwjer2l3kj4l2j34ljl','usdt.png','1',1,'2023-08-12 10:10:17','2023-08-12 10:10:17'),(2,'BTC','Bitcoin','kwejrlwjer2l3kj4l2j34ljl','bitcoin.png','1',1,'2023-08-12 10:10:17','2023-08-12 10:10:17'),(3,'TRX','TRON','kwejrlwjer2l3kj4l2j34ljl','trx.png','1',1,'2023-08-12 10:10:17','2023-08-12 10:10:17');
 /*!40000 ALTER TABLE `wallets` ENABLE KEYS */;
 UNLOCK TABLES;
 DROP TABLE IF EXISTS `withdraws`;
