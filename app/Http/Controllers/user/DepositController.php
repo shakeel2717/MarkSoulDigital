@@ -76,14 +76,6 @@ class DepositController extends Controller
             'amount' => $validatedData['finalAmount'],
         ]);
 
-        auth()->user()->transactions()->create([
-            'type' => 'Deposit fees',
-            'sum' => false,
-            'status' => false,
-            'reference' => 'Deposit Funds throw ' . $wallet->name . " " . $wallet->symbol,
-            'amount' => $validatedData['finalAmount'] - $validatedData['amount'],
-        ]);
-
         auth()->user()->tids()->create([
             'hash_id' => $validatedData['hash_id'],
             'amount' => $validatedData['finalAmount'],
