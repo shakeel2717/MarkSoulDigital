@@ -18,7 +18,7 @@
             <div class="d-flex justify-content-between">
                 <form method="POST" action="{{ route('verification.send') }}">
                     @csrf
-                    <button class="btn btn-primary"> Resend Verification Email </button>
+                    <button class="btn btn-danger"> Resend Verification Email </button>
                 </form>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf

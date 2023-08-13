@@ -68,7 +68,7 @@
                             </div>
                         </div>
                         <div class="text-end mt-4">
-                            <button type="submit" class="btn btn-primary btn-label"> Update Profile <i
+                            <button type="submit" class="btn btn-danger btn-label"> Update Profile <i
                                     class="ph-arrow-fat-line-right label-icon align-middle fs-lg me-2"></i></button>
                         </div>
                     </form>
@@ -109,7 +109,7 @@
                             </div>
                         </div>
                         <div class="text-end mt-4">
-                            <button type="submit" class="btn btn-primary btn-label"> Update Password <i
+                            <button type="submit" class="btn btn-danger btn-label"> Update Password <i
                                     class="ph-arrow-fat-line-right label-icon align-middle fs-lg me-2"></i></button>
                         </div>
                     </form>

@@ -11,7 +11,7 @@
     --tb-indigo: #1e1a22;
     --tb-purple: #8561f9;
     --tb-pink: #f7649f;
-    --tb-red: #ff6c6c;
+    --tb-red: #FD5115;
     --tb-orange: #f1963b;
     --tb-yellow: #f6b749;
     --tb-green: #2dcb73;
@@ -35,7 +35,7 @@
     --tb-success: #2dcb73;
     --tb-info: #4ab0c1;
     --tb-warning: #f6b749;
-    --tb-danger: #ff6c6c;
+    --tb-danger: #FD5115;
     --tb-light: #eef0f7;
     --tb-dark: #0f1114;
     --tb-primary-rgb: 55, 98, 234;
@@ -3889,8 +3889,8 @@ fieldset:disabled .btn {
 
 .btn-danger {
     --tb-btn-color: #fff;
-    --tb-btn-bg: #ff6c6c;
-    --tb-btn-border-color: #ff6c6c;
+    --tb-btn-bg: #FD5115;
+    --tb-btn-border-color: #FD5115;
     --tb-btn-hover-color: #fff;
     --tb-btn-hover-bg: #d95c5c;
     --tb-btn-hover-border-color: #cc5656;
@@ -3900,8 +3900,8 @@ fieldset:disabled .btn {
     --tb-btn-active-border-color: #bf5151;
     --tb-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
     --tb-btn-disabled-color: #fff;
-    --tb-btn-disabled-bg: #ff6c6c;
-    --tb-btn-disabled-border-color: #ff6c6c
+    --tb-btn-disabled-bg: #FD5115;
+    --tb-btn-disabled-border-color: #FD5115
 }
 
 .btn-light {
@@ -4024,19 +4024,19 @@ fieldset:disabled .btn {
 }
 
 .btn-outline-danger {
-    --tb-btn-color: #ff6c6c;
-    --tb-btn-border-color: #ff6c6c;
+    --tb-btn-color: #FD5115;
+    --tb-btn-border-color: #FD5115;
     --tb-btn-hover-color: #fff;
-    --tb-btn-hover-bg: #ff6c6c;
-    --tb-btn-hover-border-color: #ff6c6c;
+    --tb-btn-hover-bg: #FD5115;
+    --tb-btn-hover-border-color: #FD5115;
     --tb-btn-focus-shadow-rgb: 255, 108, 108;
     --tb-btn-active-color: #fff;
-    --tb-btn-active-bg: #ff6c6c;
-    --tb-btn-active-border-color: #ff6c6c;
+    --tb-btn-active-bg: #FD5115;
+    --tb-btn-active-border-color: #FD5115;
     --tb-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-    --tb-btn-disabled-color: #ff6c6c;
+    --tb-btn-disabled-color: #FD5115;
     --tb-btn-disabled-bg: transparent;
-    --tb-btn-disabled-border-color: #ff6c6c;
+    --tb-btn-disabled-border-color: #FD5115;
     --tb-gradient: none
 }
 

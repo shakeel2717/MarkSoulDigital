@@ -186,7 +186,7 @@ final class allDeposits extends PowerGridComponent
     {
         return [
             Button::make('approve', 'Approve')
-                ->class('btn btn-primary btn-sm')
+                ->class('btn btn-danger btn-sm')
                 ->emit('approve', ['id' => 'id']),
         ];
     }

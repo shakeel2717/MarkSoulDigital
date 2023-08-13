@@ -189,7 +189,7 @@ final class AllWithdrawals extends PowerGridComponent
 
 
             Button::make('approve', 'Approve')
-                ->class('btn btn-primary btn-sm')
+                ->class('btn btn-danger btn-sm')
                 ->emit('approve', ['id' => 'id']),
 
             Button::make('delete', 'Delete')

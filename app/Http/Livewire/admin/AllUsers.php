@@ -197,7 +197,7 @@ final class AllUsers extends PowerGridComponent
                 ->emit('suspend', ['id' => 'id']),
 
             Button::make('activate', 'Activate')
-                ->class('btn btn-primary btn-sm')
+                ->class('btn btn-danger btn-sm')
                 ->emit('activate', ['id' => 'id']),
 
             Button::make('pin', 'Make PIN')
@@ -205,7 +205,7 @@ final class AllUsers extends PowerGridComponent
                 ->emit('pin', ['id' => 'id']),
 
             Button::make('unpin', 'Make Normal')
-                ->class('btn btn-primary btn-sm')
+                ->class('btn btn-danger btn-sm')
                 ->emit('unpin', ['id' => 'id']),
 
             //    Button::make('destroy', 'Delete')

@@ -626,7 +626,7 @@
                     </div>
 
                     <div class="mt-4">
-                        <button class="btn btn-primary w-100" type="submit">Create Account</button>
+                        <button class="btn btn-danger w-100" type="submit">Create Account</button>
                     </div>
                 </form>
 

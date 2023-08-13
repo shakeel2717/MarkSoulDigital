@@ -61,7 +61,7 @@
                         </div>
                     </div>
                     <div class="text-end mt-4">
-                        <button type="submit" class="btn btn-primary btn-label"> Withdraw Reqeust <i class="ph-arrow-fat-line-right label-icon align-middle fs-lg me-2"></i></button>
+                        <button type="submit" class="btn btn-danger btn-label"> Withdraw Reqeust <i class="ph-arrow-fat-line-right label-icon align-middle fs-lg me-2"></i></button>
                     </div>
                 </form>
             </div>
