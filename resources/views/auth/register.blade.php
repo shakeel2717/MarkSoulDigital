@@ -620,7 +620,7 @@
                     <input type="hidden" name="refer" value="{{ $refer }}">
                     <input type="hidden" name="position" value="{{ $position }}">
                     <div class="form-group">
-                        <input class="form-check-input" type="checkbox" value="" id="auth-remember-check">
+                        <input class="form-check-input" type="checkbox" value="" id="auth-remember-check" required>
                         <label class="form-check-label" for="auth-remember-check">I Agree to ther Terms
                             & Conditions</label>
                     </div>
