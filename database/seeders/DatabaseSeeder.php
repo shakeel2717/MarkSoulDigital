@@ -189,25 +189,16 @@ class DatabaseSeeder extends Seeder
 
         $wallet = new Wallet();
         $wallet->name = "Tether";
-        $wallet->symbol = "USDT";
+        $wallet->symbol = "USDT.TRC20";
         $wallet->icon = "usdt.png";
         $wallet->fees = 1;
         $wallet->address = "kwejrlwjer2l3kj4l2j34ljl";
         $wallet->save();
 
-        // adding payment methods
         $wallet = new Wallet();
-        $wallet->name = "Bitcoin";
-        $wallet->symbol = "BTC";
-        $wallet->icon = "bitcoin.png";
-        $wallet->fees = 1;
-        $wallet->address = "kwejrlwjer2l3kj4l2j34ljl";
-        $wallet->save();
-
-        $wallet = new Wallet();
-        $wallet->name = "TRON";
-        $wallet->symbol = "TRX";
-        $wallet->icon = "trx.png";
+        $wallet->name = "Ethereum";
+        $wallet->symbol = "ETH";
+        $wallet->icon = "ethereum.png";
         $wallet->fees = 1;
         $wallet->address = "kwejrlwjer2l3kj4l2j34ljl";
         $wallet->save();

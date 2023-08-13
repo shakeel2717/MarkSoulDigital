@@ -16,7 +16,7 @@
                     @csrf
                     <div class="row g-4">
                         @foreach ($wallets as $wallet)
-                        <div class="col-lg-4">
+                        <div class="col-lg-6">
                             <div class="form-check card-radio">
                                 <input id="paymentMethod{{$loop->iteration}}" name="paymentMethod" type="radio" value="{{ $wallet->id }}" class="form-check-input" {{ $loop->first ? 'checked' : '' }}>
                                 <label class="form-check-label" for="paymentMethod{{$loop->iteration}}">
@@ -24,7 +24,7 @@
                                         <span class="avatar">
                                             <img src="{{ asset('methods/') }}/{{ $wallet->icon }}" width="40" alt="{{ $wallet->name }}">
                                         </span>
-                                        <span class="fs-3xl float-end mt-2 text-wrap d-block fw-semibold">{{$wallet->name}}</span>
+                                        <span class="fs-3xl float-end mt-2 text-wrap d-block fw-semibold">{{$wallet->name}} ({{$wallet->symbol}})</span>
                                     </div>
                                 </label>
                             </div>
