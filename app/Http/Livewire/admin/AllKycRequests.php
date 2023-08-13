@@ -52,7 +52,7 @@ final class AllKycRequests extends PowerGridComponent
      */
     public function datasource(): Builder
     {
-        return Kyc::query();
+        return Kyc::query()->where('status', false);
     }
 
     /*

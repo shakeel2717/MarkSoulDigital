@@ -10,7 +10,7 @@
                     <tbody class="text-start">
                         <tr>
                             <td>Username: </td>
-                            <td class="text-end">{{ DB::table('users')->find($user)->username }}</td>
+                            <td class="text-end">{{ DB::table('users')->find($user)->fname }} {{ DB::table('users')->find($user)->lname }}</td>
                         </tr>
                         <tr>
                             <td>Active Investment</td>

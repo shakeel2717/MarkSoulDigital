@@ -40,7 +40,7 @@
                         <img src="{{ asset('brands/logo-light.png') }}" alt="{{ env('APP_NAME') }}" width="170">
                     </span>
                     <span class="logo-lg">
-                        <img src="{{ asset('brands/logo-light.png') }}" alt="{{ env('APP_NAME') }}" width="170">
+                        <img src="{{ asset('brands/logo-dark.png') }}" alt="{{ env('APP_NAME') }}" width="170">
                     </span>
                 </a>
                 <button type="button" class="btn btn-sm p-0 fs-3xl header-item float-end btn-vertical-sm-hover"
