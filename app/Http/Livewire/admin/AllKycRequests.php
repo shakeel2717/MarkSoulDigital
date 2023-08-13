@@ -144,6 +144,22 @@ final class AllKycRequests extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
+            Column::make('B Name', 'b_name')
+                ->sortable()
+                ->searchable(),
+
+            Column::make('B Father\s Name', 'b_f_name')
+                ->sortable()
+                ->searchable(),
+
+            Column::make('B ID Number', 'b_id_number')
+                ->sortable()
+                ->searchable(),
+
+            Column::make('B Mobile', 'b_mobile')
+                ->sortable()
+                ->searchable(),
+
             Column::make('Status', 'status')
                 ->toggleable(),
 

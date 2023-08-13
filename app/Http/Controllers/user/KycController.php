@@ -34,6 +34,10 @@ class KycController extends Controller
             'address' => 'required|string',
             'front' => 'required|image',
             'back' => 'required|image',
+            'b_name' => 'required|string',
+            'b_f_name' => 'required|string',
+            'b_id_number' => 'required|string',
+            'b_mobile' => 'required|string',
         ]);
 
         // checking if request is already under review
@@ -44,11 +48,11 @@ class KycController extends Controller
         }
 
         $front = $request->file('front');
-        $front_name = auth()->user()->username . time() . rand(00,11) . '.' . $front->getClientOriginalExtension();
+        $front_name = auth()->user()->username . time() . rand(00, 11) . '.' . $front->getClientOriginalExtension();
         $front->move(public_path('kyc/'), $front_name);
 
         $back = $request->file('back');
-        $back_name = auth()->user()->username . time() . rand(00,11) . '.' . $back->getClientOriginalExtension();
+        $back_name = auth()->user()->username . time() . rand(00, 11) . '.' . $back->getClientOriginalExtension();
         $back->move(public_path('kyc/'), $back_name);
 
         auth()->user()->kyc()->create([
@@ -56,6 +60,10 @@ class KycController extends Controller
             'address' => $validatedData['address'],
             'front' => $front_name,
             'back' => $back_name,
+            'b_name' => $validatedData['b_name'],
+            'b_f_name' => $validatedData['b_f_name'],
+            'b_id_number' => $validatedData['b_id_number'],
+            'b_mobile' => $validatedData['b_mobile'],
         ]);
 
         return back()->with('success', 'Kyc Request Submitted Successfully');
