@@ -13,6 +13,7 @@ class Tid extends Model
         'user_id',
         'amount',
         'fees',
+        'exchange',
         'hash_id',
         'status',
     ];

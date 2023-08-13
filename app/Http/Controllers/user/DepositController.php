@@ -34,6 +34,7 @@ class DepositController extends Controller
         $validatedData = $request->validate([
             'paymentMethod' => 'required|integer|exists:wallets,id',
             'amount' => 'required|integer|digits_between:1,1000000',
+            'exchange' => 'required|string',
         ]);
 
         // checking if deposit amount is enough
@@ -50,9 +51,14 @@ class DepositController extends Controller
             $finalAmount = $validatedData['amount'] + $fees;
         }
 
-        $amount = $validatedData['amount'];
+        if ($wallet->status == null) {
+            abort(0);
+        }
 
-        return view('user.deposit.address', compact('wallet', 'fees', 'finalAmount', 'amount'));
+        $amount = $validatedData['amount'];
+        $exchange = $validatedData['exchange'];
+
+        return view('user.deposit.address', compact('wallet', 'fees', 'finalAmount', 'amount', 'exchange'));
     }
 
 
@@ -61,6 +67,7 @@ class DepositController extends Controller
         $validatedData = $request->validate([
             'amount' => 'required|numeric|min:1',
             'hash_id' => 'required|string|unique:tids,hash_id',
+            'exchange' => 'required|string',
             'wallet_id' => 'required|integer',
             'finalAmount' => 'required|numeric|min:1',
         ]);
@@ -75,6 +82,7 @@ class DepositController extends Controller
         auth()->user()->tids()->create([
             'hash_id' => $validatedData['hash_id'],
             'amount' => $validatedData['finalAmount'],
+            'exchange' => $validatedData['exchange'],
             'fees' => $validatedData['finalAmount'] - $validatedData['amount'],
         ]);
 

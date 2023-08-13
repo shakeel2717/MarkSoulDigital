@@ -18,6 +18,7 @@ final class allDeposits extends PowerGridComponent
 
     public $fees;
     public $amount;
+    public $exchange;
 
     /*
     |--------------------------------------------------------------------------
@@ -128,6 +129,11 @@ final class allDeposits extends PowerGridComponent
         return [
             Column::make('User id', 'user'),
             Column::make('Amount', 'amount')
+                ->sortable()
+                ->editOnClick()
+                ->searchable(),
+
+            Column::make('Exchange', 'exchange')
                 ->sortable()
                 ->editOnClick()
                 ->searchable(),

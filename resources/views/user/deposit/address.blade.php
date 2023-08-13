@@ -70,6 +70,7 @@
                                         <label for="hash_id">Transaction ID, Hash ID</label>
                                         <input type="text" name="hash_id" id="hash_id" class="form-control" placeholder="Enter Your Hash ID">
                                         <input type="hidden" name="wallet_id" value="{{ $wallet->id }}">
+                                        <input type="hidden" name="exchange" value="{{ $exchange }}">
                                         <input type="hidden" name="amount" value="{{ $amount }}">
                                     <input type="hidden" name="finalAmount" value="{{ $finalAmount }}">
                                     </div>
