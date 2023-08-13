@@ -23,6 +23,7 @@ class DeliverDirectCommission
      */
     public function handle(PlanActivatedEvent $event): void
     {
+        $user = User::find(auth()->user()->id);
         $transaction = $event->transaction;
         $userPlan = $event->userPlan;
         // getting this user upliner
@@ -47,6 +48,11 @@ class DeliverDirectCommission
                 die();
             }
 
+            // checking networker account
+            if ($user->networker) {
+                info("Networker Account, Skipping Direct Profit");
+                goto EndThisListener;
+            }
 
             // getting direct commission
             $amount = $transaction->amount * $sponser->userPlan->plan->plan_profit->direct_commission / 100;
