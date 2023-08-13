@@ -65,6 +65,12 @@
             <span data-key="t-calendar">Edit Plan Profit</span>
         </a>
     </li>
+    <li class="nav-item">
+        <a href="{{ route('admin.setting.index') }}" class="nav-link menu-link">
+            <i class="ph-calendar"></i>
+            <span data-key="t-calendar">Website Settings</span>
+        </a>
+    </li>
 
     <li class="menu-title"><span data-key="t-menu">KYC Manage</span></li>
 
