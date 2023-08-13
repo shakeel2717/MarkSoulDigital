@@ -43,7 +43,7 @@
     --tb-success-rgb: 45, 203, 115;
     --tb-info-rgb: 74, 176, 193;
     --tb-warning-rgb: 246, 183, 73;
-    --tb-danger-rgb: 255, 108, 108;
+    --tb-danger-rgb: 253, 81, 21;
     --tb-light-rgb: 238, 240, 247;
     --tb-dark-rgb: 15, 17, 20;
     --tb-primary-text-emphasis: #3258d3;
@@ -154,7 +154,7 @@
     --tb-success-bg-subtle: rgba(45, 203, 115, 0.15);
     --tb-info-bg-subtle: rgba(74, 176, 193, 0.15);
     --tb-warning-bg-subtle: rgba(246, 183, 73, 0.15);
-    --tb-danger-bg-subtle: rgba(255, 108, 108, 0.15);
+    --tb-danger-bg-subtle: rgba(253, 81, 21, 0.15);
     --tb-light-bg-subtle: #27292c;
     --tb-dark-bg-subtle: #101217;
     --tb-primary-border-subtle: #1c3175;
@@ -4029,7 +4029,7 @@ fieldset:disabled .btn {
     --tb-btn-hover-color: #fff;
     --tb-btn-hover-bg: #FD5115;
     --tb-btn-hover-border-color: #FD5115;
-    --tb-btn-focus-shadow-rgb: 255, 108, 108;
+    --tb-btn-focus-shadow-rgb: 253, 81, 21;
     --tb-btn-active-color: #fff;
     --tb-btn-active-bg: #FD5115;
     --tb-btn-active-border-color: #FD5115;
@@ -8454,7 +8454,7 @@ fieldset:disabled .btn {
 
 .text-bg-danger {
     color: #fff !important;
-    background-color: RGBA(255, 108, 108, var(--tb-bg-opacity, 1)) !important
+    background-color: RGBA(253, 81, 21, var(--tb-bg-opacity, 1)) !important
 }
 
 .text-bg-light {

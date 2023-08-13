@@ -9,7 +9,7 @@
                 <hr>
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="card shadow-lg card-body">
+                        <div class="card bg-danger shadow-lg card-body">
                             <div class="d-flex align-items-center justify-content-between">
                                 <div class="d-flex align-items-center">
                                     <i class="ph-wallet-thin fs-1"></i>
