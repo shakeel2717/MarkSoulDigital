@@ -29,18 +29,18 @@
             <div class="navbar-brand-box">
                 <a href="{{ route('user.dashboard.index') }}" class="logo logo-dark mt-3">
                     <span class="logo-sm">
-                        <h3 class="text-white">{{ env('APP_NAME') }}</h3>
+                        <img src="{{ asset('brands/logo-dark.png') }}" alt="{{ env('APP_NAME') }}" width="200">
                     </span>
                     <span class="logo-lg">
-                        <h3 class="text-dark">{{ env('APP_NAME') }}</h3>
+                        <img src="{{ asset('brands/logo-dark.png') }}" alt="{{ env('APP_NAME') }}" width="200">
                     </span>
                 </a>
                 <a href="{{ route('user.dashboard.index') }}" class="logo logo-light mt-3">
                     <span class="logo-sm">
-                        <h3 class="text-white">{{ env('APP_NAME') }}</h3>
+                        <img src="{{ asset('brands/logo-light.png') }}" alt="{{ env('APP_NAME') }}" width="170">
                     </span>
                     <span class="logo-lg">
-                        <h3 class="text-white">{{ env('APP_NAME') }}</h3>
+                        <img src="{{ asset('brands/logo-light.png') }}" alt="{{ env('APP_NAME') }}" width="170">
                     </span>
                 </a>
                 <button type="button" class="btn btn-sm p-0 fs-3xl header-item float-end btn-vertical-sm-hover"
@@ -72,19 +72,19 @@
                         <div class="navbar-brand-box horizontal-logo">
                             <a href="{{ route('user.dashboard.index') }}" class="logo logo-dark">
                                 <span class="logo-sm">
-                                    <img src="/assets/images/logo-sm.png" alt="" height="22">
+                                    <img src="{{ asset('brands/logo-dark.png') }}" alt="" height="22">
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="/assets/images/logo-dark.png" alt="" height="22">
+                                    <img src="{{ asset('brands/logo-dark.png') }}" alt="" height="22">
                                 </span>
                             </a>
 
                             <a href="{{ route('user.dashboard.index') }}" class="logo logo-light">
                                 <span class="logo-sm">
-                                    <img src="/assets/images/logo-sm.png" alt="" height="22">
+                                    <img src="{{ asset('brands/logo-dark.png') }}" alt="" height="22">
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="/assets/images/logo-light.png" alt="" height="22">
+                                    <img src="{{ asset('brands/logo-dark.png') }}" alt="" height="22">
                                 </span>
                             </a>
                         </div>
@@ -244,7 +244,8 @@
                             </button>
                             <div class="dropdown-menu dropdown-menu-end">
                                 <!-- item-->
-                                <h6 class="dropdown-header">Welcome {{ auth()->user()->fname . ' ' . auth()->user()->lname }}!</h6>
+                                <h6 class="dropdown-header">Welcome
+                                    {{ auth()->user()->fname . ' ' . auth()->user()->lname }}!</h6>
                                 @if (auth()->user()->role == 'admin')
                                     <a class="dropdown-item" href="{{ route('admin.dashboard.index') }}"><i
                                             class="mdi mdi-account-circle text-muted fs-lg align-middle me-1"></i>

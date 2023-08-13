@@ -3,9 +3,9 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="text-center mt-4">
-                    <div class="position-relative m-2">
+                    <div class="position-relative m-2 overflow-hidden">
                         <img class="avatar-xl"
-                            src="{{ asset('reward' . '/' . getAwardBadge(auth()->user()->id)) }}.png" alt="">
+                            src="{{ asset('reward' . '/' . getAwardBadge(auth()->user()->id)) }}.png" alt="" class="w-25">
                     </div>
                     <div class="text-white text-uppercase mt-2">
                         {{ auth()->user()->fname . ' ' . auth()->user()->lname }}
@@ -93,13 +93,13 @@
     <li class="menu-title"><span data-key="t-menu">Account Settings</span></li>
     <li class="nav-item">
         <a href="{{ route('user.profile.index') }}" class="nav-link menu-link">
-            <i class="ph-file-text"></i>
+            <i class="ph-user-circle-gear"></i>
             <span data-key="t-calendar">Profile Setting</span>
         </a>
     </li>
     <li class="nav-item">
         <a href="{{ route('user.kyc.index') }}" class="nav-link menu-link">
-            <i class="ph-file-text"></i>
+            <i class="ph-lock-key-open"></i>
             <span data-key="t-calendar">Account Verification</span>
         </a>
     </li>

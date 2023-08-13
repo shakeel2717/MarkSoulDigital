@@ -32,7 +32,7 @@
     <div class="preloader  ">
         <button class="vs-btn preloaderCls">Cancel Preloader </button>
         <div class="preloader-inner">
-            <h2>{{ env('APP_NAME') }}</h2>
+            <img src="{{ asset('brands/logo-dark.png') }}" alt="{{ env('APP_NAME') }}" width="350">
             <span class="loader"></span>
         </div>
     </div>
@@ -40,7 +40,7 @@
         <div class="vs-menu-area text-center">
             <button class="vs-menu-toggle"><i class="fal fa-times"></i></button>
             <div class="mobile-logo">
-                <h2>{{ env('APP_NAME') }}</h2>
+                <img src="{{ asset('brands/logo-dark.png') }}" alt="{{ env('APP_NAME') }}" width="350">
             </div>
             <div class="vs-mobile-menu">
                 @include('inc.nav')
@@ -59,7 +59,8 @@
                         </p>
                     </div>
                     <div class="col-auto d-none d-sm-block">
-                        <a href="{{ route('register', ['refer' => 'admin', 'position' => 'left']) }}" class="vs-btn style6">Create Account</a>
+                        <a href="{{ route('register', ['refer' => 'admin', 'position' => 'left']) }}"
+                            class="vs-btn style6">Create Account</a>
                     </div>
                 </div>
             </div>
@@ -69,7 +70,7 @@
                 <div class="row align-items-center justify-content-between">
                     <div class="col">
                         <div class="header-logo">
-                            <h2>{{ env('APP_NAME') }}</h2>
+                            <img src="{{ asset('brands/logo-dark.png') }}" alt="{{ env('APP_NAME') }}" width="250">
                         </div>
                     </div>
                     <div class="col-auto d-none d-lg-block">
@@ -191,7 +192,8 @@
                             <div class="sidebar-gallery">
                                 @for ($i = 1; $i < 10; $i++)
                                     <div class="gallery-thumb">
-                                        <a href="#"><img src="{{ asset('landing/img/gallery/' . $i . '.jpg') }}"
+                                        <a href="#"><img
+                                                src="{{ asset('landing/img/gallery/' . $i . '.jpg') }}"
                                                 alt="Gallery Image" class="w-100">
                                         </a>
                                     </div>
@@ -208,7 +210,8 @@
                     <div class="col-auto d-none d-lg-block">
                         <div class="copyright-logo">
                             <a href="{{ route('index') }}">
-                                <h2 class="text-white">{{ env('APP_NAME') }}</h2>
+                                <img src="{{ asset('brands/logo-light.png') }}" alt="{{ env('APP_NAME') }}"
+                                    width="250">
                             </a>
                         </div>
                     </div>
