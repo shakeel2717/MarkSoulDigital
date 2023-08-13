@@ -8,6 +8,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\RanksController;
 use App\Http\Controllers\user\DashboardController;
 use App\Http\Controllers\user\DepositController;
+use App\Http\Controllers\user\KycController;
 use App\Http\Controllers\user\ProfileController as UserProfileController;
 use App\Http\Controllers\user\TreeController;
 use App\Http\Controllers\WithdrawController;
@@ -25,6 +26,7 @@ Route::prefix('user/')->name('user.')->middleware('auth', 'user')->group(functio
     Route::resource('ranks', RanksController::class);
     Route::post('/profile/password', [UserProfileController::class, 'password'])->name('profile.password');
     Route::resource('profile', UserProfileController::class);
+    Route::resource('kyc', KycController::class);
 
     Route::controller(HistoryController::class)->name('history.')->prefix('history/')->group(function () {
         Route::view('deposits', 'user.history.deposits')->name('deposits');

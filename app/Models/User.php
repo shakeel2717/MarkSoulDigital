@@ -68,6 +68,10 @@ class User extends Authenticatable
         return $this->hasMany(Tid::class)->where('status', false);
     }
 
+    public function kyc()
+    {
+        return $this->hasOne(Kyc::class);
+    }
 
     public function userPlan()
     {

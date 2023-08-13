@@ -65,5 +65,14 @@
             <span data-key="t-calendar">Edit Plan Profit</span>
         </a>
     </li>
+
+    <li class="menu-title"><span data-key="t-menu">KYC Manage</span></li>
+
+    <li class="nav-item">
+        <a href="{{ route('admin.history.kyc.all') }}" class="nav-link menu-link">
+            <i class="ph-calendar"></i>
+            <span data-key="t-calendar">All Kyc Request</span>
+        </a>
+    </li>
 </ul>
 @include('inc.user.nav')
