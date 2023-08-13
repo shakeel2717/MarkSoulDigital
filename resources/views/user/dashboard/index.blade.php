@@ -200,6 +200,8 @@
                                 </p>
                                 <p class="text-muted mb-0"> <b>${{ number_format(networkCap(auth()->user()->id), 2) }}</b>
                                     Total Earned</p>
+                                <p class="text-muted mb-0"> <b>{{ auth()->user()->refer }}({{ auth()->user()->position }})</b>
+                                    Sponser's Username</p>
                         </div>
                     </div>
                     <div class="progress" data-bs-toggle="tooltip"

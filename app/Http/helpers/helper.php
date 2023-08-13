@@ -185,7 +185,7 @@ function BusinessVolume($user_id, $position)
     }
 
     if (!checkLeftRightActiveStatus($user_id)) {
-        info("User not have both side active, skipping");
+        // info("User not have both side active, skipping");
         goto endThisFunction;
     }
 

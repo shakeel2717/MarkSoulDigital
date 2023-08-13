@@ -61,25 +61,37 @@ class Blockchain extends Command
             }
 
             // checking if this user is eligible for more then 2x
-            if (!checkLeftRightActiveStatus($userPlan->user_id)) {
-                info("This user Not Elible For More then 2x Daily ROI");
-                goto ThisLoopEnd;
-            }
+
 
 
             if (checkFreezeDaysCount($userPlan->user_id)) {
                 goto ThisLoopEnd;
             }
 
-            // checking 2x roicap for roi only
-            // if (totalDailyRoiCap($userPlan->user_id) <= totalRoi($userPlan->user_id)) {
-            //     info("User Total ROI Cap: ".totalDailyRoiCap($userPlan->user_id));
-            //     info("User Total ROI: ".totalRoi($userPlan->user_id));
-            //     $user_id = $userPlan->user_id;
-            //     info("This User DailyROI Cap Reached");
-            //     event(new ExpireUserPlanOnRoiCapReached($user_id));
-            //     goto ThisLoopEnd;
-            // }
+            if (!checkLeftRightActiveStatus($userPlan->user_id)) {
+                // checking 2x roicap for roi only
+                if (totalDailyRoiCap($userPlan->user_id) <= totalRoi($userPlan->user_id)) {
+                    info("User Total ROI Cap: " . totalDailyRoiCap($userPlan->user_id));
+                    info("User Total ROI: " . totalRoi($userPlan->user_id));
+                    $user_id = $userPlan->user_id;
+                    info("This User DailyROI Cap Reached");
+                    event(new ExpireUserPlanOnRoiCapReached($user_id));
+                    goto ThisLoopEnd;
+                }
+            }
+
+
+            // checking if RoiCap Will Reached after this profit
+            $profit = $userPlan->amount * $planProfit / 100;
+
+            if (!checkLeftRightActiveStatus($userPlan->user_id)) {
+                info("This user Not Elible For More then 2x Daily ROI");
+                if (totalDailyRoiCap($userPlan->user_id) <= ($profit + totalRoi($userPlan->user_id))) {
+                    info("This User DailyROI Cap Reached.");
+                    $profit = totalDailyRoiCap($userPlan->user_id) - totalRoi($userPlan->user_id);
+                }
+            }
+
 
             $dailyRoiTransaction = $userPlan->user->transactions()->create([
                 'type' => 'Daily ROI',
@@ -87,7 +99,7 @@ class Blockchain extends Command
                 'status' => true,
                 'user_plan_id' => $userPlan->id,
                 'reference' => $userPlan->plan->name . ' Plan & Amount :' . number_format($userPlan->amount, 2),
-                'amount' => $userPlan->amount * $planProfit / 100,
+                'amount' => $profit,
             ]);
             event(new FreezeBalanceVerification($userPlan->user->id));
             info("ROI Delivered to " . $userPlan->user->username . "Successfully");

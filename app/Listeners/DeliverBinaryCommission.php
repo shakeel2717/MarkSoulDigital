@@ -25,6 +25,7 @@ class DeliverBinaryCommission
     public function handle(PlanActivatedEvent $event): void
     {
         Artisan::call("check:binary");
+        Artisan::call("check:reward");
         // info("Delivering Binary Commission");
         // $upliner = $event->transaction->user;
         // startDeliveringBinaryCommission:
