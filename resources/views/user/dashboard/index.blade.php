@@ -112,7 +112,7 @@
                 <div class="card-body">
                     <span class="avatar-sm text-success float-end">
                         <span class="avatar-title bg-primary-subtle text-danger rounded-circle fs-3">
-                            <i class="ph-users-three"></i>
+                            <i class="ph-currency-dollar"></i>
                         </span>
                     </span>
                     <h4 class="mb-4">$ {{ number_format(totalDirectCommission(auth()->user()->id), 2) }}</h4>
