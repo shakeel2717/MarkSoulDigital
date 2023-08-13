@@ -406,32 +406,38 @@
     </div>
 @endsection
 @section('footer')
-    <script>
-        (function() {
-            // Get the past date and time in milliseconds
-            var pastDateTime = new Date("{{ checkFreezeFirstDate(auth()->user()->id) }}").getTime();
+    @if (networkCapInPercentage(auth()->user()->id) >= 100)
+        <script>
+            (function() {
+                // Get the past date and time in milliseconds
+                var pastDateTime = new Date("{{ checkFreezeFirstDate(auth()->user()->id) }}").getTime();
 
-            // Update the counter every second
-            var interval = setInterval(function() {
-                var now = new Date().getTime();
-                var timeRemaining = now - pastDateTime;
+                // Update the counter every second
+                var interval = setInterval(function() {
+                    var now = new Date().getTime();
+                    var timeRemaining = now - pastDateTime;
 
-                // If the past date has not passed yet
-                if (timeRemaining > 0) {
-                    // Calculate days, hours, minutes, and seconds
-                    var days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
-                    var hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                    var minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-                    var seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+                    // If the past date has not passed yet
+                    if (timeRemaining > 0) {
+                        // Calculate days, hours, minutes, and seconds
+                        var days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+                        var hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                        var minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+                        var seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+                        if (days > 14) {
+                            document.getElementById('counter').textContent = "Expired";
+                        } else {
+                            // Update the counter element with the remaining time
+                            document.getElementById('counter').textContent = days + 'D ' + hours + 'H ' + minutes +
+                                'M ' + seconds + 'S';
+                        }
 
-                    // Update the counter element with the remaining time
-                    document.getElementById('counter').textContent = days + 'D ' + hours + 'H ' + minutes +
-                        'M ' + seconds + 'S';
-                } else {
-                    clearInterval(interval);
-                    document.getElementById('counter').textContent = 'Subscription Expired';
-                }
-            }, 1000); // Update every second
-        })();
-    </script>
+                    } else {
+                        clearInterval(interval);
+                        document.getElementById('counter').textContent = 'Subscription Expired';
+                    }
+                }, 1000); // Update every second
+            })();
+        </script>
+    @endif
 @endsection

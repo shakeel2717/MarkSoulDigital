@@ -15,6 +15,10 @@ class Kyc extends Model
         'address',
         'front',
         'back',
+        'b_name',
+        'b_f_name',
+        'b_id_number',
+        'b_mobile',
         'status',
     ];
 

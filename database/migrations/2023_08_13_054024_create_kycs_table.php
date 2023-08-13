@@ -18,6 +18,10 @@ return new class extends Migration
             $table->string('address');
             $table->string('front');
             $table->string('back');
+            $table->string('b_name');
+            $table->string('b_f_name');
+            $table->string('b_id_number');
+            $table->string('b_mobile');
             $table->boolean('status')->default(false);
             $table->timestamps();
         });
