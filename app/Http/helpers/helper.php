@@ -121,14 +121,6 @@ function freezeTransactionRecovered($user_id, $userPlan_id)
 
 function networkCapInPercentage($user_id)
 {
-    // $user = User::find($user_id);
-    // $userPlan = $user->userPlan;
-    // if ($userPlan == "") {
-    //     return 0;
-    // }
-
-    // $in = $userPlan->network_cap_transactions->sum('amount') - freezeTransactionRecovered($user_id, $userPlan->id);
-
     if (networkCap($user_id) < 1) {
         return 0;
     }
@@ -339,6 +331,13 @@ function checkFreezeDaysCount($user_id)
     }
 
     return false;
+}
+
+function checkFreezeFirstDate($user_id)
+{
+    $user = User::find($user_id);
+    $firstFreezeTransaction = $user->freeze_transactions->first();
+    return $firstFreezeTransaction->created_at;
 }
 
 

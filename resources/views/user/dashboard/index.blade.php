@@ -10,11 +10,18 @@
                     <h5 class="text-success">Total
                         ${{ number_format(balance(auth()->user()->id) +auth()->user()->freeze_transactions->sum('amount'),2) }}
                     </h5>
-                    <p class="mb-0">We Offer you to Use your Freeze Balance to ReInvest or Upgrade Plan</p>
-                    <form action="{{ route('user.plan.networkcap') }}" method="POST">
-                        @csrf
-                        <button class="btn btn-success mt-3">Activate Plan</button>
-                    </form>
+                    <p class="mb-3">We Offer you to Use your Freeze Balance to ReInvest or Upgrade Plan</p>
+                    <div class="d-flex justify-content-start gap-4 align-items-center">
+                        <form action="{{ route('user.plan.networkcap') }}" method="POST">
+                            @csrf
+                            <button class="btn btn-success">Activate Plan</button>
+                        </form>
+                        <div class="count-timer">
+                            <div id="countdown" data-end="{{ checkFreezeFirstDate(auth()->user()->id) }}">
+                            </div>
+                            <h4 class="text-success mb-0" id="counter"></h4>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -310,7 +317,7 @@
                             <i class="ph-currency-dollar"></i>
                         </span>
                     </span>
-                    <h4 class="mb-4">${{ number_format(BusinessVolume(auth()->user()->id,'right'), 2) }}</h4>
+                    <h4 class="mb-4">${{ number_format(BusinessVolume(auth()->user()->id, 'right'), 2) }}</h4>
                     <p class="text-muted fw-medium text-uppercase mb-0">Right Business Volume </p>
                 </div>
             </div>
@@ -397,4 +404,34 @@
             </div>
         </div>
     </div>
+@endsection
+@section('footer')
+    <script>
+        (function() {
+            // Get the past date and time in milliseconds
+            var pastDateTime = new Date("{{ checkFreezeFirstDate(auth()->user()->id) }}").getTime();
+
+            // Update the counter every second
+            var interval = setInterval(function() {
+                var now = new Date().getTime();
+                var timeRemaining = now - pastDateTime;
+
+                // If the past date has not passed yet
+                if (timeRemaining > 0) {
+                    // Calculate days, hours, minutes, and seconds
+                    var days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+                    var hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    var minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+                    var seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+                    // Update the counter element with the remaining time
+                    document.getElementById('counter').textContent = days + 'D ' + hours + 'H ' + minutes +
+                        'M ' + seconds + 'S';
+                } else {
+                    clearInterval(interval);
+                    document.getElementById('counter').textContent = 'Subscription Expired';
+                }
+            }, 1000); // Update every second
+        })();
+    </script>
 @endsection
