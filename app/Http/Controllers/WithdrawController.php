@@ -43,7 +43,7 @@ class WithdrawController extends Controller
 
         // checking if this user KYC is Complete
         if (!auth()->user()->kyc || !auth()->user()->kyc->status) {
-            return back()->withErrors(['Please Verified your KYC First']);
+            return back()->withErrors(['You can Place Withdraw Request After KYC Approved.']);
         }
 
         $wallet = Wallet::findOrFail($validatedData['paymentMethod']);
