@@ -41,6 +41,11 @@ class WithdrawController extends Controller
             return back()->withErrors(['Minimum Withdrawal Limit is: ' . site_option('min_deposit')]);
         }
 
+        // checking if this user KYC is Complete
+        if (!auth()->user()->kyc || !auth()->user()->kyc->status) {
+            return back()->withErrors(['Please Verified your KYC First']);
+        }
+
         $wallet = Wallet::findOrFail($validatedData['paymentMethod']);
 
         $fees = $validatedData['amount'] * site_option('withdraw_fees') / 100;
