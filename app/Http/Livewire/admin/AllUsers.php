@@ -5,6 +5,7 @@ namespace App\Http\Livewire\admin;
 use App\Models\User;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
 use PowerComponents\LivewirePowerGrid\Rules\{Rule, RuleActions};
 use PowerComponents\LivewirePowerGrid\Traits\{ActionButton, WithExport};
 use PowerComponents\LivewirePowerGrid\Filters\Filter;
@@ -119,7 +120,12 @@ final class AllUsers extends PowerGridComponent
     {
         return [
             // Column::make('Id', 'id'),
-            Column::make('Name', 'name')
+            Column::make('Name', 'fname')
+                ->sortable()
+                ->editOnClick()
+                ->searchable(),
+
+            Column::make('Name', 'lname')
                 ->sortable()
                 ->editOnClick()
                 ->searchable(),
@@ -160,7 +166,8 @@ final class AllUsers extends PowerGridComponent
     public function filters(): array
     {
         return [
-            Filter::inputText('name')->operators(['contains']),
+            Filter::inputText('fname')->operators(['contains']),
+            Filter::inputText('lname')->operators(['contains']),
             Filter::inputText('username')->operators(['contains']),
             Filter::inputText('email')->operators(['contains']),
             Filter::inputText('refer')->operators(['contains']),
@@ -188,17 +195,17 @@ final class AllUsers extends PowerGridComponent
     public function actions(): array
     {
         return [
-            Button::make('delete', 'Delete')
-                ->class('btn btn-danger btn-sm')
-                ->emit('delete', ['id' => 'id']),
+            // Button::make('delete', 'Delete')
+            //     ->class('btn btn-danger btn-sm')
+            //     ->emit('delete', ['id' => 'id']),
 
-            Button::make('suspend', 'Suspend')
-                ->class('btn btn-danger btn-sm')
-                ->emit('suspend', ['id' => 'id']),
+            // Button::make('suspend', 'Suspend')
+            //     ->class('btn btn-danger btn-sm')
+            //     ->emit('suspend', ['id' => 'id']),
 
-            Button::make('activate', 'Activate')
-                ->class('btn btn-danger btn-sm')
-                ->emit('activate', ['id' => 'id']),
+            // Button::make('activate', 'Activate')
+            //     ->class('btn btn-danger btn-sm')
+            //     ->emit('activate', ['id' => 'id']),
 
             Button::make('pin', 'Make PIN')
                 ->class('btn btn-danger btn-sm')
@@ -207,6 +214,10 @@ final class AllUsers extends PowerGridComponent
             Button::make('unpin', 'Make Normal')
                 ->class('btn btn-danger btn-sm')
                 ->emit('unpin', ['id' => 'id']),
+
+            Button::make('login', 'Login')
+                ->class('btn btn-danger btn-sm')
+                ->emit('login', ['id' => 'id']),
 
             //    Button::make('destroy', 'Delete')
             //        ->class('bg-red-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
@@ -224,6 +235,7 @@ final class AllUsers extends PowerGridComponent
             [
                 'delete'   => 'delete',
                 'pin'   => 'pin',
+                'login'   => 'login',
                 'unpin'   => 'unpin',
                 'suspend'   => 'suspend',
                 'activate'   => 'activate',
@@ -254,6 +266,15 @@ final class AllUsers extends PowerGridComponent
         $user->save();
 
         $this->dispatchBrowserEvent('deleted', ['status' => 'User Suspended Successfully']);
+    }
+
+    public function login($id)
+    {
+        $user = User::find($id['id']);
+
+        Auth::login($user);
+
+        return redirect()->route('user.dashboard.index');
     }
 
     public function suspend($id)
