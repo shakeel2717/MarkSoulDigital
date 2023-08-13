@@ -26,6 +26,13 @@
                                         class="form-control" value="{{ old('fname') }}">
                                 </div>
                             </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="form-group">
+                                    <label for="lname">Last Name</label>
+                                    <input type="text" name="lname" id="lname" placeholder="Last Name"
+                                        class="form-control" value="{{ old('lname') }}">
+                                </div>
+                            </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="username">Username</label>
@@ -33,13 +40,13 @@
                                         class="form-control" value="{{ old('fname') }}">
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" name="email" id="email" placeholder="Enter Email"
-                                class="form-control" value="{{ old('fname') }}">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" name="email" id="email" placeholder="Enter Email"
+                                        class="form-control" value="{{ old('fname') }}">
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="mb-3">
@@ -581,7 +588,8 @@
                                         <div class="form-group">
                                             <label for="mobile">Mobile #</label>
                                             <input type="text" name="mobile" id="mobile"
-                                                placeholder="Enter Mobile" class="form-control" value="{{ old('fname') }}">
+                                                placeholder="Enter Mobile" class="form-control"
+                                                value="{{ old('fname') }}">
                                         </div>
                                     </div>
                                 </div>

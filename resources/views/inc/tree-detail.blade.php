@@ -10,7 +10,8 @@
                     <tbody class="text-start">
                         <tr>
                             <td>Username: </td>
-                            <td class="text-end">{{ DB::table('users')->find($user)->fname }} {{ DB::table('users')->find($user)->lname }}</td>
+                            <td class="text-end">{{ DB::table('users')->find($user)->fname }}
+                                {{ DB::table('users')->find($user)->lname }}</td>
                         </tr>
                         <tr>
                             <td>Active Investment</td>
@@ -18,7 +19,8 @@
                         </tr>
                         <tr>
                             <td>Sponser Username</td>
-                            <td class="text-end">{{ DB::table('users')->find($user)->refer }}</td>
+                            <td class="text-end">{{ DB::table('users')->find($user)->refer }}
+                                ({{ DB::table('users')->find($user)->position }})</td>
                         </tr>
                         <tr>
                             <td>Total Left Paid Team</td>
