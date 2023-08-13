@@ -18,6 +18,7 @@ class Transaction extends Model
         'reference',
         'user_plan_id',
         'withdraw_id',
+        'reward_id',
     ];
 
     public function user()
@@ -29,5 +30,10 @@ class Transaction extends Model
     public function withdraw()
     {
         return $this->belongsTo(Withdraw::class);
+    }
+
+    public function reward()
+    {
+        return $this->belongsTo(Reward::class);
     }
 }

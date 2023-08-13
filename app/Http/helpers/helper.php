@@ -310,12 +310,28 @@ function getBinaryCommission($user_id)
 function checkRewardStatus($reward_id, $user_id)
 {
     $reward = Reward::find($reward_id);
-    $transactions = Transaction::where('user_id', $user_id)->where('reference', $reward->name . ' Reward Achived')->count();
+    $transactions = Transaction::where('user_id', $user_id)->where('reference', $reward->name . ' Reward Achieved')->count();
     if ($transactions > 0) {
         return 1;
     } else {
         return 0;
     }
+}
+
+function checkRewardAchieve($user_id)
+{
+    $transactions = Transaction::where('user_id', $user_id)->where('type', 'Reward Achieved')->count();
+    if ($transactions > 0) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
+function getAwardBadge($user_id)
+{
+    $transactions = Transaction::latest()->where('user_id', $user_id)->where('type', 'Reward Achieved')->first();
+    return $transactions->reward->id;
 }
 
 function checkFreezeDaysCount($user_id)

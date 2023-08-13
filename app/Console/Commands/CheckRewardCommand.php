@@ -38,28 +38,29 @@ class CheckRewardCommand extends Command
             // getting this user matching business
             $totalMatchingBusiness = totalMatchingBusiness($user->id);
             if ($totalMatchingBusiness < 1) {
-                info("not Eligble For Reward");
+                info("not Eligible For Reward");
             }
 
-            info("Eligble For Reward" . $user->name);
+            info("Eligible For Reward" . $user->name);
             $rewards = Reward::get();
             $currentRewardRequried = 0;
             foreach ($rewards as $reward) {
                 $currentRewardRequried += $reward->business;
                 if (totalMatchingBusiness($user->id) < $currentRewardRequried) {
-                    info("Reward not Acheveid" . totalMatchingBusiness($user->id) . " " . $reward->business);
+                    info("Reward not Achieved" . totalMatchingBusiness($user->id) . " " . $reward->business);
                     goto ThisUserEndLoop;
                 }
 
-                info("Reward Achived" . $reward->name);
+                info("Reward Achieved" . $reward->name);
 
                 // delivering Profit to this User
                 $transaction = $user->transactions()->firstOrCreate([
                     'type' => 'Reward Achieved',
                     'sum' => true,
                     'status' => true,
-                    'reference' => $reward->name . ' Reward Achived',
+                    'reference' => $reward->name . ' Reward Achieved',
                     'amount' =>  $reward->reward,
+                    'reward_id' =>  $reward->id,
                 ]);
 
                 info("Reward Transaction Added");
