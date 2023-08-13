@@ -5,6 +5,7 @@ namespace App\Http\Controllers\user;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -49,6 +50,28 @@ class ProfileController extends Controller
         $profile->save();
 
         return back()->with('success', 'User Profile Updated Successfully');
+    }
+
+    public function password(Request $request)
+    {
+        $validatedData = $request->validate([
+            'cpassword' => 'required|string',
+            'password' => 'required|string|confirmed',
+        ]);
+
+        if (Hash::check($validatedData['cpassword'], auth()->user()->password)) {
+            // updating the user password
+            $user = User::find(auth()->user()->id);
+            $user->password = bcrypt($validatedData['password']);
+            $user->save();
+            // redirecting to the profile page
+            return back()->with('success', 'Password updated successfully');
+        } else {
+            // redirecting to the profile page
+            return back()->withErrors('Current password is incorrect');
+        }
+
+        return back()->with('success', 'Password updated successfully');
     }
 
     /**

@@ -76,4 +76,45 @@
             </div>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Update Password</h2>
+                    <form action="{{ route('user.profile.password') }}" method="POST">
+                        @csrf
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group mb-3">
+                                    <label for="cpassword">Current Password</label>
+                                    <input type="password" name="cpassword" id="cpassword" class="form-control"
+                                        placeholder="Enter Current Password" value="">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group mb-3">
+                                    <label for="password">New Password</label>
+                                    <input type="password" name="password" id="password" class="form-control"
+                                        placeholder="Enter New Password" value="">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group mb-3">
+                                    <label for="password_confirmation">Confirm New Password</label>
+                                    <input type="password" name="password_confirmation" id="password_confirmation"
+                                        class="form-control" placeholder="Enter Confirm New Password" value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-end mt-4">
+                            <button type="submit" class="btn btn-primary btn-label"> Update Password <i
+                                    class="ph-arrow-fat-line-right label-icon align-middle fs-lg me-2"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

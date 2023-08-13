@@ -181,7 +181,10 @@ function BusinessVolume($user_id, $position)
     }
 
     foreach ($allDirectRefers as $count => $directRefer) {
-        $totalAmount += $directRefer->userPlan->amount;
+        // checking if this user is networker
+        if (!$directRefer->networker) {
+            $totalAmount += $directRefer->userPlan->amount;
+        }
         info($directRefer->username . " Direct Balance Added: " . $directRefer->userPlan->amount);
         $directBusinessAlreadyCount[] = $directRefer->id;
         if ($count == 0) {
@@ -213,7 +216,11 @@ function BusinessVolume($user_id, $position)
         $thisUserPlanDate = Carbon::parse($leftUser->userPlan->created_at);
 
         if ($directUserPlanDate->isBefore($thisUserPlanDate)) {
-            $totalAmount += $leftUser->userPlan->amount;
+
+            // checking networker
+            if (!$leftUser->networker) {
+                $totalAmount += $leftUser->userPlan->amount;
+            }
             info($leftUser->username . " downline team Balance Added: " . $leftUser->userPlan->amount);
         } else {
             info($firstLevelActiveUser . " Date of First Level Direct User");

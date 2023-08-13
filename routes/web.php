@@ -23,6 +23,7 @@ Route::prefix('user/')->name('user.')->middleware('auth', 'user')->group(functio
     Route::resource('tree', TreeController::class);
     Route::resource('withdraw', WithdrawController::class);
     Route::resource('ranks', RanksController::class);
+    Route::post('/profile/password', [UserProfileController::class, 'password'])->name('profile.password');
     Route::resource('profile', UserProfileController::class);
 
     Route::controller(HistoryController::class)->name('history.')->prefix('history/')->group(function () {
