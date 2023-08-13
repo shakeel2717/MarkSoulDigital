@@ -67,6 +67,11 @@ class DepositController extends Controller
 
         $wallet = Wallet::findOrFail($validatedData['wallet_id']);
 
+        // checking if this user request already pending
+        if (auth()->user()->pending_tids()->get()->count() > 0) {
+            return back()->withErrors(['Your Deposit Request Already Received, Please wait!']);
+        }
+
         auth()->user()->tids()->create([
             'hash_id' => $validatedData['hash_id'],
             'amount' => $validatedData['finalAmount'],
