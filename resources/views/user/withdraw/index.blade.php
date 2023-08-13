@@ -12,7 +12,7 @@
                         <div class="card bg-danger shadow-lg card-body">
                             <div class="d-flex align-items-center justify-content-between">
                                 <div class="d-flex align-items-center">
-                                    <i class="ph-wallet-thin fs-1"></i>
+                                    <i class="ph-wallet fs-1"></i>
                                     <h4 class="card-title mb-0 ms-2">Available Balance</h4>
                                 </div>
                                 <h2 class="card-title mb-0">${{ number_format(balance(auth()->user()->id),2) }}</h2>
