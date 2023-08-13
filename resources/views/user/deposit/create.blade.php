@@ -35,13 +35,13 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="amount">Amount in USD $</label>
+                                <label for="amount">Amount in USD $ <span class="text-danger">*</span></label>
                                 <input type="text" name="amount" id="amount" class="form-control" placeholder="Enter Amount in USD">
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group mt-4">
-                                <label for="exchange">Exchange Name</label>
+                                <label for="exchange">Exchange Name <span class="text-danger">*</span></label>
                                 <input type="text" name="exchange" id="exchange" class="form-control" placeholder="Type Exchange Name">
                             </div>
                         </div>

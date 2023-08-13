@@ -48,13 +48,13 @@
                     <div class="row">
                         <div class="col-md-12 mb-3">
                             <div class="form-group">
-                                <label for="wallet">Wallet Address</label>
+                                <label for="wallet">Wallet Address <span class="text-danger">*</span></label>
                                 <input type="text" name="wallet" id="wallet" class="form-control" placeholder="Enter Wallet Address">
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="amount">Amount in USD</label>
+                                <label for="amount">Amount in USD <span class="text-danger">*</span></label>
                                 <input type="text" name="amount" id="amount" class="form-control" placeholder="Enter Amount">
                                 <small>Withdraw Fees: {{ site_option('withdraw_fees') }}%</small>
                             </div>

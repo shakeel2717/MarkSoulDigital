@@ -21,28 +21,28 @@
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <div class="form-group">
-                                    <label for="fname">First Name</label>
+                                    <label for="fname">First Name <span class="text-danger">*</span></label>
                                     <input type="text" name="fname" id="fname" placeholder="First Name"
                                         class="form-control" value="{{ old('fname') }}">
                                 </div>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <div class="form-group">
-                                    <label for="lname">Last Name</label>
+                                    <label for="lname">Last Name <span class="text-danger">*</span></label>
                                     <input type="text" name="lname" id="lname" placeholder="Last Name"
                                         class="form-control" value="{{ old('lname') }}">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="username">Username</label>
+                                    <label for="username">Username <span class="text-danger">*</span></label>
                                     <input type="text" name="username" id="username" placeholder="Username"
                                         class="form-control" value="{{ old('fname') }}">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="email">Email</label>
+                                    <label for="email">Email <span class="text-danger">*</span></label>
                                     <input type="email" name="email" id="email" placeholder="Enter Email"
                                         class="form-control" value="{{ old('fname') }}">
                                 </div>
@@ -53,7 +53,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="country">Country</label>
+                                    <label for="country">Country <span class="text-danger">*</span></label>
                                     <select class="form-select" id="country" name="country">
                                         <option value="">Select Country</option>
                                         <option value="Afghanistan">Afghanistan</option>
@@ -586,7 +586,7 @@
                                     </div> --}}
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="mobile">Mobile #</label>
+                                            <label for="mobile">Mobile # <span class="text-danger">*</span></label>
                                             <input type="text" name="mobile" id="mobile"
                                                 placeholder="Enter Mobile" class="form-control"
                                                 value="{{ old('fname') }}">
@@ -597,7 +597,7 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="password">Password</label>
+                        <label for="password">Password <span class="text-danger">*</span></label>
                         <div class="input-group mb-3">
                             <input type="password" name="password" id="passwordInput" class="form-control"
                                 placeholder="Password" aria-label="Password" aria-describedby="togglePassword">
@@ -607,7 +607,7 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="password_confirmation">Confirm Password</label>
+                        <label for="password_confirmation">Confirm Password <span class="text-danger">*</span></label>
                         <div class="input-group mb-3">
                             <input type="password" name="password_confirmation" id="password_confirmation"
                                 class="form-control" placeholder="Password" aria-label="Password"
