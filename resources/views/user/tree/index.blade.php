@@ -203,7 +203,7 @@
             }
 
             .tf-tree li {
-                padding: 0px 1px;
+                padding: 0px 0.5px;
             }
 
             .tf-tree .tf-nc,
@@ -234,7 +234,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <div class="card card-body">
+            <div class="card">
                 <div class="tf-tree d-flex justify-content-center">
                     <ul>
                         <li>
