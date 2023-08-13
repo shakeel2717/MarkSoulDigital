@@ -78,7 +78,7 @@ final class Transactions extends PowerGridComponent
     {
         return [
             "User" => [
-                'name'
+                'username'
             ]
         ];
     }
@@ -98,7 +98,7 @@ final class Transactions extends PowerGridComponent
     {
         return PowerGrid::columns()
             ->addColumn('id')
-            ->addColumn('user', fn (Transaction $model) => e($model->user->name))
+            ->addColumn('user', fn (Transaction $model) => e($model->user->username))
             ->addColumn('amount')
             ->addColumn('type')
 

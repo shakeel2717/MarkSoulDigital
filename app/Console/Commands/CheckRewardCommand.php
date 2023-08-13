@@ -41,7 +41,7 @@ class CheckRewardCommand extends Command
                 info("not Eligible For Reward");
             }
 
-            info("Eligible For Reward" . $user->name);
+            info("Eligible For Reward" . $user->fname);
             $rewards = Reward::get();
             $currentRewardRequried = 0;
             foreach ($rewards as $reward) {

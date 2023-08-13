@@ -1,7 +1,7 @@
 <x-mail::message>
 # Welcome to Our Community!
 
-Dear {{$user->name}},
+Dear {{$user->username}},
 
 We are thrilled to welcome you to our community! Thank you for joining us and becoming a part of our growing family.
 

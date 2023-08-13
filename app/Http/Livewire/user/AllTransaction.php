@@ -92,7 +92,7 @@ final class AllTransaction extends PowerGridComponent
     {
         return PowerGrid::columns()
             ->addColumn('id')
-            ->addColumn('user', fn (Transaction $model) => strtolower(e($model->user->name)))
+            ->addColumn('user', fn (Transaction $model) => strtolower(e($model->user->username)))
             ->addColumn('amount')
             ->addColumn('type')
 

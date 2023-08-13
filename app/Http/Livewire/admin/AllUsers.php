@@ -120,12 +120,12 @@ final class AllUsers extends PowerGridComponent
     {
         return [
             // Column::make('Id', 'id'),
-            Column::make('Name', 'fname')
+            Column::make('FName', 'fname')
                 ->sortable()
                 ->editOnClick()
                 ->searchable(),
 
-            Column::make('Name', 'lname')
+            Column::make('LName', 'lname')
                 ->sortable()
                 ->editOnClick()
                 ->searchable(),

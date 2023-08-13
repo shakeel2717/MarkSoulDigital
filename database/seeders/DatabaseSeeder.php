@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
 
         // // user 2
         // $user = new User();
-        // $user->name = "Shakeel Ahmad";
+        // $user->fname = "Shakeel Ahmad";
         // $user->username = "shakeel2717";
         // $user->email = "shakeel2717@gmail.com";
         // $user->email_verified_at = now();
@@ -56,7 +56,7 @@ class DatabaseSeeder extends Seeder
 
         // // user 3
         // $user = new User();
-        // $user->name = "Test 1";
+        // $user->fname = "Test 1";
         // $user->username = "test1";
         // $user->email = "test1@gmail.com";
         // $user->country = "Pakistan";
@@ -80,7 +80,7 @@ class DatabaseSeeder extends Seeder
 
         // // user 4
         // $user = new User();
-        // $user->name = "Test 2";
+        // $user->fname = "Test 2";
         // $user->username = "test2";
         // $user->email = "test2@gmail.com";
         // $user->country = "Pakistan";
@@ -101,7 +101,7 @@ class DatabaseSeeder extends Seeder
 
         // // user 5
         // $user = new User();
-        // $user->name = "Test 3";
+        // $user->fname = "Test 3";
         // $user->username = "test3";
         // $user->email = "test3@gmail.com";
         // $user->email_verified_at = now();
@@ -121,7 +121,7 @@ class DatabaseSeeder extends Seeder
 
         // // user 6
         // $user = new User();
-        // $user->name = "Test 4";
+        // $user->fname = "Test 4";
         // $user->username = "test4";
         // $user->email = "test4@gmail.com";
         // $user->email_verified_at = now();
