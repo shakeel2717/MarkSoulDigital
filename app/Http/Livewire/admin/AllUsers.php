@@ -173,9 +173,9 @@ final class AllUsers extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Status', 'status')
-                ->sortable()
-                ->searchable(),
+            // Column::make('Status', 'status')
+            //     ->sortable()
+            //     ->searchable(),
 
             Column::make('Networker', 'networker')
                 ->toggleable(),
@@ -453,6 +453,15 @@ final class AllUsers extends PowerGridComponent
             Rule::button('package')
                 ->when(fn ($user) => $user->status == 'active')
                 ->hide(),
+
+
+            Rule::rows()
+                ->when(fn ($user) => $user->status == "active")
+                ->setAttribute('class', 'bg-success-subtle'),
+
+            Rule::rows()
+                ->when(fn ($user) => $user->networker == true)
+                ->setAttribute('class', 'bg-primary-subtle'),
         ];
     }
 }
