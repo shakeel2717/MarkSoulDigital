@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire\admin;
 
+use App\Events\PlanActivatedEvent;
+use App\Models\Plan;
 use App\Models\User;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
@@ -247,6 +249,11 @@ final class AllUsers extends PowerGridComponent
                 ->class('btn btn-danger btn-sm')
                 ->emit('login', ['id' => 'id']),
 
+
+            Button::make('package', 'Activate Package')
+                ->class('btn btn-danger btn-sm')
+                ->emit('package', ['id' => 'id']),
+
             //    Button::make('destroy', 'Delete')
             //        ->class('bg-red-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
             //        ->route('user.destroy', function(\App\Models\User $model) {
@@ -265,6 +272,7 @@ final class AllUsers extends PowerGridComponent
                 'pin'   => 'pin',
                 'login'   => 'login',
                 'unpin'   => 'unpin',
+                'package'   => 'package',
                 'suspend'   => 'suspend',
                 'activate'   => 'activate',
                 'confirmedDelete' => 'confirmedDelete'
@@ -294,6 +302,74 @@ final class AllUsers extends PowerGridComponent
         $user->save();
 
         $this->dispatchBrowserEvent('deleted', ['status' => 'User Suspended Successfully']);
+    }
+
+    public function package($id)
+    {
+        $user = User::find($id['id']);
+        // get plan id with amount
+        $balance = balance($user->id);
+
+
+
+        $plan = Plan::findOrFail(getPackageByAmount($balance));
+
+        // checking if this useer networking cap is full
+        if (networkCapInPercentage($user->id) >= 100) {
+            info("user Cap Already Full");
+            // checking if this user already have active plan
+            if (getActivePlan($user->id) > 0) {
+                info("User Already have Active Plan");
+                info("Checking if this user trying to actiavet lower plan");
+                if (getActivePlan($user->id) > $balance) {
+                    info("User trying to Activate Lower Plan");
+                    return back()->withErrors(['Insufficient investment. Please allocate more than $' . getActivePlan($user->id) . ' to activate the plan']);
+                }
+            }
+        }
+
+        // checking if this user have enough balnace
+        // if ($balance < $balance) {
+        //     return back()->withErrors(['Insufficient Balance']);
+        // }
+
+        // checking if this user already have active plan
+        if ($user->userPlan) {
+            $newAmount = $user->userPlan->amount + $balance;
+
+            // activating user plan
+            $userPlan = $user->userPlan;
+            $userPlan->plan_id = getPackageByAmount($newAmount);
+            $userPlan->amount = $newAmount;
+            $userPlan->status = 'active';
+            $userPlan->save();
+        } else {
+            // activating user plan
+            $userPlan = $user->userPlan()->create([
+                'plan_id' => $plan->id,
+                'amount' => $balance,
+                'status' => 'active',
+            ]);
+        }
+
+
+        // removing balance from user transaction
+        $transaction = $user->transactions()->create([
+            'type' => 'Plan Active',
+            'amount' => $balance,
+            'status' => true,
+            'sum' => false,
+            'reference' => "Plan: " . $plan->name . " Activated",
+        ]);
+
+        // activating this user
+        $user->status = 'active';
+        $user->save();
+
+        // Deliving Direct Commision
+        event(new PlanActivatedEvent($transaction, $userPlan));
+
+        $this->dispatchBrowserEvent('deleted', ['status' => 'User\'s Package Activated Successfully']);
     }
 
     public function login($id)
@@ -368,6 +444,10 @@ final class AllUsers extends PowerGridComponent
 
             Rule::button('unpin')
                 ->when(fn ($user) => $user->networker == false)
+                ->hide(),
+
+            Rule::button('package')
+                ->when(fn ($user) => $user->status == 'active')
                 ->hide(),
         ];
     }
