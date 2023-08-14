@@ -94,6 +94,28 @@ final class AllUsers extends PowerGridComponent
             /** Example of custom column using a closure **/
             ->addColumn('name_lower', fn (User $model) => strtolower(e($model->name)))
 
+            ->addColumn('balance', function (User $model) {
+                return number_format(balance($model->id), 2);
+            })
+
+            ->addColumn('investment', function (User $model) {
+                return number_format(getActivePlan($model->id), 2);
+            })
+
+            ->addColumn('my_referrals', function (User $model) {
+                return myReferrals($model->id);
+            })
+
+            ->addColumn('left_team', function (User $model) {
+                return leftReferrals($model->id);
+            })
+
+            ->addColumn('right_team', function (User $model) {
+                return rightReferrals($model->id);
+            })
+
+
+
             ->addColumn('username')
             ->addColumn('email')
             ->addColumn('refer')
@@ -151,6 +173,12 @@ final class AllUsers extends PowerGridComponent
 
             Column::make('Networker', 'networker')
                 ->toggleable(),
+
+            Column::make('Balance', 'balance'),
+            Column::make('Investment', 'investment'),
+            Column::make('My Referrals', 'my_referrals'),
+            Column::make('Left Team', 'left_team'),
+            Column::make('Right Team', 'right_team'),
 
             Column::make('Created at', 'created_at_formatted', 'created_at')
                 ->sortable(),
