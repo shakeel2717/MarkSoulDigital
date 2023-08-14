@@ -314,6 +314,10 @@ final class AllUsers extends PowerGridComponent
         // get plan id with amount
         $balance = balance($user->id);
 
+        if ($balance < 1) {
+            abort(404);
+        }
+
 
 
         $plan = Plan::findOrFail(getPackageByAmount($balance));
