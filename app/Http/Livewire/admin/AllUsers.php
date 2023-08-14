@@ -169,6 +169,10 @@ final class AllUsers extends PowerGridComponent
                 ->editOnClick()
                 ->searchable(),
 
+            Column::make('Position', 'position')
+                ->sortable()
+                ->searchable(),
+
             Column::make('Status', 'status')
                 ->sortable()
                 ->searchable(),
