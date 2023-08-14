@@ -23,8 +23,8 @@ class DeliverFreezeBalance
      */
     public function handle(PlanActivatedEvent $event): void
     {
-        info("Delivering Freeze Balance to this useer");
-        $user = User::find(auth()->user()->id);
+        $user = User::find($event->transaction->user_id);
+        info("Delivering Freeze Balance to this user");
         if ($user->freeze_transactions->sum('amount') > 0) {
             info("User have Balance: " . $user->freeze_transactions->sum('amount'));
             foreach ($user->freeze_transactions as $freezeTransaction) {

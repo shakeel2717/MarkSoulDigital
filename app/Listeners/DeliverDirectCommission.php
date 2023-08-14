@@ -23,15 +23,15 @@ class DeliverDirectCommission
      */
     public function handle(PlanActivatedEvent $event): void
     {
-        $user = User::find(auth()->user()->id);
+        $user = User::find($event->transaction->user_id);
         $transaction = $event->transaction;
         $userPlan = $event->userPlan;
         // getting this user upliner
-        if (auth()->user()->refer != 'default') {
+        if ($user->refer != 'default') {
             info("User have valid refer");
 
             // finding the refer
-            $sponser = User::where('username', auth()->user()->refer)->first();
+            $sponser = User::where('username', $user->refer)->first();
             if (!$sponser) {
                 goto EndThisListener;
                 die();
@@ -63,7 +63,7 @@ class DeliverDirectCommission
                 'amount' => $amount,
                 'user_plan_id' => $sponser->userPlan->id,
                 'status' => true,
-                'reference' => 'Direct Commision from: ' . auth()->user()->username,
+                'reference' => 'Direct Commision from: ' . $user->username,
             ]);
             $user_id = $thisSponser->user_id;
             event(new FreezeBalanceVerification($user_id));
