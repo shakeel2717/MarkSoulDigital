@@ -61,6 +61,7 @@
                                 <select name="type" id="type" class="form-control">
                                     <option value="Deposit">Deposit</option>
                                     <option value="Balance Adjust">Balance Adjust</option>
+                                    <option value="Daily ROI">Daily ROI</option>
                                 </select>
                             </div>
                         </div>
