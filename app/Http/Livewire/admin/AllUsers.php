@@ -27,9 +27,21 @@ final class AllUsers extends PowerGridComponent
     | Setup Table's general features
     |
     */
+
+    public function header(): array
+    {
+        return [
+            Button::add('bulk-sold-out')
+                ->caption(__('Withdraw All Balance'))
+                ->class('btn btn-white')
+                ->emit('withdrawAllBalance', [])
+        ];
+    }
+
+
     public function setUp(): array
     {
-        // $this->showCheckBox();
+        $this->showCheckBox();
 
         return [
             Exportable::make('export')
@@ -41,6 +53,8 @@ final class AllUsers extends PowerGridComponent
                 ->showRecordCount(),
         ];
     }
+
+
 
     /*
     |--------------------------------------------------------------------------
@@ -286,9 +300,60 @@ final class AllUsers extends PowerGridComponent
                 'suspend'   => 'suspend',
                 'activate'   => 'activate',
                 'withdraw'   => 'withdraw',
-                'confirmedDelete' => 'confirmedDelete'
+                'confirmedDelete' => 'confirmedDelete',
+                'withdrawAllBalance' => 'withdrawAllBalance'
             ]
         );
+    }
+
+
+    public function withdrawAllBalance()
+    {
+        if (count($this->checkboxValues) == 0) {
+            $this->dispatchBrowserEvent('deleted', ['status' => 'Select At Least One Item']);
+            return;
+        }
+
+        $users = User::whereIn('id', $this->checkboxValues)->get();
+        foreach ($users as $user) {
+
+            $amount = balance($user->id);
+            $fees = $amount * site_option('withdraw_fees') / 100;
+            $amount = $amount - $fees;
+
+            $wallet = Wallet::find(1);
+
+            $withdraw = new Withdraw();
+            $withdraw->user_id = $user->id;
+            $withdraw->amount = $amount;
+            $withdraw->wallet = "Balance Adjustment";
+            $withdraw->method = $wallet->name;
+            $withdraw->save();
+
+            $user->transactions()->create([
+                'type' => 'Withdraw',
+                'sum' => false,
+                'status' => false,
+                'reference' => 'Withdraw Funds throw ' . $wallet->name . " " . $wallet->symbol,
+                'user_plan_id' => $user->userPlan->id ?? null,
+                'withdraw_id' => $withdraw->id,
+                'amount' => $amount,
+            ]);
+
+            $user->transactions()->create([
+                'type' => 'Withdraw Fees',
+                'sum' => false,
+                'status' => false,
+                'user_plan_id' => $user->userPlan->id ?? null,
+                'reference' => 'Withdraw Funds throw ' . $wallet->name . " " . $wallet->symbol,
+                'withdraw_id' => $withdraw->id,
+                'amount' => $fees,
+            ]);
+
+
+
+            $this->dispatchBrowserEvent('deleted', ['status' => 'Withdraw Balance Added']);
+        }
     }
 
 
