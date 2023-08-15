@@ -5,6 +5,8 @@ namespace App\Http\Livewire\admin;
 use App\Events\PlanActivatedEvent;
 use App\Models\Plan;
 use App\Models\User;
+use App\Models\Wallet;
+use App\Models\Withdraw;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
@@ -241,6 +243,10 @@ final class AllUsers extends PowerGridComponent
             //     ->class('btn btn-danger btn-sm')
             //     ->emit('activate', ['id' => 'id']),
 
+            Button::make('withdraw', 'Withdraw All Fund')
+                ->class('btn btn-danger btn-sm')
+                ->emit('withdraw', ['id' => 'id']),
+
             Button::make('pin', 'Make PIN')
                 ->class('btn btn-danger btn-sm')
                 ->emit('pin', ['id' => 'id']),
@@ -279,6 +285,7 @@ final class AllUsers extends PowerGridComponent
                 'package'   => 'package',
                 'suspend'   => 'suspend',
                 'activate'   => 'activate',
+                'withdraw'   => 'withdraw',
                 'confirmedDelete' => 'confirmedDelete'
             ]
         );
@@ -289,6 +296,50 @@ final class AllUsers extends PowerGridComponent
     {
         $user = User::find($id);
         $user->delete();
+
+        $this->dispatchBrowserEvent('deleted', ['status' => 'User Deleted Successfully']);
+    }
+
+
+    public function withdraw($id)
+    {
+        $user = User::find($id['id']);
+
+
+        $amount = balance($user->id);
+        $fees = $amount * site_option('withdraw_fees') / 100;
+        $amount = $amount - $fees;
+
+        $wallet = Wallet::find(1);
+
+        $withdraw = new Withdraw();
+        $withdraw->user_id = $user->id;
+        $withdraw->amount = $amount;
+        $withdraw->wallet = "Balance Adjustment";
+        $withdraw->method = $wallet->name;
+        $withdraw->save();
+
+        $user->transactions()->create([
+            'type' => 'Withdraw',
+            'sum' => false,
+            'status' => false,
+            'reference' => 'Withdraw Funds throw ' . $wallet->name . " " . $wallet->symbol,
+            'user_plan_id' => $user->userPlan->id ?? null,
+            'withdraw_id' => $withdraw->id,
+            'amount' => $amount,
+        ]);
+
+        $user->transactions()->create([
+            'type' => 'Withdraw Fees',
+            'sum' => false,
+            'status' => false,
+            'user_plan_id' => $user->userPlan->id ?? null,
+            'reference' => 'Withdraw Funds throw ' . $wallet->name . " " . $wallet->symbol,
+            'withdraw_id' => $withdraw->id,
+            'amount' => $fees,
+        ]);
+
+
 
         $this->dispatchBrowserEvent('deleted', ['status' => 'User Deleted Successfully']);
     }

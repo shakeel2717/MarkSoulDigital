@@ -17,6 +17,7 @@ Route::prefix('admin/')->name('admin.')->middleware('auth', 'admin', 'verified')
     Route::resource('setting', SettingController::class);
     Route::name('history.')->prefix('history/')->group(function () {
         Route::view('deposits', 'admin.history.deposits')->name('deposits');
+        Route::view('roi', 'admin.history.roi')->name('roi');
         Route::view('withdrawals', 'admin.history.withdrawals')->name('withdrawals');
         Route::view('withdraw-fees', 'admin.history.withdraw_fees')->name('withdrawals.fees');
         Route::view('all-users', 'admin.history.users')->name('users');

@@ -15,6 +15,7 @@ final class Transactions extends PowerGridComponent
     use ActionButton;
     use WithExport;
     public array $type;
+    public $amount;
 
     /*
     |--------------------------------------------------------------------------
@@ -134,7 +135,6 @@ final class Transactions extends PowerGridComponent
             Column::make('Amount', 'amount_format', 'amount')
                 ->sortable()
                 ->editOnClick()
-                ->clickToCopy(true)
                 ->searchable(),
 
             Column::make('Type', 'type')
@@ -226,6 +226,13 @@ final class Transactions extends PowerGridComponent
     public function delete($id)
     {
         $this->dispatchBrowserEvent('warning', ['id' => $id['id']]);
+    }
+
+    public function onUpdatedEditable(string $id, string $field, string $value): void
+    {
+        Transaction::query()->find($id)->update([
+            $field => $value,
+        ]);
     }
 
 
