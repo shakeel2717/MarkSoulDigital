@@ -53,7 +53,7 @@ class FinanceController extends Controller
 
             // getting this user Active Plan
             if ($user->userPlan) {
-                $transaction->user_plan_id = 1;
+                $transaction->user_plan_id = $user->userPlan->id;
                 $transaction->save();
             }
         }
