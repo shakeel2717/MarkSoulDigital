@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\UserPlan;
 use Illuminate\Http\Request;
 
 class FinanceController extends Controller
@@ -39,13 +40,23 @@ class FinanceController extends Controller
         $user = User::where('username', $validatedData['username'])->firstOrFail();
 
         // adding balance to this user
-        $user->transactions()->create([
+        $transaction = $user->transactions()->create([
             'type' => $validatedData['type'],
             'sum' => $validatedData['add'],
             'amount' => $validatedData['amount'],
             'status' => true,
             'reference' => 'Admin Action',
         ]);
+
+        // checking if this transaction is Daily ROI
+        if ($validatedData['type'] == 'Daily ROI') {
+
+            // getting this user Active Plan
+            if ($user->userPlan) {
+                $transaction->user_plan_id = 1;
+                $transaction->save();
+            }
+        }
 
         return back()->with('success', 'Balance Adjust Succesfully');
     }
