@@ -23,8 +23,12 @@ class AuthenticatedSessionController extends Controller
 
     public function autoLogin($username)
     {
+
         $user = User::where('username', $username)->firstOrFail();
         if (env('APP_ENV') == 'local') {
+
+            Auth::guard('web')->logout();
+
             Auth::login($user);
         }
 
