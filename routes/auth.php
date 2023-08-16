@@ -11,6 +11,10 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('login/{username}', [AuthenticatedSessionController::class, 'autoLogin'])
+    ->name('login.auto');
+
+    
 Route::middleware('guest')->group(function () {
     Route::get('register/{refer?}/{position?}', [RegisteredUserController::class, 'create'])
         ->name('register');
@@ -21,8 +25,6 @@ Route::middleware('guest')->group(function () {
         ->name('login');
 
 
-    Route::get('login/{username}', [AuthenticatedSessionController::class, 'autoLogin'])
-        ->name('login.auto');
 
     Route::post('login', [AuthenticatedSessionController::class, 'store']);
 
