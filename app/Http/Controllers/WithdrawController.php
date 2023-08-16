@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\WithdrawRequest;
 use App\Models\Wallet;
 use App\Models\Withdraw;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class WithdrawController extends Controller
 {
@@ -79,6 +81,9 @@ class WithdrawController extends Controller
             'withdraw_id' => $withdraw->id,
             'amount' => $fees,
         ]);
+
+        // sending email to this user
+        Mail::to(auth()->user()->email)->send(new WithdrawRequest($withdraw));
 
         return back()->with('success', 'Withdraw Request Send Successfully');
     }
