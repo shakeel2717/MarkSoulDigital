@@ -32,11 +32,11 @@
                         </tr>
                         <tr>
                             <td>Total Left Sale</td>
-                            <td class="text-end">0</td>
+                            <td class="text-end">${{ number_format(BusinessVolume($user, 'left'), 2) }}</td>
                         </tr>
                         <tr>
                             <td>Total Right Sale</td>
-                            <td class="text-end">0</td>
+                            <td class="text-end">${{ number_format(BusinessVolume($user, 'right'), 2) }}</td>
                         </tr>
                     </tbody>
                 </table>
