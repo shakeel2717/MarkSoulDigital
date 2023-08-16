@@ -353,7 +353,11 @@ function checkFreezeFirstDate($user_id)
 {
     $user = User::find($user_id);
     $firstFreezeTransaction = $user->freeze_transactions->first();
-    return $firstFreezeTransaction->created_at;
+    if ($firstFreezeTransaction) {
+        return $firstFreezeTransaction->created_at;
+    } else {
+        return false;
+    }
 }
 
 
