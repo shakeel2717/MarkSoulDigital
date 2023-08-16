@@ -173,6 +173,7 @@ final class AllUsers extends PowerGridComponent
             Column::make('Username', 'username')
                 ->sortable()
                 ->editOnClick()
+                ->clickToCopy(true)
                 ->searchable(),
 
             Column::make('Email', 'email')
