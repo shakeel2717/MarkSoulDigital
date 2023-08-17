@@ -5,7 +5,7 @@
         <div class="col-md-6 mx-auto">
             <div class="card">
                 <div class="card-body">
-                    <h2 class="card-title">Withdrawal Funds <small>(Note: You can place Withdrawal Request Between 12PM to 12AM.)</small></h2>
+                    <h2 class="card-title">Withdrawal Funds <small>(Note: You can place Withdrawal Request Between 12PM to 12AM.) UTC +05:00</small></h2>
                     <hr>
                     <div class="row">
                         <div class="col-md-12">
