@@ -30,13 +30,12 @@ class KycController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => 'required|string',
-            'address' => 'required|string',
-            'front' => 'required|image',
-            'back' => 'required|image',
+            'fname' => 'required|string',
+            'lname' => 'required|string',
+            'mobile' => 'required|string',
+            'f_name' => 'required|string',
             'b_name' => 'required|string',
             'b_f_name' => 'required|string',
-            'b_id_number' => 'required|string',
             'b_mobile' => 'required|string',
         ]);
 
@@ -47,22 +46,13 @@ class KycController extends Controller
             return back()->withErrors('Your KYC Request already Approved!');
         }
 
-        $front = $request->file('front');
-        $front_name = auth()->user()->username . time() . rand(00, 11) . '.' . $front->getClientOriginalExtension();
-        $front->move(public_path('kyc/'), $front_name);
-
-        $back = $request->file('back');
-        $back_name = auth()->user()->username . time() . rand(00, 11) . '.' . $back->getClientOriginalExtension();
-        $back->move(public_path('kyc/'), $back_name);
-
         auth()->user()->kyc()->create([
-            'name' => $validatedData['name'],
-            'address' => $validatedData['address'],
-            'front' => $front_name,
-            'back' => $back_name,
+            'fname' => $validatedData['fname'],
+            'lname' => $validatedData['lname'],
+            'f_name' => $validatedData['f_name'],
+            'mobile' => $validatedData['mobile'],
             'b_name' => $validatedData['b_name'],
             'b_f_name' => $validatedData['b_f_name'],
-            'b_id_number' => $validatedData['b_id_number'],
             'b_mobile' => $validatedData['b_mobile'],
         ]);
 

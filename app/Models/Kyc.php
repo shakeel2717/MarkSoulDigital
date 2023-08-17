@@ -13,6 +13,7 @@ class Kyc extends Model
         'user_id',
         'fname',
         'lname',
+        'mobile',
         'f_name',
         'b_name',
         'b_f_name',

@@ -99,12 +99,6 @@ final class AllKycRequests extends PowerGridComponent
             ->addColumn('username', fn (Kyc $model) => strtolower(e($model->user->username)))
 
             ->addColumn('address')
-            ->addColumn('front_img', function (Kyc $model) {
-                return "<img src=" . asset('kyc/') . '/' . $model->front . " style='width:50px;'>";
-            })
-            ->addColumn('back_img', function (Kyc $model) {
-                return "<img src=" . asset('kyc/') . '/' . $model->back . " style='width:50px;'>";
-            })
             ->addColumn('status')
             ->addColumn('created_at_formatted', fn (Kyc $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'));
     }
@@ -137,6 +131,10 @@ final class AllKycRequests extends PowerGridComponent
                 ->searchable(),
 
             Column::make('Father/Husband Name', 'f_name')
+                ->sortable()
+                ->searchable(),
+
+            Column::make('Mobile', 'mobile')
                 ->sortable()
                 ->searchable(),
 
