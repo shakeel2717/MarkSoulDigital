@@ -11,13 +11,11 @@ class Kyc extends Model
 
     protected $fillable = [
         'user_id',
-        'name',
-        'address',
-        'front',
-        'back',
+        'fname',
+        'lname',
+        'f_name',
         'b_name',
         'b_f_name',
-        'b_id_number',
         'b_mobile',
         'status',
     ];

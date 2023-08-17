@@ -128,19 +128,15 @@ final class AllKycRequests extends PowerGridComponent
         return [
             Column::make('Id', 'id'),
             Column::make('User id', 'username'),
-            Column::make('Name', 'name')
+            Column::make('First Name', 'fname')
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Address', 'address')
+            Column::make('Last Name', 'lname')
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Front', 'front_img')
-                ->sortable()
-                ->searchable(),
-
-            Column::make('Back', 'back_img')
+            Column::make('Father/Husband Name', 'f_name')
                 ->sortable()
                 ->searchable(),
 
@@ -149,10 +145,6 @@ final class AllKycRequests extends PowerGridComponent
                 ->searchable(),
 
             Column::make('B Father\s Name', 'b_f_name')
-                ->sortable()
-                ->searchable(),
-
-            Column::make('B ID Number', 'b_id_number')
                 ->sortable()
                 ->searchable(),
 

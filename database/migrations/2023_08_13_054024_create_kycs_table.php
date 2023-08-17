@@ -14,13 +14,12 @@ return new class extends Migration
         Schema::create('kycs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
-            $table->string('name');
-            $table->string('address');
-            $table->string('front');
-            $table->string('back');
+            $table->string('fname');
+            $table->string('lname');
+            $table->string('f_name');
+            $table->string('mobile');
             $table->string('b_name');
             $table->string('b_f_name');
-            $table->string('b_id_number');
             $table->string('b_mobile');
             $table->boolean('status')->default(false);
             $table->timestamps();
