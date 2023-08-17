@@ -97,10 +97,4 @@
             <span data-key="t-calendar">Profile Setting</span>
         </a>
     </li>
-    <li class="nav-item">
-        <a href="{{ route('user.kyc.index') }}" class="nav-link menu-link">
-            <i class="ph-lock-key-open"></i>
-            <span data-key="t-calendar">Account KYC</span>
-        </a>
-    </li>
 </ul>
