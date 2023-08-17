@@ -35,7 +35,8 @@ class KycController extends Controller
     {
         $validatedData = $request->validate([
             'cnic' => 'required|string',
-            'mobile' => 'required|string',
+            'dob' => 'required|string',
+            'address' => 'required|string',
             'b_name' => 'required|string',
             'b_f_name' => 'required|string',
             'b_mobile' => 'required|string',
@@ -50,7 +51,8 @@ class KycController extends Controller
 
         auth()->user()->kyc()->create([
             'cnic' => $validatedData['cnic'],
-            'mobile' => $validatedData['mobile'],
+            'dob' => $validatedData['dob'],
+            'address' => $validatedData['address'],
             'b_name' => $validatedData['b_name'],
             'b_f_name' => $validatedData['b_f_name'],
             'b_mobile' => $validatedData['b_mobile'],

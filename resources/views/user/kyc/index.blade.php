@@ -29,9 +29,24 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group mb-3">
-                                    <label for="cnic">CNIC/Passport/Driving license<span class="text-danger">*</span></label>
+                                    <label for="cnic">CNIC/Passport/Driving license<span
+                                            class="text-danger">*</span></label>
                                     <input type="text" name="cnic" id="cnic" class="form-control"
                                         placeholder="Enter Father/Husband Name" required>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group mb-3">
+                                    <label for="dob">Date of Birth<span class="text-danger">*</span></label>
+                                    <input type="date" name="dob" id="dob" class="form-control"
+                                        placeholder="Enter DOB" required>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group mb-3">
+                                    <label for="address">Address<span class="text-danger">*</span></label>
+                                    <input type="text" name="address" id="address" class="form-control"
+                                        placeholder="Enter Full Address" required>
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -43,14 +58,16 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group mb-3">
-                                    <label for="b_f_name">Beneficiary Father's Name <span class="text-danger">*</span></label>
+                                    <label for="b_f_name">Beneficiary Father's Name <span
+                                            class="text-danger">*</span></label>
                                     <input type="text" name="b_f_name" id="b_f_name" class="form-control"
                                         placeholder="Enter Beneficiary Father's Name" required>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group mb-3">
-                                    <label for="b_mobile">Beneficiary Mobile Number <span class="text-danger">*</span></label>
+                                    <label for="b_mobile">Beneficiary Mobile Number <span
+                                            class="text-danger">*</span></label>
                                     <input type="text" name="b_mobile" id="b_mobile" class="form-control"
                                         placeholder="Enter Beneficiary Father's Name" required>
                                 </div>

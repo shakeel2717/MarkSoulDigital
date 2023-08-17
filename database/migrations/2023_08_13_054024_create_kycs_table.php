@@ -14,10 +14,9 @@ return new class extends Migration
         Schema::create('kycs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
-            $table->string('fname');
-            $table->string('lname');
-            $table->string('f_name');
-            $table->string('mobile');
+            $table->string('cnic');
+            $table->string('dob');
+            $table->string('address');
             $table->string('b_name');
             $table->string('b_f_name');
             $table->string('b_mobile');
