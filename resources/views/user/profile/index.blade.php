@@ -47,7 +47,7 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group mb-3">
-                                    <label for="country">Country</label>
+                                    <label for="country">Country <span class="text-danger">*</span></label>
                                     <input type="text" name="country" id="country" class="form-control"
                                         placeholder="Enter Country" value="{{ auth()->user()->country }}">
                                 </div>

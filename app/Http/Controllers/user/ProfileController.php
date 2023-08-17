@@ -32,7 +32,6 @@ class ProfileController extends Controller
     {
         $validatedData = $request->validate([
             'fname' => 'required|string',
-            'mname' => 'required|string',
             'lname' => 'required|string',
             'email' => 'required|email',
             'mobile' => 'required|string',
@@ -42,14 +41,13 @@ class ProfileController extends Controller
         // updaing Profile Record
         $profile = User::find(auth()->user()->id);
         $profile->fname = $validatedData['fname'];
-        $profile->mname = $validatedData['mname'];
         $profile->lname = $validatedData['lname'];
         $profile->email = $validatedData['email'];
         $profile->mobile = $validatedData['mobile'];
         $profile->country = $validatedData['country'];
         $profile->save();
 
-        return back()->with('success', 'User Profile Updated Successfully');
+        return redirect()->route('user.kyc.index')->with('success', 'User Profile Updated Successfully');
     }
 
     public function password(Request $request)
