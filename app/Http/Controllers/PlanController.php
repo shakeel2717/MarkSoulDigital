@@ -62,45 +62,43 @@ class PlanController extends Controller
 
                             // activating this user plan
                         }
-
-                        // checking if this user already have active plan
-                        $newAmount = auth()->user()->userPlan->amount + $balance;
-
-                        $plan = Plan::find(getPackageByAmount($newAmount));
-
-                        // activating user plan
-                        $userPlan = auth()->user()->userPlan;
-                        $userPlan->status = 'expired';
-                        $userPlan->save();
-
-                        $userPlan = new UserPlan();
-                        $userPlan->user_id = auth()->user()->id;
-                        $userPlan->plan_id = getPackageByAmount($newAmount);
-                        $userPlan->amount = $balance;
-                        $userPlan->status = 'active';
-                        $userPlan->save();
-
-                        // removing balance from user transaction
-                        $transaction = auth()->user()->transactions()->create([
-                            'type' => 'Plan Active',
-                            'amount' => $balance,
-                            'status' => true,
-                            'sum' => false,
-                            'user_plan_id' => $userPlan->id,
-                            'reference' => "Plan: " . $plan->name . " Activated",
-                        ]);
-
-                        // activating this user
-                        auth()->user()->status = 'active';
-                        auth()->user()->save();
-
-                        // Deliving Direct Commision
-                        event(new PlanActivatedEvent($transaction, $userPlan));
-
-                        return redirect()->route('user.dashboard.index')->with('success', 'Plan Activated');
-                    } else {
-                        info("User not have any Balance in Freez");
                     }
+
+                    // checking if this user already have active plan
+                    $newAmount = auth()->user()->userPlan->amount + $balance;
+
+                    $plan = Plan::find(getPackageByAmount($newAmount));
+
+                    // activating user plan
+                    $userPlan = auth()->user()->userPlan;
+                    $userPlan->status = 'expired';
+                    $userPlan->save();
+
+                    $userPlan = new UserPlan();
+                    $userPlan->user_id = auth()->user()->id;
+                    $userPlan->plan_id = getPackageByAmount($newAmount);
+                    $userPlan->amount = $balance;
+                    $userPlan->status = 'active';
+                    $userPlan->save();
+
+                    // removing balance from user transaction
+                    $transaction = auth()->user()->transactions()->create([
+                        'type' => 'Plan Active',
+                        'amount' => $balance,
+                        'status' => true,
+                        'sum' => false,
+                        'user_plan_id' => $userPlan->id,
+                        'reference' => "Plan: " . $plan->name . " Activated",
+                    ]);
+
+                    // activating this user
+                    auth()->user()->status = 'active';
+                    auth()->user()->save();
+
+                    // Deliving Direct Commision
+                    event(new PlanActivatedEvent($transaction, $userPlan));
+
+                    return redirect()->route('user.dashboard.index')->with('success', 'Plan Activated');
                 }
             }
         }
