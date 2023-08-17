@@ -22,6 +22,11 @@
     })
 </script>
 <script>
+    window.addEventListener('alert', event => {
+        swal("Error!", event.detail.status, "error");
+    })
+</script>
+<script>
     window.addEventListener('warning', event => {
         swal({
                 title: "Are you sure?",

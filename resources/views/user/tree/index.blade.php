@@ -235,6 +235,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
+                @livewire('search')
                 <div class="tf-tree d-flex justify-content-center">
                     <ul>
                         <li>
