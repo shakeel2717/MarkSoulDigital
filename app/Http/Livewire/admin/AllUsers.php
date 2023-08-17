@@ -194,6 +194,8 @@ final class AllUsers extends PowerGridComponent
             //     ->sortable()
             //     ->searchable(),
 
+            Column::make('Status', 'status'),
+
             Column::make('Networker', 'networker')
                 ->toggleable(),
 
@@ -222,8 +224,11 @@ final class AllUsers extends PowerGridComponent
             Filter::inputText('username')->operators(['contains']),
             Filter::inputText('email')->operators(['contains']),
             Filter::inputText('refer')->operators(['contains']),
-            Filter::inputText('status')->operators(['contains']),
             Filter::boolean('networker'),
+            Filter::select('status', 'status')
+                ->dataSource(User::status())
+                ->optionValue('label')
+                ->optionLabel('status'),
             Filter::datetimepicker('created_at'),
         ];
     }

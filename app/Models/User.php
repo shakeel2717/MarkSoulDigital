@@ -37,6 +37,17 @@ class User extends Authenticatable
         'binary_match'
     ];
 
+    public static function status()
+    {
+        return collect(
+            [
+                ['status' => 'pending',  'label' => 'Pending'],
+                ['status' => 'active',  'label' => 'Active'],
+                ['status' => 'suspend',  'label' => 'Suspend'],
+            ]
+        );
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
