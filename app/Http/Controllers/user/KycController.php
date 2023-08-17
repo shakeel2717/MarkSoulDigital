@@ -13,6 +13,10 @@ class KycController extends Controller
      */
     public function index()
     {
+        // redirecing user to profile setting page.
+        if (auth()->user()->email == "" || auth()->user()->mobile == "" || auth()->user()->country == "") {
+            return redirect()->route('user.profile.index')->withErrors(['Please Update your Profile data first']);
+        }
         return view('user.kyc.index');
     }
 

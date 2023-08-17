@@ -29,49 +29,49 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group mb-3">
-                                    <label for="fname">First Name</label>
+                                    <label for="fname">First Name <span class="text-danger">*</span></label>
                                     <input type="text" name="fname" id="fname" class="form-control"
                                         placeholder="Enter First Name" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group mb-3">
-                                    <label for="lname">Last Name</label>
+                                    <label for="lname">Last Name <span class="text-danger">*</span></label>
                                     <input type="text" name="lname" id="lname" class="form-control"
                                         placeholder="Enter Last Name" required>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group mb-3">
-                                    <label for="f_name">Father/Husband Name</label>
+                                    <label for="f_name">Father/Husband Name <span class="text-danger">*</span></label>
                                     <input type="text" name="f_name" id="f_name" class="form-control"
                                         placeholder="Enter Father/Husband Name" required>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group mb-3">
-                                    <label for="mobile">Mobile</label>
+                                    <label for="mobile">Mobile <span class="text-danger">*</span></label>
                                     <input type="text" name="mobile" id="mobile" class="form-control"
                                         placeholder="Enter Full Mobile" required>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group mb-3">
-                                    <label for="b_name">Beneficiary Name</label>
+                                    <label for="b_name">Beneficiary Name <span class="text-danger">*</span></label>
                                     <input type="text" name="b_name" id="b_name" class="form-control"
                                         placeholder="Enter Beneficiary Name" required>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group mb-3">
-                                    <label for="b_f_name">Beneficiary Father's Name</label>
+                                    <label for="b_f_name">Beneficiary Father's Name <span class="text-danger">*</span></label>
                                     <input type="text" name="b_f_name" id="b_f_name" class="form-control"
                                         placeholder="Enter Beneficiary Father's Name" required>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group mb-3">
-                                    <label for="b_mobile">Beneficiary Mobile Number</label>
+                                    <label for="b_mobile">Beneficiary Mobile Number <span class="text-danger">*</span></label>
                                     <input type="text" name="b_mobile" id="b_mobile" class="form-control"
                                         placeholder="Enter Beneficiary Father's Name" required>
                                 </div>
@@ -81,6 +81,7 @@
                             <button type="submit" class="btn btn-danger btn-label"> Submit KYC Request <i
                                     class="ph-arrow-fat-line-right label-icon align-middle fs-lg me-2"></i></button>
                         </div>
+                        <small>Note: * KYC Approval can take upto 24 Hours.</small>
                     </form>
                 </div>
             </div>
