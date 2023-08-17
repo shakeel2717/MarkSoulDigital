@@ -34,10 +34,8 @@ class KycController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'fname' => 'required|string',
-            'lname' => 'required|string',
+            'cnic' => 'required|string',
             'mobile' => 'required|string',
-            'f_name' => 'required|string',
             'b_name' => 'required|string',
             'b_f_name' => 'required|string',
             'b_mobile' => 'required|string',
@@ -51,9 +49,7 @@ class KycController extends Controller
         }
 
         auth()->user()->kyc()->create([
-            'fname' => $validatedData['fname'],
-            'lname' => $validatedData['lname'],
-            'f_name' => $validatedData['f_name'],
+            'cnic' => $validatedData['cnic'],
             'mobile' => $validatedData['mobile'],
             'b_name' => $validatedData['b_name'],
             'b_f_name' => $validatedData['b_f_name'],

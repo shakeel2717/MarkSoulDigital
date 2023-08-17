@@ -27,32 +27,11 @@
                         @csrf
                         <hr>
                         <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group mb-3">
-                                    <label for="fname">First Name <span class="text-danger">*</span></label>
-                                    <input type="text" name="fname" id="fname" class="form-control"
-                                        placeholder="Enter First Name" required>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group mb-3">
-                                    <label for="lname">Last Name <span class="text-danger">*</span></label>
-                                    <input type="text" name="lname" id="lname" class="form-control"
-                                        placeholder="Enter Last Name" required>
-                                </div>
-                            </div>
                             <div class="col-md-12">
                                 <div class="form-group mb-3">
-                                    <label for="f_name">Father/Husband Name <span class="text-danger">*</span></label>
-                                    <input type="text" name="f_name" id="f_name" class="form-control"
+                                    <label for="cnic">CNIC/Passport/Driving license<span class="text-danger">*</span></label>
+                                    <input type="text" name="cnic" id="cnic" class="form-control"
                                         placeholder="Enter Father/Husband Name" required>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group mb-3">
-                                    <label for="mobile">Mobile <span class="text-danger">*</span></label>
-                                    <input type="text" name="mobile" id="mobile" class="form-control"
-                                        placeholder="Enter Full Mobile" required>
                                 </div>
                             </div>
                             <div class="col-md-12">
