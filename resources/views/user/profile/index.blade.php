@@ -19,16 +19,9 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group mb-3">
-                                    <label for="mname">First Name</label>
-                                    <input type="text" name="mname" id="mname" class="form-control"
-                                        placeholder="Enter Name" value="{{ auth()->user()->mname }}">
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group mb-3">
-                                    <label for="lname">First Name</label>
+                                    <label for="lname">Last Name</label>
                                     <input type="text" name="lname" id="lname" class="form-control"
-                                        placeholder="Enter Name" value="{{ auth()->user()->lname }}">
+                                        placeholder="Last Name" value="{{ auth()->user()->lname }}">
                                 </div>
                             </div>
                             <div class="col-md-12">

@@ -249,7 +249,7 @@
                                         src="{{ asset($user->status == 'active' ? 'binary-img-success.png' : 'binary-img-primary.png') }}"
                                         alt="Image">
                                 </a>
-                                <p class="user-title level-{{ $level }}-title">{{ $user->username }}</p>
+                                <p class="user-title text-uppercase level-{{ $level }}-title">{{ $user->username }}</p>
                                 @include('inc.tree-detail', ['user' => $user->id])
                             </span>
                             <ul>
