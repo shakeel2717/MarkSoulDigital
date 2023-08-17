@@ -303,7 +303,7 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="text-sm-end d-none d-sm-block">
-                                Design & Develop by ASAN Webs Development
+                                Design & Develop by {{ env('APP_NAME') }}
                             </div>
                         </div>
                     </div>
