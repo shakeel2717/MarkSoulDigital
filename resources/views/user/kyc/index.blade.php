@@ -32,7 +32,7 @@
                                     <label for="cnic">CNIC/Passport/Driving license<span
                                             class="text-danger">*</span></label>
                                     <input type="text" name="cnic" id="cnic" class="form-control"
-                                        placeholder="Enter Father/Husband Name" required>
+                                        placeholder="Enter CNIC/Passport/Driving license" required>
                                 </div>
                             </div>
                             <div class="col-md-12">
