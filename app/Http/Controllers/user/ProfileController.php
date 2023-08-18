@@ -38,6 +38,16 @@ class ProfileController extends Controller
             'country' => 'required|string',
         ]);
 
+        // checking if the user change the mobile number
+        if (auth()->user()->mobile != $validatedData['mobile']) {
+            // User have changed the mobile number
+            // checking if the number is already in used
+            $mobileVerify = User::where('mobile', $validatedData['mobile'])->count();
+            if ($mobileVerify > 0) {
+                return back()->withErrors(['This Mobile Number is already in used, Please try different Mobil Number']);
+            }
+        }
+
         // updaing Profile Record
         $profile = User::find(auth()->user()->id);
         $profile->fname = $validatedData['fname'];
