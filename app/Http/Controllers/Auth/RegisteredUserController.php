@@ -65,7 +65,7 @@ class RegisteredUserController extends Controller
         $user->email = strtolower($validated['email']);
         $user->password = Hash::make($request->password);
         $user->refer = $sponsor ?? "default";
-        $user->mobile = $validated['mobile'];
+        $user->mobile = $validated['code'] . $validated['mobile'];
         $user->country = $validated['country'];
         $user->position = $validated['position'];
         $user->save();
