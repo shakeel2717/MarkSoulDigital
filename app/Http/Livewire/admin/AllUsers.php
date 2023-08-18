@@ -20,6 +20,11 @@ final class AllUsers extends PowerGridComponent
     use ActionButton;
     use WithExport;
 
+    public $fname;
+    public $lname;
+    public $email;
+
+
     /*
     |--------------------------------------------------------------------------
     |  Features Setup
@@ -28,15 +33,15 @@ final class AllUsers extends PowerGridComponent
     |
     */
 
-    public function header(): array
-    {
-        return [
-            Button::add('bulk-sold-out')
-                ->caption(__('Withdraw All Balance'))
-                ->class('btn btn-white')
-                ->emit('withdrawAllBalance', [])
-        ];
-    }
+    // public function header(): array
+    // {
+    //     return [
+    //         Button::add('bulk-sold-out')
+    //             ->caption(__('Withdraw All Balance'))
+    //             ->class('btn btn-white')
+    //             ->emit('withdrawAllBalance', [])
+    //     ];
+    // }
 
 
     public function setUp(): array
@@ -310,6 +315,14 @@ final class AllUsers extends PowerGridComponent
                 'withdrawAllBalance' => 'withdrawAllBalance'
             ]
         );
+    }
+
+
+    public function onUpdatedEditable(string $id, string $field, string $value): void
+    {
+        User::query()->find($id)->update([
+            $field => $value,
+        ]);
     }
 
 

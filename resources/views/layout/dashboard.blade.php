@@ -189,7 +189,7 @@
 
                                 </div>
 
-                                <div class="py-2 ps-2" id="notificationItemsTabContent">
+                                {{-- <div class="py-2 ps-2" id="notificationItemsTabContent">
                                     <div data-simplebar style="max-height: 300px;" class="pe-2">
                                         <div
                                             class="text-reset notification-item d-block dropdown-item position-relative">
@@ -224,7 +224,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
 
