@@ -53,6 +53,8 @@ final class AllUsers extends PowerGridComponent
                 ->striped()
                 ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
             Header::make()->showSearchInput(),
+            Header::make()
+                ->showToggleColumns(),
             Footer::make()
                 ->showPerPage()
                 ->showRecordCount(),
@@ -268,13 +270,21 @@ final class AllUsers extends PowerGridComponent
             //     ->class('btn btn-danger btn-sm')
             //     ->emit('activate', ['id' => 'id']),
 
-            Button::make('withdraw', 'Withdraw All Fund')
-                ->class('btn btn-danger btn-sm')
-                ->emit('withdraw', ['id' => 'id']),
+            // Button::make('withdraw', 'Withdraw All Fund')
+            //     ->class('btn btn-danger btn-sm')
+            //     ->emit('withdraw', ['id' => 'id']),
 
             Button::make('pin', 'Make PIN')
                 ->class('btn btn-danger btn-sm')
                 ->emit('pin', ['id' => 'id']),
+
+            Button::make('withdrawStop', 'Withdraw Stop')
+                ->class('btn btn-danger btn-sm')
+                ->emit('withdrawStop', ['id' => 'id']),
+
+            Button::make('withdrawStart', 'Withdraw Start')
+                ->class('btn btn-danger btn-sm')
+                ->emit('withdrawStart', ['id' => 'id']),
 
             Button::make('unpin', 'Make Normal')
                 ->class('btn btn-danger btn-sm')
@@ -285,9 +295,9 @@ final class AllUsers extends PowerGridComponent
                 ->emit('login', ['id' => 'id']),
 
 
-            Button::make('package', 'Activate Package')
-                ->class('btn btn-danger btn-sm')
-                ->emit('package', ['id' => 'id']),
+            // Button::make('package', 'Activate Package')
+            //     ->class('btn btn-danger btn-sm')
+            //     ->emit('package', ['id' => 'id']),
 
             //    Button::make('destroy', 'Delete')
             //        ->class('bg-red-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
@@ -312,7 +322,9 @@ final class AllUsers extends PowerGridComponent
                 'activate'   => 'activate',
                 'withdraw'   => 'withdraw',
                 'confirmedDelete' => 'confirmedDelete',
-                'withdrawAllBalance' => 'withdrawAllBalance'
+                'withdrawAllBalance' => 'withdrawAllBalance',
+                'withdrawStop' => 'withdrawStop',
+                'withdrawStart' => 'withdrawStart',
             ]
         );
     }
@@ -552,6 +564,24 @@ final class AllUsers extends PowerGridComponent
         $this->dispatchBrowserEvent('deleted', ['status' => 'PIN Account Converted to Normal Account']);
     }
 
+    public function withdrawStop($id)
+    {
+        $user = User::find($id['id']);
+        $user->withdraw = false;
+        $user->save();
+
+        $this->dispatchBrowserEvent('deleted', ['status' => 'User Withdraw Stopped']);
+    }
+
+    public function withdrawStart($id)
+    {
+        $user = User::find($id['id']);
+        $user->withdraw = true;
+        $user->save();
+
+        $this->dispatchBrowserEvent('deleted', ['status' => 'User Withdraw Started']);
+    }
+
 
     /*
     |--------------------------------------------------------------------------
@@ -601,6 +631,15 @@ final class AllUsers extends PowerGridComponent
             Rule::rows()
                 ->when(fn ($user) => $user->networker == true)
                 ->setAttribute('class', 'bg-primary-subtle'),
+
+
+            Rule::button('withdrawStart')
+                ->when(fn ($user) => $user->withdraw == true)
+                ->hide(),
+
+            Rule::button('withdrawStop')
+                ->when(fn ($user) => $user->withdraw == false)
+                ->hide(),
         ];
     }
 }

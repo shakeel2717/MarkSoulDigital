@@ -188,6 +188,10 @@ final class allDeposits extends PowerGridComponent
             Button::make('approve', 'Approve')
                 ->class('btn btn-danger btn-sm')
                 ->emit('approve', ['id' => 'id']),
+
+            Button::make('delete', 'Delete')
+                ->class('btn btn-danger btn-sm')
+                ->emit('delete', ['id' => 'id']),
         ];
     }
 
@@ -198,8 +202,24 @@ final class allDeposits extends PowerGridComponent
             parent::getListeners(),
             [
                 'approve' => 'approve',
+                'delete' => 'delete',
+                'confirmedDelete' => 'confirmedDelete'
+
             ]
         );
+    }
+
+    public function delete($id)
+    {
+        $this->dispatchBrowserEvent('warning', ['id' => $id['id']]);
+    }
+
+    public function confirmedDelete($id)
+    {
+        $user = Tid::find($id);
+        $user->delete();
+
+        $this->dispatchBrowserEvent('deleted', ['status' => 'Withdrawal Deleted Successfully']);
     }
 
 

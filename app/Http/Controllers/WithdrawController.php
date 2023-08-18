@@ -82,8 +82,11 @@ class WithdrawController extends Controller
             'amount' => $fees,
         ]);
 
-        // sending email to this user
-        Mail::to(auth()->user()->email)->send(new WithdrawRequest($withdraw));
+        if (!env('APP_DEBUG')) {
+            // sending email to this user
+            Mail::to(auth()->user()->email)->send(new WithdrawRequest($withdraw));
+        }
+
 
         return back()->with('success', 'Withdraw Request Send Successfully');
     }

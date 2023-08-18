@@ -255,16 +255,14 @@ final class AllWithdrawals extends PowerGridComponent
      * @return array<int, RuleActions>
      */
 
-    /*
+
     public function actionRules(): array
     {
-       return [
+        return [
 
-           //Hide button edit for ID 1
-            Rule::button('edit')
-                ->when(fn($withdraw) => $withdraw->id === 1)
-                ->hide(),
+            Rule::rows()
+                ->when(fn ($withdraw) => $withdraw->user->withdraw == false)
+                ->setAttribute('class', 'bg-danger-subtle'),
         ];
     }
-    */
 }
