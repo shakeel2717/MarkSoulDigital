@@ -238,7 +238,7 @@
                                         <span
                                             class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">{{ auth()->user()->fname . ' ' . auth()->user()->lname }}</span>
                                         <span
-                                            class="d-none d-xl-block ms-1 fs-sm user-name-sub-text text-uppercase">{{ auth()->user()->status }}</span>
+                                            class="d-none d-xl-block ms-1 fs-sm user-name-sub-text text-uppercase {{ (auth()->user()->kyc && auth()->user()->kyc->status == true) ? 'text-success' : '' }}">{{ (auth()->user()->kyc && auth()->user()->kyc->status == true) ? 'Kyc:Approved' : 'KYC:Pending' }}</span>
                                     </span>
                                 </span>
                             </button>
