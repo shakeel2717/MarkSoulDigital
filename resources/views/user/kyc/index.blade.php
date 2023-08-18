@@ -38,8 +38,8 @@
                             <div class="col-md-12">
                                 <div class="form-group mb-3">
                                     <label for="dob">Date of Birth<span class="text-danger">*</span></label>
-                                    <input type="date" name="dob" id="dob" class="form-control"
-                                        placeholder="Enter DOB" required>
+                                    <input type="text" name="dob" id="dob" class="form-control"
+                                        placeholder="DD/MM/YYYY" required>
                                 </div>
                             </div>
                             <div class="col-md-12">

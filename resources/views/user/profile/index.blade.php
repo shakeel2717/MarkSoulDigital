@@ -110,25 +110,44 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group mb-3">
                                                         <label for="cpassword">Current Password</label>
-                                                        <input type="password" name="cpassword" id="cpassword"
-                                                            class="form-control" placeholder="Enter Current Password"
-                                                            value="">
+                                                        <div class="input-group mb-3">
+                                                            <input type="password" name="cpassword" id="cpassword"
+                                                                class="form-control" placeholder="Current Password"
+                                                                aria-label="Password" aria-describedby="cpassword">
+                                                            <button class="btn btn-outline-secondary" type="button"
+                                                                id="togglePassword2">
+                                                                <i class="bi bi-eye"></i>
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">
                                                     <div class="form-group mb-3">
                                                         <label for="password">New Password</label>
-                                                        <input type="password" name="password" id="password"
-                                                            class="form-control" placeholder="Enter New Password"
-                                                            value="">
+                                                        <div class="input-group mb-3">
+                                                            <input type="password" name="password" id="passwordInput"
+                                                                class="form-control" placeholder="Password"
+                                                                aria-label="Password" aria-describedby="togglePassword">
+                                                            <button class="btn btn-outline-secondary" type="button"
+                                                                id="togglePassword">
+                                                                <i class="bi bi-eye"></i>
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">
                                                     <div class="form-group mb-3">
                                                         <label for="password_confirmation">Confirm New Password</label>
-                                                        <input type="password" name="password_confirmation"
-                                                            id="password_confirmation" class="form-control"
-                                                            placeholder="Enter Confirm New Password" value="">
+                                                        <div class="input-group mb-3">
+                                                            <input type="password" name="password_confirmation"
+                                                                id="password_confirmation" class="form-control"
+                                                                placeholder="Password" aria-label="Password"
+                                                                aria-describedby="togglePassword">
+                                                            <button class="btn btn-outline-secondary" type="button"
+                                                                id="togglePassword3">
+                                                                <i class="bi bi-eye"></i>
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -147,4 +166,40 @@
             </div>
         </div>
     </div>
+@endsection
+@section('footer')
+    <script>
+        document.getElementById("togglePassword").addEventListener("click", function() {
+
+            const passwordInput = document.getElementById("passwordInput");
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+            } else {
+                passwordInput.type = "password";
+            }
+        });
+    </script>
+
+    <script>
+        document.getElementById("togglePassword2").addEventListener("click", function() {
+
+            const passwordInput = document.getElementById("cpassword");
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+            } else {
+                passwordInput.type = "password";
+            }
+        });
+    </script>
+    <script>
+        document.getElementById("togglePassword3").addEventListener("click", function() {
+
+            const passwordInput = document.getElementById("password_confirmation");
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+            } else {
+                passwordInput.type = "password";
+            }
+        });
+    </script>
 @endsection
