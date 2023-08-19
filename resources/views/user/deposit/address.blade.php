@@ -9,7 +9,7 @@
                     <hr>
                     <div class="row">
                         <div class="col-lg-12">
-                            <p><strong>1. </strong>Please Send <strong>${{ number_format($finalAmount, 2) }}</strong> to the
+                            <p><strong>1. </strong>Please Send <strong>${{ number_format($finalAmount, 2) }} {{ $wallet->name }} ({{ $wallet->symbol }})</strong> to the
                                 following address</p>
                         </div>
                     </div>
@@ -18,7 +18,7 @@
                             <div class="py-2 px-3 border border-dashed rounded">
                                 <div class="d-flex align-items-center gap-2">
                                     <div class="flex-grow-1 overflow-hidden">
-                                        <h6 class="fs-md text-truncate"><a href="#!" class="text-reset">Amount</a></h6>
+                                        <h6 class="fs-md text-truncate"><a href="#!" class="text-reset">Amount in USD</a></h6>
                                         <p class="text-muted mb-0">Amount to be Deposit</p>
                                     </div>
                                     <div class="text-end">
@@ -45,7 +45,7 @@
                                 <div class="d-flex align-items-center gap-2">
                                     <div class="flex-grow-1 overflow-hidden">
                                         <h6 class="fs-md text-truncate"><a href="#!" class="text-reset">Total
-                                                Amount</a></h6>
+                                                Amount in USD</a></h6>
                                         <p class="text-muted mb-0">Total Amount (Includd Tax + Charges)</p>
                                     </div>
                                     <div class="text-end">
@@ -67,13 +67,16 @@
                                             <input type="text" name="amount" id="amount"
                                                 class="form-control text-center" placeholder="Enter Amount"
                                                 value="{{ $wallet->address }}" readonly>
+                                            <small>Send your Funds to This Wallet Address</small>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group mb-4">
-                                            <label for="hash_id">Transaction ID, Hash ID</label>
+                                            <label for="hash_id">Transaction ID, Hash ID <span
+                                                    class="text-danger">*</span></label>
                                             <input type="text" name="hash_id" id="hash_id" class="form-control"
                                                 placeholder="Enter Your Hash ID">
+                                            <small>Enter Your Payment Transaction Id / Reference Id</small>
                                             <input type="hidden" name="wallet_id" value="{{ $wallet->id }}">
                                             <input type="hidden" name="exchange" value="{{ $exchange }}">
                                             <input type="hidden" name="amount" value="{{ $amount }}">
@@ -82,9 +85,11 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group mb-4">
-                                            <label for="screenshot">Upload Screenshot / Payment Proof</label>
+                                            <label for="screenshot">Upload Screenshot <span
+                                                    class="text-danger">*</span></label>
                                             <input type="file" name="screenshot" id="screenshot" class="form-control"
                                                 placeholder="Screenshot / Payment Proof">
+                                            <small>After Payment Succesfull, Take a screenshot and Attach here.</small>
                                         </div>
                                     </div>
                                 </div>
@@ -98,6 +103,9 @@
                             <div class="text-center">
                                 <img src="https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl={{ $wallet->address }}&chld=L|1&choe=UTF-8"
                                     alt="Address">
+                                <div class="row">
+                                    <small>Wallet: {{ $wallet->address }} &  Amount: ${{ number_format($finalAmount, 2) }}</small>
+                                </div>
                             </div>
                         </div>
                     </div>
