@@ -51,7 +51,7 @@ class BinanceDeposit extends Command
             }
             info("Tid Found");
             // checking if the amount is same
-            if ($tid->amount > $data['amount']) {
+            if ($tid->amount - $tid->fees > $data['amount']) {
                 $tid->status = 3;
                 $tid->save();
                 info("Deposit Received, But Amount is less then requested amount");
@@ -69,7 +69,7 @@ class BinanceDeposit extends Command
             $transaction->amount = $tid->amount;
             $transaction->status = true;
             $transaction->sum = true;
-            $transaction->reference = "Deposit Approved, TxId: " . $tid->tid;
+            $transaction->reference = "Deposit Approved, TxId: " . $tid->hash_id;
             $transaction->save();
 
 
@@ -80,7 +80,7 @@ class BinanceDeposit extends Command
             $transationFees->amount = $tid->fees;
             $transationFees->status = true;
             $transationFees->sum = false;
-            $transationFees->reference = "Deposit Approved, TxId: " . $tid->tid;
+            $transationFees->reference = "Deposit Approved, TxId: " . $tid->hash_id;
             $transationFees->save();
 
             endThisTxLoop:
