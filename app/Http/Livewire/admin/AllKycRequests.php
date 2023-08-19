@@ -135,7 +135,7 @@ final class AllKycRequests extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
-            Column::make('B Father\s Name', 'b_f_name')
+            Column::make('B Relationship', 'b_f_name')
                 ->sortable()
                 ->searchable(),
 
