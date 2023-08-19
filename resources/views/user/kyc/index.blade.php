@@ -58,10 +58,10 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group mb-3">
-                                    <label for="b_f_name">Beneficiary Father's Name <span
+                                    <label for="b_f_name">Beneficiary Relationship <span
                                             class="text-danger">*</span></label>
                                     <input type="text" name="b_f_name" id="b_f_name" class="form-control"
-                                        placeholder="Enter Beneficiary Father's Name" required>
+                                        placeholder="Enter Beneficiary Relationship" required>
                                 </div>
                             </div>
                             <div class="col-md-12">
