@@ -102,6 +102,13 @@ final class allDeposits extends PowerGridComponent
             ->addColumn('amount')
             ->addColumn('fees')
             ->addColumn('hash_id')
+            ->addColumn(
+                'screenshot',
+                function (Tid $model) {
+                    $asset = asset('screenshots/') . "/" . $model->screenshot;
+                    return '<img src="' . $asset . '" width="150">';
+                }
+            )
 
             /** Example of custom column using a closure **/
             ->addColumn('hash_id_lower', fn (Tid $model) => strtolower(e($model->hash_id)))
@@ -146,6 +153,9 @@ final class allDeposits extends PowerGridComponent
             Column::make('Hash id', 'hash_id')
                 ->sortable()
                 ->searchable(),
+
+
+            Column::make('SCREENSHOT', 'screenshot'),
 
 
             Column::make('Created at', 'created_at_formatted', 'created_at')

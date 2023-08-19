@@ -14,6 +14,7 @@ class Tid extends Model
         'amount',
         'fees',
         'exchange',
+        'screenshot',
         'hash_id',
         'status',
     ];

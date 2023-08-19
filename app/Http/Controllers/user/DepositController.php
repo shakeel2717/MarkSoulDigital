@@ -69,10 +69,16 @@ class DepositController extends Controller
             'hash_id' => 'required|string|unique:tids,hash_id',
             'exchange' => 'required|string',
             'wallet_id' => 'required|integer',
+            'screenshot' => 'required|image',
             'finalAmount' => 'required|numeric|min:1',
         ]);
 
+
         $wallet = Wallet::findOrFail($validatedData['wallet_id']);
+
+        $screenshot = $request->file('screenshot');
+        $screenshot_name = auth()->user()->username . time() . rand(00, 11) . '.' . $screenshot->getClientOriginalExtension();
+        $screenshot->move(public_path('screenshots/'), $screenshot_name);
 
         // checking if this user request already pending
         if (auth()->user()->pending_tids()->get()->count() > 0) {
@@ -82,6 +88,7 @@ class DepositController extends Controller
         auth()->user()->tids()->create([
             'hash_id' => $validatedData['hash_id'],
             'amount' => $validatedData['finalAmount'],
+            'screenshot' => $screenshot_name,
             'exchange' => $validatedData['exchange'],
             'fees' => $validatedData['finalAmount'] - $validatedData['amount'],
         ]);
