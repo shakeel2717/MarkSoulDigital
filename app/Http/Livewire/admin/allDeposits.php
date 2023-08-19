@@ -246,7 +246,7 @@ final class allDeposits extends PowerGridComponent
         $transaction->amount = $tid->amount;
         $transaction->status = true;
         $transaction->sum = true;
-        $transaction->reference = "Deposit Approved throw, Transaction Id: " . $tid->tid;
+        $transaction->reference = "Deposit Approved, TxId: " . $tid->tid;
         $transaction->save();
 
 
@@ -257,7 +257,7 @@ final class allDeposits extends PowerGridComponent
         $transationFees->amount = $tid->fees;
         $transationFees->status = true;
         $transationFees->sum = false;
-        $transationFees->reference = "Deposit Approved throw, Transaction Id: " . $tid->tid;
+        $transationFees->reference = "Deposit Approved, TxId: " . $tid->tid;
         $transationFees->save();
 
         $this->dispatchBrowserEvent('deleted', ['status' => 'Deposit Approved Successfully']);

@@ -15,6 +15,7 @@ class Kernel extends ConsoleKernel
         // $schedule->command('blockchain:run')->daily();
         $schedule->command('check:reward')->hourly();
         $schedule->command('check:binary')->hourly();
+        $schedule->command('verify:deposits')->hourly();
     }
 
     /**
