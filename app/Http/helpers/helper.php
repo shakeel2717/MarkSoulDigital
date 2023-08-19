@@ -365,3 +365,71 @@ function totalDailyRoiCap($user_id)
 {
     return getActivePlan($user_id) * site_option('daily_roi_network_x');
 }
+
+
+function totalInvestment()
+{
+    $investments = Transaction::where('type', 'Plan Active')->sum('amount');
+    return $investments;
+}
+
+function totalRealInvestment()
+{
+    $invest = 0;
+    $investments = Transaction::where('type', 'Plan Active')->get();
+    foreach ($investments as $investment) {
+        // checking if this user is not a PIN
+        if (!$investment->user->networker) {
+            $invest += $investment->amount;
+        }
+    }
+    return $invest;
+}
+
+
+function totalPinInvestment()
+{
+    $invest = 0;
+    $investments = Transaction::where('type', 'Plan Active')->get();
+    foreach ($investments as $investment) {
+        // checking if this user is not a PIN
+        if ($investment->user->networker) {
+            $invest += $investment->amount;
+        }
+    }
+    return $invest;
+}
+
+
+function allWithdrawals()
+{
+    $withdrawals = Transaction::where('type', 'Withdraw')->sum('amount');
+    return  $withdrawals;
+}
+
+function pendingWithdrawals()
+{
+    $withdrawals = Transaction::where('type', 'Withdraw')->where('status', false)->sum('amount');
+    return  $withdrawals;
+}
+
+
+function approvedWithdrawals()
+{
+    $withdrawals = Transaction::where('type', 'Withdraw')->where('status', true)->sum('amount');
+    return  $withdrawals;
+}
+
+
+function totalRealDeposit()
+{
+    $invest = 0;
+    $investments = Transaction::where('type', 'Deposit')->get();
+    foreach ($investments as $investment) {
+        // checking if this user is not a PIN
+        if (!$investment->user->networker) {
+            $invest += $investment->amount;
+        }
+    }
+    return $invest;
+}
