@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('withdraws', function (Blueprint $table) {
-            $table->string('txId')->nullable()->after('status');
+            $table->string('txId')->unique()->nullable()->after('status');
         });
     }
 

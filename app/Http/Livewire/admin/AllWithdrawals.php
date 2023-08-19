@@ -205,6 +205,7 @@ final class AllWithdrawals extends PowerGridComponent
             parent::getListeners(),
             [
                 'approve' => 'approve',
+                'confirmedapprove' => 'confirmedapprove',
                 'delete' => 'delete',
                 'confirmedDelete' => 'confirmedDelete'
             ]
@@ -227,13 +228,21 @@ final class AllWithdrawals extends PowerGridComponent
 
     public function approve($id)
     {
+        $this->dispatchBrowserEvent('txId', ['id' => $id['id']]);
+    }
+
+
+    public function confirmedapprove($id)
+    {
         $withdraw = Withdraw::find($id['id']);
+        $withdraw->txId = $id['txId'];
         $withdraw->status = true;
         $withdraw->save();
 
         // approving transaction
         foreach ($withdraw->transactions as $transaction) {
             $transaction->status = true;
+            $transaction->reference = $transaction->reference . " & txId: " . $id['txId'];
             $transaction->save();
         }
 
