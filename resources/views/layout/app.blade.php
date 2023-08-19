@@ -23,6 +23,18 @@
     <link rel="stylesheet" href="{{ asset('landing/css/magnific-popup.min.css') }}">
     <link rel="stylesheet" href="{{ asset('landing/css/slick.min.css') }}">
     <link rel="stylesheet" href="{{ asset('landing/css/style.css') }}">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MQRF729Z95"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-MQRF729Z95');
+    </script>
 </head>
 
 <body>
