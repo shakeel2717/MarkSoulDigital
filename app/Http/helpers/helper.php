@@ -7,6 +7,7 @@ use App\Models\Transaction;
 use App\Models\User;
 use App\Models\UserPlan;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Http;
 
 function site_option($key)
 {
@@ -432,4 +433,48 @@ function totalRealDeposit()
         }
     }
     return $invest;
+}
+
+
+// getting currency to deposit
+function getDepositAmount($currency, $usdAmount)
+{
+    if ($currency == "USDT") {
+        return $usdAmount * 1;
+    }
+
+    $currency = $currency . "USDT";
+    $apiKey = env('BINANCE_API_KEY');
+    $response = Http::withHeaders([
+        'X-MBX-APIKEY' => $apiKey,
+    ])->get('https://api.binance.com/api/v3/ticker/price', [
+        'symbol' => $currency,
+    ]);
+
+    if ($response->json() == []) {
+        info("Invalid Wallet");
+        abort(500);
+    }
+
+    $liveRate = $response->json();
+    return $usdAmount / $liveRate['price'];
+}
+
+
+function getLiveRate($currency)
+{
+    $apiKey = env('BINANCE_API_KEY');
+    $response = Http::withHeaders([
+        'X-MBX-APIKEY' => $apiKey,
+    ])->get('https://api.binance.com/api/v3/ticker/price', [
+        'symbol' => $currency . "USDT",
+    ]);
+
+    if ($response->json() == []) {
+        info("Invalid Wallet");
+        abort(500);
+    }
+
+    $liveRate = $response->json();
+    return $liveRate['price'];
 }

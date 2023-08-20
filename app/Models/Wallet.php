@@ -10,7 +10,7 @@ class Wallet extends Model
 
     protected $fillable = [
         'symbol',
-        'sybmol',
+        'network',
         'name',
         'icon',
         'fees',

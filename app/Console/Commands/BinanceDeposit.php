@@ -51,14 +51,25 @@ class BinanceDeposit extends Command
                 info("This TID not Found");
                 goto endThisTxLoop;
             }
+
             $transaction = $response->json();
             if (!$transaction[0]['status']) {
                 info("Transaction Not yet Approved");
                 goto endThisTxLoop;
             }
 
-            $finalAmount = $transaction[0]['amount'];
-            $fees = 0;
+            // checking if this coin is usdt
+            if ($transaction[0]['coin'] == 'USDT') {
+                $finalAmount = $transaction[0]['amount'];
+                $fees = 0;
+            } elseif ($transaction[0]['coin'] == 'ETH') {
+                // precess eth coin
+                // getting amount in USDT
+                $ethAmount = $transaction[0]['amount'];
+                $ethRate = getLiveRate('ETH');
+                $finalAmount = $ethAmount * $ethRate;
+            }
+
             if ($tid->wallet->fees > 0) {
                 $fees = $finalAmount * $tid->wallet->fees / 100;
             }
@@ -89,6 +100,7 @@ class BinanceDeposit extends Command
             $transationFees->reference = "Deposit Approved, TxId: " . $tid->hash_id;
             $transationFees->save();
             info("Deposit Fees Added");
+
 
 
             endThisTxLoop:

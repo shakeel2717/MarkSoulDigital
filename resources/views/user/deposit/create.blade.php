@@ -44,6 +44,7 @@
                                     <label for="amount">Amount in USD $ <span class="text-danger">*</span></label>
                                     <input type="text" name="amount" id="amount" class="form-control"
                                         placeholder="Enter Amount in USD">
+                                        <small class="text-danger">Please Enter Amount in only USD</small>
                                 </div>
                             </div>
                             <div class="col-md-12">
