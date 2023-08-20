@@ -29,23 +29,23 @@ class checkBinaryCommand extends Command
     {
         $users = User::where('status', 'active')->get();
         foreach ($users as $user) {
-            info("Delivering Binary Commission");
+            // info("Delivering Binary Commission");
             $totalMatchingBusiness = totalMatchingBusiness($user->id);
             // checking if this value is not 0
             if ($totalMatchingBusiness < 1) {
-                info("Value is 0, Skipping");
+                // info("Value is 0, Skipping");
                 goto endLoop;
             }
 
-            info("Matching Balance Value is not Zero");
+            // info("Matching Balance Value is not Zero");
             // checking if this user have active plan
             if ($user->userPlan == "") {
-                info("Investmetn is 0");
+                // info("Investmetn is 0");
                 goto endLoop;
             }
             // checking if already paid
             if ($totalMatchingBusiness <= $user->binary_match) {
-                info("Already Paid");
+                // info("Already Paid");
                 goto endLoop;
             } else {
                 $totalMatchingBusiness = $totalMatchingBusiness - $user->binary_match;
@@ -72,7 +72,7 @@ class checkBinaryCommand extends Command
                 $user->binary_match += $totalMatchingBusiness;
                 $user->save();
 
-                info("Binary Commission added for " . $user->username . "and Commission is: " . $profitRatio);
+                // info("Binary Commission added for " . $user->username . "and Commission is: " . $profitRatio);
             }
 
             endLoop:

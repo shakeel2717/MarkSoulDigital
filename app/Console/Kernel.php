@@ -13,9 +13,9 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         $schedule->command('blockchain:run')->dailyAt("12:00");
-        $schedule->command('check:reward')->hourly();
-        $schedule->command('check:binary')->hourly();
-        $schedule->command('verify:deposits')->everyMinute();
+        $schedule->command('check:reward')->twiceDaily();
+        $schedule->command('check:binary')->twiceDaily();
+        $schedule->command('verify:deposits')->everyThirtySeconds();
     }
 
     /**
