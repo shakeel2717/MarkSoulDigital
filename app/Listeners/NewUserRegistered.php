@@ -24,7 +24,7 @@ class NewUserRegistered
     public function handle(Registered $event): void
     {
         if (!env('APP_DEBUG')) {
-            info("Sending Welcome to User");
+            // info("Sending Welcome to User");
             if ($event->user->email != "") {
                 $user  = $event->user;
                 Mail::to($event->user->email)->send(new WelcomeEmail($user));

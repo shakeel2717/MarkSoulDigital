@@ -177,7 +177,7 @@ function BusinessVolume($user_id, $position)
         if (!$directRefer->networker) {
             $totalAmount += $directRefer->userPlan->amount;
         }
-        info($directRefer->username . " Direct Balance Added: " . $directRefer->userPlan->amount);
+        // info($directRefer->username . " Direct Balance Added: " . $directRefer->userPlan->amount);
         $directBusinessAlreadyCount[] = $directRefer->id;
         if ($count == 0) {
             $firstLevelActiveUser = $directRefer->userPlan->created_at;
@@ -185,21 +185,21 @@ function BusinessVolume($user_id, $position)
     }
 
     if (!checkLeftRightActiveStatus($user_id)) {
-        // info("User not have both side active, skipping");
+        // // info("User not have both side active, skipping");
         goto endThisFunction;
     }
 
     foreach ($user->getMyDownline($position) as $leftUser) {
-        info($leftUser->username . " User Investigating");
+        // info($leftUser->username . " User Investigating");
         // checking if this user have active plan
         if ($leftUser->userPlan == null) {
-            info($leftUser->username . " Not have active plan");
+            // info($leftUser->username . " Not have active plan");
             goto endThisDirectLeftBusinessLoop;
         }
 
 
         if (in_array($leftUser->id, $directBusinessAlreadyCount)) {
-            info($leftUser->username . " This User Business Already Count");
+            // info($leftUser->username . " This User Business Already Count");
             goto endThisDirectLeftBusinessLoop;
         }
 
@@ -213,11 +213,11 @@ function BusinessVolume($user_id, $position)
             if (!$leftUser->networker) {
                 $totalAmount += $leftUser->userPlan->amount;
             }
-            info($leftUser->username . " downline team Balance Added: " . $leftUser->userPlan->amount);
+            // info($leftUser->username . " downline team Balance Added: " . $leftUser->userPlan->amount);
         } else {
-            info($firstLevelActiveUser . " Date of First Level Direct User");
-            info($leftUser->userPlan->created_at . " Date of " . $leftUser->username . " Direct User");
-            info($leftUser->username . " This User Plan Activate Before the Direct Refer");
+            // info($firstLevelActiveUser . " Date of First Level Direct User");
+            // info($leftUser->userPlan->created_at . " Date of " . $leftUser->username . " Direct User");
+            // info($leftUser->username . " This User Plan Activate Before the Direct Refer");
         }
 
 
@@ -341,7 +341,7 @@ function checkFreezeDaysCount($user_id)
     if ($user->freeze_transactions->sum('amount') > 0) {
         $firstFreezeTransaction = $user->freeze_transactions->first();
         if (strtotime($firstFreezeTransaction->created_at) < strtotime(now()->addDays(site_option('freeze_transaction_duration')))) {
-            info("Transaction Freeze 15 days Found");
+            // info("Transaction Freeze 15 days Found");
             return true;
         }
     }

@@ -24,9 +24,9 @@ class DeliverFreezeBalance
     public function handle(PlanActivatedEvent $event): void
     {
         $user = User::find($event->transaction->user_id);
-        info("Delivering Freeze Balance to this user");
+        // info("Delivering Freeze Balance to this user");
         if ($user->freeze_transactions->sum('amount') > 0) {
-            info("User have Balance: " . $user->freeze_transactions->sum('amount'));
+            // info("User have Balance: " . $user->freeze_transactions->sum('amount'));
             foreach ($user->freeze_transactions as $freezeTransaction) {
                 $transaction = $user->transactions()->create([
                     'type' => 'Freeze Balance Recover',
@@ -45,7 +45,7 @@ class DeliverFreezeBalance
                 }
             }
         } else {
-            info("User not have any Balance in Freez");
+            // info("User not have any Balance in Freez");
         }
     }
 }

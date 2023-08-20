@@ -28,7 +28,7 @@ class DeliverDirectCommission
         $userPlan = $event->userPlan;
         // getting this user upliner
         if ($user->refer != 'default') {
-            info("User have valid refer");
+            // info("User have valid refer");
 
             // finding the refer
             $sponser = User::where('username', $user->refer)->first();
@@ -50,7 +50,7 @@ class DeliverDirectCommission
 
             // checking networker account
             if ($user->networker) {
-                info("Networker Account, Skipping Direct Profit");
+                // info("Networker Account, Skipping Direct Profit");
                 goto EndThisListener;
             }
 

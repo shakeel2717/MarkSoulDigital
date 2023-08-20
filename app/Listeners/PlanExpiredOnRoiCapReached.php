@@ -24,7 +24,7 @@ class PlanExpiredOnRoiCapReached
     public function handle(ExpireUserPlanOnRoiCapReached $event): void
     {
         $user = User::find($event->user_id);
-        info("Proccess of Plan Expired for this User");
+        // info("Proccess of Plan Expired for this User");
 
         // checking remaining cap
         $totalCap = getActivePlan($event->user_id) * 3;
@@ -41,7 +41,7 @@ class PlanExpiredOnRoiCapReached
                 'amount' => $remaining,
             ]);
 
-            info("Balance Adjust Transaction Added");
+            // info("Balance Adjust Transaction Added");
 
 
             $balanceRemovedTransaction = $user->transactions()->create([
@@ -53,14 +53,14 @@ class PlanExpiredOnRoiCapReached
                 'amount' => $remaining,
             ]);
 
-            info("Balance Adjust Transaction Removed");
+            // info("Balance Adjust Transaction Removed");
 
             // expiring this user Plan
             $userPlan = UserPlan::find($user->userPlan->id);
             $userPlan->status = 'expired';
             $userPlan->save();
 
-            info("This User Plan Expired Because Of ROI");
+            // info("This User Plan Expired Because Of ROI");
 
             // Removing this Balance
         }

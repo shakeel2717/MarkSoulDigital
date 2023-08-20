@@ -26,7 +26,7 @@ class CheckNetworkingCap
         $totalCap = getActivePlan($user->id) * 3;
         $totalEarned = networkCap($user->id);
         $diffrence = $totalEarned - $totalCap;
-        info($diffrence . " Transactions Diffrence");
+        // info($diffrence . " Transactions Diffrence");
         if ($diffrence > 0) {
             $user->transactions()->create([
                 'type' => 'Freeze Balance',
