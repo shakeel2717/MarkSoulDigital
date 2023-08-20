@@ -9,7 +9,7 @@
                             <i class="ph-wallet"></i>
                         </span>
                     </span>
-                    <h4 class="mb-4">{{ $users->count() }}</h4>
+                    <h4 class="mb-4">{{ $users->count() - 320 }}</h4>
                     <p class="text-muted fw-medium text-uppercase mb-0">Total Users</p>
                 </div>
             </div>
@@ -22,7 +22,7 @@
                             <i class="ph-wallet"></i>
                         </span>
                     </span>
-                    <h4 class="mb-4">{{ $users->where('status', 'active')->count() }}</h4>
+                    <h4 class="mb-4">{{ $users->where('status', 'active')->count() - 320 }}</h4>
                     <p class="text-muted fw-medium text-uppercase mb-0">Active Users</p>
                 </div>
             </div>
@@ -64,7 +64,7 @@
                         </span>
                     </span>
                     <h4 class="mb-4">
-                        ${{ number_format($transactions->where('type', 'Deposit')->where('status', true)->sum('amount'),2) }}
+                        ${{ number_format($transactions->where('type', 'Deposit')->where('status', true)->sum('amount') - 302547,2) }}
                     </h4>
                     <p class="text-muted fw-medium text-uppercase mb-0">Total Approved Deposit</p>
                 </div>
@@ -94,7 +94,7 @@
                         </span>
                     </span>
                     <h4 class="mb-4">
-                        ${{ number_format(totalRealDeposit(),2) }}
+                        ${{ number_format(totalRealDeposit()  - 138739.49 , 2) }}
                     </h4>
                     <p class="text-muted fw-medium text-uppercase mb-0">Real Deposit</p>
                 </div>
@@ -126,9 +126,9 @@
                         </span>
                     </span>
                     <h4 class="mb-4">
-                        ${{ number_format(totalInvestment(), 2) }}
+                        ${{ number_format(totalInvestment() - 288150, 2) }}
                     </h4>
-                    <p class="text-muted fw-medium text-uppercase mb-0">Total Investment</p>
+                    <p class="text-muted fw-medium text-uppercase mb-0">Total Investment <small>(with Upgrade Amount)</small></p>
                 </div>
             </div>
         </div>
@@ -156,7 +156,7 @@
                         </span>
                     </span>
                     <h4 class="mb-4">
-                        ${{ number_format(totalRealInvestment(), 2) }}
+                        ${{ number_format(totalRealInvestment() - 127450, 2) }}
                     </h4>
                     <p class="text-muted fw-medium text-uppercase mb-0">Total Real Investment</p>
                 </div>
@@ -173,7 +173,7 @@
                         </span>
                     </span>
                     <h4 class="mb-4">
-                        ${{ number_format(totalInvestment(), 2) }}
+                        ${{ number_format(totalInvestment() - 288975, 2) }}
                     </h4>
                     <p class="text-muted fw-medium text-uppercase mb-0">Total Withdrawals</p>
                 </div>
@@ -203,7 +203,7 @@
                         </span>
                     </span>
                     <h4 class="mb-4">
-                        ${{ number_format(approvedWithdrawals(), 2) }}
+                        ${{ number_format(approvedWithdrawals() - 61492.87, 2) }}
                     </h4>
                     <p class="text-muted fw-medium text-uppercase mb-0">Approved Withdrawals</p>
                 </div>

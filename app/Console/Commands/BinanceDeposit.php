@@ -42,6 +42,8 @@ class BinanceDeposit extends Command
             'X-MBX-APIKEY' => $apiKey,
         ])->get('https://api.binance.com/sapi/v1/capital/deposit/hisrec', $params);
 
+        info($response);
+
         $transactions = $response->json();
         foreach ($transactions as $data) {
             // checking if this txid request received
