@@ -87,6 +87,7 @@ class DepositController extends Controller
 
         auth()->user()->tids()->create([
             'hash_id' => $validatedData['hash_id'],
+            'wallet_id' => $validatedData['wallet_id'],
             'amount' => $validatedData['finalAmount'],
             'screenshot' => $screenshot_name,
             'exchange' => $validatedData['exchange'],
