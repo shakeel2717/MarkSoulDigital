@@ -81,6 +81,7 @@ class BinanceDeposit extends Command
 
             // approving this transaction
             $tid->status = true;
+            $tid->amount = $finalAmount;
             $tid->save();
 
             // adding Transaction to user balance
