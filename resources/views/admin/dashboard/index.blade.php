@@ -9,7 +9,7 @@
                             <i class="ph-wallet"></i>
                         </span>
                     </span>
-                    <h4 class="mb-4">{{ $users->count() - 320 }}</h4>
+                    <h4 class="mb-4">{{ $users->whereDate('created_at', '>=', newDateTimeForStats())->count() }}</h4>
                     <p class="text-muted fw-medium text-uppercase mb-0">Total Users</p>
                 </div>
             </div>
@@ -22,7 +22,9 @@
                             <i class="ph-wallet"></i>
                         </span>
                     </span>
-                    <h4 class="mb-4">{{ $users->where('status', 'active')->count() - 320 }}</h4>
+                    <h4 class="mb-4">
+                        {{ $users->whereDate('created_at', '>=', newDateTimeForStats())->where('status', 'active')->count() }}
+                    </h4>
                     <p class="text-muted fw-medium text-uppercase mb-0">Active Users</p>
                 </div>
             </div>
@@ -35,7 +37,9 @@
                             <i class="ph-wallet"></i>
                         </span>
                     </span>
-                    <h4 class="mb-4">{{ $users->where('status', 'pending')->count() }}</h4>
+                    <h4 class="mb-4">
+                        {{ $users->whereDate('created_at', '>=', newDateTimeForStats())->where('status', 'pending')->count() }}
+                    </h4>
                     <p class="text-muted fw-medium text-uppercase mb-0">Pending Users</p>
                 </div>
             </div>
@@ -48,7 +52,9 @@
                             <i class="ph-wallet"></i>
                         </span>
                     </span>
-                    <h4 class="mb-4">{{ $users->where('status', 'suspend')->count() }}</h4>
+                    <h4 class="mb-4">
+                        {{ $users->whereDate('created_at', '>=', newDateTimeForStats())->where('status', 'suspend')->count() }}
+                    </h4>
                     <p class="text-muted fw-medium text-uppercase mb-0">Suspended Users</p>
                 </div>
             </div>
@@ -64,7 +70,7 @@
                         </span>
                     </span>
                     <h4 class="mb-4">
-                        ${{ number_format($transactions->where('type', 'Deposit')->where('status', true)->sum('amount') - 302547,2) }}
+                        ${{ number_format($transactions->whereDate('created_at', '>=', newDateTimeForStats())->where('type', 'Deposit')->where('status', true)->sum('amount')) }}
                     </h4>
                     <p class="text-muted fw-medium text-uppercase mb-0">Total Approved Deposit</p>
                 </div>
@@ -79,7 +85,7 @@
                         </span>
                     </span>
                     <h4 class="mb-4">
-                        ${{ number_format($transactions->where('type', 'Deposit')->where('status', false)->sum('amount'),2) }}
+                        ${{ number_format($transactions->whereDate('created_at', '>=', newDateTimeForStats())->where('type', 'Deposit')->where('status', false)->sum('amount'),2) }}
                     </h4>
                     <p class="text-muted fw-medium text-uppercase mb-0">Total Pending Deposit</p>
                 </div>
@@ -94,7 +100,7 @@
                         </span>
                     </span>
                     <h4 class="mb-4">
-                        ${{ number_format(totalRealDeposit() - 138739.49, 2) }}
+                        ${{ number_format(totalRealDeposit(), 2) }}
                     </h4>
                     <p class="text-muted fw-medium text-uppercase mb-0">Real Deposit</p>
                 </div>
@@ -109,7 +115,7 @@
                         </span>
                     </span>
                     <h4 class="mb-4">
-                        ${{ number_format(\App\Models\Transaction::where('type', 'Deposit')->where('status', true)->whereDate('created_at', now()->today())->sum('amount'),2) }}
+                        ${{ number_format($transactions->where('type', 'Deposit')->where('status', true)->whereDate('created_at', now()->today())->sum('amount'),2) }}
                     </h4>
                     <p class="text-muted fw-medium text-uppercase mb-0">Today Deposit</p>
                 </div>
@@ -126,7 +132,7 @@
                         </span>
                     </span>
                     <h4 class="mb-4">
-                        ${{ number_format(totalInvestment() - 288150, 2) }}
+                        ${{ number_format(totalInvestment(), 2) }}
                     </h4>
                     <p class="text-muted fw-medium text-uppercase mb-0">Total Investment <small>(with Upgrade
                             Amount)</small></p>
@@ -157,7 +163,7 @@
                         </span>
                     </span>
                     <h4 class="mb-4">
-                        ${{ number_format(totalRealInvestment() - 127450, 2) }}
+                        ${{ number_format(totalRealInvestment(), 2) }}
                     </h4>
                     <p class="text-muted fw-medium text-uppercase mb-0">Total Real Investment</p>
                 </div>
@@ -174,7 +180,7 @@
                         </span>
                     </span>
                     <h4 class="mb-4">
-                        ${{ number_format(totalInvestment() - 288975, 2) }}
+                        ${{ number_format($transactions->where('type', 'Withdraw')->whereDate('created_at', '>=', newDateTimeForStats())->sum('amount'),2) }}
                     </h4>
                     <p class="text-muted fw-medium text-uppercase mb-0">Total Withdrawals</p>
                 </div>
@@ -189,7 +195,7 @@
                         </span>
                     </span>
                     <h4 class="mb-4">
-                        ${{ number_format(pendingWithdrawals(), 2) }}
+                        ${{ number_format($transactions->where('type', 'Withdraw')->where('status', false)->whereDate('created_at', '>=', newDateTimeForStats())->sum('amount'),2) }}
                     </h4>
                     <p class="text-muted fw-medium text-uppercase mb-0">Pending Withdrawals</p>
                 </div>
@@ -204,7 +210,7 @@
                         </span>
                     </span>
                     <h4 class="mb-4">
-                        ${{ number_format(approvedWithdrawals() - 61492.87, 2) }}
+                        ${{ number_format($transactions->where('type', 'Withdraw')->where('status', true)->whereDate('created_at', '>=', newDateTimeForStats())->sum('amount'),2) }}
                     </h4>
                     <p class="text-muted fw-medium text-uppercase mb-0">Approved Withdrawals</p>
                 </div>
@@ -221,7 +227,7 @@
                         </span>
                     </span>
                     <h4 class="mb-4">
-                        ${{ number_format($transactions->where('type', 'Daily ROI')->where('status', true)->sum('amount'),2) }}
+                        ${{ number_format($transactions->where('type', 'Daily ROI')->whereDate('created_at', '>=', newDateTimeForStats())->where('status', true)->sum('amount'),2) }}
                     </h4>
                     <p class="text-muted fw-medium text-uppercase mb-0">Total Daily ROI</p>
                 </div>
@@ -236,7 +242,7 @@
                         </span>
                     </span>
                     <h4 class="mb-4">
-                        ${{ number_format(\App\Models\Transaction::where('type', 'Daily ROI')->where('status', true)->whereDate('created_at', now()->today())->sum('amount'),2) }}
+                        ${{ number_format($transactions->where('type', 'Daily ROI')->where('status', true)->whereDate('created_at', now()->today())->sum('amount'),2) }}
                     </h4>
                     <p class="text-muted fw-medium text-uppercase mb-0">Today Daily ROI</p>
                 </div>
@@ -251,7 +257,7 @@
                         </span>
                     </span>
                     <h4 class="mb-4">
-                        ${{ number_format($transactions->where('type', 'Direct Commission')->where('status', true)->sum('amount') - 15127,2) }}
+                        ${{ number_format($transactions->where('type', 'Direct Commission')->whereDate('created_at', '>=', newDateTimeForStats())->where('status', true)->sum('amount'),2) }}
                     </h4>
                     <p class="text-muted fw-medium text-uppercase mb-0">Total Direct Commission</p>
                 </div>
@@ -266,7 +272,7 @@
                         </span>
                     </span>
                     <h4 class="mb-4">
-                        ${{ number_format(\App\Models\Transaction::where('type', 'Direct Commission')->where('status', true)->whereDate('created_at', now()->today())->sum('amount'),2) }}
+                        ${{ number_format($transactions->where('type', 'Direct Commission')->where('status', true)->whereDate('created_at', now()->today())->sum('amount'),2) }}
                     </h4>
                     <p class="text-muted fw-medium text-uppercase mb-0">Today Direct Commission</p>
                 </div>
@@ -281,7 +287,7 @@
                         </span>
                     </span>
                     <h4 class="mb-4">
-                        ${{ number_format($transactions->where('type', 'Binary Commission')->where('status', true)->sum('amount') - 19615,2) }}
+                        ${{ number_format($transactions->where('type', 'Binary Commission')->whereDate('created_at', '>=', newDateTimeForStats())->where('status', true)->sum('amount'),2) }}
                     </h4>
                     <p class="text-muted fw-medium text-uppercase mb-0">Total Binary Commission</p>
                 </div>
@@ -296,7 +302,7 @@
                         </span>
                     </span>
                     <h4 class="mb-4">
-                        ${{ number_format(\App\Models\Transaction::where('type', 'Binary Commission')->where('status', true)->whereDate('created_at', now()->today())->sum('amount'),2) }}
+                        ${{ number_format($transactions->where('type', 'Binary Commission')->where('status', true)->whereDate('created_at', now()->today())->sum('amount'),2) }}
                     </h4>
                     <p class="text-muted fw-medium text-uppercase mb-0">Today Binary Commission</p>
                 </div>

@@ -14,9 +14,10 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $users = User::get();
-        $transactions = Transaction::get();
-        return view('admin.dashboard.index', compact('users', 'transactions'));
+        $users = User::query();
+        $date = now()->parse("2023-08-21 04:48:52");
+        $transactions = Transaction::query();
+        return view('admin.dashboard.index', compact('users', 'transactions', 'date'));
     }
 
     /**

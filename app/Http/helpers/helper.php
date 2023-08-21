@@ -370,14 +370,14 @@ function totalDailyRoiCap($user_id)
 
 function totalInvestment()
 {
-    $investments = Transaction::where('type', 'Plan Active')->sum('amount');
+    $investments = Transaction::where('type', 'Plan Active')->whereDate('created_at', '>=', newDateTimeForStats())->sum('amount');
     return $investments;
 }
 
 function totalRealInvestment()
 {
     $invest = 0;
-    $investments = Transaction::where('type', 'Plan Active')->get();
+    $investments = Transaction::where('type', 'Plan Active')->whereDate('created_at', '>=', newDateTimeForStats())->get();
     foreach ($investments as $investment) {
         // checking if this user is not a PIN
         if (!$investment->user->networker) {
@@ -391,7 +391,7 @@ function totalRealInvestment()
 function totalPinInvestment()
 {
     $invest = 0;
-    $investments = Transaction::where('type', 'Plan Active')->get();
+    $investments = Transaction::where('type', 'Plan Active')->whereDate('created_at', '>=', newDateTimeForStats())->get();
     foreach ($investments as $investment) {
         // checking if this user is not a PIN
         if ($investment->user->networker) {
@@ -425,7 +425,7 @@ function approvedWithdrawals()
 function totalRealDeposit()
 {
     $invest = 0;
-    $investments = Transaction::where('type', 'Deposit')->get();
+    $investments = Transaction::where('type', 'Deposit')->whereDate('created_at', '>=', newDateTimeForStats())->get();
     foreach ($investments as $investment) {
         // checking if this user is not a PIN
         if (!$investment->user->networker) {
@@ -477,4 +477,10 @@ function getLiveRate($currency)
 
     $liveRate = $response->json();
     return $liveRate['price'];
+}
+
+
+function newDateTimeForStats()
+{
+    return "2023-08-20 04:48:52";
 }
