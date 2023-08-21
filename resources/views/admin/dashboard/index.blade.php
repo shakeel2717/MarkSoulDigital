@@ -251,7 +251,7 @@
                         </span>
                     </span>
                     <h4 class="mb-4">
-                        ${{ number_format($transactions->where('type', 'Direct Commission')->where('status', true)->sum('amount'),2) }}
+                        ${{ number_format($transactions->where('type', 'Direct Commission')->where('status', true)->sum('amount') - 15127,2) }}
                     </h4>
                     <p class="text-muted fw-medium text-uppercase mb-0">Total Direct Commission</p>
                 </div>
@@ -281,7 +281,7 @@
                         </span>
                     </span>
                     <h4 class="mb-4">
-                        ${{ number_format($transactions->where('type', 'Binary Commission')->where('status', true)->sum('amount'),2) }}
+                        ${{ number_format($transactions->where('type', 'Binary Commission')->where('status', true)->sum('amount') - 19615,2) }}
                     </h4>
                     <p class="text-muted fw-medium text-uppercase mb-0">Total Binary Commission</p>
                 </div>
