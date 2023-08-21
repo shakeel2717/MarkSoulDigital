@@ -482,5 +482,5 @@ function getLiveRate($currency)
 
 function newDateTimeForStats()
 {
-    return "2023-08-20 04:48:52";
+    return "2023-08-19 04:48:52";
 }
