@@ -9,7 +9,8 @@
                             <i class="ph-wallet"></i>
                         </span>
                     </span>
-                    <h4 class="mb-4">{{ $users->whereDate('created_at', '>=', newDateTimeForStats())->count() }}</h4>
+                    <h4 class="mb-4">{{ App\Models\User::whereDate('created_at', '>=', newDateTimeForStats())->count() }}
+                    </h4>
                     <p class="text-muted fw-medium text-uppercase mb-0">Total Users</p>
                 </div>
             </div>
@@ -23,7 +24,7 @@
                         </span>
                     </span>
                     <h4 class="mb-4">
-                        {{ $users->whereDate('created_at', '>=', newDateTimeForStats())->where('status', 'active')->count() }}
+                        {{ App\Models\User::whereDate('created_at', '>=', newDateTimeForStats())->where('status', 'active')->count() }}
                     </h4>
                     <p class="text-muted fw-medium text-uppercase mb-0">Active Users</p>
                 </div>
@@ -38,7 +39,7 @@
                         </span>
                     </span>
                     <h4 class="mb-4">
-                        {{ $users->whereDate('created_at', '>=', newDateTimeForStats())->where('status', 'pending')->count() }}
+                        {{ App\Models\User::whereDate('created_at', '>=', newDateTimeForStats())->where('status', 'pending')->count() }}
                     </h4>
                     <p class="text-muted fw-medium text-uppercase mb-0">Pending Users</p>
                 </div>
@@ -53,7 +54,7 @@
                         </span>
                     </span>
                     <h4 class="mb-4">
-                        {{ $users->whereDate('created_at', '>=', newDateTimeForStats())->where('status', 'suspend')->count() }}
+                        {{ App\Models\User::whereDate('created_at', '>=', newDateTimeForStats())->where('status', 'suspend')->count() }}
                     </h4>
                     <p class="text-muted fw-medium text-uppercase mb-0">Suspended Users</p>
                 </div>
