@@ -29,7 +29,7 @@
                                                 </span>
                                                 <span
                                                     class="fs-3xl float-end mt-2 text-wrap d-block fw-semibold">{{ $wallet->name }}
-                                                    ({{ $wallet->symbol }})
+                                                    ({{ $wallet->symbol }}) ({{ $wallet->network }}) 
                                                 </span>
                                             </div>
                                         </label>
@@ -46,8 +46,9 @@
                                         placeholder="Enter Amount in USD">
                                         <small class="text-danger">Please Enter Amount in only USD</small>
                                 </div>
+                                <input type="hidden" name="exchange" value="Binance">
                             </div>
-                            <div class="col-md-12">
+                            {{-- <div class="col-md-12">
                                 <div class="form-group mt-4">
                                     <label for="exchange">Exchange Name <span class="text-danger">*</span></label>
                                     <select name="exchange" id="exchange" class="form-control">
@@ -56,7 +57,7 @@
                                         <option value="Other">Other (Manual)</option>
                                     </select>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="text-end mt-4">
                             <button type="submit" class="btn btn-danger btn-label"> Continue <i
