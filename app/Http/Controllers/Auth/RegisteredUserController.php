@@ -36,7 +36,7 @@ class RegisteredUserController extends Controller
             'lname' => ['nullable', 'string', 'max:255'],
             'email' => ['nullable', 'string', 'email', 'max:255'],
             'username' => ['required', 'string', 'alpha_num', 'max:255', 'unique:' . User::class],
-            'mobile' => ['required', 'numeric'],
+            'mobile' => ['required', 'numeric', 'unique:' . User::class],
             'code' => ['nullable', 'numeric'],
             'country' => ['required', 'string', 'max:255'],
             'position' => ['required', 'string', 'max:255'],
