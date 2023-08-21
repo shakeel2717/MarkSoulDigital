@@ -71,7 +71,12 @@ class BinanceDeposit extends Command
             }
 
             if ($tid->wallet->fees > 0) {
-                $fees = $finalAmount * $tid->wallet->fees / 100;
+                $getFeesReverse = $tid->wallet->fees / 100;
+
+                $depositAmount = $finalAmount / (1 + $getFeesReverse);
+                $fees = $finalAmount - $depositAmount;
+
+                // $fees = $finalAmount * $tid->wallet->fees / 100;
             }
 
             // approving this transaction

@@ -189,15 +189,17 @@ class DatabaseSeeder extends Seeder
 
         $wallet = new Wallet();
         $wallet->name = "Tether";
-        $wallet->symbol = "USDT.TRC20";
+        $wallet->symbol = "USDT";
+        $wallet->network = "TRX";
         $wallet->icon = "usdt.png";
         $wallet->fees = 1;
         $wallet->address = "kwejrlwjer2l3kj4l2j34ljl";
         $wallet->save();
-
+        
         $wallet = new Wallet();
         $wallet->name = "Ethereum";
         $wallet->symbol = "ETH";
+        $wallet->network = "ETH";
         $wallet->icon = "ethereum.png";
         $wallet->fees = 1;
         $wallet->address = "kwejrlwjer2l3kj4l2j34ljl";
