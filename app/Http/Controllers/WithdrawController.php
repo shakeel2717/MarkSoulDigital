@@ -38,6 +38,11 @@ class WithdrawController extends Controller
             'wallet' => 'required|string',
         ]);
 
+        // checking if this user have enough balnace
+        if (balance(auth()->user()->id) < $validatedData['amount']) {
+            return back()->withErrors(['Insufficient Balance']);
+        }
+
         // checking if deposit amount is enough
         if ($validatedData['amount'] < site_option('min_deposit')) {
             return back()->withErrors(['Minimum Withdrawal Limit is: ' . site_option('min_deposit')]);
