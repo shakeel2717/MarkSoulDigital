@@ -30,6 +30,22 @@
         </div>
     @endif
     <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-success">
+                <h5 class="mb-0 text-success">Promotional Announcement</h5>
+                <p class="mb-3">Users who successfully achieve direct sales of <strong>$1500</strong> will be eligible to receive a reward
+                    of either <strong>$150</strong> USDT or an Android mobile device.</p>
+                <div class="d-flex justify-content-start gap-4 align-items-center">
+                    <div class="count-timer">
+                        <div id="countdown" data-end="{{ checkFreezeFirstDate(auth()->user()->id) }}">
+                        </div>
+                        <h4 class="text-success mb-0" id="promotional"></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-md-3">
             <div class="card border-bottom border-3 card-animate border-danger">
                 <div class="card-body bg-dark rounded">
@@ -447,4 +463,37 @@
             })();
         </script>
     @endif
+    <script>
+        (function() {
+            // Get the past date and time in milliseconds
+            var pastDateTime = new Date("2023-09-05 13:42:49").getTime();
+
+            // Update the counter every second
+            var interval = setInterval(function() {
+                var now = new Date().getTime();
+                var timeRemaining = pastDateTime - now;
+
+                // If the past date has not passed yet
+                if (timeRemaining > 0) {
+                    // Calculate days, hours, minutes, and seconds
+                    var days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+                    var hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    var minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+                    var seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+                    if (days > 14) {
+                        document.getElementById('promotional').textContent = "Expired";
+                    } else {
+                        // Update the promotional element with the remaining time
+                        document.getElementById('promotional').textContent = days + 'D ' + hours + 'H ' +
+                            minutes +
+                            'M ' + seconds + 'S';
+                    }
+
+                } else {
+                    clearInterval(interval);
+                    document.getElementById('promotional').textContent = 'Promotion Expired';
+                }
+            }, 1000); // Update every second
+        })();
+    </script>
 @endsection
