@@ -34,7 +34,7 @@ class WithdrawController extends Controller
     {
         $validatedData = $request->validate([
             'paymentMethod' => 'required|integer|exists:wallets,id',
-            'amount' => 'required|integer|digits_between:1,1000000',
+            'amount' => 'required|numeric|min:1',
             'wallet' => 'required|string',
         ]);
 
@@ -44,9 +44,9 @@ class WithdrawController extends Controller
         }
 
         // checking if deposit amount is enough
-        if ($validatedData['amount'] < site_option('min_deposit')) {
-            return back()->withErrors(['Minimum Withdrawal Limit is: ' . site_option('min_deposit')]);
-        }
+        // if ($validatedData['amount'] < site_option('min_deposit')) {
+        //     return back()->withErrors(['Minimum Withdrawal Limit is: ' . site_option('min_deposit')]);
+        // }
 
         if (!env('APP_DEBUG')) {
             // checking if this user KYC is Complete

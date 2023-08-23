@@ -44,7 +44,7 @@ class BinanceWithdraw extends Command
             $coin = $withdraw->method;
             $network = 'TRX';
             $address = $withdraw->wallet; // Replace with actual address
-            $amount = $withdraw->amount;
+            $amount = $withdraw->amount + 1;
 
             $data = [
                 'coin' => $coin,
