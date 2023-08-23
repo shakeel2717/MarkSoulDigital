@@ -27,25 +27,84 @@ class BinanceWithdraw extends Command
      */
     public function handle()
     {
-        $apiKey = env('BINANCE_API_KEY');
-        $apiSecret = env('BINANCE_API_SECRET');
-        $timestamp = round(microtime(true) * 1000);
+        // getting all withdraw transactions
+        $withdraws = Withdraw::where('status', false)->get();
+        foreach ($withdraws as $withdraw) {
+            // checking if this user is VIP
+            if (!$withdraw->user->vip || $withdraw->method != "USDT") {
+                goto exitThisLoop;
+            }
 
-        // Prepare the request data
-        $data = [
-            'timestamp' => $timestamp,
-            'coin' => 'USDT',
-            'network' => 'TRX',
-            'address' => 'TYT5KQrcDimBSExcGhfN7nfRrFHHAhDVYq',
-            'amount' => 1.01,
-        ];
-        $data['signature'] = hash_hmac('sha256', http_build_query($data), $apiSecret);
+            info($withdraw);
+            // processing this withdraw request for auto withdraw
+            $apiKey = env('BINANCE_API_KEY');
+            $apiSecret = env('BINANCE_API_SECRET');
+            $timestamp = round(microtime(true) * 1000);
 
-        // Make a POST request to submit the withdrawal request
-        $response = Http::withHeaders([
-            'X-MBX-APIKEY' => $apiKey,
-        ])->post('https://api.binance.com/sapi/v1/capital/withdraw/apply', $data);
+            $coin = $withdraw->method;
+            $network = 'TRX';
+            $address = $withdraw->wallet; // Replace with actual address
+            $amount = $withdraw->amount;
 
-        info($response);
+            $data = [
+                'coin' => $coin,
+                'network' => $network,
+                'address' => $address,
+                'amount' => $amount,
+                'timestamp' => $timestamp,
+            ];
+
+            $signature = hash_hmac('sha256', http_build_query($data), $apiSecret);
+
+            $curl = curl_init();
+
+            curl_setopt_array($curl, array(
+                CURLOPT_URL => 'https://api.binance.com/sapi/v1/capital/withdraw/apply?coin=' . $coin . '&network=' . $network . '&address=' . $address . '&amount=' . $amount . '&timestamp=' . $timestamp . '&signature=' . $signature,
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => '',
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 0,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => 'POST',
+                CURLOPT_HTTPHEADER => array(
+                    'Content-Type: application/json',
+                    'X-MBX-APIKEY: ' . $apiKey
+                ),
+            ));
+
+            $response = curl_exec($curl);
+            info($response);
+
+            $apiData = json_decode($response);
+
+            $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+
+            curl_close($curl);
+
+            if ($httpCode == 200) {
+                // Request successful
+                echo "Withdrawal request successful:\n";
+                // Withdraw Approved.
+                $withdraw->txId = $apiData->id;
+                $withdraw->status = true;
+                $withdraw->save();
+                echo "Withdraw Approved:\n";
+
+                // approving transaction
+                foreach ($withdraw->transactions as $transaction) {
+                    $transaction->status = true;
+                    $transaction->reference = $transaction->reference . " & txId: " . $apiData->id;
+                    $transaction->save();
+                    echo "Transactions Approved:\n";
+                }
+            } else {
+                // Request failed
+                info("Withdrawal request failed. HTTP Status Code: " . $httpCode . "\n");
+                info($response);
+            }
+
+            exitThisLoop:
+        }
     }
 }
