@@ -64,7 +64,7 @@ class WithdrawController extends Controller
         $withdraw->user_id = auth()->user()->id;
         $withdraw->amount = $amount;
         $withdraw->wallet = $validatedData['wallet'];
-        $withdraw->method = $wallet->name;
+        $withdraw->method = $wallet->symbol;
         $withdraw->save();
 
         auth()->user()->transactions()->create([
