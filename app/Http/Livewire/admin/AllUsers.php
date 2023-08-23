@@ -278,6 +278,15 @@ final class AllUsers extends PowerGridComponent
                 ->class('btn btn-danger btn-sm')
                 ->emit('pin', ['id' => 'id']),
 
+            Button::make('removeVip', 'Remove VIP')
+                ->class('btn btn-warning btn-sm')
+                ->emit('removeVip', ['id' => 'id']),
+
+
+            Button::make('vip', 'Make VIP')
+                ->class('btn btn-danger btn-sm')
+                ->emit('vip', ['id' => 'id']),
+
             Button::make('withdrawStop', 'Withdraw Stop')
                 ->class('btn btn-danger btn-sm')
                 ->emit('withdrawStop', ['id' => 'id']),
@@ -315,6 +324,8 @@ final class AllUsers extends PowerGridComponent
             [
                 'delete'   => 'delete',
                 'pin'   => 'pin',
+                'vip'   => 'vip',
+                'removeVip'   => 'removeVip',
                 'login'   => 'login',
                 'unpin'   => 'unpin',
                 'package'   => 'package',
@@ -564,6 +575,26 @@ final class AllUsers extends PowerGridComponent
         $this->dispatchBrowserEvent('deleted', ['status' => 'PIN Account Converted to Normal Account']);
     }
 
+
+
+    public function vip($id)
+    {
+        $user = User::find($id['id']);
+        $user->vip = true;
+        $user->save();
+
+        $this->dispatchBrowserEvent('deleted', ['status' => 'User Account Converted to PIN Account']);
+    }
+
+    public function removeVip($id)
+    {
+        $user = User::find($id['id']);
+        $user->vip = false;
+        $user->save();
+
+        $this->dispatchBrowserEvent('deleted', ['status' => 'PIN Account Converted to Normal Account']);
+    }
+
     public function withdrawStop($id)
     {
         $user = User::find($id['id']);
@@ -613,6 +644,14 @@ final class AllUsers extends PowerGridComponent
 
             Rule::button('pin')
                 ->when(fn ($user) => $user->networker == true)
+                ->hide(),
+
+            Rule::button('vip')
+                ->when(fn ($user) => $user->vip == true)
+                ->hide(),
+
+            Rule::button('removeVip')
+                ->when(fn ($user) => $user->vip == false)
                 ->hide(),
 
             Rule::button('unpin')

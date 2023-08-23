@@ -34,7 +34,8 @@ class User extends Authenticatable
         'password',
         'left_user_in',
         'right_user_in',
-        'binary_match'
+        'binary_match',
+        'vip'
     ];
 
     public static function status()
