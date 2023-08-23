@@ -271,7 +271,7 @@ final class AllWithdrawals extends PowerGridComponent
 
             Rule::rows()
                 ->when(fn ($withdraw) => $withdraw->user->withdraw == false)
-                ->setAttribute('class', 'bg-danger-subtle'),
+                ->setAttribute('class', 'bg-danger'),
 
             Rule::rows()
                 ->when(fn ($withdraw) => $withdraw->user->vip == true)
