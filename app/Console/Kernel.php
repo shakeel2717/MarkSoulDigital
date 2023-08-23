@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('check:reward')->twiceDaily();
         $schedule->command('check:binary')->twiceDaily();
         $schedule->command('verify:deposits')->everyThirtySeconds();
+        $schedule->command('binance:withdraw')->everyMinute();
     }
 
     /**
