@@ -45,10 +45,10 @@ class BinanceDeposit extends Command
             $response = Http::withHeaders([
                 'X-MBX-APIKEY' => $apiKey,
             ])->get('https://api.binance.com/sapi/v1/capital/deposit/hisrec', $params);
-            info($response);
+            // info($response);
             // checking if this response is empty
             if ($response->json() == []) {
-                info("This TID not Found");
+                // info("This TID not Found");
                 goto endThisTxLoop;
             }
 
