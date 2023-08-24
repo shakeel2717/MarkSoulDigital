@@ -57,6 +57,12 @@ class NewPasswordController extends Controller
 
                 event(new PasswordReset($user));
 
+                // removing this password request
+                $token = DB::table('password_reset_tokens')
+                    ->where('email', $request->email)
+                    ->where('username', $request->username)
+                    ->delete();
+
                 return redirect()->route('login')->with('success', 'Password Successfully Updated');
             } else {
                 die("Token Mismatch");
