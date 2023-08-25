@@ -62,7 +62,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-3">
+        {{-- <div class="col-md-3">
             <div class="card border-bottom border-3 card-animate border-danger">
                 <div class="card-body">
                     <span class="avatar-sm text-success float-end">
@@ -76,7 +76,7 @@
                     <p class="text-muted fw-medium text-uppercase mb-0">Total Approved Deposit</p>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <div class="col-md-3">
             <div class="card border-bottom border-3 card-animate border-danger">
                 <div class="card-body">
@@ -124,7 +124,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-4">
+        {{-- <div class="col-md-4">
             <div class="card border-bottom border-3 card-animate border-danger">
                 <div class="card-body">
                     <span class="avatar-sm text-success float-end">
@@ -139,8 +139,8 @@
                             Amount)</small></p>
                 </div>
             </div>
-        </div>
-        <div class="col-md-4">
+        </div> --}}
+        {{-- <div class="col-md-4">
             <div class="card border-bottom border-3 card-animate border-danger">
                 <div class="card-body">
                     <span class="avatar-sm text-success float-end">
@@ -154,7 +154,7 @@
                     <p class="text-muted fw-medium text-uppercase mb-0">Total PIN Investment</p>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <div class="col-md-4">
             <div class="card border-bottom border-3 card-animate border-danger">
                 <div class="card-body">
