@@ -41,7 +41,7 @@ class WithdrawController extends Controller
 
         // checking if today is saturday or sunday
         if (Carbon::today()->format('D') == "Sat" || Carbon::today()->format('D') == "Sun") {
-            info("Today is Holdiy");
+            info("Today is Holidy");
             return back()->withErrors(['Sat, Sun Withdraw Off']);
         }
 

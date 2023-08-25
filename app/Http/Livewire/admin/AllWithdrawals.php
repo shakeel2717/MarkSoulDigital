@@ -2,9 +2,11 @@
 
 namespace App\Http\Livewire\admin;
 
+use App\Mail\WithdrawComplete;
 use App\Models\Withdraw;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Mail;
 use PowerComponents\LivewirePowerGrid\Rules\{Rule, RuleActions};
 use PowerComponents\LivewirePowerGrid\Traits\{ActionButton, WithExport};
 use PowerComponents\LivewirePowerGrid\Filters\Filter;
@@ -244,6 +246,11 @@ final class AllWithdrawals extends PowerGridComponent
             $transaction->status = true;
             $transaction->reference = $transaction->reference . " & txId: " . $id['txId'];
             $transaction->save();
+        }
+
+        if (!env('APP_DEBUG')) {
+            // sending email to this user
+            Mail::to($withdraw->user->email)->send(new WithdrawComplete($withdraw));
         }
 
         $this->dispatchBrowserEvent('deleted', ['status' => 'Withdrawals Approved Successfully']);
