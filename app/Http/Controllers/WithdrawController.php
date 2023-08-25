@@ -45,6 +45,18 @@ class WithdrawController extends Controller
             return back()->withErrors(['Sat, Sun Withdraw Off']);
         }
 
+        $current_time = Carbon::now();
+
+        // Define the start and end times for allowed withdraw requests
+        $start_time = Carbon::createFromTime(0, 0, 0); // 12AM
+        $end_time = Carbon::createFromTime(12, 0, 0); // 12PM
+
+        // Check if the current time is within the allowed range
+        if (!$current_time->between($start_time, $end_time)) {
+            // Withdraw request is allowed within the time range
+            return back()->withErrors(['Withdraw Timing is from 12AM to 12PM']);
+        }
+
         // checking if this user have enough balnace
         if (balance(auth()->user()->id) < $validatedData['amount']) {
             return back()->withErrors(['Insufficient Balance']);

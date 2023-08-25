@@ -5,7 +5,8 @@
         <div class="col-md-6 mx-auto">
             <div class="card">
                 <div class="card-body">
-                    <h2 class="card-title">Withdrawal Funds <small>(Note: You can place Withdrawal Request Between 12PM to 12AM.) UTC +05:00</small></h2>
+                    <h2 class="card-title">Withdrawal Funds <small>(Note: Withdrawal Timing 12:01PM to 11:59PM.) <br> (Saturday, Sunday
+                            Withdrawal Off) UTC +05:00</small></h2>
                     <hr>
                     <div class="row">
                         <div class="col-md-12">
@@ -42,7 +43,8 @@
                                                 </span>
                                                 <span
                                                     class="fs-3xl float-end mt-2 text-wrap d-block fw-semibold">{{ $wallet->name }}
-                                                    ({{ $wallet->symbol }})</span>
+                                                    ({{ $wallet->symbol }})
+                                                </span>
                                             </div>
                                         </label>
                                     </div>
