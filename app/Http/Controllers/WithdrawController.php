@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\WithdrawRequest;
 use App\Models\Wallet;
 use App\Models\Withdraw;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -37,6 +38,12 @@ class WithdrawController extends Controller
             'amount' => 'required|numeric|min:1',
             'wallet' => 'required|string',
         ]);
+
+        // checking if today is saturday or sunday
+        if (Carbon::today()->format('D') == "Sat" || Carbon::today()->format('D') == "Sun") {
+            info("Today is Holdiy");
+            return back()->withErrors(['Sat, Sun Withdraw Off']);
+        }
 
         // checking if this user have enough balnace
         if (balance(auth()->user()->id) < $validatedData['amount']) {
