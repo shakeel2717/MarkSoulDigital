@@ -48,8 +48,8 @@ class WithdrawController extends Controller
         $current_time = Carbon::now();
 
         // Define the start and end times for allowed withdraw requests
-        $start_time = Carbon::createFromTime(0, 0, 0); // 12AM
-        $end_time = Carbon::createFromTime(12, 0, 0); // 12PM
+        $end_time = Carbon::createFromTime(0, 0, 0); // 12AM
+        $start_time = Carbon::createFromTime(12, 0, 0); // 12PM
 
         // Check if the current time is within the allowed range
         if (!$current_time->between($start_time, $end_time)) {
