@@ -137,4 +137,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(FreezeTransaction::class);
     }
+
+
+    public function history()
+    {
+        return $this->hasMany(LoginHistory::class)->latest();
+    }
 }

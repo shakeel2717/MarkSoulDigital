@@ -310,4 +310,30 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Login History</h2>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>IP</th>
+                                <th>Login Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($histories as $histroy)
+                                <tr>
+                                    <td>{{ $histroy->ip }}</td>
+                                    <td>{{ $histroy->created_at->diffForHumans() }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    {{ $histories->links() }}
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
