@@ -37,14 +37,14 @@
                                 <div class="form-group">
                                     <label for="username">Username <span class="text-danger">*</span></label>
                                     <input type="text" name="username" id="username" placeholder="Username"
-                                        class="form-control" value="{{ old('fname') }}">
+                                        class="form-control" value="{{ old('username') }}">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="email">Email <span class="text-danger">*</span></label>
                                     <input type="email" name="email" id="email" placeholder="Enter Email"
-                                        class="form-control" value="{{ old('fname') }}">
+                                        class="form-control" value="{{ old('email') }}">
                                 </div>
                             </div>
                         </div>
@@ -317,7 +317,7 @@
                                             <label for="mobile">Mobile # <span class="text-danger">*</span></label>
                                             <input type="text" name="mobile" id="mobile"
                                                 placeholder="Enter Mobile" class="form-control"
-                                                value="{{ old('fname') }}">
+                                                value="{{ old('mobile') }}">
                                         </div>
                                     </div>
                                 </div>
