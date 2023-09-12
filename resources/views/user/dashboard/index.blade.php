@@ -30,22 +30,6 @@
         </div>
     @endif
     <div class="row">
-        <div class="col-md-12">
-            <div class="alert alert-success">
-                <h5 class="mb-0 text-success">Promotional Announcement</h5>
-                <p class="mb-3">Users who successfully achieve direct sales of <strong>$1500</strong> will be eligible to receive a reward
-                    of either <strong>$150</strong> USDT or an Android mobile device.</p>
-                <div class="d-flex justify-content-start gap-4 align-items-center">
-                    <div class="count-timer">
-                        <div id="countdown" data-end="{{ checkFreezeFirstDate(auth()->user()->id) }}">
-                        </div>
-                        <h4 class="text-success mb-0" id="promotional"></h4>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
         <div class="col-md-3">
             <div class="card border-bottom border-3 card-animate border-danger">
                 <div class="card-body bg-dark rounded">

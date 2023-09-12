@@ -39,7 +39,7 @@ class PlanController extends Controller
                 info("User Already have Active Plan");
                 info("Checking if this user trying to actiavet lower plan");
                 $balance = auth()->user()->freeze_transactions->sum('amount') + balance(auth()->user()->id);
-                if (getActivePlan(auth()->user()->id) > $balance) {
+                if (getActivePlan(auth()->user()->id) >= $balance) {
                     info("User trying to Activate Lower Plan");
                     return back()->withErrors(['Insufficient investment. Please allocate more than $' . getActivePlan(auth()->user()->id) . ' to activate the plan']);
                 } else {
