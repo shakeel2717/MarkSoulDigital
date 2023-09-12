@@ -64,7 +64,7 @@ class checkBinaryCommand extends Command
                     'sum' => true,
                     'status' => true,
                     'user_plan_id' => $user->userPlan->id,
-                    'reference' => 'Binary Matching Commission From: ' . $user->username . ', Phone: ' . $user->mobile . ', Sponser: ' . $user->refer,
+                    'reference' => 'Binary Matching Commission',
                     'amount' => $profitRatio,
                 ]);
                 $user_id = $user_id->user_id;
