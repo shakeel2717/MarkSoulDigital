@@ -23,6 +23,7 @@ final class AllUsers extends PowerGridComponent
     public $fname;
     public $lname;
     public $email;
+    public $mobile;
 
 
     /*
@@ -188,6 +189,11 @@ final class AllUsers extends PowerGridComponent
                 ->editOnClick()
                 ->searchable(),
 
+                Column::make('Mobile', 'mobile')
+                ->sortable()
+                ->editOnClick()
+                ->searchable(),
+
             Column::make('Refer', 'refer')
                 ->sortable()
                 ->editOnClick()
@@ -230,6 +236,7 @@ final class AllUsers extends PowerGridComponent
             Filter::inputText('lname')->operators(['contains']),
             Filter::inputText('username')->operators(['contains']),
             Filter::inputText('email')->operators(['contains']),
+            Filter::inputText('mobile')->operators(['contains']),
             Filter::inputText('refer')->operators(['contains']),
             Filter::boolean('networker'),
             Filter::select('status', 'status')
