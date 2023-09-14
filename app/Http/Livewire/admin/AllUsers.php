@@ -583,7 +583,7 @@ final class AllUsers extends PowerGridComponent
         $user->vip = true;
         $user->save();
 
-        $this->dispatchBrowserEvent('deleted', ['status' => 'User Account Converted to PIN Account']);
+        $this->dispatchBrowserEvent('deleted', ['status' => 'User Account Converted to VIP Account']);
     }
 
     public function removeVip($id)
@@ -592,7 +592,7 @@ final class AllUsers extends PowerGridComponent
         $user->vip = false;
         $user->save();
 
-        $this->dispatchBrowserEvent('deleted', ['status' => 'PIN Account Converted to Normal Account']);
+        $this->dispatchBrowserEvent('deleted', ['status' => 'VIP Account Converted to Normal Account']);
     }
 
     public function withdrawStop($id)
