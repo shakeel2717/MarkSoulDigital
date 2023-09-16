@@ -46,6 +46,7 @@ class WithdrawController extends Controller
             return back()->withErrors(['Sat, Sun Withdraw Off']);
         }
 
+
         $current_time = Carbon::now();
 
         // Define the start and end times for allowed withdraw requests
@@ -55,7 +56,7 @@ class WithdrawController extends Controller
         // Check if the current time is within the allowed range
         if (!$current_time->between($start_time, $end_time)) {
             // Withdraw request is allowed within the time range
-            return back()->withErrors(['Withdraw Timing is from 12AM to 12PM']);
+            return back()->withErrors(['Withdraw Timing is from 12PM to 12AM']);
         }
 
         // checking if this user have enough balnace
