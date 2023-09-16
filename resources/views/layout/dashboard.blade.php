@@ -183,7 +183,7 @@
                                 <i class='bi bi-bell fs-2xl'></i>
                                 <span
                                     class="position-absolute topbar-badge fs-3xs translate-middle badge rounded-pill bg-danger"><span
-                                        class="notification-badge">0</span>
+                                        class="notification-badge">{{ auth()->user()->notifications->count() }}</span>
                                     <span class="visually-hidden">unread messages</span></span>
                             </button>
                             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
@@ -193,50 +193,58 @@
                                         <div class="row align-items-center">
                                             <div class="col">
                                                 <h6 class="mb-0 fs-lg fw-semibold"> Notifications <span
-                                                        class="badge bg-danger-subtle text-danger fs-sm notification-badge">0</span>
+                                                        class="badge bg-danger-subtle text-danger fs-sm notification-badge">{{ auth()->user()->notifications->count() }}</span>
                                                 </h6>
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
-
-                                {{-- <div class="py-2 ps-2" id="notificationItemsTabContent">
-                                    <div data-simplebar style="max-height: 300px;" class="pe-2">
-                                        <div
-                                            class="text-reset notification-item d-block dropdown-item position-relative">
-                                            <div class="d-flex">
-                                                <div class="avatar-xs me-3 flex-shrink-0">
-                                                    <span
-                                                        class="avatar-title bg-info-subtle text-info rounded-circle fs-lg">
-                                                        <i class="bx bx-badge-check"></i>
-                                                    </span>
-                                                </div>
-                                                <div class="flex-grow-1">
-                                                    <a href="#!" class="stretched-link">
-                                                        <h6 class="mt-0 fs-md mb-2 lh-base">Your <b>Elite</b> author
-                                                            Graphic
-                                                            Optimization <span class="text-secondary">reward</span> is
-                                                            ready!
-                                                        </h6>
-                                                    </a>
-                                                    <p class="mb-0 fs-2xs fw-medium text-uppercase text-muted">
-                                                        <span><i class="mdi mdi-clock-outline"></i> Just 30 sec
-                                                            ago</span>
-                                                    </p>
-                                                </div>
-                                                <div class="px-2 fs-base">
-                                                    <div class="form-check notification-check">
-                                                        <input class="form-check-input" type="checkbox"
-                                                            value="" id="all-notification-check01">
-                                                        <label class="form-check-label"
-                                                            for="all-notification-check01"></label>
+                                @forelse (auth()->user()->notifications()->limit(6)->get() as $notification)
+                                    <div class="py-2 ps-2" id="notificationItemsTabContent">
+                                        <div data-simplebar style="max-height: 300px;" class="pe-2">
+                                            <div
+                                                class="text-reset notification-item d-block dropdown-item position-relative">
+                                                <div class="d-flex">
+                                                    <div class="avatar-xs me-3 flex-shrink-0">
+                                                        <span
+                                                            class="avatar-title bg-info-subtle text-info rounded-circle fs-lg">
+                                                            <i class="bx bx-badge-check"></i>
+                                                        </span>
+                                                    </div>
+                                                    <div class="flex-grow-1">
+                                                        <a href="javascript:void(0);" class="stretched-link">
+                                                            <h6 class="mt-0 fs-md mb-2 lh-base">
+                                                                {{ $notification->title }}
+                                                            </h6>
+                                                            <p> {{ $notification->description }}</p>
+                                                        </a>
+                                                        <p class="mb-0 fs-2xs fw-medium text-uppercase text-muted">
+                                                            <span><i class="mdi mdi-clock-outline"></i>
+                                                                {{ $notification->created_at->diffForHumans() }}</span>
+                                                        </p>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div> --}}
+                                @empty
+                                    <div class="py-2 ps-2" id="notificationItemsTabContent">
+                                        <div data-simplebar style="max-height: 300px;" class="pe-2">
+                                            <div
+                                                class="text-reset notification-item d-block dropdown-item position-relative">
+                                                <div class="d-flex">
+                                                    <div class="flex-grow-1">
+                                                        <a href="#!" class="stretched-link">
+                                                            <h6 class="mt-0 fs-md mb-2 lh-base">
+                                                                No Notification
+                                                            </h6>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforelse
                             </div>
                         </div>
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\WithdrawRequest;
+use App\Models\Notification;
 use App\Models\Wallet;
 use App\Models\Withdraw;
 use Carbon\Carbon;
@@ -110,6 +111,13 @@ class WithdrawController extends Controller
             // sending email to this user
             Mail::to(auth()->user()->email)->send(new WithdrawRequest($withdraw));
         }
+
+        // sending admin notification
+        $notification = new Notification();
+        $notification->user_id = 1;
+        $notification->title = "New Withdraw Request $" . number_format($amount, 2);
+        $notification->description = "New Withdraw Request from " . auth()->user()->username;
+        $notification->save();
 
 
         return back()->with('success', 'Withdraw Request Send Successfully');

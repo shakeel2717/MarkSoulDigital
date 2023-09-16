@@ -143,4 +143,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(LoginHistory::class)->latest();
     }
+
+
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class)->latest();
+    }
 }

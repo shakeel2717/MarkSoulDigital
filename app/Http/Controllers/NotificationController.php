@@ -1,26 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\LoginHistory;
 use App\Models\Notification;
-use App\Models\Transaction;
-use App\Models\User;
 use Illuminate\Http\Request;
 
-class DashboardController extends Controller
+class NotificationController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $users = User::query();
-        $date = now()->parse("2023-08-21 04:48:52");
-        $transactions = Transaction::query();
-        $histories = LoginHistory::where('user_id', auth()->user()->id)->latest()->paginate(10);
-        return view('admin.dashboard.index', compact('users', 'transactions', 'date', 'histories'));
+        //
     }
 
     /**
@@ -42,7 +34,7 @@ class DashboardController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Notification $notification)
     {
         //
     }
@@ -50,7 +42,7 @@ class DashboardController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Notification $notification)
     {
         //
     }
@@ -58,7 +50,7 @@ class DashboardController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Notification $notification)
     {
         //
     }
@@ -66,7 +58,7 @@ class DashboardController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Notification $notification)
     {
         //
     }
