@@ -30,6 +30,17 @@
         </div>
     @endif
     <div class="row">
+        <div class="col-md-12">
+            <div class="card card-body alert alert-success">
+                <h3 class="text-success">Promotion 9 OCT 2023 - 16 OCT 2023</h3>
+                <p>From October 9th to October 16th, 2023, 11:59 pm, seize the opportunity to own the iconic Honda CD 70
+                    bike for just $6000 through a direct sale. Don't miss your chance to ride in style and experience the
+                    ultimate journey. Act now and make this limited-time offer yours!</p>
+                <h3 class="text-success">Direct Sale Required: $6000</h3>
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-md-3">
             <div class="card border-bottom border-3 card-animate border-danger">
                 <div class="card-body bg-dark rounded">
