@@ -29,7 +29,7 @@
             </div>
         </div>
     @endif
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-md-12">
             <div class="card card-body alert alert-success">
                 <h3 class="text-success">Promotion 9 OCT 2023 - 16 OCT 2023</h3>
@@ -39,7 +39,7 @@
                 <h3 class="text-success">Direct Sale Required: $6000</h3>
             </div>
         </div>
-    </div>
+    </div> --}}
     <div class="row">
         <div class="col-md-3">
             <div class="card border-bottom border-3 card-animate border-danger">
