@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Transaction;
 use App\Models\Wallet;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 
 class DepositController extends Controller
 {
@@ -93,6 +94,8 @@ class DepositController extends Controller
             'exchange' => $validatedData['exchange'],
             'fees' => $validatedData['finalAmount'] - $validatedData['amount'],
         ]);
+
+        Artisan::call('verify:deposits');
 
         return redirect()->route('user.dashboard.index')->with('success', 'Deposit Request Sent Successfully');
     }
