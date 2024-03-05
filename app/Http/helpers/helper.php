@@ -176,12 +176,12 @@ function BusinessVolume($user_id, $position)
     foreach ($allDirectRefers as $count => $directRefer) {
         // checking if this user is networker
         if (!$directRefer->networker) {
-            $totalAmount += $directRefer->userPlan->amount;
+            $totalAmount += $directRefer->userPlan->amount ?? 0;
         }
         // info($directRefer->username . " Direct Balance Added: " . $directRefer->userPlan->amount);
         $directBusinessAlreadyCount[] = $directRefer->id;
         if ($count == 0) {
-            $firstLevelActiveUser = $directRefer->userPlan->created_at;
+            $firstLevelActiveUser = $directRefer->userPlan->created_at ?? now();
         }
     }
 
