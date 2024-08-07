@@ -118,7 +118,7 @@ final class AllUsers extends PowerGridComponent
             ->addColumn('name')
 
             /** Example of custom column using a closure **/
-            ->addColumn('name_lower', fn (User $model) => strtolower(e($model->name)))
+            ->addColumn('name_lower', fn(User $model) => strtolower(e($model->name)))
 
             ->addColumn('balance', function (User $model) {
                 return number_format(balance($model->id), 2);
@@ -147,7 +147,7 @@ final class AllUsers extends PowerGridComponent
             ->addColumn('refer')
             ->addColumn('status')
             ->addColumn('networker')
-            ->addColumn('created_at_formatted', fn (User $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'));
+            ->addColumn('created_at_formatted', fn(User $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'));
     }
 
     /*
@@ -189,7 +189,7 @@ final class AllUsers extends PowerGridComponent
                 ->editOnClick()
                 ->searchable(),
 
-                Column::make('Mobile', 'mobile')
+            Column::make('Mobile', 'mobile')
                 ->sortable()
                 ->editOnClick()
                 ->searchable(),
@@ -310,6 +310,14 @@ final class AllUsers extends PowerGridComponent
                 ->class('btn btn-danger btn-sm')
                 ->emit('login', ['id' => 'id']),
 
+            Button::make('lockbusiness', 'Lock Business')
+                ->class('btn btn-danger btn-sm')
+                ->emit('lockbusiness', ['id' => 'id']),
+
+            Button::make('unlockbusiness', 'unLock Business')
+                ->class('btn btn-danger btn-sm')
+                ->emit('unlockbusiness', ['id' => 'id']),
+
 
             // Button::make('package', 'Activate Package')
             //     ->class('btn btn-danger btn-sm')
@@ -329,20 +337,22 @@ final class AllUsers extends PowerGridComponent
         return array_merge(
             parent::getListeners(),
             [
-                'delete'   => 'delete',
-                'pin'   => 'pin',
-                'vip'   => 'vip',
-                'removeVip'   => 'removeVip',
-                'login'   => 'login',
-                'unpin'   => 'unpin',
-                'package'   => 'package',
-                'suspend'   => 'suspend',
-                'activate'   => 'activate',
-                'withdraw'   => 'withdraw',
+                'delete' => 'delete',
+                'pin' => 'pin',
+                'vip' => 'vip',
+                'removeVip' => 'removeVip',
+                'login' => 'login',
+                'unpin' => 'unpin',
+                'package' => 'package',
+                'suspend' => 'suspend',
+                'activate' => 'activate',
+                'withdraw' => 'withdraw',
                 'confirmedDelete' => 'confirmedDelete',
                 'withdrawAllBalance' => 'withdrawAllBalance',
                 'withdrawStop' => 'withdrawStop',
                 'withdrawStart' => 'withdrawStart',
+                'lockbusiness' => 'lockbusiness',
+                'unlockbusiness' => 'unlockbusiness',
             ]
         );
     }
@@ -554,6 +564,24 @@ final class AllUsers extends PowerGridComponent
         return redirect()->route('user.dashboard.index');
     }
 
+    public function lockbusiness($id)
+    {
+        $user = User::find($id['id']);
+        $user->lock = true;
+        $user->save();
+
+        $this->dispatchBrowserEvent('deleted', ['status' => 'User\'s Binary Business Succesfully Locked']);
+    }
+
+    public function unlockbusiness($id)
+    {
+        $user = User::find($id['id']);
+        $user->lock = false;
+        $user->save();
+
+        $this->dispatchBrowserEvent('deleted', ['status' => 'User\'s Binary Business Succesfully Unlocked']);
+    }
+
     public function suspend($id)
     {
         $user = User::find($id['id']);
@@ -642,49 +670,57 @@ final class AllUsers extends PowerGridComponent
 
             //Hide button edit for ID 1
             Rule::button('suspend')
-                ->when(fn ($user) => $user->status === 'suspend')
+                ->when(fn($user) => $user->status === 'suspend')
                 ->hide(),
 
             Rule::button('activate')
-                ->when(fn ($user) => $user->status === 'active')
+                ->when(fn($user) => $user->status === 'active')
                 ->hide(),
 
             Rule::button('pin')
-                ->when(fn ($user) => $user->networker == true)
+                ->when(fn($user) => $user->networker == true)
                 ->hide(),
 
             Rule::button('vip')
-                ->when(fn ($user) => $user->vip == true)
+                ->when(fn($user) => $user->vip == true)
                 ->hide(),
 
             Rule::button('removeVip')
-                ->when(fn ($user) => $user->vip == false)
+                ->when(fn($user) => $user->vip == false)
                 ->hide(),
 
             Rule::button('unpin')
-                ->when(fn ($user) => $user->networker == false)
+                ->when(fn($user) => $user->networker == false)
                 ->hide(),
 
             Rule::button('package')
-                ->when(fn ($user) => $user->status == 'active')
+                ->when(fn($user) => $user->status == 'active')
                 ->hide(),
 
 
             Rule::rows()
-                ->when(fn ($user) => $user->status == "active")
+                ->when(fn($user) => $user->status == "active")
                 ->setAttribute('class', 'bg-success-subtle'),
 
             Rule::rows()
-                ->when(fn ($user) => $user->networker == true)
+                ->when(fn($user) => $user->networker == true)
                 ->setAttribute('class', 'bg-primary-subtle'),
 
 
             Rule::button('withdrawStart')
-                ->when(fn ($user) => $user->withdraw == true)
+                ->when(fn($user) => $user->withdraw == true)
                 ->hide(),
 
             Rule::button('withdrawStop')
-                ->when(fn ($user) => $user->withdraw == false)
+                ->when(fn($user) => $user->withdraw == false)
+                ->hide(),
+
+            Rule::button('lockbusiness')
+                ->when(fn($user) => $user->lock == true)
+                ->hide(),
+
+            Rule::button('unlockbusiness')
+                ->when(fn($user) => $user->lock == false)
                 ->hide(),
         ];
     }
