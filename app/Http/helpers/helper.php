@@ -176,7 +176,11 @@ function BusinessVolume($user_id, $position)
     foreach ($allDirectRefers as $count => $directRefer) {
         // checking if this user is networker
         if (!$directRefer->networker) {
-            $totalAmount += $directRefer->userPlan->amount ?? 0;
+            if($user->lock){
+                $totalAmount += $directRefer->userPlan->created_at > '2024-08-07'? $directRefer->userPlan->amount : 0;
+            } else {
+                $totalAmount += $directRefer->userPlan->amount ?? 0;
+            }
         }
         // info($directRefer->username . " Direct Balance Added: " . $directRefer->userPlan->amount);
         $directBusinessAlreadyCount[] = $directRefer->id;
@@ -212,7 +216,12 @@ function BusinessVolume($user_id, $position)
 
             // checking networker
             if (!$leftUser->networker) {
-                $totalAmount += $leftUser->userPlan->amount;
+                
+                if($user->lock){
+                    $totalAmount += $leftUser->userPlan->created_at > '2024-08-07'? $leftUser->userPlan->amount : 0;
+                } else {
+                    $totalAmount += $leftUser->userPlan->amount;
+                }
             }
             // info($leftUser->username . " downline team Balance Added: " . $leftUser->userPlan->amount);
         } else {
